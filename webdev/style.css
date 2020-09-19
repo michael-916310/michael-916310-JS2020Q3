@@ -179,13 +179,13 @@
   display: flex;
   justify-content: space-between;
   margin: 120px auto;
-  width: 1060px;
+  width: 1061px;
   height: 582px;;
 }
 
 .screen-2__left-panel{
   margin-top: 173px;
-  margin-left: -2px;
+  margin-left: -1px;
 }
 
 .screen-2__rappresent{
@@ -234,6 +234,7 @@
 
 .screen-2__right-panel{
   margin-top: -1px;
+  height: 582px;
 }
 
 /* 
