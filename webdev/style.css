@@ -103,8 +103,8 @@
 
 .screen-1__your-life{
   font-weight: bold;
-  font-size: 64px;
-  letter-spacing: 4.5px;
+  font-size: 63px;
+  letter-spacing: 5px;
 
   text-transform: uppercase;
   margin: 136px 435px 0;
@@ -114,7 +114,7 @@
 }
 
 .screen-1__whatever{
-  margin: 21px auto;
+  margin: 20px auto;
   width: 504px;
   height: 50px;
 
@@ -131,7 +131,6 @@
 .screen-1__button{
   width: 184px;
   height: 46px;
-  margin-left:-2px;
   border: none;
 
   background: #00AFDB;
