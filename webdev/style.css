@@ -1,0 +1,646 @@
+/* 
+ПОРЯДОК ОПИСАНИЯ СТИЛЕЙ
+1.Сначала положение элемента относительно других: position, left/right/top/bottom, float, clear, z-index.
+2.Затем размеры и отступы: width, height, margin, padding…
+3.Рамка border, она частично относится к размерам.
+4.Общее оформление содержимого: list-style-type, overflow…
+5.Цветовое и стилевое оформление: background, color, font…"
+*/
+
+* {
+  box-sizing: border-box;
+
+  font-family: 'Roboto', sans-serif;  
+}
+
+.container{
+  margin: 0 auto;
+  width: 1600px;
+}
+
+
+/* 
+------------------------------
+Стили для первого экрана 
+------------------------------
+*/
+
+.screen-1{
+  height: 744px;
+
+  background-image: url("./assets/header-bg-image.png");
+
+  color:white;
+}
+
+/* первое окно - меню */
+
+.screen-1__menu-container{
+  height: 95px;
+  line-height: 95px;
+}
+
+.screen-1__h1{
+  display: inline;
+  margin: 0 50px;
+  padding: 0;
+  float: right;
+  
+  font-size: 24px;
+
+  /* пусть его не будет видно */
+  color:black;
+
+}
+
+.screen-1__menu-item{
+  color: white;
+  text-decoration: none;
+
+  font-size: 14px;   
+
+  opacity: 0.8;
+}
+
+.screen-1__menu-item:hover{
+  font-size: 15px;
+  text-decoration: underline;
+}
+
+.screen-1_menu-about{
+  margin-left: 502px;
+  width: 38px;
+
+  text-decoration: underline;  
+}
+
+.screen-1__menu-syllabus{
+  margin-left: 82px;
+  width: 53px;  
+}
+
+.screen-1__logo{
+  margin-left: 97px;
+  margin-top: -2px;
+  width: 44px;
+  height: 45px;
+  vertical-align: middle;
+
+  opacity: 1;  
+}
+
+.screen-1__menu-projects{
+  margin-left: 96px;
+  width: 52px;  
+}
+
+.screen-1__menu-faq{
+  margin-left: 80px;
+  width: 26px;  
+}
+
+/* первое окно - текст, кнопки */
+
+.screen-1__your-life{
+  font-weight: bold;
+  font-size: 64px;
+  letter-spacing: 4.5px;
+
+  text-transform: uppercase;
+  margin: 136px 435px 0;
+
+  width: 735px;
+  height: 75px;  
+}
+
+.screen-1__whatever{
+  margin: 21px auto;
+  width: 504px;
+  height: 50px;
+
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.screen-1__button-container{
+  margin-top: 29px;
+  text-align: center;
+}
+
+.screen-1__button{
+  width: 184px;
+  height: 46px;
+  margin-left:-2px;
+  border: none;
+
+  background: #00AFDB;
+
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #FFFFFF;
+}
+
+.screen-1__button:hover{
+  cursor: pointer;
+  color:black;
+  outline:1px solid black;
+}
+
+.screen-1__socials{
+  display: flex;
+  justify-content: space-between;
+  margin: 183px auto 0;
+  width: 170px;
+  height: 20px;
+}
+
+.screen-1__social-item:hover{
+  transform: scale(1.2);
+  cursor: pointer;  
+
+}
+
+
+/* 
+------------------------------
+Стили для второго экрана
+------------------------------
+*/
+
+.screen-2{
+  height: 842px;
+
+  border:1px solid white;
+  color: #373737;
+}
+
+.screen-2__container{
+  display: flex;
+  justify-content: space-between;
+  margin: 120px auto;
+  width: 1060px;
+  height: 582px;;
+}
+
+.screen-2__left-panel{
+  margin-top: 173px;
+  margin-left: -2px;
+}
+
+.screen-2__rappresent{
+  display: block;
+
+  width: 369px;
+  height: 57px;
+
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.screen-2__tasks{
+  margin-top: 22px;
+  font-size: 14px;
+  width: 407px;
+  height: 80px;
+  line-height: 149%;  
+}
+
+.screen-2__button-container{
+  margin-top: 29px;
+}
+
+.screen-2__button{
+  width: 184px;
+  height: 46px;
+  border: none;
+
+  background: #00AFDB;
+
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #FFFFFF;
+}
+
+.screen-2__button:hover{
+  cursor: pointer;
+  color:black;
+  outline:1px solid black;
+}
+
+.screen-2__right-panel{
+  margin-top: -1px;
+}
+
+/* 
+------------------------------
+Стили для третьего экрана
+------------------------------
+*/
+.screen-3{
+  display: flex;
+  justify-content: space-between;
+
+  height: 504px;
+  padding-left: 269px;
+
+  background: #F5F6F7;  
+  color: #373737;
+}
+
+/* стили левой панели */
+.screen-3__left-panel{
+
+  margin-top: 155px;  
+  width: 298px;
+  height: 175px;  
+}
+
+.screen-3__left-photo{
+  display: block;
+
+  margin:0 auto;
+}
+
+.screen-3__left-our{
+  display: block;
+
+  margin: 20px 69px 0;
+  width: 162px;
+  height: 20px;
+  text-transform: uppercase;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 2.4px;
+}
+
+.screen-3__left-hacker{
+  display: block;
+
+  margin-top: 11px;
+  width: 298px;
+  height: 80px;
+
+  font-size: 14px;
+  line-height: 145%;  
+  text-align: center;
+}
+
+/* стили правой панели */
+.screen-3__right-panel{
+  margin-top: 80px;    
+}
+
+.screen-3__nav-items{
+  display: flex;
+
+  margin-left:548px;
+  width: 77px;
+  height: 20px;
+}
+
+.screen-3__nav-left-arrow{
+  width: 11px;
+  height: 9px;
+  margin-top: 5px;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  
+  transform: rotate(-45deg);
+}
+
+.screen-3__nav-left-arrow:hover{ 
+  border-top: 2px solid #00AFDB;
+  border-left: 2px solid #00AFDB;
+  cursor: pointer;
+}
+
+.screen-3__nav-slide{
+  margin-left: 12px;
+  font-size: 18px;
+  line-height: 100%;
+}
+
+.screen-3__nav-from{
+  margin-left: 4px;
+  font-size: 18px;
+  line-height: 100%;
+}
+
+.screen-3__nav-slides{
+  margin-left: 4px;
+  font-size: 18px;
+  line-height: 100%;  
+}
+
+.screen-3__nav-right-arrow{
+  width: 12px;
+  height: 10px;
+  margin-top: 4px;
+  margin-left: 13px;
+  border-bottom: 2px solid #373737;
+  border-right: 2px solid #373737;
+  
+  transform: rotate(-45deg);  
+}
+
+.screen-3__nav-right-arrow:hover{ 
+  border-bottom: 2px solid #00AFDB;
+  border-right: 2px solid#00AFDB;
+  cursor: pointer;
+}
+
+.screen-3__slider{
+  display: flex;
+  width: 894px;
+  height: 244px;
+}
+
+.screen-3__slide-item{
+  margin-top: 20px;
+  margin-right: 30px;
+
+  width: 407px;
+  height: 244px;
+}
+
+/* 
+------------------------------
+Стили для четвертого экрана
+------------------------------
+*/
+.screen-4{
+  display: flex;
+  height: 842px;
+
+  color: #373737;
+}
+
+.screen-4__img{
+  margin: 120px 0 0 269px;
+  width: 407px;
+  height: 582px; 
+}
+
+.screen-4__content{
+  margin-top: 319px;
+  margin-left:139px;
+  width: 407px;
+  height: 184px;
+}
+
+.screen-4__content_implement{
+  font-size: 24px;
+  font-weight: bold;  
+  line-height: 28px;
+  letter-spacing: 1px;  
+  text-transform: uppercase;
+}
+
+.screen-4__content_these{
+  margin-top: 22px;
+  font-size: 14px;
+  line-height: 145%;
+}
+
+.screen-4__button{
+  margin-top: 28px;
+  width: 180px;
+  height: 46px;
+  border: none;
+
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: uppercase;
+  background: #00AFDB;
+  color:white;
+}
+
+.screen-4__button:hover{
+  cursor: pointer;
+  color:black;
+  outline:1px solid black;
+}
+
+/* 
+------------------------------
+Стили для пятого экрана
+------------------------------
+*/
+.screen-5{
+  height: 598px;
+
+  background: url("assets/screen-5-back.png");
+}
+
+.screen-5__label{
+  padding-left:610px;
+  padding-top: 217px;
+
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  color: white;
+}
+
+.screen-5__input{
+  margin-top: 30px;
+  margin-left: 597px;
+
+  width: 340px;
+  height: 46px;
+
+  font-size: 14px;
+  line-height: 140%;  
+
+  padding-left: 25px;
+
+  border: none;
+  color: #373737;
+}
+
+.screen-5__input:focus{
+  outline: none;
+}
+
+.screen-5__submit{
+  margin-left: -4px;
+  border: none;
+  background: #00AFDB;  
+
+  width: 66px;
+  height: 46px;  
+}
+
+.screen-5__submit:hover{
+  cursor: pointer;
+  outline: 1px solid #00AFDB; 
+}
+
+/* 
+------------------------------
+Стили для пятого экрана
+------------------------------
+*/
+.screen-6{
+  height: 468px;
+  color: #373737;
+  background: #F5F6F7;
+
+  border:1px solid #F5F6F7;
+}
+
+.screen-6__header{
+  margin-top: 119px;
+  margin-left: 674px;
+
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 1px;
+  text-transform: uppercase;  
+}
+
+.screen-6__machine-code{
+  margin-top: 21px;
+  margin-left: 558px;
+
+  width: 483px;
+  height: 40px;
+
+  font-size: 14px;
+  line-height: 147%;  
+
+  text-align: center;
+}
+
+.screen-6__btn-container{
+  display: flex;
+}
+
+.screen-6__btn-apple-store{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-left: 596px;
+  margin-top: 29px;
+
+  padding-right: 0;
+  padding-left: 20px;
+
+  width: 188px;
+  height: 50px;
+  border: none;
+  
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 16px;
+
+  background: #00AFDB;
+  color:white;
+}
+
+.screen-6__btn-play-market{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-left: 30px;
+  margin-top: 29px;
+
+  padding-right: 0;
+  padding-left: 20px;
+
+  width: 188px;
+  height: 50px;
+  border: none;
+  
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 16px;
+
+  background: #00AFDB;
+  color :white;
+}
+
+.screen-6__btn-apple-store:hover,
+.screen-6__btn-play-market:hover{
+  cursor: pointer;
+  color: black;
+  outline: 1px solid black;
+}
+
+/* 
+------------------------------
+Стили для пятого экрана
+------------------------------
+*/
+.footer{
+  display: flex;
+  height: 184px;
+  background: #000000;
+  border:1px solid black;    
+}
+
+.footer__menu-container{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 73px;
+  margin-left: 159px;
+
+  width: 236px;
+  height: 20px;
+}
+
+.footer__menu{
+
+  font-size: 14px;
+  line-height: 140%;
+  color: white;
+  opacity: 0.98;  
+
+  text-decoration: none;
+}
+
+.footer__menu:hover{
+  text-decoration: underline;
+  transform: scale(1.1);
+}
+.footer__menu-slash{
+  margin-top: 5px;
+  font-size: 10px;
+  line-height: 10px;
+
+  color: gray;  
+  opacity: 1;  
+}
+
+.footer__logo{
+  margin-left: 382px;
+  margin-top: 59px;
+
+  width: 44px;
+  height: 45px;
+}
+
+.footer__copyright{
+  margin-left: 449px;
+  margin-top: 73px;
+
+  color: #818181;
+  font-size: 14px;
+  line-height: 140%;
+}
