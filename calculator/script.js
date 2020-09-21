@@ -8,6 +8,7 @@
   let state = {
     curInteger: '0',
     curfloat: '',
+    sing: '',
     isFloatInput: false,
 
     operation:'',
@@ -43,13 +44,23 @@
     },
 
     getCurrent: ()=>{
-      return (state.isFloatInput)? `${state.curInteger}.${state.curfloat}`: state.curInteger;
+      return (state.isFloatInput)? `${state.sing}${state.curInteger}.${state.curfloat}`: `${state.sing}${state.curInteger}`;
     },
 
     setCurrent(v) {
+      if (v[0] == '-') {
+        this.sing = '-';
+      } else {
+        this.sing = '';
+      }
+
       this.curInteger = `${parseInt(v)}`;
-      this.curfloat = `${parseInt((parseFloat(v) - parseInt(v))*1e6)}`;
-      if (this.curfloat=="0") {
+      this.curfloat = `${(parseFloat(v) - parseInt(v)).toFixed(6)}`;
+      if (this.curfloat.includes('.')) {
+        this.curfloat= this.curfloat.substr(this.curfloat.indexOf('.')+1);
+      }
+
+      if (Number(this.curfloat)==0) {
         this.isFloatInput = false;
       } else {
         this.isFloatInput = true;
@@ -111,16 +122,35 @@
           state.backStep();
           state.operation = "";
           break;
+        case String.fromCharCode(8730):
+          // квадратный корень
+          v = '**(1/2)';
+
+          if (state.operation!=='**(1/2)'){
+            state.calcLog.push(state.getCurrent());
+          }
+
+          state.operation = v;
+
+          state.calculate(v);
+
+          state.calcLog.push('**');
+          state.calcLog.push('0.5');
+          state.calculate(v);
+
+          break;
         case '/':
         case '*':
         case '-':
         case '+':
         case '=':
+        case '**':
+          if (state.operation !=='**(1/2)'){
+            state.calcLog.push(state.getCurrent());
+            state.calculate(v);
+          }
+
           state.operation = v;
-
-          state.calcLog.push(state.getCurrent());
-          state.calculate(v);
-
           if (!(v=='=')) {
             state.calcLog.push(v);
           }
@@ -143,6 +173,9 @@
           }
           state.operation = "";
       }
+
+      console.log(state.calcLog, state.getCurrent());
+
       refresh();
     }
   }
