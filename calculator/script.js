@@ -9,11 +9,11 @@
     curInteger: '0',
     curfloat: '',
     isFloatInput: false,
-    isShowCurrent: true,
 
-    lastNumber:'0',
-    lastOperation:'',
-    operationLog: [],
+    operation:'',
+    calcLog:[],
+
+
 
     addNumber: (x)=>{
       if (state.isFloatInput) {
@@ -22,7 +22,6 @@
         state.curInteger = '' + state.curInteger + x;
         state.curInteger = `${parseInt(state.curInteger)}`
       }
-      state.operationLog.push(x);      
     },
 
     backStep: ()=>{
@@ -41,49 +40,42 @@
         a.pop();
         state.curInteger = a.join('');
       }
-      state.operationLog.push(String.fromCharCode(8656));
     },
 
     getCurrent: ()=>{
       return (state.isFloatInput)? `${state.curInteger}.${state.curfloat}`: state.curInteger;
     },
 
+    setCurrent(v) {
+      this.curInteger = `${parseInt(v)}`;
+      this.curfloat = `${parseInt((parseFloat(v) - parseInt(v))*1e6)}`;
+      if (this.curfloat=="0") {
+        this.isFloatInput = false;
+      } else {
+        this.isFloatInput = true;
+      }
+    },
+
     clearCurrent(){
       this.curInteger="0";
       this.curfloat='';
-      this.isFloatInput=false;      
+      this.isFloatInput=false;
     },
 
-    addOperation(x){
-      let cur = this.getCurrent();
+    calculate(v){
+      if (this.calcLog.length==3) {
 
-      if (this.lastNumber=='0') {
-        this.lastNumber = cur;
-        this.lastOperation = x;
-        this.clearCurrent();
-      } else {
-        switch (x) {
-          case '/':
-            this.lastNumber = `${parseFloat(this.lastNumber)/parseFloat(cur)}`;
-            break;
-          case '*':
-            ;
-            break;
-          case '-':
-            ;
-            break;
-          case '+':
-            ;
-            break;
-          case '=':
-            this.addOperation(this.lastOperation);
-            this.isShowCurrent = false;
-            this.clearCurrent();
-            break;
+        let rt = ''+eval(this.calcLog.join(''));
+
+        this.calcLog.length = 0;
+        if (!(v=='=')) {
+          this.calcLog.push(rt);
         }
+
+        this.setCurrent(rt);
       }
-      this.operationLog.push(x);      
-    }
+    },
+
   }
 
   function connectToHTML(){
@@ -97,12 +89,7 @@
   }
 
   function refresh(){
-    if (state.isShowCurrent) {
-      inputResult.value =  state.getCurrent();
-    } else {
-      inputResult.value =  state.lastNumber;
-    }
-    inputLog.innerHTML = state.operationLog.join('');
+    inputResult.value =  state.getCurrent();
   }
 
   function onBtnClick(e) {
@@ -112,32 +99,49 @@
       switch (v) {
         case 'ce':
           state.clearCurrent();
-          state.operationLog.push(v);          
+          state.operation = "";
           break;
         case 'c':
-
+          state.calcLog.length = 0;
+          state.clearCurrent();
+          state.operation = "";
           break;
         case String.fromCharCode(8656):
           // стрелка "назад" - стереть значение
           state.backStep();
+          state.operation = "";
           break;
         case '/':
         case '*':
         case '-':
         case '+':
         case '=':
-          state.addOperation(v);
+          state.operation = v;
+
+          state.calcLog.push(state.getCurrent());
+          state.calculate(v);
+
+          if (!(v=='=')) {
+            state.calcLog.push(v);
+          }
+
           break;
         case '.':
           if (!state.isFloatInput){
-            state.isFloatInput = true;            
-            state.operationLog.push(v);
+            state.isFloatInput = true;
           }
+          state.operation = "";
           break;
         default:
           if (parseInt(v)>=0 || parseInt(v)<=9) {
-            state.addNumber(v);
+            if (state.operation == '') {
+              state.addNumber(v);
+            } else {
+              state.clearCurrent();
+              state.addNumber(v);
+            }
           }
+          state.operation = "";
       }
       refresh();
     }
@@ -145,5 +149,5 @@
 
   connectToHTML();
   refresh();
-  
+
 })('calc-buttons','display','input-log')
