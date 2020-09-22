@@ -76,7 +76,8 @@
     calculate(v){
       if (this.calcLog.length==3) {
 
-        let rt = ''+eval(this.calcLog.join(''));
+        let fn = new Function('return '+this.calcLog.join(''));
+        let rt = fn();
 
         this.calcLog.length = 0;
         if (!(v=='=')) {
