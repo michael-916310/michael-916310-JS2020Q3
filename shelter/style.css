@@ -3,22 +3,132 @@
 Стили первого экрана
 ----------------------------------*/
 .start-screen {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: 925px;
   background-image: url("assets/images/start-screen-background.jpg");
+}
+
+.start-screen .start-screen-container-middle {
+  width: 1200px;
+  height: 100%;
+}
+
+.start-screen .start-screen-container-middle .start-screen-container-adjusted {
+  width: 100%;
+  height: 100%;
+  margin-left: 8px;
+}
+
+.start-screen .start-screen-container-middle .start-screen-container-adjusted .start-screen-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  height: 61px;
+  margin-top: 60px;
+}
+
+.start-screen .start-screen-container-middle .start-screen-container-adjusted .start-screen-header .start-screen-logo__tittle {
+  margin: 0;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: 0.06em;
+  color: #F1CDB3;
+}
+
+.start-screen .start-screen-container-middle .start-screen-container-adjusted .start-screen-header .start-screen-logo__sub-tittle {
+  margin: 10px 0 0;
+  font-family: Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  letter-spacing: 0.1em;
+  color: #FFFFFF;
+}
+
+.start-screen .start-screen-container-middle .start-screen-container-adjusted .start-screen-header .header-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+  width: 460px;
+  height: 27px;
+}
+
+.start-screen .start-screen-container-middle .start-screen-container-adjusted .start-screen-header .header-menu .header-menu__item {
+  text-decoration: none;
+  font-family: Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 160%;
+  color: #CDCDCD;
+  padding-bottom: 5px;
+}
+
+.start-screen .start-screen-container-middle .start-screen-container-adjusted .start-screen-header .header-menu .header-menu__item_selected {
+  border-bottom: 3px solid  #F1CDB3;
+}
+
+.start-screen .start-screen-container-middle .start-screen-container-adjusted .start-screen-header .header-menu .header-menu__item:hover {
+  color: white;
+  border-bottom: 3px solid  #F1CDB3;
 }
 
 /* --------------------------------
 Стили второго экрана
 ----------------------------------*/
 .about {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: 588px;
   background-color: white;
+}
+
+.about-container-middle, .pets-container-middle, .help-container-middle, .donation-container-middle, .footer-container-middle {
+  width: 1200px;
+  height: 100%;
+}
+
+.about-container-adjusted, .pets-container-adjusted, .help-container-adjusted, .donation-container-adjusted, .footer-container-adjusted {
+  width: 100%;
+  height: 100%;
+  margin-left: 7px;
+  border: 1px grey dashed;
 }
 
 /* --------------------------------
 Стили третьего экрана
 ----------------------------------*/
 .pets {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: 862px;
   background: #F6F6F6;
 }
@@ -27,6 +137,12 @@
 Стили четвертого экрана
 ----------------------------------*/
 .help {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: 611px;
   background-color: white;
 }
@@ -35,6 +151,12 @@
 Стили пятого экрана
 ----------------------------------*/
 .donation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: 462px;
   background-color: #F6F6F6;
 }
@@ -43,6 +165,12 @@
 Стили футера экрана
 ----------------------------------*/
 .footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: 462px;
   background-image: url("assets/images/footer-background.jpg");
 }
