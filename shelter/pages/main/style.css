@@ -2,6 +2,11 @@
 /* --------------------------------
 Стили первого экрана
 ----------------------------------*/
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 .start-screen {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9,8 +14,8 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 925px;
-  background-image: url("assets/images/start-screen-background.jpg");
+  height: 908px;
+  background-image: url("/assets/images/start-screen-background.jpg");
 }
 
 .start-screen .start-screen-container-middle {
@@ -42,7 +47,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
-  height: 61px;
+  height: 60px;
   margin-top: 60px;
 }
 
@@ -52,13 +57,13 @@
   font-style: normal;
   font-weight: normal;
   font-size: 32px;
-  line-height: 36px;
+  line-height: 110%;
   letter-spacing: 0.06em;
   color: #F1CDB3;
 }
 
 .start-screen .start-screen-header .start-screen-logo__sub-tittle {
-  margin: 10px 0 0;
+  margin: 10px 0 0 4px;
   font-family: Arial;
   font-style: normal;
   font-weight: normal;
@@ -79,8 +84,9 @@
       -ms-flex-align: center;
           align-items: center;
   list-style: none;
-  width: 460px;
+  width: 443px;
   height: 27px;
+  padding: 0 0 3px 0;
 }
 
 .start-screen .start-screen-header .header-menu .header-menu__item {
@@ -95,12 +101,13 @@
 }
 
 .start-screen .start-screen-header .header-menu .header-menu__item_selected {
+  color: #FAFAFA;
   border-bottom: 3px solid  #F1CDB3;
 }
 
 .start-screen .start-screen-header .header-menu .header-menu__item:hover {
-  color: white;
-  border-bottom: 3px solid  #F1CDB3;
+  color: #FAFAFA;
+  cursor: pointer;
 }
 
 .start-screen .start-screen-content-container {
@@ -120,8 +127,8 @@
       -ms-grid-row-align: center;
       align-self: center;
   width: 460px;
-  height: 308px;
-  margin-bottom: 92px;
+  height: 321px;
+  margin-bottom: 80px;
 }
 
 .start-screen .start-screen-content-container .start-screen-content .start-screen-content__heading {
@@ -137,7 +144,7 @@
 
 .start-screen .start-screen-content-container .start-screen-content .start-screen-content__sub-heading {
   width: 460px;
-  margin: 29px 0 0;
+  margin: 41px 0 0;
   font-family: Arial;
   font-style: normal;
   font-weight: normal;
@@ -148,7 +155,7 @@
 
 .start-screen .start-screen-content-container .start-screen-content .start-screen-content__btn {
   margin-top: 40px;
-  width: 200px;
+  width: 207px;
   height: 52px;
   border: none;
   background: #F1CDB3;
@@ -157,9 +164,14 @@
   font-style: normal;
   font-weight: normal;
   font-size: 17px;
-  line-height: 19px;
-  letter-spacing: 1px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
   color: #292929;
+}
+
+.start-screen .start-screen-content-container .start-screen-content .start-screen-content__btn:hover {
+  cursor: pointer;
+  background: #FDDCC4;
 }
 
 .start-screen .start-screen-content-container .start-screen-content__img {
@@ -204,7 +216,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 862px;
+  height: 877px;
   background: #F6F6F6;
 }
 
@@ -246,7 +258,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 462px;
+  height: 355px;
   background-image: url("assets/images/footer-background.jpg");
 }
 /*# sourceMappingURL=style.css.map */
