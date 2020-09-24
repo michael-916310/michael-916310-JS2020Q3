@@ -1,4 +1,15 @@
 @charset "UTF-8";
+.pets .pets-heading {
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  text-align: center;
+}
+
 /* --------------------------------
 Стили первого экрана
 ----------------------------------*/
@@ -23,7 +34,7 @@
   height: 100%;
 }
 
-.start-screen .start-screen-container-middle .start-screen-container-adjusted {
+.start-screen .start-screen-container-adjusted {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -269,16 +280,139 @@
   background: #F6F6F6;
 }
 
-.pets-container-middle, .help-container-middle, .donation-container-middle, .footer-container-middle {
+.pets .pets-container-middle {
   width: 1200px;
   height: 100%;
 }
 
-.pets-container-adjusted, .help-container-adjusted, .donation-container-adjusted, .footer-container-adjusted {
+.pets .pets-container-adjusted {
   width: 100%;
   height: 100%;
   margin-left: 7px;
-  border: 1px grey dashed;
+}
+
+.pets .pets-heading-container {
+  margin: 81px auto 0;
+  width: 400px;
+}
+
+.pets .pets-heading {
+  margin-left: 2px;
+  width: 100%;
+}
+
+.pets .pets-slider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 435px;
+  margin-top: 60px;
+}
+
+.pets .pets-slider__card {
+  width: 270px;
+  height: 435px;
+  margin: -1px 37px;
+  background-color: #FAFAFA;
+  border-radius: 9px;
+}
+
+.pets .pets-slider__left-arrow, .pets .pets-slider__right-arrow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin-bottom: 2px;
+  width: 52px;
+  height: 52px;
+  border-radius: 100px;
+  border: 2px solid #F1CDB3;
+}
+
+.pets .pets-slider__left-arrow:hover, .pets .pets-slider__right-arrow:hover {
+  background: #FDDCC4;
+  border: none;
+}
+
+.pets .pets-button-container {
+  display: block;
+  margin: 59px auto 0;
+  width: 261px;
+  height: 52px;
+}
+
+.pets .pets-button {
+  margin-left: 2px;
+  width: 100%;
+  height: 100%;
+  background: #F1CDB3;
+  border-radius: 100px;
+  border: none;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #4C4C4C;
+}
+
+.pets .pets-button:hover {
+  background: #FDDCC4;
+}
+
+.pets .pets-slider__card-photo {
+  display: block;
+  margin: 30px 35px 0;
+}
+
+.pets .pets-slider__card-caption {
+  margin: 30px 0;
+  text-align: center;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+.pets .pets-slider__card-btn {
+  margin: 0 41.5px;
+  width: 187px;
+  height: 52px;
+  border: 2px solid #F1CDB3;
+  border-radius: 100px;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #4C4C4C;
+  background: #FAFAFA;
+}
+
+.pets .pets-slider__card-btn:hover {
+  background: #FDDCC4;
+  border: none;
+}
+
+.pets .pets-slider__card:hover {
+  -webkit-box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+          box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  background: FFFFFF;
 }
 
 /* --------------------------------
@@ -293,6 +427,18 @@
           justify-content: center;
   height: 611px;
   background-color: white;
+}
+
+.help-container-middle, .donation-container-middle, .footer-container-middle {
+  width: 1200px;
+  height: 100%;
+}
+
+.help-container-adjusted, .donation-container-adjusted, .footer-container-adjusted {
+  width: 100%;
+  height: 100%;
+  margin-left: 7px;
+  border: 1px grey dashed;
 }
 
 /* --------------------------------
