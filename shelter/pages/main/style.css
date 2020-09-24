@@ -194,16 +194,65 @@
   background-color: white;
 }
 
-.about-container-middle, .pets-container-middle, .help-container-middle, .donation-container-middle, .footer-container-middle {
+.about .about-container-middle {
   width: 1200px;
   height: 100%;
 }
 
-.about-container-adjusted, .pets-container-adjusted, .help-container-adjusted, .donation-container-adjusted, .footer-container-adjusted {
+.about .about-container-adjusted {
   width: 100%;
   height: 100%;
   margin-left: 7px;
-  border: 1px grey dashed;
+}
+
+.about .about-content__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 408px;
+  margin-top: 80px;
+  padding: 0 58px;
+}
+
+.about .about-content__img {
+  width: 300px;
+  height: 408px;
+  background-image: url("/assets/images/about-pets.png");
+}
+
+.about .about-content {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  width: 430px;
+  height: 380px;
+}
+
+.about .about-content .about-content__heading {
+  margin: 0;
+  padding-left: 2px;
+  padding-top: 1px;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+.about .about-content .about-content__sub-heading {
+  margin: 25px 0 0 0;
+  padding-left: 2px;
+  font-family: Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 160%;
+  color: #4C4C4C;
 }
 
 /* --------------------------------
@@ -218,6 +267,18 @@
           justify-content: center;
   height: 877px;
   background: #F6F6F6;
+}
+
+.pets-container-middle, .help-container-middle, .donation-container-middle, .footer-container-middle {
+  width: 1200px;
+  height: 100%;
+}
+
+.pets-container-adjusted, .help-container-adjusted, .donation-container-adjusted, .footer-container-adjusted {
+  width: 100%;
+  height: 100%;
+  margin-left: 7px;
+  border: 1px grey dashed;
 }
 
 /* --------------------------------
