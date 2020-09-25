@@ -29,6 +29,40 @@ $color-dark-3xl: #292929;
   text-align: center;
 }
 
+%local-h4{
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 115%;
+
+  letter-spacing: 0.06em;
+
+  color: $color-dark-l;
+}
+
+%local-h5{
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 110%;
+
+  letter-spacing: 0.06em;
+
+  color:$color-dark-l;
+}
+
+%subheading{
+  font-family: Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 160%;
+
+  color: $color-dark-xl;
+}
+
 /* --------------------------------
 Стили первого экрана
 ----------------------------------*/
@@ -492,14 +526,12 @@ $color-dark-3xl: #292929;
 
   .help-line-5{
     display: flex;
-    //justify-content: space-between;
 
     margin-top:60px;
     margin-left: auto;
     margin-right: auto;
     width: 1100px;
 
-    //border:1px dotted grey;
   }
 
   .help-line-4{
@@ -571,8 +603,6 @@ $color-dark-3xl: #292929;
 }
 
 
-
-
 /* --------------------------------
 Стили пятого экрана
 ----------------------------------*/
@@ -582,21 +612,80 @@ $color-dark-3xl: #292929;
 
   height: 462px;
 
-  background-color: #F6F6F6;;
+  background-color: #F6F6F6;
+
+  .donation-container-middle{
+    width: 1200px;
+    height: 100%;
+  }
+
+  .donation-container-adjusted{
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+    margin-left: 7px;
+  }
+
+  .donation-img{
+    margin: 92px 0 0 143px;
+    width: 505px;
+    height: 261px;
+  }
+
+  .donation-info{
+    margin-top:81px;
+    margin-left:30px;
+
+    padding:1px 0 0 0;
+
+    width: 380px;
+    height: 282px;
+
+  }
+
+  .donation-info__heading{
+    margin: 0;
+    padding: 0;
+    @extend %local-h3;
+
+    text-align: left;
+  }
+
+  .donation-info__sub-heading{
+    @extend %local-h5;
+  }
+
+  .donation-info__credit-card{
+    display: flex;
+    align-items: center;
+
+    width: 349px;
+    height: 43px;
+
+    padding-left: 15px;
+
+    background: $color-primary;
+    border-radius: 9px;
+  }
+
+  .donation-info__credit-card:hover{
+    cursor: pointer;
+    background: $color-primary-light;
+  }
+
+  .donation-info__credit-card-number{
+
+    text-decoration: none;
+    @extend %local-h4;
+
+    padding-left: 15px;
+  }
+
+
 }
 
-.donation-container-middle, .footer-container-middle{
-  width: 1200px;
-  height: 100%;
-}
 
-.donation-container-adjusted, .footer-container-adjusted{
-  width: 100%;
-  height: 100%;
-  margin-left: 7px;
-
-  border: 1px grey dashed;
-}
 
 
 /* --------------------------------
@@ -608,4 +697,17 @@ $color-dark-3xl: #292929;
 
   height: 355px;
   background-image: url('assets/images/footer-background.jpg');
+}
+
+.footer-container-middle{
+  width: 1200px;
+  height: 100%;
+}
+
+.footer-container-adjusted{
+  width: 100%;
+  height: 100%;
+  margin-left: 7px;
+
+  border: 1px grey dashed;
 }
