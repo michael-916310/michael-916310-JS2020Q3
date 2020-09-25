@@ -492,26 +492,24 @@ $color-dark-3xl: #292929;
 
   .help-line-5{
     display: flex;
-    justify-content: space-between;
+    //justify-content: space-between;
 
     margin-top:60px;
     margin-left: auto;
     margin-right: auto;
     width: 1100px;
 
-    border:1px dotted grey;
+    //border:1px dotted grey;
   }
 
   .help-line-4{
     display: flex;
-    justify-content: space-between;
 
-    margin-top: 32px;
+    margin-top: 35px;
     margin-left: auto;
     margin-right: auto;
     width: 950px;
 
-    border:1px dotted grey;
   }
 
   .help-line-item{
@@ -531,8 +529,45 @@ $color-dark-3xl: #292929;
 
   .help-line-item-text{
     margin-top: 25px;
+    margin-left: 2px;
   }
 
+  .help-line-5__item-1{
+    margin-left:-4px;
+  }
+
+  .help-line-5__item-2{
+    margin-left: 70px;
+  }
+
+  .help-line-5__item-3{
+    margin-left: 60px;
+  }
+
+  .help-line-5__item-4{
+    margin-left: 60px;
+  }
+
+  .help-line-5__item-5{
+    margin-left: 80px;
+  }
+
+  .help-line-4__item-1{
+    margin-left: 8px;
+  }
+
+  .help-line-4__item-2{
+    margin-left: 50px;
+  }
+
+  .help-line-4__item-3{
+    margin-left: 86px;
+    width: 168px;
+  }
+
+  .help-line-4__item-4{
+    margin-left: 107px;
+  }
 }
 
 
