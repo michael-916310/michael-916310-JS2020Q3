@@ -1,6 +1,6 @@
 $color-light-s: #FAFAFA;
 $color-light-l: #F6F6F6;
-$color-light-xl: FFFFFF;
+$color-light-xl: #FFFFFF;
 
 $color-primary: #F1CDB3 ;
 $color-primary-light: #FDDCC4;
@@ -610,7 +610,7 @@ $color-dark-3xl: #292929;
   display: flex;
   justify-content: center;
 
-  height: 462px;
+  height: 464px;
 
   background-color: #F6F6F6;
 
@@ -682,6 +682,17 @@ $color-dark-3xl: #292929;
     padding-left: 15px;
   }
 
+  .donation-info__legal{
+    padding-top: 8px;
+
+    font-family: Arial;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+
+    color: $color-dark-m;
+  }
 
 }
 
@@ -696,18 +707,49 @@ $color-dark-3xl: #292929;
   justify-content: center;
 
   height: 355px;
-  background-image: url('assets/images/footer-background.jpg');
+  background-image: url('/assets/images/footer-background.jpg');
+
+  .footer-container-middle{
+    width: 1200px;
+    height: 100%;
+  }
+
+  .footer-container-adjusted{
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+    margin-left: 7px;
+
+  }
+
+  .footer-contacts-container{
+    margin-top: 61px;
+
+    width: 280px;
+  }
+
+  .footer-location-container{
+    margin-top: 61px;
+    margin-left: 160px;
+
+    width: 302px;
+    //height: 290px;
+
+    border:1px solid red;
+  }
+
+  .footer-contacts-header{
+    padding:0;
+    margin:0;
+    margin-top:1px;
+    margin-left: 1px;
+
+    @extend %local-h3;
+    text-align: left;
+
+    color: $color-light-xl;
+  }
+
 }
 
-.footer-container-middle{
-  width: 1200px;
-  height: 100%;
-}
-
-.footer-container-adjusted{
-  width: 100%;
-  height: 100%;
-  margin-left: 7px;
-
-  border: 1px grey dashed;
-}
