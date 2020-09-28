@@ -17,7 +17,7 @@ body {
 }
 
 .time {
-  font-size: 8rem;
+  font-size: 6rem;
 }
 
 h1 {
@@ -31,6 +31,43 @@ h2 {
 
 @media (max-width: 700px) {
   .time {
-    font-size: 6rem;
+    font-size: 4rem;
   }
+}
+
+.quote-container{
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 5px;
+
+  margin-top:10px;
+
+  width: 50%;
+}
+
+.quote-text{
+  text-align: left;
+  margin-right:10px;
+}
+.quote-btn{
+  padding:5px;
+}
+
+.weather-container{
+  display: flex;
+  padding: 10px;
+  margin: 5px;
+  width: 50%;
+
+  border: 1px solid black;
+}
+
+.city{
+  margin-right: 10px;
+}
+.weather-icon, .temperature, .weather-description, .weather-humidity, .weather-wind{
+  margin-left: 10px;
+  margin-right: 10px;
 }
