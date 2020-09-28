@@ -1,187 +1,121 @@
-"use strict";
+(function(){
 
-!(function(strBtnContainerClassName, strResultId, strLogId){
+  let elNumbers, elOperations, elClearBtns, elDecimalBtn, elResult, elDisplay;
 
-  let inputResult;
-  let inputLog;
-
-  let state = {
-    curInteger: '0',
-    curfloat: '',
-    sing: '',
-    isFloatInput: false,
-
-    operation:'',
-    calcLog:[],
-
-
-
-    addNumber: (x)=>{
-      if (state.isFloatInput) {
-        state.curfloat = '' + state.curfloat + x;
-      } else {
-        state.curInteger = '' + state.curInteger + x;
-        state.curInteger = `${parseInt(state.curInteger)}`
-      }
-    },
-
-    backStep: ()=>{
-      let a=[];
-
-      if (state.isFloatInput) {
-        if (state.curfloat.length==0) {
-          state.isFloatInput = false;
-        } else {
-          a = state.curfloat.split('');
-          a.pop();
-          state.curfloat = a.join('');
-        }
-      } else {
-        a = state.curInteger.split('');
-        a.pop();
-        state.curInteger = a.join('');
-      }
-    },
-
-    getCurrent: ()=>{
-      return (state.isFloatInput)? `${state.sing}${state.curInteger}.${state.curfloat}`: `${state.sing}${state.curInteger}`;
-    },
-
-    setCurrent(v) {
-      if (v[0] == '-') {
-        this.sing = '-';
-      } else {
-        this.sing = '';
-      }
-
-      this.curInteger = `${parseInt(v)}`;
-      this.curfloat = `${(parseFloat(v) - parseInt(v)).toFixed(6)}`;
-      if (this.curfloat.includes('.')) {
-        this.curfloat= this.curfloat.substr(this.curfloat.indexOf('.')+1);
-      }
-
-      if (Number(this.curfloat)==0) {
-        this.isFloatInput = false;
-      } else {
-        this.isFloatInput = true;
-      }
-    },
-
-    clearCurrent(){
-      this.curInteger="0";
-      this.curfloat='';
-      this.isFloatInput=false;
-    },
-
-    calculate(v){
-      if (this.calcLog.length==3) {
-
-        let fn = new Function('return '+this.calcLog.join(''));
-        let rt = fn();
-
-        this.calcLog.length = 0;
-        if (!(v=='=')) {
-          this.calcLog.push(rt);
-        }
-
-        this.setCurrent(rt);
-      }
-    },
-
-  }
+  let memoryCurrentNumber = 0;
+  let memoryNewNumber = false;
+  let memoryPendingOperation = '';
 
   function connectToHTML(){
-    let elButtonsContainer;
+    elNumbers = document.querySelectorAll('.number');
+    elOperations = document.querySelectorAll('.operator');
+    elClearBtns = document.querySelectorAll('.clear-btn');
+    elDecimalBtn = document.getElementById('decimal');
+    elResult = document.getElementById('result');
+    elDisplay = document.getElementById('display');
 
-    elButtonsContainer=document.getElementsByClassName(strBtnContainerClassName)[0];
-    elButtonsContainer.addEventListener('click', onBtnClick);
+    for (let i = 0; i < elNumbers.length; i++) {
+      let number = elNumbers[i];
+      number.addEventListener('click', function (e) {
+        numberPress(e.target.textContent);
+      });
+    }
 
-    inputResult = document.getElementById(strResultId);
-    inputLog = document.getElementById(strLogId);
+    for (let i = 0; i < elOperations.length; i++) {
+      let operationBtn = elOperations[i];
+      operationBtn.addEventListener('click', function (e) {
+        operationPress(e.target.textContent);
+      });
+    }
+
+    for (var i = 0; i < elClearBtns.length; i++) {
+      let clearBtn = elClearBtns[i];
+      clearBtn.addEventListener('click', function (e) {
+        clear(e.target.textContent);
+      });
+    }
+
+    elDecimalBtn.addEventListener('click', decimal);
   }
 
-  function refresh(){
-    inputResult.value =  state.getCurrent();
-  }
-
-  function onBtnClick(e) {
-    if (e.target.type=='button'){
-
-      let v = e.target.textContent;
-      switch (v) {
-        case 'ce':
-          state.clearCurrent();
-          state.operation = "";
-          break;
-        case 'c':
-          state.calcLog.length = 0;
-          state.clearCurrent();
-          state.operation = "";
-          break;
-        case String.fromCharCode(8656):
-          // стрелка "назад" - стереть значение
-          state.backStep();
-          state.operation = "";
-          break;
-        case String.fromCharCode(8730):
-          // квадратный корень
-          v = '**(1/2)';
-
-          if (state.operation!=='**(1/2)'){
-            state.calcLog.push(state.getCurrent());
-          }
-
-          state.operation = v;
-
-          state.calculate(v);
-
-          state.calcLog.push('**');
-          state.calcLog.push('0.5');
-          state.calculate(v);
-
-          break;
-        case '/':
-        case '*':
-        case '-':
-        case '+':
-        case '=':
-        case '**':
-          if (state.operation !=='**(1/2)'){
-            state.calcLog.push(state.getCurrent());
-            state.calculate(v);
-          }
-
-          state.operation = v;
-          if (!(v=='=')) {
-            state.calcLog.push(v);
-          }
-
-          break;
-        case '.':
-          if (!state.isFloatInput){
-            state.isFloatInput = true;
-          }
-          state.operation = "";
-          break;
-        default:
-          if (parseInt(v)>=0 || parseInt(v)<=9) {
-            if (state.operation == '') {
-              state.addNumber(v);
-            } else {
-              state.clearCurrent();
-              state.addNumber(v);
-            }
-          }
-          state.operation = "";
+  function numberPress(number) {
+    if (memoryNewNumber) {
+      display.value = number;
+      memoryNewNumber = false;
+    } else {
+      if (display.value === '0') {
+        display.value = number;
+      } else {
+        display.value += number;
       }
+    }
+  }
 
-      console.log(state.calcLog, state.getCurrent());
+  function operationPress(op) {
+    let localOperationMemory = display.value;
 
-      refresh();
+    if (memoryNewNumber) {
+      if (memoryPendingOperation !== '=') {
+        display.value = memoryCurrentNumber;
+        memoryPendingOperation = op;
+      }
+    } else {
+      memoryNewNumber = true;
+      if (memoryPendingOperation === '+') {
+        memoryCurrentNumber += +localOperationMemory;
+      } else if (memoryPendingOperation === '-') {
+        memoryCurrentNumber -= +localOperationMemory;
+      } else if (memoryPendingOperation === '*') {
+        memoryCurrentNumber *= +localOperationMemory;
+      } else if (memoryPendingOperation === '/') {
+        memoryCurrentNumber /= +localOperationMemory;
+      } else if (memoryPendingOperation === '**') {
+        memoryCurrentNumber = memoryCurrentNumber ** localOperationMemory;
+      } else if (memoryPendingOperation === String.fromCharCode(8730)) {
+        memoryCurrentNumber = localOperationMemory ** 0.5;
+      } else if (memoryPendingOperation === '=') {
+
+      } else {
+        memoryCurrentNumber = +localOperationMemory;
+      }
+      display.value = memoryCurrentNumber;
+      memoryPendingOperation = op;
+    }
+
+    if (memoryPendingOperation === '=') {
+      memoryPendingOperation = '';
+    }
+    if (memoryPendingOperation === String.fromCharCode(8730)){
+      memoryNewNumber = false;
+    }
+
+  }
+
+  function decimal(argument) {
+    let localDecimalMemory = display.value;
+
+    if (memoryNewNumber) {
+      localDecimalMemory = '0.';
+      memoryNewNumber = false;
+    } else {
+      if (localDecimalMemory.indexOf('.') === -1) {
+        localDecimalMemory += '.';
+      }
+    }
+    display.value = localDecimalMemory;
+  }
+
+  function clear(id) {
+    if (id === 'ce') {
+      display.value = '0';
+      memoryNewNumber = true;
+    } else if (id === 'c') {
+      display.value = '0';
+      memoryNewNumber = true;
+      memoryCurrentNumber = 0;
+      memoryPendingOperation = '';
     }
   }
 
   connectToHTML();
-  refresh();
-
-})('calc-buttons','display','input-log')
+})();
