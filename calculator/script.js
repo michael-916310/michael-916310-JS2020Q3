@@ -56,6 +56,11 @@
     }
   }
 
+  function rnd(num){
+    let rt = Math.round(parseFloat(num)*1000000)/1000000;
+    return rt;
+  }
+
   function operationPress(op) {
     let localOperationMemory = display.value;
 
@@ -87,6 +92,8 @@
       } else {
         memoryCurrentNumber = +localOperationMemory;
       }
+      //display.value = memoryCurrentNumber;
+      memoryCurrentNumber = rnd(memoryCurrentNumber);
       display.value = memoryCurrentNumber;
       memoryPendingOperation = op;
     }
