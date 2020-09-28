@@ -1,3 +1,5 @@
+"use strict";
+
 (function(){
   const elmTime = document.querySelector('.time');
   const elmGreet = document.querySelector('.greeting')
@@ -92,6 +94,8 @@
 
   }
 
+  utils.getHour.bind(utils);
+
   elmName.addEventListener('keypress', utils.setName);
   elmName.addEventListener('blur', utils.setName);
   elmFocus.addEventListener('keypress', utils.setFocus);
@@ -102,6 +106,7 @@
   utils.getName();
   utils.getFocus();
 
+  //window.utils = utils;
 })();
 
 (function(){
@@ -111,7 +116,6 @@
 
   async function getQuote() {
     const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=ru`;
-    //const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -138,7 +142,7 @@
 
     const appid='f04eaf6702e5440e9b4dc5e2b3a5a2cd';
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=${appid}&units=metric`;
-    console.log(url);
+    //console.log(url);
 
     try{
       const res = await fetch(url);
@@ -167,6 +171,100 @@
   const city = document.querySelector('.city');
   document.addEventListener('DOMContentLoaded', getWeather);
   city.addEventListener('keypress', setCity);
-  //getWeather();
 
-})()
+})();
+
+(function(){
+  let base = './assets/images/day/';
+  const images = ['01.jpg', '02.jpg', '03.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
+  let i = 0;
+
+  function viewBgImage(data) {
+    const body = document.querySelector('body');
+    const src = data;
+    const img = document.createElement('img');
+    img.src = src;
+    img.onload = () => {
+      body.style.backgroundImage = `url(${src})`;
+    };
+  }
+
+  function getImage() {
+    let hour = new Date().getHours();
+
+    if (hour < 12) {
+      // утро
+      base = './assets/images/morning/';
+
+    } else if (hour < 18) {
+      // день
+      base = './assets/images/day/';
+
+    } else {
+      // вечер
+      base = './assets/images/evening/';
+    }
+
+    const index = i % images.length;
+    const imageSrc = base + images[index];
+    viewBgImage(imageSrc);
+    i++;
+
+    console.log('getImage-по кнопке',imageSrc);
+  }
+
+  const btn = document.querySelector('.img-btn');
+  btn.addEventListener('click', getImage);
+
+})();
+
+(function(){
+  let base = './assets/images/day/';
+  const images = ['01.jpg', '02.jpg', '03.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
+
+
+  let i = 0;
+
+  function viewBgImage(data) {
+    const body = document.querySelector('body');
+    const src = data;
+    const img = document.createElement('img');
+    img.src = src;
+    img.onload = () => {
+      body.style.backgroundImage = `url(${src})`;
+    };
+  }
+
+  function getImage() {
+    let hour = new Date().getHours();
+
+    if (hour < 12) {
+      // утро
+      base = './assets/images/morning/';
+      document.body.style.backgroundImage = "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
+
+    } else if (hour < 18) {
+      // день
+      base = './assets/images/day/';
+      document.body.style.backgroundImage = "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
+
+    } else {
+      // вечер
+      base = './assets/images/evening/';
+      document.body.style.backgroundImage = "url('https://i.ibb.co/924T2Wv/night.jpg')";
+
+    }
+
+    const index = i % images.length;
+    const imageSrc = base + images[index];
+    viewBgImage(imageSrc);
+    i++;
+
+    console.log('getImage-каждый час',imageSrc);
+
+  }
+
+  setInterval(getImage, 1000*60*60);
+  //setInterval(getImage, 1000*10);
+
+})();
