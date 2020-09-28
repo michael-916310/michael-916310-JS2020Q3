@@ -23,9 +23,14 @@
 
     for (let i = 0; i < elOperations.length; i++) {
       let operationBtn = elOperations[i];
-      operationBtn.addEventListener('click', function (e) {
-        operationPress(e.target.textContent);
-      });
+      if (operationBtn.innerHTML=='SIGN') {
+        operationBtn.addEventListener('click', function (e) {
+          elDisplay.value = (elDisplay.value>=0)?`-${elDisplay.value}`:elDisplay.value.substr(1);})
+      } else {
+        operationBtn.addEventListener('click', function (e) {
+          operationPress(e.target.textContent);
+        });
+      }
     }
 
     for (var i = 0; i < elClearBtns.length; i++) {
@@ -72,7 +77,11 @@
       } else if (memoryPendingOperation === '**') {
         memoryCurrentNumber = memoryCurrentNumber ** localOperationMemory;
       } else if (memoryPendingOperation === String.fromCharCode(8730)) {
-        memoryCurrentNumber = localOperationMemory ** 0.5;
+        if (memoryCurrentNumber<0) {
+          alert("Квадратный корень из отрицательного числа не допустим");
+          memoryCurrentNumber=0;
+        } else
+          memoryCurrentNumber = localOperationMemory ** 0.5;
       } else if (memoryPendingOperation === '=') {
 
       } else {
