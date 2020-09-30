@@ -1,3 +1,24 @@
+.pets .pets__header {
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  text-align: center;
+}
+
+.pets .pets-slider-container .pets-slider__inactive {
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -73,15 +94,127 @@
 }
 
 .header-container .header-menu .header-menu__item:hover {
+  color: #292929;
   cursor: pointer;
 }
 
 .pets {
   margin: 0 auto;
-  padding: 0 40px;
-  width: 1280px;
+  padding: 80px 40px 0px;
+  max-width: 1280px;
   min-height: 1342px;
   background: #F6F6F6;
+}
+
+.pets .pets__header {
+  margin: 0px;
+  margin-top: 1px;
+  margin-left: 2px;
+}
+
+.pets .pets-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 40px;
+  padding-top: 5px;
+}
+
+.pets .pets__card {
+  width: 270px;
+  height: 435px;
+  margin: 15px 0;
+  background-color: #FAFAFA;
+  border-radius: 9px;
+}
+
+.pets .pets__card:hover {
+  -webkit-box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+          box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  background: #FFFFFF;
+}
+
+.pets .pets__card-photo {
+  border-radius: 9px 9px 0px 0px;
+}
+
+.pets .pets__card-caption {
+  margin: 26px 0 30px;
+  text-align: center;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+.pets .pets__card-btn {
+  margin: 0 41.5px;
+  width: 187px;
+  height: 52px;
+  border: 2px solid #F1CDB3;
+  border-radius: 100px;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #4C4C4C;
+  background: #FAFAFA;
+}
+
+.pets .pets__card-btn:hover {
+  background: #FDDCC4;
+  border: none;
+}
+
+.pets .pets-slider-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 45px auto;
+  width: 340px;
+  height: 52px;
+}
+
+.pets .pets-slider-container .pets-slider__item {
+  padding: 0px;
+  width: 52px;
+  height: 52px;
+  border-radius: 100px;
+  border: 1px dashed grey;
+}
+
+.pets .pets-slider-container .pets-slider__inactive {
+  width: 52px;
+  height: 52px;
+  border-radius: 100px;
+  color: #CDCDCD;
+  border: 2px solid #CDCDCD;
+}
+
+.pets .pets-slider-container .pets-slider__page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #F1CDB3;
 }
 
 .footer {

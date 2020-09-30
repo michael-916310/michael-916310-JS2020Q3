@@ -76,8 +76,7 @@
     }
 
     .header-menu__item:hover{
-      //color: #FAFAFA; НЕ ПОНЯТНО КАКОЙ ЦВЕТ СДЕЛАТЬ
-
+      color: $color-dark-3xl;
       cursor: pointer;
     }
   }
@@ -85,13 +84,136 @@
 
 .pets{
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 80px 40px 0px;
 
-  width: 1280px;
+  max-width: 1280px;
   min-height: 1342px;
 
   background: $color-light-l;
+
+  .pets__header{
+    margin: 0px;
+    margin-top: 1px;
+    margin-left: 2px;
+
+    @extend %local-h3;
+  }
+
+  .pets-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    margin-top: 40px;
+    padding-top: 5px;
+  }
+
+
+  .pets__card{
+    width: 270px;
+    height: 435px;
+
+    margin: 15px 0;
+
+    background-color: $color-light-s;
+    border-radius: 9px;
+
+    &:hover{
+      box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+      background: $color-light-xl;
+    }
+
+
+  }
+
+  .pets__card-photo{
+      border-radius: 9px 9px 0px 0px;
+    }
+
+  .pets__card-caption{
+    margin: 26px 0 30px;
+    text-align: center;
+
+    font-family: Georgia;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
+
+    letter-spacing: 0.06em;
+    color:$color-dark-l;
+
+  }
+
+  .pets__card-btn{
+    margin:0 41.5px;
+    width: 187px;
+    height: 52px;
+
+    border: 2px solid $color-primary;
+    border-radius: 100px;
+
+
+    font-family: Georgia;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+
+    color:  $color-dark-xl;
+
+    background: #FAFAFA;
+
+    &:hover{
+      background:$color-primary-light;
+      border: none;
+    }
+  }
+
+  .pets-slider-container{
+    display: flex;
+    justify-content: space-between;
+
+    margin: 45px auto;
+    width: 340px;
+    height: 52px;
+
+    //border:1px solid grey;
+
+    .pets-slider__item{
+      padding:0px;
+
+      width: 52px;
+      height: 52px;
+      border-radius: 100px;
+
+      border: 1px dashed grey;
+    }
+
+    .pets-slider__inactive{
+      width: 52px;
+      height: 52px;
+      border-radius: 100px;
+
+      @extend %local-h4;
+
+      color: $color-dark-s;
+
+      border: 2px solid $color-dark-s;
+    }
+
+    .pets-slider__page{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background: $color-primary;
+    }
+  }
+
 }
+
 
 .footer{
   margin: 0 auto;
