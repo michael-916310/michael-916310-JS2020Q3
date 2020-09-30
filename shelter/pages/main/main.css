@@ -1,4 +1,70 @@
 @charset "UTF-8";
+/*
+$color-light-s: #FAFAFA;
+$color-light-l: #F6F6F6;
+$color-light-xl: #FFFFFF;
+
+$color-primary: #F1CDB3 ;
+$color-primary-light: #FDDCC4;
+
+$color-dark-s: #CDCDCD;
+$color-dark-m: #B2B2B2;
+$color-dark-l: #545454;
+$color-dark-xl: #4C4C4C;
+$color-dark-m: #B2B2B2;
+$color-dark-2xl: #444444;
+$color-dark-3xl: #292929;
+
+
+
+%local-h3{
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 130%;
+
+  letter-spacing: 0.06em;
+
+  color: #545454;
+
+  text-align: center;
+}
+
+%local-h4{
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 115%;
+
+  letter-spacing: 0.06em;
+
+  color: $color-dark-l;
+}
+
+%local-h5{
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 110%;
+
+  letter-spacing: 0.06em;
+
+  color:$color-dark-l;
+}
+
+%subheading{
+  font-family: Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 160%;
+
+  color: $color-dark-xl;
+}
+*/
 .pets .pets-heading, .help .help-header, .donation .donation-info__heading, .footer .footer-contacts-container .footer-contacts-header, .footer .footer-location-container .footer-location-header {
   font-family: Georgia;
   font-style: normal;
@@ -760,4 +826,4 @@
   width: 300px;
   height: 315px;
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=main.css.map */

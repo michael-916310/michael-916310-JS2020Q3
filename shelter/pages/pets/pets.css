@@ -1,0 +1,93 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.header-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 auto;
+  padding: 30px 40px;
+  width: 1280px;
+  min-height: 120px;
+  background: #FFFFFF;
+}
+
+.header-container .header-logo__tittle {
+  margin: 0;
+  margin-top: 1px;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+.header-container .header-logo__sub-tittle {
+  margin: 9px 0 0 4px;
+  font-family: Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  letter-spacing: 0.1em;
+  color: #292929;
+}
+
+.header-container .header-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+  width: 443px;
+  height: 27px;
+  padding: 0 0 3px 0;
+}
+
+.header-container .header-menu .header-menu__item {
+  text-decoration: none;
+  font-family: Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 160%;
+  color: #545454;
+  padding-bottom: 5px;
+}
+
+.header-container .header-menu .header-menu__item_selected {
+  color: #292929;
+  border-bottom: 3px solid #F1CDB3;
+}
+
+.header-container .header-menu .header-menu__item:hover {
+  cursor: pointer;
+}
+
+.pets {
+  margin: 0 auto;
+  padding: 0 40px;
+  width: 1280px;
+  min-height: 1342px;
+  background: #F6F6F6;
+}
+
+.footer {
+  margin: 0 auto;
+  width: 1280px;
+  min-height: 350px;
+  background: url(noise_lines_transparent@2X.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+}
+/*# sourceMappingURL=pets.css.map */
