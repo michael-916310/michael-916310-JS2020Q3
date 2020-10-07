@@ -647,6 +647,7 @@
 ----------------------------------*/
 .footer-contacts-container {
   margin-top: 56px;
+  margin-right: 30px;
   width: 280px;
 }
 
@@ -697,6 +698,7 @@
 
 .footer-location-container {
   margin-top: 56px;
+  margin-right: 30px;
   width: 302px;
 }
 
