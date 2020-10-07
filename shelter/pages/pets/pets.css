@@ -305,6 +305,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    padding: 0 30px;
   }
 }
 
@@ -315,6 +316,14 @@
   margin-top: 56px;
   margin-right: 30px;
   width: 280px;
+}
+
+@media (max-width: 1250px) {
+  .footer-contacts-container {
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 }
 
 .footer-contacts-container .footer-contacts-header {
@@ -368,6 +377,14 @@
   width: 302px;
 }
 
+@media (max-width: 1250px) {
+  .footer-location-container {
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+}
+
 .footer-location-container .footer-location-header {
   padding: 0;
   margin: 0;
@@ -415,5 +432,11 @@
   margin-top: 40px;
   width: 300px;
   height: 310px;
+}
+
+@media (max-width: 1250px) {
+  .footer-puppy {
+    margin-top: 65px;
+  }
 }
 /*# sourceMappingURL=pets.css.map */

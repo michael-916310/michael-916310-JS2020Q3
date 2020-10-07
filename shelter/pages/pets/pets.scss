@@ -222,6 +222,8 @@
   @media (max-width:$breakpoint-m) {
     flex-wrap: wrap;;
     justify-content: center;
+
+    padding:0 30px;
   }
 }
 @import '../main/footer';
