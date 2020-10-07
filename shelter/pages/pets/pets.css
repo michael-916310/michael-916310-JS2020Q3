@@ -38,8 +38,16 @@
   margin: 0 auto;
   padding: 30px 40px;
   width: 1280px;
+  width: auto;
   min-height: 120px;
   background: #FFFFFF;
+}
+
+@media (max-width: 800px) {
+  .header-container {
+    width: auto;
+    padding: 30px 30px;
+  }
 }
 
 .header-logo__tittle {

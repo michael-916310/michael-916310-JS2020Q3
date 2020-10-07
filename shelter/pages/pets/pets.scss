@@ -16,9 +16,16 @@
   padding: 30px 40px;
 
   width: 1280px;
+  width: auto;
+
   min-height: 120px;
 
   background: $color-light-xl ;
+
+  @media (max-width:$breakpoint-m) {
+    width: auto;
+    padding: 30px 30px;
+  }
 }
 @import '../main/header';
 
