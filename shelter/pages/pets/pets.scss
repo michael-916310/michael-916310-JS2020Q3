@@ -23,6 +23,10 @@
   @media (max-width:$breakpoint-m) {
     padding: 30px 30px;
   }
+
+  @media (max-width:$breakpoint-s) {
+    padding: 30px 10px;
+  }
 }
 @import '../main/header';
 
@@ -38,7 +42,10 @@
 
   @media (max-width:$breakpoint-m) {
     padding: 80px 30px 76px;
+  }
 
+  @media (max-width:$breakpoint-s) {
+    padding: 42px 10px 42px;
   }
 
   .pets__header{
@@ -47,6 +54,10 @@
     margin-left: 2px;
 
     @extend %local-h3;
+
+    @media (max-width:$breakpoint-s) {
+      font-size: 25px;
+    }
   }
 
   .pets-container{
@@ -62,6 +73,10 @@
 
       margin-top: 29px;
       padding-top: 0;
+    }
+
+    @media (max-width:$breakpoint-s) {
+      margin-top: 42px;
     }
   }
 
@@ -85,10 +100,11 @@
       margin-left: 20px;
       margin-right: 20px;
       margin-bottom: 30px;
+    }
 
-      .pets__card--scarlett{
-        display: none;
-      }
+    @media (max-width:$breakpoint-s) {
+      margin-left: 0;
+      margin-right:0;
     }
   }
 
@@ -143,6 +159,13 @@
     }
   }
 
+  @media (max-width:$breakpoint-s) {
+    .pets__card--jennifer, .pets__card--sophia, .pets__card--charly {
+      display: none;
+    }
+  }
+
+
   .pets-slider-container{
     display: flex;
     justify-content: space-between;
@@ -154,6 +177,10 @@
     @media (max-width:$breakpoint-m) {
       margin-top: 10px;
       margin-bottom: 0;
+    }
+
+    @media (max-width:$breakpoint-s) {
+      width: 300px;
     }
 
     .pets-slider__item{

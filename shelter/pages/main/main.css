@@ -95,6 +95,12 @@
   padding: 0 0 3px 0;
 }
 
+@media (max-width: 750px) {
+  .start-screen .header-menu {
+    display: none;
+  }
+}
+
 .start-screen .header-menu__item {
   text-decoration: none;
   font-family: Arial;
@@ -656,6 +662,13 @@
     margin-top: 30px;
     margin-left: 30px;
     margin-right: 30px;
+  }
+}
+
+@media (max-width: 750px) {
+  .footer-contacts-container {
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }
 

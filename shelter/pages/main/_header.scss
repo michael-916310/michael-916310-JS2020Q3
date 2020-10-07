@@ -38,6 +38,10 @@
   height: 27px;
 
   padding: 0 0 3px 0;
+
+  @media (max-width:$breakpoint-s) {
+    display: none;
+  }
 }
 
 .header-menu__item{
