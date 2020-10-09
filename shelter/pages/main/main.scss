@@ -16,10 +16,14 @@
   padding:0 40px;
   margin:0 auto;
 
-  width: 1280px;
-  height: 908px;
+  max-width: 1280px;
+  min-height: 908px;
 
   background: url(noise_lines_transparent@2X.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+
+  @media (max-width:$breakpoint-main-m) {
+    padding:0 30px;
+  }
 
   @import '../main/header';
 
@@ -53,13 +57,25 @@
     .header-menu__item:hover{
       color: $color-light-s;
     }
+
+    @media (max-width:$breakpoint-main-m) {
+      margin-top: 30px;
+    }
   }
 
 
   .start-screen-content-container{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-end;
+
+    @media (max-width:$breakpoint-main-m) {
+      justify-content: center;
+      margin-top:60px;
+
+      flex-direction: column;
+    }
   }
 
   .start-screen-content{
@@ -97,7 +113,7 @@
   }
 
   .start-screen-content__btn{
-    margin-top: 40px;
+    margin-top: 42px;
 
     width: 207px;
     height: 52px;
@@ -115,6 +131,11 @@
 
     color: #292929;
 
+    @media (max-width:$breakpoint-main-m) {
+      display: block;
+      margin: 42px auto;
+    }
+
   }
 
   .start-screen-content__btn:hover{
@@ -127,6 +148,13 @@
     height: 728px;
 
     background-image: url("/assets/images/start-screen-puppy.png");
+
+    @media (max-width:$breakpoint-main-m) {
+      margin-top:20px;
+      width: 569px;
+      height: 593px;
+      background-image: url("/assets/images/start-screen-puppy-768.png");
+     }
   }
 
 }
@@ -135,10 +163,13 @@
 Стили второго экрана
 ----------------------------------*/
 .about{
-  display: flex;
-  justify-content: center;
+  //display: flex;
+  //justify-content: center;
 
-  height: 588px;
+  max-width: 1280px;
+  margin:0 auto;
+
+  min-height: 588px;
   background-color: white;
 
   .about-container-middle{
@@ -206,10 +237,12 @@
 Стили третьего экрана
 ----------------------------------*/
 .pets{
-  display: flex;
-  justify-content: center;
+  //display: flex;
+  //justify-content: center;
 
-  height: 877px;
+  margin:0 auto;
+  max-width: 1280px;
+  min-height: 877px;
   background: #F6F6F6;
 
   .pets-container-middle{
@@ -365,10 +398,13 @@
 Стили четвертого экрана
 ----------------------------------*/
 .help{
-  display: flex;
-  justify-content: center;
+  //display: flex;
+  //justify-content: center;
 
-  height: 611px;
+  margin:0 auto;
+  max-width: 1280px;
+  min-height: 611px;
+
 
   background-color: $color-light-xl;
 
@@ -479,10 +515,13 @@
 Стили пятого экрана
 ----------------------------------*/
 .donation{
-  display: flex;
-  justify-content: center;
+  //display: flex;
+  //justify-content: center;
 
-  height: 464px;
+  margin:0 auto;
+
+  max-width: 1280px;
+  min-height: 464px;
 
   background-color: #F6F6F6;
 
@@ -576,7 +615,7 @@
   margin: 0 auto;
   padding:0 40px;
 
-  width: 1280px;
+  max-width: 1280px;
   min-height: 350px;
 
   background: url(noise_lines_transparent@2X.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;

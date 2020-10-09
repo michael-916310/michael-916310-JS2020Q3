@@ -51,9 +51,15 @@
           justify-content: space-between;
   padding: 0 40px;
   margin: 0 auto;
-  width: 1280px;
-  height: 908px;
+  max-width: 1280px;
+  min-height: 908px;
   background: url(noise_lines_transparent@2X.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+}
+
+@media (max-width: 1250px) {
+  .start-screen {
+    padding: 0 30px;
+  }
 }
 
 .start-screen .header-logo__tittle {
@@ -170,16 +176,37 @@
   color: #FAFAFA;
 }
 
+@media (max-width: 1250px) {
+  .start-screen .start-screen-header {
+    margin-top: 30px;
+  }
+}
+
 .start-screen .start-screen-content-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+}
+
+@media (max-width: 1250px) {
+  .start-screen .start-screen-content-container {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-top: 60px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 .start-screen .start-screen-content {
@@ -214,7 +241,7 @@
 }
 
 .start-screen .start-screen-content__btn {
-  margin-top: 40px;
+  margin-top: 42px;
   width: 207px;
   height: 52px;
   border: none;
@@ -229,6 +256,13 @@
   color: #292929;
 }
 
+@media (max-width: 1250px) {
+  .start-screen .start-screen-content__btn {
+    display: block;
+    margin: 42px auto;
+  }
+}
+
 .start-screen .start-screen-content__btn:hover {
   cursor: pointer;
   background: #FDDCC4;
@@ -240,17 +274,22 @@
   background-image: url("/assets/images/start-screen-puppy.png");
 }
 
+@media (max-width: 1250px) {
+  .start-screen .start-screen-content__img {
+    margin-top: 20px;
+    width: 569px;
+    height: 593px;
+    background-image: url("/assets/images/start-screen-puppy-768.png");
+  }
+}
+
 /* --------------------------------
 Стили второго экрана
 ----------------------------------*/
 .about {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  height: 588px;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 588px;
   background-color: white;
 }
 
@@ -313,13 +352,9 @@
 Стили третьего экрана
 ----------------------------------*/
 .pets {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  height: 877px;
+  margin: 0 auto;
+  max-width: 1280px;
+  min-height: 877px;
   background: #F6F6F6;
 }
 
@@ -462,13 +497,9 @@
 Стили четвертого экрана
 ----------------------------------*/
 .help {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  height: 611px;
+  margin: 0 auto;
+  max-width: 1280px;
+  min-height: 611px;
   background-color: #FFFFFF;
 }
 
@@ -571,13 +602,9 @@
 Стили пятого экрана
 ----------------------------------*/
 .donation {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  height: 464px;
+  margin: 0 auto;
+  max-width: 1280px;
+  min-height: 464px;
   background-color: #F6F6F6;
 }
 
@@ -657,7 +684,7 @@
           justify-content: space-between;
   margin: 0 auto;
   padding: 0 40px;
-  width: 1280px;
+  max-width: 1280px;
   min-height: 350px;
   background: url(noise_lines_transparent@2X.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
