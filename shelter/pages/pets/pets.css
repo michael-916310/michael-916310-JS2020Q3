@@ -48,7 +48,7 @@
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 760px) {
   .header-container {
     padding: 30px 10px;
   }
@@ -77,6 +77,20 @@
   color: #292929;
 }
 
+.burger-menu {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .burger-menu {
+    display: block;
+    margin-top: 19px;
+    margin-right: 40px;
+    width: 30px;
+    height: 22px;
+  }
+}
+
 .header-menu {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -93,7 +107,7 @@
   padding: 0 0 3px 0;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 760px) {
   .header-menu {
     display: none;
   }
@@ -134,7 +148,7 @@
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 760px) {
   .pets {
     padding: 42px 10px 42px;
   }
@@ -146,7 +160,7 @@
   margin-left: 2px;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 760px) {
   .pets .pets__header {
     font-size: 25px;
   }
@@ -175,7 +189,7 @@
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 760px) {
   .pets .pets-container {
     margin-top: 42px;
   }
@@ -198,13 +212,29 @@
 @media (max-width: 1250px) {
   .pets .pets__card {
     margin-top: 0;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 950px) {
+  .pets .pets__card {
+    margin-top: 0;
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 30px;
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 760px) {
+  .pets .pets__card {
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+}
+
+@media (max-width: 550px) {
   .pets .pets__card {
     margin-left: 0;
     margin-right: 0;
@@ -254,7 +284,7 @@
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 760px) {
   .pets .pets__card--jennifer, .pets .pets__card--sophia, .pets .pets__card--charly {
     display: none;
   }
@@ -279,7 +309,7 @@
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 760px) {
   .pets .pets-slider-container {
     width: 300px;
   }
@@ -355,6 +385,12 @@
   }
 }
 
+@media (max-width: 760px) {
+  .footer {
+    padding: 0 10px;
+  }
+}
+
 /* --------------------------------
 Стили футера экрана
 ----------------------------------*/
@@ -372,10 +408,17 @@
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 760px) {
   .footer-contacts-container {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+}
+
+@media (max-width: 550px) {
+  .footer-contacts-container {
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -386,6 +429,12 @@
   margin-left: 1px;
   text-align: left;
   color: #FFFFFF;
+}
+
+@media (max-width: 760px) {
+  .footer-contacts-container .footer-contacts-header {
+    text-align: center;
+  }
 }
 
 .footer-contacts-container .footer-contacts-email {
@@ -438,6 +487,14 @@
   }
 }
 
+@media (max-width: 760px) {
+  .footer-location-container {
+    margin-top: 40px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .footer-location-container .footer-location-header {
   padding: 0;
   margin: 0;
@@ -445,6 +502,12 @@
   margin-left: 1px;
   text-align: left;
   color: #FFFFFF;
+}
+
+@media (max-width: 760px) {
+  .footer-location-container .footer-location-header {
+    text-align: center;
+  }
 }
 
 .footer-location-container .footer-location-boston {
@@ -490,6 +553,22 @@
 @media (max-width: 1250px) {
   .footer-puppy {
     margin-top: 65px;
+  }
+}
+
+@media (max-width: 760px) {
+  .footer-puppy {
+    margin-top: 92px;
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+}
+
+@media (max-width: 550px) {
+  .footer-puppy {
+    margin-top: 92px;
+    width: 260px;
+    height: 269px;
   }
 }
 /*# sourceMappingURL=pets.css.map */

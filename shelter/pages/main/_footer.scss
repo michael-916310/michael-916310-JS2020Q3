@@ -16,8 +16,13 @@
   }
 
   @media (max-width:$breakpoint-s) {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+
+  @media (max-width:$breakpoint-ss) {
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .footer-contacts-header {
@@ -30,6 +35,10 @@
     text-align: left;
 
     color: $color-light-xl;
+
+    @media (max-width:$breakpoint-s) {
+      text-align: center;
+    }
   }
 
   .footer-contacts-email {
@@ -79,7 +88,11 @@
     margin-right: 30px;
   }
 
-
+  @media (max-width:$breakpoint-s) {
+    margin-top: 40px;
+    margin-left: 0;
+    margin-right: 0;
+  }
 
   .footer-location-header {
     padding: 0;
@@ -91,6 +104,10 @@
     text-align: left;
 
     color: $color-light-xl;
+
+    @media (max-width:$breakpoint-s) {
+      text-align: center;
+    }
   }
 
   .footer-location-boston {
@@ -138,4 +155,20 @@
   @media (max-width:$breakpoint-m) {
     margin-top: 65px;
   }
+
+  @media (max-width:$breakpoint-s) {
+    margin-top: 92px;
+
+    margin-left:80px;
+    margin-right: 80px;
+
+  }
+
+  @media (max-width:$breakpoint-ss) {
+    margin-top: 92px;
+
+    width: 260px;
+    height: 269px;
+  }
+
 }

@@ -97,12 +97,23 @@
 
     @media (max-width:$breakpoint-m) {
       margin-top: 0;
+      margin-left: 80px;
+      margin-right: 80px;
+      margin-bottom: 30px;
+    }
+    @media (max-width:$breakpoint-ms) {
+      margin-top: 0;
       margin-left: 20px;
       margin-right: 20px;
       margin-bottom: 30px;
     }
 
     @media (max-width:$breakpoint-s) {
+      margin-left: 80px;
+      margin-right:80px;
+    }
+
+    @media (max-width:$breakpoint-ss) {
       margin-left: 0;
       margin-right:0;
     }
@@ -252,5 +263,10 @@
 
     padding:0 30px;
   }
+
+  @media (max-width:$breakpoint-s) {
+    padding:0 10px;
+  }
+
 }
 @import '../main/footer';
