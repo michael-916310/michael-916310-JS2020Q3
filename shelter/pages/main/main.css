@@ -52,13 +52,24 @@
   padding: 0 40px;
   margin: 0 auto;
   max-width: 1280px;
-  min-height: 908px;
+  height: 908px;
   background: url(noise_lines_transparent@2X.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
 }
 
 @media (max-width: 1250px) {
   .start-screen {
     padding: 0 30px;
+    height: 1165px;
+  }
+}
+
+@media (max-width: 760px) {
+  .start-screen {
+    padding: 0 10px;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    height: 823px;
   }
 }
 
@@ -142,6 +153,13 @@
   cursor: pointer;
 }
 
+@media (max-width: 760px) {
+  .start-screen .burger-menu {
+    margin-top: 20px;
+    margin-right: 43px;
+  }
+}
+
 .start-screen .start-screen-header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -218,6 +236,13 @@
   margin-bottom: 80px;
 }
 
+@media (max-width: 760px) {
+  .start-screen .start-screen-content {
+    width: 300px;
+    height: 296px;
+  }
+}
+
 .start-screen .start-screen-content__heading {
   margin: 0;
   width: 310px;
@@ -227,6 +252,16 @@
   font-size: 44px;
   line-height: 130%;
   color: #FFFFFF;
+  color: #FFFFFF;
+}
+
+@media (max-width: 760px) {
+  .start-screen .start-screen-content__heading {
+    width: 300px;
+    font-size: 25px;
+    letter-spacing: 0.06em;
+    text-align: center;
+  }
 }
 
 .start-screen .start-screen-content__sub-heading {
@@ -238,6 +273,15 @@
   font-size: 15px;
   line-height: 24px;
   color: #CDCDCD;
+  color: #CDCDCD;
+}
+
+@media (max-width: 760px) {
+  .start-screen .start-screen-content__sub-heading {
+    margin: 42px 0 0;
+    width: 300px;
+    text-align: center;
+  }
 }
 
 .start-screen .start-screen-content__btn {
@@ -280,6 +324,15 @@
     width: 569px;
     height: 593px;
     background-image: url("/assets/images/start-screen-puppy-768.png");
+  }
+}
+
+@media (max-width: 760px) {
+  .start-screen .start-screen-content__img {
+    margin-top: 25px;
+    width: 260px;
+    height: 272px;
+    background-image: url("/assets/images/start-screen-puppy-320.png");
   }
 }
 
