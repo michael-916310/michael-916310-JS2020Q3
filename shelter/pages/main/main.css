@@ -485,20 +485,19 @@
   max-width: 1280px;
   min-height: 877px;
   background: #F6F6F6;
-}
-
-.pets .pets-container-adjusted {
-  width: 100%;
-  height: 100%;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 
 .pets .pets-heading-container {
-  margin: 81px auto 0;
+  margin: 0 auto;
+  padding: 81px 0 0;
   width: 400px;
 }
 
 .pets .pets-heading {
-  margin-left: 2px;
+  margin: 0px;
+  margin-left: 1px;
   width: 100%;
 }
 
@@ -553,7 +552,6 @@
 }
 
 .pets .pets-button {
-  margin-left: 2px;
   width: 100%;
   height: 100%;
   background: #F1CDB3;
