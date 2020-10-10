@@ -341,20 +341,21 @@
 ----------------------------------*/
 .about {
   max-width: 1280px;
-  margin: 80px auto;
+  padding: 80px 0;
+  margin: 0 auto;
   min-height: 588px;
   background-color: white;
 }
 
 @media (max-width: 1250px) {
   .about {
-    margin-bottom: 100px;
+    padding-bottom: 100px;
   }
 }
 
 @media (max-width: 760px) {
   .about {
-    margin-top: 42px;
+    padding-top: 42px;
   }
 }
 
@@ -484,11 +485,6 @@
   max-width: 1280px;
   min-height: 877px;
   background: #F6F6F6;
-}
-
-.pets .pets-container-middle {
-  width: 1200px;
-  height: 100%;
 }
 
 .pets .pets-container-adjusted {
