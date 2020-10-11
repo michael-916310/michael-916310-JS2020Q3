@@ -591,8 +591,17 @@
   max-width: 1280px;
   min-height: 611px;
 
+  border-top: 1px solid white;
 
   background-color: $color-light-xl;
+
+  @media (max-width:$breakpoint-main-m) {
+    min-height: 779px;
+  }
+
+  @media (max-width:$breakpoint-main-s) {
+    min-height: 745px;
+  }
 
   .help-container-middle{
     margin:0 auto;
@@ -613,7 +622,7 @@
   }
 
   .help-header-container{
-    margin:81px auto 0;
+    margin:80px auto 0;
     width: 310px;
 
     @media screen and (max-width:$breakpoint-main-ss) {
@@ -774,37 +783,58 @@
 Стили пятого экрана
 ----------------------------------*/
 .donation{
-  //display: flex;
-  //justify-content: center;
 
   margin:0 auto;
 
   max-width: 1280px;
-  min-height: 464px;
+  min-height: 462px;
 
   background-color: #F6F6F6;
 
   .donation-container-middle{
-    width: 1200px;
-    height: 100%;
-  }
-
-  .donation-container-adjusted{
     display: flex;
 
-    width: 100%;
+    padding-left:40px;
+    padding-right:40px;
+
     height: 100%;
-    //margin-left: 7px;
+
+    @media (max-width:$breakpoint-main-m) {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+
+    @media (max-width:$breakpoint-main-s) {
+      padding-left:5px;
+      padding-right:5px;
+    }
+
   }
 
+
   .donation-img{
-    margin: 92px 0 0 143px;
+    margin: 91px 0 0 143px;
     width: 505px;
     height: 261px;
+
+    @media (max-width:$breakpoint-main-m) {
+      margin-left: 0;
+      margin-top: 60px;
+
+      margin-bottom: 100px;
+    }
+
+    @media (max-width:$breakpoint-main-s) {
+      margin-top: 42px;
+
+      width: 260px;
+      height: 135px;
+    }
+
   }
 
   .donation-info{
-    margin-top:81px;
+    margin-top:80px;
     margin-left:30px;
 
     padding:1px 0 0 0;
@@ -812,6 +842,14 @@
     width: 380px;
     height: 282px;
 
+    @media (max-width:$breakpoint-main-m) {
+      margin-left: 0;
+    }
+
+    @media (max-width:$breakpoint-main-s) {
+      width: 300px;
+      margin-top:42px;
+    }
   }
 
   .donation-info__heading{
@@ -820,10 +858,26 @@
     @extend %local-h3;
 
     text-align: left;
+
+    @media (max-width:$breakpoint-main-s) {
+      font-size: 25px;
+      text-align: center;
+    }
+
   }
 
   .donation-info__sub-heading{
     @extend %local-h5;
+
+    @media (max-width:$breakpoint-main-s) {
+      line-height: 160%;
+      letter-spacing: 0;
+
+      text-align: center;
+      margin-top: 20px;
+
+      margin-bottom:20px;
+    }
   }
 
   .donation-info__credit-card{
@@ -837,6 +891,14 @@
 
     background: $color-primary;
     border-radius: 9px;
+
+    @media (max-width:$breakpoint-main-s) {
+      width: 281px;
+
+      margin-left: auto;
+      margin-right: auto;
+    }
+
   }
 
   .donation-info__credit-card:hover{
@@ -850,6 +912,12 @@
     @extend %local-h4;
 
     padding-left: 15px;
+
+    @media (max-width:$breakpoint-main-s) {
+      font-size: 15px;
+      line-height: 110%;
+    }
+
   }
 
   .donation-info__legal{
@@ -862,6 +930,14 @@
     line-height: 18px;
 
     color: $color-dark-m;
+
+    @media (max-width:$breakpoint-main-s) {
+      width: 280px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: justify;
+    }
+
   }
 
 }
