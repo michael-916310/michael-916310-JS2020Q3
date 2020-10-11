@@ -997,6 +997,7 @@
 @media (max-width: 760px) {
   .donation .donation-img {
     margin-top: 42px;
+    margin-bottom: 42px;
     width: 260px;
     height: 135px;
   }
@@ -1116,6 +1117,23 @@
   max-width: 1280px;
   min-height: 350px;
   background: url(noise_lines_transparent@2X.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+}
+
+@media (max-width: 1250px) {
+  .footer {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 760px) {
+  .footer {
+    padding: 0 10px;
+  }
 }
 
 /* --------------------------------
