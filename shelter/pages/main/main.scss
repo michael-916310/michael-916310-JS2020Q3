@@ -604,11 +604,22 @@
       padding-left: 10px;
       padding-right: 10px;
     }
+
+    @media (max-width:$breakpoint-main-ss) {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
   }
 
   .help-header-container{
     margin:81px auto 0;
     width: 310px;
+
+    @media screen and (max-width:$breakpoint-main-ss) {
+      margin-top:42px;
+      width: 222px;
+    }
   }
 
   .help-header{
@@ -618,6 +629,10 @@
 
     padding:0;
     @extend %local-h3;
+
+    @media screen and (max-width:$breakpoint-main-ss) {
+      font-size: 25px;
+    }
   }
 
   .help-line-5{
@@ -660,11 +675,30 @@
     letter-spacing: 0.06em;
 
     color: $color-dark-l;
+
+    @media (max-width:$breakpoint-main-ss) {
+      width: 130px;
+      height: 87px;
+
+      font-size: 15px;
+    }
+  }
+
+  .help-line-item-img{
+    @media (max-width:$breakpoint-main-ss) {
+      width: 50px;
+      height: 50px;
+    }
   }
 
   .help-line-item-text{
     margin-top: 25px;
     margin-left: 2px;
+
+    @media (max-width:$breakpoint-main-ss) {
+      margin-top: 16px;
+      margin-bottom: 0px;
+    }
   }
 
   .help-line-5__item-1{
@@ -706,6 +740,9 @@
 
   .help-item-long{
     width: 168px;
+    @media (max-width:$breakpoint-main-ss) {
+      width: 130px;
+    }
   }
 
   .help-grid{
@@ -717,13 +754,17 @@
     padding-top:60px;
 
     @media (max-width:$breakpoint-main-m) {
-
       display: grid;
     }
 
-    .help-line-item{
-      //width: 170px;
+    @media (max-width:$breakpoint-main-s) {
+      grid-template-columns: auto auto;
+      grid-row-gap: 30px;
+      grid-column-gap: 20px;
+
+      padding-top:42px;
     }
+
   }
 
 }
