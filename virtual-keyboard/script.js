@@ -21,7 +21,7 @@ const Keyboard = {
     this.elements.main = document.createElement('div');
     this.elements.keysContainer = document.createElement('div');
 
-    this.elements.main.classList.add('keyboard', '1keyboard--hidden');
+    this.elements.main.classList.add('keyboard', 'keyboard--hidden');
     this.elements.keysContainer.classList.add('keyboard__keys');
     this.elements.keysContainer.appendChild(this._createKeys());
 
@@ -135,7 +135,9 @@ const Keyboard = {
   },
 
   _triggerEvent(handleName){
-    console.log(`Event triggered ${handleName}`);
+    if (typeof this.eventsHandlers[handleName] == 'function') {
+      this.eventsHandlers[handleName](this.props.value);
+    }
   },
 
   _toggleCapsLock(){
@@ -150,7 +152,11 @@ const Keyboard = {
   },
 
   open(initialValue, oninput, onclose){
+    this.props.value = initialValue || '';
+    this.eventsHandlers.oninput = oninput;
+    this.eventsHandlers.onclose = onclose;
 
+    this.elements.main.classList.remove('keyboard--hidden');
   },
 
   close(){
@@ -161,4 +167,12 @@ const Keyboard = {
 
 window.addEventListener("DOMContentLoaded", ()=>{
   Keyboard.init();
+  Keyboard.open('dcode',
+    (curValue)=>{
+      console.log('changed value: '+curValue);
+    },
+    (curValue) => {
+      console.log('closed with: '+curValue);
+    }
+  );
 })
