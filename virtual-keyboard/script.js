@@ -30,6 +30,14 @@ const Keyboard = {
     this.elements.main.appendChild(this.elements.keysContainer);
     document.body.appendChild(this.elements.main);
 
+    document.querySelectorAll('.use-keyboard-input').forEach((el)=>{
+      el.addEventListener('focus', ()=>{
+        this.open(
+          el.value,
+          (curV)=>{ el.value = curV; }
+        );
+      })
+    });
   },
 
   _createKeys(){
@@ -160,19 +168,23 @@ const Keyboard = {
   },
 
   close(){
+    this.props.value = '';
+    this.eventsHandlers.oninput = null;
+    this.eventsHandlers.onclose = null;
 
+    this.elements.main.classList.add('keyboard--hidden');
   }
 
 }
 
 window.addEventListener("DOMContentLoaded", ()=>{
   Keyboard.init();
-  Keyboard.open('dcode',
-    (curValue)=>{
-      console.log('changed value: '+curValue);
-    },
-    (curValue) => {
-      console.log('closed with: '+curValue);
-    }
-  );
+  // Keyboard.open('dcode',
+  //   (curValue)=>{
+  //     console.log('changed value: '+curValue);
+  //   },
+  //   (curValue) => {
+  //     console.log('closed with: '+curValue);
+  //   }
+  // );
 })
