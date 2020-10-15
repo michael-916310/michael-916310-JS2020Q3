@@ -27,8 +27,10 @@
   color: $color-dark-3xl;
 }
 
-.burger-menu{
+.burger-menu-btn{
   display: none;
+
+  z-index: 10;
 
   @media (max-width:$breakpoint-s) {
     display: block;

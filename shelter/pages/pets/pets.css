@@ -77,12 +77,13 @@
   color: #292929;
 }
 
-.burger-menu {
+.burger-menu-btn {
   display: none;
+  z-index: 10;
 }
 
 @media (max-width: 760px) {
-  .burger-menu {
+  .burger-menu-btn {
     display: block;
     margin-top: 19px;
     margin-right: 40px;

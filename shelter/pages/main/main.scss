@@ -19,7 +19,7 @@
   max-width: 1280px;
   height: 908px;
 
-  background: url(noise_lines_transparent@2X.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  background: radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
 
   @media (max-width:$breakpoint-main-m) {
     padding:0 30px;
@@ -36,7 +36,7 @@
 
   @import '../main/header';
 
-  .burger-menu{
+  .burger-menu-btn{
 
     @media (max-width:$breakpoint-s) {
 
@@ -207,6 +207,28 @@
   }
 
 }
+
+/* Стили бургер меню */
+.burger-menu-cover{
+  position: absolute;
+  z-index: 1;
+  top: 0;
+
+  width: 100vw;
+  height: 823px;
+
+  background: rgba(41, 41, 41, 0.6);
+
+  left:100vw;
+
+  //transition-property: left;
+  //transition-duration: 3s;
+}
+
+.burger-menu-cover__show{
+  left:0;
+}
+
 
 /* --------------------------------
 Стили второго экрана
@@ -954,7 +976,7 @@
   max-width: 1280px;
   min-height: 350px;
 
-  background: url(noise_lines_transparent@2X.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+  background: radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 
   @media (max-width:$breakpoint-m) {
     flex-wrap: wrap;;
