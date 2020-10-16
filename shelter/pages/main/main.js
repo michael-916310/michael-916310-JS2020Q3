@@ -37,11 +37,12 @@
       this.render();
     },
 
-    bgClick(e){
+    bodyClick(e){
       if (!this.isHide) {
-
-        if (!this.menuContainerEl.contains(e.target) || (!e.target.classList.contains('burger-menu-btn'))) {
-          this.menuHideChange();
+        if (!this.menuContainerEl.contains(e.target)) {
+          if (!e.target.classList.contains('burger-menu-btn')) {
+            this.menuHideChange();
+          }
         }
       }
     },
@@ -57,10 +58,9 @@
 
       this.render = this.render.bind(menu);
       this.menuHideChange = this.menuHideChange.bind(menu);
-      this.bgClick = this.bgClick.bind(menu);
+      this.bodyClick = this.bodyClick.bind(menu);
 
-      //this.menuBgEl.addEventListener('click', this.bgClick);
-      document.body.addEventListener('click', this.bgClick);
+      document.body.addEventListener('click', this.bodyClick);
       this.menuBtnEl.addEventListener('click', this.menuHideChange);
 
       this.render();
