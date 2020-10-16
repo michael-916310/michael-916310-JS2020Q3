@@ -8,6 +8,8 @@
   box-sizing: border-box;
 }
 
+@import '../main/header';
+
 .start-screen{
   display: flex;
   flex-direction: column;
@@ -34,7 +36,6 @@
   }
 
 
-  @import '../main/header';
 
   .burger-menu-btn{
 
@@ -44,6 +45,7 @@
       margin-right:43px;
      }
   }
+
 
   .start-screen-header{
     display: flex;
@@ -56,10 +58,21 @@
 
     .header-logo__tittle{
       color: #F1CDB3;
+
+      transition-property: opacity;
+      transition-duration: 1s;
     }
+
 
     .header-logo__sub-tittle{
       color: #FFFFFF;
+
+      transition-property: opacity;
+      transition-duration: 1s;
+    }
+
+    .header-logo__hide{
+      opacity: 0;
     }
 
     .header-menu__item{
@@ -206,27 +219,6 @@
      }
   }
 
-}
-
-/* Стили бургер меню */
-.burger-menu-cover{
-  position: absolute;
-  z-index: 1;
-  top: 0;
-
-  width: 100vw;
-  height: 823px;
-
-  background: rgba(41, 41, 41, 0.6);
-
-  left:100vw;
-
-  //transition-property: left;
-  //transition-duration: 3s;
-}
-
-.burger-menu-cover__show{
-  left:0;
 }
 
 
