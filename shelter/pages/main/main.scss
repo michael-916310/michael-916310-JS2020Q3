@@ -35,8 +35,6 @@
     height: 823px;
   }
 
-
-
   .burger-menu-btn{
 
     @media (max-width:$breakpoint-s) {
@@ -45,7 +43,6 @@
       margin-right:43px;
      }
   }
-
 
   .start-screen-header{
     display: flex;
@@ -76,7 +73,7 @@
     }
 
     .header-menu__item{
-      color: $color-dark-s ;
+      color: $color-light-l ;
       padding-bottom: 4px;
     }
 
@@ -219,6 +216,25 @@
      }
   }
 
+}
+
+.burger-menu__item{
+  color: $color-dark-s;
+}
+
+.burger-menu__item_selected{
+  color: $color-light-s;
+}
+
+.burger-menu__item:hover{
+  color: $color-light-s;
+}
+
+.burger-logo__tittle{
+  color: $color-primary;
+}
+.burger-logo__sub-tittle{
+  color: $color-light-xl;
 }
 
 

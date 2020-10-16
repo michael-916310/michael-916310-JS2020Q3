@@ -127,6 +127,7 @@
 
 /* Стили бургер меню */
 .burger-menu-bg {
+  display: none;
   position: absolute;
   z-index: 1;
   top: 0;
@@ -141,6 +142,7 @@
 }
 
 .burger-menu-bg__show {
+  display: block;
   opacity: 1;
 }
 
@@ -159,8 +161,44 @@
           transition-timing-function: ease-in;
 }
 
-.burger-menu-container .burger-menu-header {
+.burger-menu-header {
   height: 60px;
+}
+
+.burger-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 138px auto 0;
+  padding: 0;
+  width: 243px;
+  list-style: none;
+}
+
+.burger-menu__item {
+  display: block;
+  text-decoration: none;
+  margin: 20px 0;
+  font-family: Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 160%;
+}
+
+.burger-menu__item_selected {
+  border-bottom: 3px solid #F1CDB3;
+}
+
+.burger-menu__item:hover {
+  cursor: pointer;
 }
 
 .burger-menu-container_show {
@@ -181,7 +219,6 @@
   font-size: 32px;
   line-height: 110%;
   letter-spacing: 0.06em;
-  color: #F1CDB3;
 }
 
 .burger-logo__sub-tittle {
@@ -192,7 +229,6 @@
   font-size: 13px;
   line-height: 15px;
   letter-spacing: 0.1em;
-  color: #FFFFFF;
 }
 
 .start-screen {
@@ -423,6 +459,26 @@
     height: 272px;
     background-image: url("/assets/images/start-screen-puppy-320.png");
   }
+}
+
+.burger-menu__item {
+  color: #CDCDCD;
+}
+
+.burger-menu__item_selected {
+  color: #FAFAFA;
+}
+
+.burger-menu__item:hover {
+  color: #FAFAFA;
+}
+
+.burger-logo__tittle {
+  color: #F1CDB3;
+}
+
+.burger-logo__sub-tittle {
+  color: #FFFFFF;
 }
 
 /* --------------------------------

@@ -89,6 +89,8 @@
 
 /* Стили бургер меню */
 .burger-menu-bg{
+  display: none;
+
   position: absolute;
   z-index: 1;
   top: 0;
@@ -100,12 +102,15 @@
 
   opacity: 0;
 
+
   transition-property: opacity;
   transition-duration: 1s;
 
 }
 
 .burger-menu-bg__show{
+  display: block;
+
   opacity: 1;
 }
 
@@ -121,10 +126,42 @@
   transition-property: right;
   transition-duration: 1s;
   transition-timing-function: ease-in;
+}
 
-  .burger-menu-header{
-    height: 60px;
-  }
+.burger-menu-header{
+  height: 60px;
+}
+
+.burger-menu{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 138px auto 0;
+  padding:0;
+  width: 243px;
+
+  list-style: none;
+}
+
+.burger-menu__item{
+  display: block;
+  text-decoration: none;
+  margin:20px 0;
+
+  font-family: Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 160%;
+}
+
+.burger-menu__item_selected{
+  border-bottom: 3px solid $color-primary ;
+}
+
+.burger-menu__item:hover{
+  cursor: pointer;
 }
 
 .burger-menu-container_show{
@@ -146,8 +183,6 @@
   font-size: 32px;
   line-height: 110%;
   letter-spacing: 0.06em;
-
-  color: $color-primary;
 }
 
 .burger-logo__sub-tittle{
@@ -159,6 +194,4 @@
   font-size: 13px;
   line-height: 15px;
   letter-spacing: 0.1em;
-
-  color: $color-light-xl;
 }
