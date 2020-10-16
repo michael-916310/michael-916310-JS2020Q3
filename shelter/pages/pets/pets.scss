@@ -30,6 +30,24 @@
 }
 @import '../main/header';
 
+.burger-menu__item{
+  color: $color-dark-s;
+}
+
+.burger-menu__item_selected{
+  color: $color-light-s;
+}
+
+.burger-menu__item:hover{
+  color: $color-light-s;
+}
+
+.burger-logo__tittle{
+  color: $color-primary;
+}
+.burger-logo__sub-tittle{
+  color: $color-light-xl;
+}
 
 .pets{
   margin: 0 auto;
@@ -39,6 +57,7 @@
   min-height: 1342px;
 
   background: $color-light-l;
+  background: #F6F6F6;
 
   @media (max-width:$breakpoint-m) {
     padding: 80px 30px 76px;

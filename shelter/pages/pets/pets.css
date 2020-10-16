@@ -143,22 +143,23 @@
 
 /* Стили бургер меню */
 .burger-menu-bg {
-  display: none;
   position: absolute;
-  z-index: 1;
+  z-index: -1;
   top: 0;
   width: 100vw;
   height: 823px;
   background: rgba(41, 41, 41, 0.6);
   opacity: 0;
-  -webkit-transition-property: opacity;
-  transition-property: opacity;
+  -webkit-transition-property: opacity, z-index;
+  transition-property: opacity, z-index;
   -webkit-transition-duration: 1s;
           transition-duration: 1s;
+  -webkit-transition-timing-function: ease-in;
+          transition-timing-function: ease-in;
 }
 
 .burger-menu-bg__show {
-  display: block;
+  z-index: 5;
   opacity: 1;
 }
 
@@ -247,12 +248,33 @@
   letter-spacing: 0.1em;
 }
 
+.burger-menu__item {
+  color: #CDCDCD;
+}
+
+.burger-menu__item_selected {
+  color: #FAFAFA;
+}
+
+.burger-menu__item:hover {
+  color: #FAFAFA;
+}
+
+.burger-logo__tittle {
+  color: #F1CDB3;
+}
+
+.burger-logo__sub-tittle {
+  color: #FFFFFF;
+}
+
 .pets {
   margin: 0 auto;
   padding: 80px 40px 0px;
   max-width: 1280px;
   min-height: 1342px;
   background: #CDCDCD;
+  background: #F6F6F6;
 }
 
 @media (max-width: 1250px) {
