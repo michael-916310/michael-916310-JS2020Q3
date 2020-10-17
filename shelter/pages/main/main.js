@@ -10,3 +10,15 @@ addBurgerMenu(
   'header-logo__hide',
   'header-logo__hide'
 );
+
+(function(){
+  function goToPets(){
+    location.assign('../pets/pets.html');
+  }
+
+  document.querySelector('.start-screen-content__btn').addEventListener('click',goToPets);
+  document.querySelector('.pets-button').addEventListener('click',goToPets);
+
+})()
+
+
