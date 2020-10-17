@@ -61,6 +61,14 @@
   color: #292929;
 }
 
+.header-logo__tittle:hover {
+  cursor: pointer;
+}
+
+.header-logo__sub-tittle:hover {
+  cursor: pointer;
+}
+
 .burger-menu-btn {
   display: none;
   -webkit-transition-property: -webkit-transform;
