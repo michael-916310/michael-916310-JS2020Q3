@@ -28,6 +28,12 @@
     padding: 30px 10px;
   }
 }
+
+.header-container-relative{
+  position: relative;
+}
+
+
 @import '../main/header';
 
 .burger-menu__item{

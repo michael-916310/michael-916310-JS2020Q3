@@ -8,7 +8,8 @@ function addBurgerMenu (
     cls_burger_menu_container_show,
     cls_burger_menu_btn_open,
     cls_header_logo__hide,
-    cls_header_logo__hide
+    cls_header_logo__hide,
+    isPets
   ){
   const menu = {
 
@@ -41,6 +42,11 @@ function addBurgerMenu (
 
       this._showHide(this.logoTitleEl, cls_header_logo__hide);
       this._showHide(this.logoSubTitleEl, cls_header_logo__hide);
+
+      if (isPets){
+        this._showHide(document.querySelector('.header-container'), 'header-container-relative');
+      }
+
     },
 
     menuHideChange(){
