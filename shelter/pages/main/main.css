@@ -142,6 +142,12 @@
   height: 823px;
   background: rgba(41, 41, 41, 0.6);
   opacity: 0;
+  -webkit-transition-property: opacity, z-index;
+  transition-property: opacity, z-index;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+  -webkit-transition-timing-function: ease-in;
+          transition-timing-function: ease-in;
   overflow: hidden;
 }
 
@@ -163,6 +169,10 @@
           transition-duration: 1s;
   -webkit-transition-timing-function: ease-in;
           transition-timing-function: ease-in;
+}
+
+.burger-menu-container_show {
+  right: 0;
 }
 
 .burger-menu-header {
@@ -203,10 +213,6 @@
 
 .burger-menu__item:hover {
   cursor: pointer;
-}
-
-.burger-menu-container_show {
-  right: 0;
 }
 
 .burger-menu-btn_open {

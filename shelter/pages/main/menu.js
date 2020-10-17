@@ -51,6 +51,16 @@ function addBurgerMenu (
 
     menuHideChange(){
       this.isHide = !this.isHide;
+
+      if (isPets){
+        if (!this.isHide){
+          this.menuBtnEl.src='../../assets/icons/burger-main.png'
+        } else {
+          this.menuBtnEl.src='../../assets/icons/burger.png'
+        }
+
+      }
+
       this.render();
     },
 
