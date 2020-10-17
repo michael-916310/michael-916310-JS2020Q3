@@ -439,6 +439,20 @@
     }
   }
 
+
+  .pets-slider{
+    // для слайдера
+    justify-content: space-evenly;
+
+    max-width: 990px;
+    margin-left:auto;
+    margin-right: auto;
+    //overflow-x: hidden;
+
+    border:1px solid grey;
+  }
+
+
   .pets-slider__card{
     width: 270px;
     height: 435px;
@@ -452,6 +466,17 @@
       margin: -1px 0px;
     }
 
+  }
+
+  .pets-slider__card{
+    // для слайдера
+    margin-left:0;
+    margin-right:0;
+
+    transition-property: transform;
+    transition-duration: 1s;
+
+    border:1px dotted black;
   }
 
   .pets-slider__card-katrine{
@@ -508,7 +533,7 @@
   }
 
   .pets-slider__arrows-360{
-    display:none;
+    //display:none;
 
     width: 184px;
     height: 52px;
