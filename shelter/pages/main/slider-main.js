@@ -8,16 +8,14 @@ function addSlider(petsJson){
 
   let sliderItems = [...document.querySelectorAll('.pets-slider__card')];
 
-  function countCardsOnSlider(){
-    // return [...document.querySelectorAll('.pets-slider__card')].filter((item)=>{
-    //   if (getComputedStyle(item).display=='none') {
-    //     return false;
-    //   } else {
-    //     return true;
-    //   }
-    // }).length;
-
-    return 3;
+  function getVisibleSliderItems(){
+    return sliderItems.filter((item)=>{
+      if (getComputedStyle(item).display=='none') {
+        return false;
+      } else {
+        return true;
+      }
+    });
   }
 
   function updateArrToSelect(){
@@ -26,24 +24,36 @@ function addSlider(petsJson){
     });
   }
 
-  function toLeft(){
-
-    let itemsWidth = sliderItems.reduce((pv, v)=>{
+  function getSlidersWidth(){
+    return getVisibleSliderItems().reduce((pv, v)=>{
       return pv+parseFloat(getComputedStyle(v).width);
     },0)
+  }
 
-    let toLeft = (parseFloat(getComputedStyle(document.querySelector('.pets-slider')).width) - itemsWidth)/4+itemsWidth/3;
+  function getSlideShift(){
+    let itemsWidth = getSlidersWidth();
+    let itemsCount = getVisibleSliderItems().length;
+    let sliderWidth = parseFloat(getComputedStyle(document.querySelector('.pets-slider')).width);
+
+    return (sliderWidth - itemsWidth)/(itemsCount+1)+itemsWidth/itemsCount;
+  }
+
+  function toLeft(){
+
+    let toLeft = getSlideShift();
     curToLeft += toLeft;
 
     sliderItems.forEach(element => {
-      //element.classList.add('slider-to-left');
       element.style.transform = 'translateX(-' + curToLeft + 'px)'
     });
+
   }
 
 
   function init(){
-    let cnt = countCardsOnSlider();
+    let cnt = getVisibleSliderItems().length;
+
+    console.log(cnt);
 
     // сгенерируем кого будем отображать
     for (i=0; i<cnt; i++){
@@ -52,6 +62,7 @@ function addSlider(petsJson){
 
     updateArrToSelect();
 
+    // привяжим обработчики кликов
     document.querySelector('.pets-slider__left-arrow').addEventListener('click', toLeft)
   }
 
