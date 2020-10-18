@@ -442,12 +442,13 @@
 
   .pets-slider{
     // для слайдера
-    justify-content: space-evenly;
+    justify-content: left;
+    //position: relative;
 
     max-width: 990px;
     margin-left:auto;
     margin-right: auto;
-    //overflow-x: hidden;
+    overflow-x: hidden;
 
     //border:1px solid grey;
     background-color: #F1CDB3;
@@ -471,43 +472,34 @@
 
   .pets-slider__card{
     // для слайдера
-    margin-left:0;
-    margin-right:0;
+    position: relative;
+
+    margin-left:auto;
+    margin-right:auto;
+
+  }
+
+  .slider-item{
+    position:relative;
+
+    flex-shrink: 0;
+    flex-basis: 33.33333%;
+
+    border:1px dotted black;
 
     transition-property: transform;
     transition-duration: 1s;
 
-    //border:1px dotted black;
-    background-color: burlywood
-  }
-
-  // .pets-slider__card-katrine{
-  //   @media (max-width:$breakpoint-main-m) {
-  //     margin-right: 14px;
-  //   }
-
-  //   @media (max-width:$breakpoint-main-s) {
-  //     margin-right: 0;
-  //   }
-
-  // }
-
-  .pets-slider__card-jennifer{
-    // @media (max-width:$breakpoint-main-m) {
-    //   margin-left: 14px;
-    // }
+    @media (max-width:$breakpoint-main-m) {
+      flex-basis:50%;
+    }
 
     @media (max-width:$breakpoint-main-s) {
-      display: none;
+      flex-basis:100%;
     }
 
   }
 
-  .pets-slider__card-woody{
-    @media (max-width:$breakpoint-main-m) {
-      display: none;
-    }
-  }
 
   .pets-slider__left-arrow, .pets-slider__right-arrow{
     display: flex;

@@ -6,16 +6,40 @@ function addSlider(petsJson){
 
   let curToLeft=0;
 
-  let sliderItems = [...document.querySelectorAll('.pets-slider__card')];
+  let leftStep=0;
+  let rightStep=0;
 
-  function getVisibleSliderItems(){
-    return sliderItems.filter((item)=>{
-      if (getComputedStyle(item).display=='none') {
-        return false;
-      } else {
-        return true;
-      }
+  let sliderItems = [...document.querySelectorAll('.slider-item')];
+
+
+
+  function shiftSlide(toLeft=true){
+
+    let shiftSize = Math.round(parseFloat(getComputedStyle(sliderItems[0]).width));
+    if (toLeft) {
+      curToLeft -= shiftSize;
+      leftStep+=1;
+    } else {
+      curToLeft += shiftSize;
+      rightStep+=1;
+    }
+
+    let stepDelta = leftStep-rightStep;
+    if (stepDelta<0){
+      let l = Math.round(parseFloat(getComputedStyle(sliderItems[0]).width)*8);
+      sliderItems[sliderItems.length+stepDelta].style.left = `${-l}px`;
+
+      console.log(sliderItems.length+stepDelta,stepDelta, rightStep);
+    }
+
+    if (stepDelta>0){
+
+    }
+
+    sliderItems.forEach((element, index) => {
+      element.style.transform = 'translateX(' + curToLeft + 'px)'
     });
+
   }
 
   function updateArrToSelect(){
@@ -24,46 +48,24 @@ function addSlider(petsJson){
     });
   }
 
-  function getSlidersWidth(){
-    return getVisibleSliderItems().reduce((pv, v)=>{
-      return pv+parseFloat(getComputedStyle(v).width);
-    },0)
-  }
-
-  function getSlideShift(){
-    let itemsWidth = getSlidersWidth();
-    let itemsCount = getVisibleSliderItems().length;
-    let sliderWidth = parseFloat(getComputedStyle(document.querySelector('.pets-slider')).width);
-
-    return (sliderWidth - itemsWidth)/(itemsCount+1)+itemsWidth/itemsCount;
-  }
-
-  function toLeft(){
-
-    let toLeft = getSlideShift();
-    curToLeft += toLeft;
-
-    sliderItems.forEach(element => {
-      element.style.transform = 'translateX(-' + curToLeft + 'px)'
-    });
-
-  }
-
 
   function init(){
-    let cnt = getVisibleSliderItems().length;
+    // let cnt = getVisibleSliderItems().length;
 
-    console.log(cnt);
+    // //console.log(cnt);
 
-    // сгенерируем кого будем отображать
-    for (i=0; i<cnt; i++){
-      petsArrOnSlider.push(petsArr[Math.floor(Math.random() * petsArr.length)]);
-    };
+    // // сгенерируем кого будем отображать
+    // for (i=0; i<cnt; i++){
+    //   petsArrOnSlider.push(petsArr[Math.floor(Math.random() * petsArr.length)]);
+    // };
 
-    updateArrToSelect();
+    // updateArrToSelect();
 
     // привяжим обработчики кликов
-    document.querySelector('.pets-slider__left-arrow').addEventListener('click', toLeft)
+    document.querySelector('.pets-slider__left-arrow').addEventListener('click', ()=>{shiftSlide(true)})
+    document.querySelector('.pets-slider__right-arrow').addEventListener('click', ()=>{shiftSlide(false)})
+
+
   }
 
   init();
