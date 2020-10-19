@@ -15,41 +15,72 @@ body {
   text-align: center;
   height: 100vh;
   background-size: cover;
-  color: #000000;
+  color:white;
   font-weight: bold;
 
   transition: background-image 1s ease-in-out;
 }
 
 .time {
-  font-size: 6rem;
+  font-size: 5rem;
+
+  background-color: black;
+  opacity: 0.7;
+
+  border-radius: 10px;
 }
 
 h1 {
   margin-bottom: 3rem;
+
+  background-color: black;
+  opacity: 0.8;
+
+}
+
+.name{
+  transition-property: color, border;
+  transition-delay: 0.3s;
+}
+.name:hover{
+  cursor: pointer;
+  color: burlywood;
+  border: 1px solid wheat;
+  border-radius: 5px;
 }
 
 h2 {
   margin-bottom: 0.5rem;
+
+  background-color: black;
   opacity: 0.8;
 }
 
-@media (max-width: 700px) {
-  .time {
-    font-size: 4rem;
-  }
+.focus{
+  transition-property: color, border;
+  transition-delay: 0.3s;
+}
+.focus:hover{
+  cursor: pointer;
+  color: burlywood;
+  border: 1px solid wheat;
+  border-radius: 5px;
 }
 
 .quote-container{
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
+  border: 1px solid white;
   padding: 10px;
   margin: 5px;
 
   margin-top:10px;
 
   width: 50%;
+
+  background-color: black;
+  opacity: 0.7;
+  border-radius: 10px;
 }
 
 .quote-text{
@@ -60,7 +91,19 @@ h2 {
   padding:5px;
   border-radius: 5px;
   border: none;
+  font-weight: bold;
+  opacity: 1;
 
+  transition-property: color;
+  transition-delay: 0.3s;
+}
+
+.quote-btn:hover{
+  cursor: pointer;
+  color: burlywood;
+  background-color: black;
+  border: 1px solid wheat;
+  border-radius: 5px;
 }
 
 .weather-container{
@@ -69,7 +112,11 @@ h2 {
   margin: 5px;
   width: 50%;
 
-  border: 1px solid black;
+  border: 1px solid white;
+
+  background-color: black;
+  opacity: 0.7;
+  border-radius: 10px;
 }
 
 .city{
@@ -85,5 +132,56 @@ h2 {
   padding:10px;
   border-radius: 5px;
   border: none;
+
+  transition-property: color;
+  transition-delay: 0.3s;
 }
 
+.img-btn:hover{
+  cursor: pointer;
+  color: burlywood;
+  background-color: black;
+  border: 1px solid wheat;
+  border-radius: 5px;
+}
+
+
+@media (max-width: 1200px) {
+  .weather-container {
+    flex-direction: column;
+  }
+
+}
+
+@media (max-width: 700px) {
+  .time {
+    font-size: 4rem;
+  }
+
+  .quote-container{
+    width: 70%;
+    flex-direction: column;
+  }
+
+  .quote-btn{
+    margin-top: 30px;
+  }
+
+  .weather-container{
+    width: 70%;
+  }
+}
+
+@media (max-width: 500px) {
+  .time {
+    font-size: 2rem;
+  }
+
+  .quote-container{
+    width: 80%;
+  }
+
+  .weather-container{
+    width: 80%;
+  }
+}

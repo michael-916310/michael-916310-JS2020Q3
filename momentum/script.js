@@ -41,17 +41,19 @@
     },
 
     setBgGreet(){
-      if (this.getHour() < 12) {
-        document.body.style.backgroundImage = "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
+      if (this.getHour() <= 6) {
+        document.body.style.backgroundImage = "url('./assets/images/night/01.jpg')";
+        elmGreet.textContent = 'Good Night, ';
+      } else if (this.getHour() <= 12) {
+        document.body.style.backgroundImage = "url('./assets/images/morning/01.jpg')";
         elmGreet.textContent = 'Good Morning, ';
-      } else if (this.getHour() < 18) {
-        document.body.style.backgroundImage = "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
-        elmGreet.textContent = 'Good Afternoon, ';
+      } else if (this.getHour() <= 18) {
+        document.body.style.backgroundImage = "url('./assets/images/day/01.jpg')";
+        elmGreet.textContent = 'Good Day, ';
       } else {
-        document.body.style.backgroundImage = "url('https://i.ibb.co/924T2Wv/night.jpg')";
+        document.body.style.backgroundImage = "url('./assets/images/evening/01.jpg')";
         elmGreet.textContent = 'Good Evening, ';
-        document.body.style.color = 'white';
-      }
+       }
     },
 
     getName() {
@@ -90,14 +92,14 @@
       } else {
         localStorage.setItem('focus', e.target.innerText);
       }
-    }
-
+    },
   }
 
   utils.getHour.bind(utils);
 
   elmName.addEventListener('keypress', utils.setName);
   elmName.addEventListener('blur', utils.setName);
+
   elmFocus.addEventListener('keypress', utils.setFocus);
   elmFocus.addEventListener('blur', utils.setFocus);
 
@@ -106,7 +108,6 @@
   utils.getName();
   utils.getFocus();
 
-  //window.utils = utils;
 })();
 
 (function(){
@@ -158,6 +159,7 @@
 
     }catch(e){
       console.log(e);
+      alert('Не удалось получить прогноз погоды');
     }
   }
 
@@ -192,11 +194,15 @@
   function getImage() {
     let hour = new Date().getHours();
 
-    if (hour < 12) {
+    if (hour <= 8) {
+      // ночь
+      base = './assets/images/night/';
+
+    } else if (hour <= 12) {
       // утро
       base = './assets/images/morning/';
 
-    } else if (hour < 18) {
+    } else if (hour <= 18) {
       // день
       base = './assets/images/day/';
 
@@ -238,21 +244,21 @@
   function getImage() {
     let hour = new Date().getHours();
 
-    if (hour < 12) {
+    if (hour <= 8) {
+      // ночь
+      base = './assets/images/night/';
+
+    } else if (hour <= 12) {
       // утро
       base = './assets/images/morning/';
-      document.body.style.backgroundImage = "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
 
-    } else if (hour < 18) {
+    } else if (hour <= 18) {
       // день
       base = './assets/images/day/';
-      document.body.style.backgroundImage = "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
 
     } else {
       // вечер
       base = './assets/images/evening/';
-      document.body.style.backgroundImage = "url('https://i.ibb.co/924T2Wv/night.jpg')";
-
     }
 
     const index = i % images.length;
@@ -265,6 +271,7 @@
   }
 
   setInterval(getImage, 1000*60*60);
-  //setInterval(getImage, 1000*10);
+  //setInterval(getImage, 1000*60); //для проверки
+
 
 })();
