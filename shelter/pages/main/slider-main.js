@@ -24,11 +24,16 @@ function addSlider(petsJson){
       rightStep+=1;
     }
 
+    sliderItems.forEach((element, index) => {
+      element.style.transform = 'translateX(' + curToLeft + 'px)'
+    });
+
+
     let stepDelta = leftStep-rightStep;
     let line = Math.round(parseFloat(getComputedStyle(sliderItems[0]).width)*8);
 
     if (stepDelta<0){
-
+      // Переношу слайды
       if (!toLeft) {
 
         let kf = 1;
@@ -54,7 +59,7 @@ function addSlider(petsJson){
     }
 
     if (stepDelta<=0){
-
+      // возвращаю слайды
       if (toLeft) {
         let maxShift=0;
 
@@ -77,16 +82,14 @@ function addSlider(petsJson){
 
         let shift=-parseInt(sliderItems[minIndex].style.left)-line;
 
-        console.log(`maxShift:${maxShift}`, `idx: ${minIndex}`, `shift:${shift}`);
+        //console.log(`maxShift:${maxShift}`, `idx: ${minIndex}`, `shift:${shift}`);
 
         sliderItems[minIndex].style.left = `${-shift}px`;
 
       }
     }
 
-    sliderItems.forEach((element, index) => {
-      element.style.transform = 'translateX(' + curToLeft + 'px)'
-    });
+
 
   }
 
