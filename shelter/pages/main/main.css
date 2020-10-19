@@ -690,6 +690,18 @@
   }
 }
 
+.pets .pets-slider-with-arrows {
+  position: relative;
+  margin-top: 60px;
+}
+
+.pets .pets-slider-container {
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 990px;
+}
+
 .pets .pets-slider {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -698,7 +710,12 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   height: 435px;
-  margin-top: 60px;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
 }
 
 @media (max-width: 550px) {
@@ -719,10 +736,6 @@
   -webkit-box-pack: left;
       -ms-flex-pack: left;
           justify-content: left;
-  max-width: 990px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow-x: hidden;
   background-color: #F1CDB3;
 }
 
@@ -741,24 +754,16 @@
 }
 
 .pets .pets-slider__card {
-  position: relative;
   margin-left: auto;
   margin-right: auto;
 }
 
 .pets .slider-item {
-  position: relative;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   -ms-flex-preferred-size: 33.33333%;
       flex-basis: 33.33333%;
   border: 1px dotted black;
-  -webkit-transition-property: -webkit-transform;
-  transition-property: -webkit-transform;
-  transition-property: transform;
-  transition-property: transform, -webkit-transform;
-  -webkit-transition-duration: 1s;
-          transition-duration: 1s;
 }
 
 @media (max-width: 1250px) {
@@ -775,7 +780,16 @@
   }
 }
 
+.pets .pets-slider__left-arrow {
+  left: -50px;
+}
+
+.pets .pets-slider__arrow-till-360 {
+  top: 50%;
+}
+
 .pets .pets-slider__left-arrow, .pets .pets-slider__right-arrow {
+  position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -785,8 +799,6 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-item-align: center;
-      align-self: center;
   margin-bottom: 2px;
   width: 52px;
   height: 52px;
