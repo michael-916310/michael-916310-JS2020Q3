@@ -48,11 +48,12 @@ addBurgerMenu(
           return false;
         }
       }).length;
-
     }
+
     while (isExist()) {
       i = Math.floor(Math.random() * petsDataArray.length);
     }
+
     items.push({element: item, petsArrIndex:i});
   });
 

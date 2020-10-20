@@ -77,6 +77,7 @@
 			if (e.target.classList.contains(clsSliderControl)) {
 			e.preventDefault();
 			var direction = e.target.classList.contains(clsSliderControlRight) ? 'right' : 'left';
+			console.log(`click:${direction}`);
 			_transformItem(direction);
 			}
 		};
