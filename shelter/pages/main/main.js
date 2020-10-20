@@ -70,6 +70,18 @@ addBurgerMenu(
     renderSlide(item);
   });
 
+  // добавим открытие попапов
+  function openPopup(){
+    let bg = document.querySelector('.pets-popup-bg');
+
+    bg.classList.add('pets-popup-bg-visible');
+  }
+
+  document.querySelectorAll('.pets-slider__card').forEach((el)=>{
+    el.addEventListener('click', openPopup);
+  });
+
+
 })();
 
 
