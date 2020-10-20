@@ -1,4 +1,4 @@
-const petsJson = [
+const petsDataArray = [
   {
     "name": "Jennifer",
     "img": "../../assets/images/jennifer.png",

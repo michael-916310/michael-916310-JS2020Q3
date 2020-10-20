@@ -199,20 +199,20 @@
     width: 698px;
     height: 728px;
 
-    background-image: url("/assets/images/start-screen-puppy.png");
+    background-image: url("./../../assets/images/start-screen-puppy.png");
 
     @media (max-width:$breakpoint-main-m) {
       margin-top:20px;
       width: 569px;
       height: 593px;
-      background-image: url("/assets/images/start-screen-puppy-768.png");
+      background-image: url("./../../assets/images/start-screen-puppy-768.png");
      }
 
      @media (max-width:$breakpoint-main-s) {
       margin-top:25px;
       width: 260px;
       height: 272px;
-      background-image: url("/assets/images/start-screen-puppy-320.png");
+      background-image: url("./../../assets/images/start-screen-puppy-320.png");
      }
   }
 
@@ -281,7 +281,7 @@
     height: 408px;
     margin-right: 60px;
 
-    background-image: url('/assets/images/about-pets.png');
+    background-image: url('./../../assets/images/about-pets.png');
 
     @media (max-width:$breakpoint-main-m) {
       margin-right: 0;
@@ -293,7 +293,7 @@
 
       width: 260px;
       height: 354px;
-      background-image: url('/assets/images/about-pets-320.png');
+      background-image: url('./../../assets/images/about-pets-320.png');
     }
   }
 
@@ -429,9 +429,6 @@
     padding: 0 52px;
 
     @media (max-width:$breakpoint-main-ss) {
-      //display: flex;
-      // flex-direction: column;
-      // align-items: center;
 
       padding: 0 10px;
 
