@@ -5,8 +5,10 @@
 			_sliderWrapper = _mainElement.querySelector(`.${clsSliderWrapper}`), // обертка для .slider-item
 			_sliderItems = _mainElement.querySelectorAll(`.${clsSliderItem}`), // элементы (.slider-item)
 			_sliderControls = _mainElement.querySelectorAll(`.${clsSliderControl}`), // элементы управления
+
 			_wrapperWidth = parseFloat(getComputedStyle(_sliderWrapper).width), // ширина обёртки
 			_itemWidth = parseFloat(getComputedStyle(_sliderItems[0]).width), // ширина одного элемента
+
 			_positionLeftItem = 0, // позиция левого активного элемента
 			_transform = 0, // значение транфсофрмации .slider_wrapper
 			_step = _itemWidth / _wrapperWidth * 100, // величина шага (для трансформации)
@@ -45,6 +47,7 @@
 		}
 
 		let _transformItem = function (direction) {
+
 			var nextItem;
 			if (direction === 'right') {
 			_positionLeftItem++;
