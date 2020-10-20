@@ -5,8 +5,6 @@
 			_sliderWrapper = _mainElement.querySelector(`.${clsSliderWrapper}`), // обертка для .slider-item
 			_sliderItems = _mainElement.querySelectorAll(`.${clsSliderItem}`), // элементы (.slider-item)
 			_sliderControls = _mainElement.querySelectorAll(`.${clsSliderControl}`), // элементы управления
-			// _sliderControlLeft = _mainElement.querySelector('.slider__control_left'), // кнопка "LEFT"
-			// _sliderControlRight = _mainElement.querySelector('.slider__control_right'), // кнопка "RIGHT"
 			_wrapperWidth = parseFloat(getComputedStyle(_sliderWrapper).width), // ширина обёртки
 			_itemWidth = parseFloat(getComputedStyle(_sliderItems[0]).width), // ширина одного элемента
 			_positionLeftItem = 0, // позиция левого активного элемента

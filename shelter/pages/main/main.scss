@@ -428,15 +428,13 @@
   }
 
   .pets-slider-container{
-
-
     overflow: hidden;
 
     margin-left:auto;
     margin-right: auto;
 
-    max-width: 990px;
-
+    //max-width: 990px;
+    max-width: 1080px;
   }
 
   .pets-slider{
@@ -457,18 +455,12 @@
     }
   }
 
-  .pets-slider{
-    // для слайдера
-    justify-content: left;
-    background-color: #F1CDB3;
-  }
-
-
   .pets-slider__card{
     width: 270px;
     height: 435px;
 
-    margin: -1px 37px;
+    margin: -1px auto 37px auto;
+
 
     background-color: $color-light-s;
     border-radius: 9px;
@@ -479,19 +471,11 @@
 
   }
 
-  .pets-slider__card{
-    // для слайдера
-    margin-left:auto;
-    margin-right:auto;
-
-  }
 
   .slider-item{
 
     flex-shrink: 0;
     flex-basis: 33.33333%;
-
-    border:1px dotted black;
 
     @media (max-width:$breakpoint-main-m) {
       flex-basis:50%;
@@ -503,12 +487,17 @@
 
   }
 
-  .pets-slider__left-arrow{
-    left:-50px;
-  }
-
   .pets-slider__arrow-till-360{
     top:50%;
+    transform: translateY(-50%);
+  }
+
+  .pets-slider__arrow-till-360.pets-slider__left-arrow {
+      left:0;
+  }
+
+  .pets-slider__arrow-till-360.pets-slider__right-arrow {
+        right: 0;
   }
 
   .pets-slider__left-arrow, .pets-slider__right-arrow{
