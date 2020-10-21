@@ -77,9 +77,15 @@ addBurgerMenu(
     bg.classList.add('pets-popup-bg-visible');
   }
 
+  function closePopup(){
+
+  }
+
   document.querySelectorAll('.pets-slider__card').forEach((el)=>{
     el.addEventListener('click', openPopup);
   });
+
+  document.querySelector('.pets-popup__close-btn').addEventListener('click', closePopup)
 
 
 })();
