@@ -7,6 +7,11 @@
   let pagesTotal = 0;       // сколкьо всего страниц
   let curPage = 1;          // текущая страница
 
+
+  let curPageBtn = document.querySelector('.pets-slider__page');
+  let rightBtn = document.querySelector('.pets-slider__right-step');
+  let rightAllBtn = document.querySelector('.pets-slider__right-all');
+
   // сгенерим 48 элементов так чтобы каждые 8 не повторялись
   (function(){
     for (i=0; i<6; i++){
@@ -47,14 +52,37 @@
     perPage = visibleCardList.length;
     pagesTotal = dataArr.length / perPage;
 
-    //console.log(perPage, pagesTotal);
+    rightBtn.addEventListener('click', ()=>{
+      if (curPage<pagesTotal){
+        curPage++;
+        renderPage();
+        setBtnState();
+      }
+    })
+
+    rightAllBtn.addEventListener('click', ()=>{
+      if (curPage<pagesTotal){
+        curPage=pagesTotal;
+        renderPage();
+        setBtnState();
+      }
+    })
 
   })();
 
+  function setBtnState(){
+    curPageBtn.innerHTML = curPage;
+    if (curPage==pagesTotal){
+      rightBtn.classList.add('pets-slider__inactive');
+      rightBtn.classList.remove('pets-slider__active');
+
+      rightAllBtn.classList.add('pets-slider__inactive');
+      rightAllBtn.classList.remove('pets-slider__active');
+    }
+  }
 
   function renderPage(){
     let i=0;
-    //console.log(`curPage:${curPage}`)
     visibleCardList.forEach((el)=>{
 
       let idx = (curPage-1)*perPage+i;
@@ -63,7 +91,6 @@
 
         el.querySelector('.pets__card-photo').src = dt.img;
         el.querySelector('.pets__card-caption').innerHTML=dt.name;
-        //console.log(idx, dt)
       }
       i++;
 
@@ -71,10 +98,5 @@
   }
 
   renderPage(1);
-  renderPage(2);
-  renderPage(3);
-  renderPage(4);
-  renderPage(5);
-  renderPage(6);
 
 })()

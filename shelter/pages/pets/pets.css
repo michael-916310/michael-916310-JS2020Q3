@@ -469,6 +469,7 @@
   width: 52px;
   height: 52px;
   border-radius: 100px;
+  outline: none;
 }
 
 .pets .pets-slider-container .pets-slider__inactive {
