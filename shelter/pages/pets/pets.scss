@@ -93,6 +93,13 @@
     margin-top: 40px;
     padding-top: 4px;
 
+    transition-property: opacity;
+    transition-duration: 0.3s;
+
+    &-fadeOut{
+      opacity: 0.3;
+    }
+
     @media (max-width:$breakpoint-m) {
       justify-content: center;
 

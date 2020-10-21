@@ -325,6 +325,14 @@
       flex-wrap: wrap;
   margin-top: 40px;
   padding-top: 4px;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.pets .pets-container-fadeOut {
+  opacity: 0.3;
 }
 
 @media (max-width: 1250px) {

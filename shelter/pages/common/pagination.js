@@ -7,7 +7,8 @@
   let pagesTotal = 0;       // сколкьо всего страниц
   let curPage = 1;          // текущая страница
 
-
+  let leftAllBtn = document.querySelector('.pets-slider__left-all');
+  let leftBtn = document.querySelector('.pets-slider__left-step');
   let curPageBtn = document.querySelector('.pets-slider__page');
   let rightBtn = document.querySelector('.pets-slider__right-step');
   let rightAllBtn = document.querySelector('.pets-slider__right-all');
@@ -56,7 +57,6 @@
       if (curPage<pagesTotal){
         curPage++;
         renderPage();
-        setBtnState();
       }
     })
 
@@ -64,25 +64,62 @@
       if (curPage<pagesTotal){
         curPage=pagesTotal;
         renderPage();
-        setBtnState();
       }
     })
+
+    leftBtn.addEventListener('click', ()=>{
+      if (curPage>=2){
+        curPage--;
+        renderPage();
+      }
+    })
+
+    leftAllBtn.addEventListener('click', ()=>{
+      curPage=1;
+      renderPage();
+    })
+
+    document.querySelector('.pets-container').addEventListener('transitionend', ()=>{
+      document.querySelector('.pets-container').classList.remove('pets-container-fadeOut');
+    });
 
   })();
 
   function setBtnState(){
     curPageBtn.innerHTML = curPage;
-    if (curPage==pagesTotal){
-      rightBtn.classList.add('pets-slider__inactive');
-      rightBtn.classList.remove('pets-slider__active');
 
-      rightAllBtn.classList.add('pets-slider__inactive');
+    rightBtn.classList.add('pets-slider__active');
+    rightAllBtn.classList.add('pets-slider__active');
+    leftBtn.classList.add('pets-slider__active');
+    leftAllBtn.classList.add('pets-slider__active');
+
+    rightBtn.classList.remove('pets-slider__inactive');
+    rightAllBtn.classList.remove('pets-slider__inactive');
+    leftBtn.classList.remove('pets-slider__inactive');
+    leftAllBtn.classList.remove('pets-slider__inactive');
+
+    if (curPage==pagesTotal){
+      rightBtn.classList.remove('pets-slider__active');
+      rightBtn.classList.add('pets-slider__inactive');
+
       rightAllBtn.classList.remove('pets-slider__active');
+      rightAllBtn.classList.add('pets-slider__inactive');
+    } else if (curPage==1) {
+      leftBtn.classList.remove('pets-slider__active');
+      leftBtn.classList.add('pets-slider__inactive');
+
+      leftAllBtn.classList.remove('pets-slider__active');
+      leftAllBtn.classList.add('pets-slider__inactive');
     }
   }
 
   function renderPage(){
     let i=0;
+
+    document.querySelector('.pets-container').classList.add('pets-container-fadeOut')
+
+
+
     visibleCardList.forEach((el)=>{
 
       let idx = (curPage-1)*perPage+i;
@@ -95,6 +132,7 @@
       i++;
 
     });
+    setBtnState();
   }
 
   renderPage(1);
