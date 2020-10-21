@@ -5,6 +5,7 @@
 
   let perPage = 0;          // сколько элементов видно на странице за раз
   let pagesTotal = 0;       // сколкьо всего страниц
+  let curPage = 1;          // текущая страница
 
   // сгенерим 48 элементов так чтобы каждые 8 не повторялись
   (function(){
@@ -50,5 +51,30 @@
 
   })();
 
+
+  function renderPage(){
+    let i=0;
+    //console.log(`curPage:${curPage}`)
+    visibleCardList.forEach((el)=>{
+
+      let idx = (curPage-1)*perPage+i;
+      if (idx<dataArr.length){
+        let dt = petsDataArray[dataArr[idx]];
+
+        el.querySelector('.pets__card-photo').src = dt.img;
+        el.querySelector('.pets__card-caption').innerHTML=dt.name;
+        //console.log(idx, dt)
+      }
+      i++;
+
+    });
+  }
+
+  renderPage(1);
+  renderPage(2);
+  renderPage(3);
+  renderPage(4);
+  renderPage(5);
+  renderPage(6);
 
 })()
