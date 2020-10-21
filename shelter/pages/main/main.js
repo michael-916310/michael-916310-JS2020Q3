@@ -64,8 +64,6 @@ addBurgerMenu(
     item.element.querySelector('.pets-slider__card-caption').innerHTML = dt.name;
   }
 
-  //console.log(items);
-
   items.forEach((item)=>{
     renderSlide(item);
   });
@@ -74,7 +72,23 @@ addBurgerMenu(
   function openPopup(){
     let bg = document.querySelector('.pets-popup-bg');
 
-    bg.classList.add('pets-popup-bg-visible');
+    items.forEach((item)=>{
+      if (item.element == this.parentNode) {
+        let dt = petsDataArray[item.petsArrIndex];
+        bg.querySelector('.pets-popup__name').innerHTML = dt.name;
+        bg.querySelector('.pets-popup__title').innerHTML = `${dt.type} - ${dt.breed}`;
+        bg.querySelector('.pets-popup__info').innerHTML = dt.description;
+        bg.querySelector('.pets-popup__img').src = dt.img;
+
+        bg.querySelectorAll('.pets-popup__list-item-data')[0].innerHTML = dt.age;
+        bg.querySelectorAll('.pets-popup__list-item-data')[1].innerHTML = dt.inoculations;
+        bg.querySelectorAll('.pets-popup__list-item-data')[2].innerHTML = dt.diseases;
+        bg.querySelectorAll('.pets-popup__list-item-data')[3].innerHTML = dt.parasites;
+
+        bg.classList.add('pets-popup-bg-visible');
+      }
+    });
+
   }
 
   function closePopup(){
