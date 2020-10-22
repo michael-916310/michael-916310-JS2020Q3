@@ -44,7 +44,7 @@
   color: $color-light-s;
 }
 
-.burger-menu__item:hover{
+.burger-menu__item-active:hover{
   color: $color-light-s;
 }
 
@@ -189,6 +189,7 @@
     color:  $color-dark-xl;
 
     background: #FAFAFA;
+    outline: none;
 
     &:hover{
       background:$color-primary-light;

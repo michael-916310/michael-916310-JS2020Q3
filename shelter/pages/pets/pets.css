@@ -151,6 +151,7 @@
   line-height: 160%;
   color: #545454;
   padding-bottom: 5px;
+  cursor: auto;
 }
 
 .header-menu__item_selected {
@@ -158,7 +159,7 @@
   border-bottom: 3px solid #F1CDB3;
 }
 
-.header-menu__item:hover {
+.header-menu__active:hover {
   color: #292929;
   cursor: pointer;
 }
@@ -235,14 +236,15 @@
   font-weight: normal;
   font-size: 32px;
   line-height: 160%;
+  cursor: auto;
+}
+
+.burger-menu__item-active:hover {
+  cursor: pointer;
 }
 
 .burger-menu__item_selected {
   border-bottom: 3px solid #F1CDB3;
-}
-
-.burger-menu__item:hover {
-  cursor: pointer;
 }
 
 .burger-menu-btn_open {
@@ -261,6 +263,10 @@
   letter-spacing: 0.06em;
 }
 
+.burger-logo__tittle:hover {
+  cursor: pointer;
+}
+
 .burger-logo__sub-tittle {
   margin: 9px 0 0 4px;
   font-family: Arial;
@@ -271,6 +277,10 @@
   letter-spacing: 0.1em;
 }
 
+.burger-logo__sub-tittle:hover {
+  cursor: pointer;
+}
+
 .burger-menu__item {
   color: #CDCDCD;
 }
@@ -279,7 +289,7 @@
   color: #FAFAFA;
 }
 
-.burger-menu__item:hover {
+.burger-menu__item-active:hover {
   color: #FAFAFA;
 }
 
@@ -437,6 +447,7 @@
   letter-spacing: 0.06em;
   color: #4C4C4C;
   background: #FAFAFA;
+  outline: none;
 }
 
 .pets .pets__card-btn:hover {
@@ -549,8 +560,8 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -webkit-transform: translate(calc(-50% + 25px), calc(-50% - 25px));
+          transform: translate(calc(-50% + 25px), calc(-50% - 25px));
   width: 952px;
   min-height: 552px;
   padding-right: 10px;

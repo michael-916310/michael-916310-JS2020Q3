@@ -82,7 +82,7 @@
       border-bottom: 3px solid  $color-primary ;
     }
 
-    .header-menu__item:hover{
+    .header-menu__active:hover{
       color: $color-light-s;
     }
 
@@ -182,6 +182,7 @@
     letter-spacing: 0.06em;
 
     color: #292929;
+    outline: none;
 
     @media (max-width:$breakpoint-main-m) {
       display: block;
@@ -226,7 +227,7 @@
   color: $color-light-s;
 }
 
-.burger-menu__item:hover{
+.burger-menu__item-active:hover{
   color: $color-light-s;
 }
 
@@ -576,6 +577,8 @@
 
     letter-spacing: 0.06em;
     color:$color-dark-xl;
+
+    outline: none;
   }
 
   .pets-button:hover{
@@ -622,6 +625,8 @@
     color:  $color-dark-xl;
 
     background: #FAFAFA;
+
+    outline: none;
   }
 
 
