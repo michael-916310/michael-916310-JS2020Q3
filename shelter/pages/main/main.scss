@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-@import '../main/header';
+@import './../common/header';
 
 .start-screen{
   display: flex;
@@ -1035,5 +1035,6 @@
   }
 
 }
-@import 'footer';
+
+@import './../common/footer';
 

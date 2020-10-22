@@ -34,7 +34,7 @@
 }
 
 
-@import '../main/header';
+@import './../common/header';
 
 .burger-menu__item{
   color: $color-dark-s;
@@ -304,4 +304,5 @@
   }
 
 }
-@import '../main/footer';
+
+@import './../common/footer';
