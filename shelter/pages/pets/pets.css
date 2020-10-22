@@ -281,6 +281,11 @@
   cursor: pointer;
 }
 
+.body-stop-scroll {
+  overflow-y: hidden;
+  padding-right: 15px;
+}
+
 .burger-menu__item {
   color: #CDCDCD;
 }

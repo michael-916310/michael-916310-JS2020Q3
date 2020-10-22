@@ -251,6 +251,11 @@
   cursor: pointer;
 }
 
+.body-stop-scroll {
+  overflow-y: hidden;
+  padding-right: 15px;
+}
+
 .start-screen {
   display: -webkit-box;
   display: -ms-flexbox;

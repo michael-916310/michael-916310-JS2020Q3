@@ -43,6 +43,8 @@ function addBurgerMenu (
       this._showHide(this.logoTitleEl, cls_header_logo__hide);
       this._showHide(this.logoSubTitleEl, cls_header_logo__hide);
 
+      this._showHide(document.body, 'body-stop-scroll');
+
       if (isPets){
         this._showHide(document.querySelector('.header-container'), 'header-container-relative');
       }

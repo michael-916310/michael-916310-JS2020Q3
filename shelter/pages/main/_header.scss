@@ -224,3 +224,8 @@
 .burger-logo__sub-tittle:hover{
   cursor: pointer;
 }
+
+.body-stop-scroll{
+  overflow-y: hidden;
+  padding-right: 15px;
+}

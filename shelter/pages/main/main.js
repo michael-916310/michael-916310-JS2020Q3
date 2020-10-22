@@ -86,6 +86,7 @@ addBurgerMenu(
         bg.querySelectorAll('.pets-popup__list-item-data')[3].innerHTML = dt.parasites;
 
         bg.classList.add('pets-popup-bg-visible');
+        document.body.classList.add('body-stop-scroll');
       }
     });
 
@@ -93,7 +94,9 @@ addBurgerMenu(
 
   function closePopup(){
     document.querySelector('.pets-popup-bg').classList.remove('pets-popup-bg-visible');
+    document.body.classList.remove('body-stop-scroll');
   }
+
   function bgClick(e){
     if (!document.querySelector('.pest-popup').contains(e.target)) {
       closePopup();
