@@ -933,7 +933,7 @@
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   width: 952px;
-  height: 552px;
+  min-height: 552px;
   padding-right: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -952,7 +952,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 900px;
-  height: 500px;
+  min-height: 500px;
   background: #FAFAFA;
   border-radius: 9px;
 }
@@ -1027,11 +1027,11 @@
 @media (max-width: 1250px) {
   .pets-popup-outline {
     width: 682px;
-    height: 402px;
+    min-height: 402px;
   }
   .pest-popup {
     width: 630px;
-    height: 350px;
+    min-height: 350px;
   }
   .pets-popup__img {
     width: 350px;
@@ -1041,6 +1041,7 @@
     width: 260px;
     margin-right: 10px;
     margin-top: 10px;
+    margin-bottom: 10px;
   }
   .pets-popup__info {
     font-size: 13px;
@@ -1051,6 +1052,35 @@
   }
   .pets-popup__list-item {
     margin-top: 5px;
+  }
+}
+
+@media (max-width: 760px) {
+  .pets-popup-outline {
+    width: 270px;
+    min-height: 393px;
+    padding-right: 0;
+  }
+  .pest-popup {
+    width: 240px;
+    min-height: 341px;
+  }
+  .pets-popup__img {
+    display: none;
+  }
+  .pets-popup__content {
+    width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pets-popup__name {
+    text-align: center;
+  }
+  .pets-popup__title {
+    text-align: center;
+  }
+  .pets-popup__list {
+    margin-top: 24px;
   }
 }
 
