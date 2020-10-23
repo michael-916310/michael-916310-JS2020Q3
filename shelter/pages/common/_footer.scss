@@ -1,0 +1,174 @@
+/* --------------------------------
+Стили футера экрана
+----------------------------------*/
+
+.footer-contacts-container {
+  margin-top: 56px;
+
+  margin-right: 30px;
+
+  width: 280px;
+
+  @media (max-width:$breakpoint-m) {
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  @media (max-width:$breakpoint-s) {
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+
+  @media (max-width:$breakpoint-ss) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .footer-contacts-header {
+    padding: 0;
+    margin: 0;
+    margin-top: 1px;
+    margin-left: 1px;
+
+    @extend %local-h3;
+    text-align: left;
+
+    color: $color-light-xl;
+
+    @media (max-width:$breakpoint-s) {
+      text-align: center;
+    }
+  }
+
+  .footer-contacts-email {
+    display: flex;
+    align-items: center;
+    @extend %local-h4;
+    color: $color-primary;
+
+    height: 32px;
+    margin-top: 39px;
+    margin-left: 1px;
+
+    text-decoration: none;
+
+    .footer-contacts-email-icon {
+      margin-right: 20px;
+    }
+  }
+
+  .footer-contacts-phone {
+    display: flex;
+    align-items: center;
+    @extend %local-h4;
+    color: $color-primary;
+
+    height: 32px;
+    margin-top: 40px;
+    margin-left: 1px;
+
+    text-decoration: none;
+
+    .footer-contacts-phone-icon {
+      margin-right: 20px;
+    }
+  }
+}
+
+.footer-location-container {
+  margin-top: 56px;
+  margin-right: 30px;
+
+  width: 302px;
+
+  @media (max-width:$breakpoint-m) {
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  @media (max-width:$breakpoint-s) {
+    margin-top: 40px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .footer-location-header {
+    padding: 0;
+    margin: 0;
+    margin-top: 1px;
+    margin-left: 1px;
+
+    @extend %local-h3;
+    text-align: left;
+
+    color: $color-light-xl;
+
+    @media (max-width:$breakpoint-s) {
+      text-align: center;
+    }
+  }
+
+  .footer-location-boston {
+    display: flex;
+    align-items: center;
+    @extend %local-h4;
+    color: $color-primary;
+
+    height: 32px;
+    margin-top: 39px;
+    //margin-left: 1px;
+
+    text-decoration: none;
+
+    .footer-location-boston-icon {
+      margin-right: 20px;
+    }
+  }
+
+  .footer-location-london {
+    display: flex;
+    align-items: center;
+    @extend %local-h4;
+    color: $color-primary;
+
+    height: 32px;
+    margin-top: 40px;
+    //margin-left: 1px;
+
+    text-decoration: none;
+
+    .footer-location-london-icon {
+      margin-right: 20px;
+    }
+  }
+}
+
+.footer-puppy {
+  margin-top: 40px;
+  //margin-left: 159px;
+
+  width: 300px;
+  height: 310px;
+
+  @media (max-width:$breakpoint-m) {
+    margin-top: 65px;
+  }
+
+  @media (max-width:$breakpoint-s) {
+    margin-top: 92px;
+
+    margin-left:80px;
+    margin-right: 80px;
+
+  }
+
+  @media (max-width:$breakpoint-ss) {
+    margin-top: 92px;
+
+    width: 260px;
+    height: 269px;
+  }
+
+}
