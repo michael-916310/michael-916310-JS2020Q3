@@ -14,6 +14,7 @@ const Keyboard = {
   props: {
     value: '',
     capsLock: false,
+    shift: false,
   },
 
   init(){
@@ -54,9 +55,10 @@ const Keyboard = {
       "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
       "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
       "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
-      "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
-      "space"
+      "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
+      "done","space"
     ];
+
 
     const createIconHTML = (icon_name) => {
       return `<i class="material-icons">${icon_name}</i>`;
@@ -93,6 +95,17 @@ const Keyboard = {
 
           break;
 
+        case 'shift':
+          keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable');
+          keyElement.innerHTML = createIconHTML('arrow_upward');
+
+          keyElement.addEventListener('click',()=>{
+            this._toggleShift();
+            keyElement.classList.toggle('keyboard__key--active', this.props.shift);
+          });
+
+          break;
+
         case 'enter':
           keyElement.classList.add('keyboard__key--wide');
           keyElement.innerHTML = createIconHTML('keyboard_return');
@@ -117,7 +130,7 @@ const Keyboard = {
 
         case 'done':
           keyElement.classList.add('keyboard__key--wide', 'keyboard__key--dark');
-          keyElement.innerHTML = createIconHTML('check_circle');
+          keyElement.innerHTML = createIconHTML('keyboard_hide');
 
           keyElement.addEventListener('click',()=>{
             this.close();
@@ -130,7 +143,12 @@ const Keyboard = {
           keyElement.textContent = key.toLocaleLowerCase();
 
           keyElement.addEventListener('click',()=>{
-            this.props.value += this.props.capsLock ? key.toUpperCase() : key.toLowerCase();
+            if ((this.props.capsLock && this.props.shift) || (!this.props.capsLock && !this.props.shift)) {
+              this.props.value +=  key.toLowerCase();
+            } else {
+              this.props.value += key.toUpperCase();
+            }
+            //this.props.value += this.props.capsLock ? key.toUpperCase() : key.toLowerCase();
             this._triggerEvent('oninput');
           });
 
@@ -164,6 +182,17 @@ const Keyboard = {
       }
 
     }
+  },
+
+  _toggleShift(){
+    this.props.shift = ! this.props.shift;
+
+    // for (const key of this.elements.keys) {
+    //   if (key.childElementCount === 0 ) {
+    //     key.textContent = this.props.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
+    //   }
+
+    // }
   },
 
   open(initialValue, oninput, onclose){
