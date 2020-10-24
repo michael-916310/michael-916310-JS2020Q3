@@ -37,6 +37,13 @@ const Keyboard = {
           (curV)=>{ el.value = curV; }
         );
       })
+
+      // При вводе с клавиатуры запишем вводимые символы в this.props.value
+      el.addEventListener('input', (e)=>{
+        this.props.value = el.value;
+        console.log(this.props.value);
+      });
+
     });
   },
 
