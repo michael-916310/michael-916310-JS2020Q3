@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body{
+  padding: 0 5%;
+}
+
 .keyboard {
   position: fixed;
   left: 0;
@@ -44,8 +48,26 @@
 }
 
 .keyboard__key:active {
-  background: rgba(255, 255, 255, 0.12);
+  /* background: rgba(255, 255, 255, 0.12); */
+  background: rgba(255, 255, 255, 0.5);
 }
+
+@keyframes bg-change {
+  0% {
+    background: rgba(255, 255, 255, 0.2);
+    }
+  50% {
+    /* background: rgba(255, 255, 255, 0.12); */
+    background: rgba(255, 255, 255, 0.05);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .keyboard__key_animation {
+    animation: bg-change 0.5s 1;
+  }
 
 .keyboard__key--wide {
   width: 12%;
@@ -75,10 +97,23 @@
   background: rgba(0, 0, 0, 0.25);
 }
 
-
 .use-keyboard-input{
-  margin-left:5%;
-  margin-right:5%;
-  width: 90%;
+
+  width: 100%;
   min-height: 200px;
+}
+
+@media (max-width:800px) {
+  .keyboard__key--wide {
+    width: 8%;
+  }
+
+  .keyboard__key--activatable::after {
+    top: 5px;
+    right: 5px;
+  }
+
+  .keyboard__key {
+    margin: 2px;
+  }
 }

@@ -73,6 +73,7 @@ const Keyboard = {
     document.body.appendChild(this.elements.main);
 
     document.querySelectorAll('.use-keyboard-input').forEach((el)=>{
+
       el.addEventListener('focus', ()=>{
         this.open(
           el.value,
@@ -83,10 +84,42 @@ const Keyboard = {
       // При вводе с клавиатуры запишем вводимые символы в this.props.value
       el.addEventListener('input', (e)=>{
         this.props.value = el.value;
-        console.log(this.props.value);
+        //console.log(this.props.value);
       });
 
+      // Добавим обработку нажатия клавиш на клавиатуре
+      el.addEventListener('keydown', (e)=>{
+        if (!e.repeat){
+          this._handleKeyDown(e.key);
+        }
+      });
     });
+
+  },
+
+  _handleKeyDown(keyPressed){
+    let keyP = keyPressed.toLowerCase();
+
+    for (const key of this.elements.keys) {
+      if (key.dataset.key===keyP) {
+
+        console.log(key, keyP );
+
+        switch (keyP) {
+          case 'capslock':
+            this._toggleCapsLock();
+            key.classList.toggle('keyboard__key--active', this.props.capsLock);
+            break;
+          case 'shift':
+            this._toggleShift();
+            key.classList.toggle('keyboard__key--active', this.props.shift);
+            break;
+        }
+
+        key.classList.add('keyboard__key_animation');
+        key.addEventListener('animationend', ()=>{key.classList.remove('keyboard__key_animation')});
+      }
+    }
   },
 
   _createKeys(){
@@ -108,6 +141,7 @@ const Keyboard = {
 
         case 'backspace':
           keyElement.classList.add('keyboard__key--wide');
+          keyElement.setAttribute('data-key', 'backspace');
           keyElement.innerHTML = createIconHTML('backspace');
 
           keyElement.addEventListener('click',()=>{
@@ -119,6 +153,7 @@ const Keyboard = {
 
         case 'caps':
           keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable');
+          keyElement.setAttribute('data-key', 'capslock');
           keyElement.innerHTML = createIconHTML('keyboard_capslock');
 
           keyElement.addEventListener('click',()=>{
@@ -130,6 +165,7 @@ const Keyboard = {
 
         case 'shift':
           keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable');
+          keyElement.setAttribute('data-key', 'shift');
           keyElement.innerHTML = createIconHTML('arrow_upward');
 
           keyElement.addEventListener('click',()=>{
@@ -141,6 +177,7 @@ const Keyboard = {
 
         case 'enter':
           keyElement.classList.add('keyboard__key--wide');
+          keyElement.setAttribute('data-key', 'enter');
           keyElement.innerHTML = createIconHTML('keyboard_return');
 
           keyElement.addEventListener('click',()=>{
@@ -152,6 +189,7 @@ const Keyboard = {
 
         case 'space':
           keyElement.classList.add('keyboard__key--extra-wide');
+          keyElement.setAttribute('data-key', ' ');
           keyElement.innerHTML = createIconHTML('space_bar');
 
           keyElement.addEventListener('click',()=>{
@@ -186,6 +224,7 @@ const Keyboard = {
           keyElement.textContent = key.toLocaleLowerCase();
           keyElement.setAttribute('data-btn-type', 'keyButton');
           keyElement.setAttribute('data-arr-index', idx);
+          keyElement.setAttribute('data-key', keyElement.textContent);
 
           keyElement.addEventListener('click',(e)=>{
             if ((this.props.capsLock && this.props.shift) || (!this.props.capsLock && !this.props.shift)) {
@@ -248,6 +287,7 @@ const Keyboard = {
         }
         //console.log(key.textContent, idx, v);
         key.textContent = this.props.capsLock ? v.toUpperCase() : v.toLowerCase();
+        key.setAttribute('data-key', key.textContent.toLowerCase());
       }
     }
   },
@@ -285,12 +325,4 @@ const Keyboard = {
 
 window.addEventListener("DOMContentLoaded", ()=>{
   Keyboard.init();
-  // Keyboard.open('dcode',
-  //   (curValue)=>{
-  //     console.log('changed value: '+curValue);
-  //   },
-  //   (curValue) => {
-  //     console.log('closed with: '+curValue);
-  //   }
-  // );
 })

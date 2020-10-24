@@ -3,10 +3,7 @@
     <title>Virtual Keyboard w/ HTML, CSS & JS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <!--
-    <link rel="shortcut icon" href="/assets/favicon.ico">
-    <link rel="stylesheet" href="/assets/dcode.css">
-    -->
+
     <link rel="stylesheet" href="bundle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,15 +11,22 @@
 
 <body>
     <h1>Virtual Keyboard w/ HTML, CSS & JS</h1>
-    <h3>Features</h3>
+
+    Поле ввода:
+    <textarea class="use-keyboard-input"></textarea>
     <ul>
-        <li>Easy to integrate</li>
+        <li>Для подсветки клавиш на виртуальной клавиатуре (и прогрывания звука) при нажатии на компьютерной клавиатуре:
+            <ul>
+                <li>
+                    Раскладки (ENG\RUS + SHIFT) виртуальной и компьютерной клавиатуры должны совпадать. Иначе на вирутальной клавиатуре может не найтись символ нажатый на компьютерной.
+                </li>
+                <li>
+                    Фокус (курсор) должен быть на поле ввода. Если фокус убрать с поля ввода убрать с поля ввода, нет смысла отслеживать нажатие на реальной клавиатуре, т.к. такие нажатия не понятно к чему относятся.
+                </li>
+            </ul>
+        </li>
         <li>Responsive</li>
         <li>Vanilla JS (<strong>no libraries required!</strong>)</li>
     </ul>
-    <!--<textarea class="use-keyboard-input" style="position: absolute; top: 130px; right: 30px; width: 300px;"></textarea>-->
-
-    <textarea class="use-keyboard-input"></textarea>
-
     <script src="script.js"></script>
 </body>
