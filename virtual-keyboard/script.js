@@ -4,7 +4,7 @@ const Keyboard = {
     "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
     "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]",
     "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
-    "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/",
+    "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", 'volume_up',
     "done","space", "EN-RU"
   ],
 
@@ -12,7 +12,7 @@ const Keyboard = {
     "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "backspace",
     "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "{", "}",
     "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ":", '"', "enter",
-    "shift", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?",
+    "shift", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?", 'volume_up',
     "done","space", "EN-RU"
   ],
 
@@ -20,7 +20,7 @@ const Keyboard = {
     "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
     "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ",
     "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
-    "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".",
+    "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", 'volume_up',
     "done","space", "EN-RU"
   ],
 
@@ -28,7 +28,7 @@ const Keyboard = {
     "!", '"', "№", ";", "%", ":", "?", "*", "(", ")", "backspace",
     "й", "ц", "у", "к", "у", "н", "г", "ш", "щ", "з", "х", "ъ",
     "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
-    "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",",
+    "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",", 'volume_up',
     "done","space", "EN-RU"
   ],
 
@@ -48,6 +48,7 @@ const Keyboard = {
     value: '',
     capsLock: false,
     shift: false,
+    sounds: false,
     lang: {
       ENG: true,
       RU: false,
@@ -106,19 +107,41 @@ const Keyboard = {
         console.log(key, keyP );
 
         switch (keyP) {
+          case 'backspace':
+            this._playSound('_backspace.mp3');
+            break;
           case 'capslock':
             this._toggleCapsLock();
             key.classList.toggle('keyboard__key--active', this.props.capsLock);
+            this._playSound('_caps.wav');
             break;
           case 'shift':
             this._toggleShift();
             key.classList.toggle('keyboard__key--active', this.props.shift);
+            this._playSound('_shift.mp3');
+            break;
+          case 'enter':
+            this._playSound('_enter.mp3');
+            break;
+          case ' ':
+            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+            break;
+          default:
+            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
             break;
         }
 
         key.classList.add('keyboard__key_animation');
         key.addEventListener('animationend', ()=>{key.classList.remove('keyboard__key_animation')});
       }
+    }
+  },
+
+  _playSound(fileName){
+    if (this.props.sounds){
+      let audio = new Audio();
+      audio.src = `./sounds/${fileName}`;
+      audio.autoplay = true;
     }
   },
 
@@ -147,6 +170,7 @@ const Keyboard = {
           keyElement.addEventListener('click',()=>{
             this.props.value = this.props.value.substring(0, this.props.value.length - 1);
             this._triggerEvent('oninput');
+            this._playSound('_backspace.mp3');
           });
 
           break;
@@ -159,6 +183,7 @@ const Keyboard = {
           keyElement.addEventListener('click',()=>{
             this._toggleCapsLock();
             keyElement.classList.toggle('keyboard__key--active', this.props.capsLock);
+            this._playSound('_caps.wav');
           });
 
           break;
@@ -171,6 +196,7 @@ const Keyboard = {
           keyElement.addEventListener('click',()=>{
             this._toggleShift();
             keyElement.classList.toggle('keyboard__key--active', this.props.shift);
+            this._playSound('_shift.mp3');
           });
 
           break;
@@ -183,6 +209,7 @@ const Keyboard = {
           keyElement.addEventListener('click',()=>{
             this.props.value += '\n';
             this._triggerEvent('oninput');
+            this._playSound('_enter.mp3');
           });
 
           break;
@@ -195,6 +222,7 @@ const Keyboard = {
           keyElement.addEventListener('click',()=>{
             this.props.value += ' ';
             this._triggerEvent('oninput');
+            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
           });
 
           break;
@@ -220,6 +248,18 @@ const Keyboard = {
 
           break;
 
+        case 'volume_up':
+          keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable');
+          keyElement.setAttribute('data-key', 'volume_up');
+          keyElement.innerHTML = createIconHTML('volume_up');
+
+          keyElement.addEventListener('click',()=>{
+            this.props.sounds=!this.props.sounds;
+            keyElement.classList.toggle('keyboard__key--active', this.props.sounds);
+            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+          });
+
+          break;
         default:
           keyElement.textContent = key.toLocaleLowerCase();
           keyElement.setAttribute('data-btn-type', 'keyButton');
@@ -233,6 +273,8 @@ const Keyboard = {
               this.props.value += keyElement.textContent.toUpperCase();
             }
             this._triggerEvent('oninput');
+
+            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
           });
 
           break;
