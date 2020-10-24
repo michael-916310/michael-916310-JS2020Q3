@@ -1,5 +1,38 @@
 const Keyboard = {
 
+  keyLayoutENG: [
+    "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
+    "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]",
+    "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
+    "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/",
+    "done","space", "EN-RU"
+  ],
+
+  keyLayoutENGShift: [
+    "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "backspace",
+    "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "{", "}",
+    "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ":", '"', "enter",
+    "shift", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?",
+    "done","space", "EN-RU"
+  ],
+
+  keyLayoutRU: [
+    "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
+    "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ",
+    "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
+    "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".",
+    "done","space", "EN-RU"
+  ],
+
+  keyLayoutRUShift: [
+    "!", '"', "№", ";", "%", ":", "?", "*", "(", ")", "backspace",
+    "й", "ц", "у", "к", "у", "н", "г", "ш", "щ", "з", "х", "ъ",
+    "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
+    "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",",
+    "done","space", "EN-RU"
+  ],
+
+
   elements: {
     main: null,
     keysContainer: null,
@@ -15,6 +48,14 @@ const Keyboard = {
     value: '',
     capsLock: false,
     shift: false,
+    lang: {
+      ENG: true,
+      RU: false,
+
+      getBtnText(){
+        return `<span>${this.ENG ? 'ENG ru': 'RU eng'}</span>`;
+      },
+    }
   },
 
   init(){
@@ -51,22 +92,14 @@ const Keyboard = {
   _createKeys(){
 
     const fragment = document.createDocumentFragment();
-    const keyLayout = [
-      "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
-      "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
-      "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
-      "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
-      "done","space"
-    ];
-
 
     const createIconHTML = (icon_name) => {
       return `<i class="material-icons">${icon_name}</i>`;
     }
 
-    keyLayout.forEach((key)=>{
+    this.keyLayoutENG.forEach((key, idx)=>{
       const keyElement = document.createElement('button');
-      const isLineBreak = ["backspace", "p", "enter", "?"].indexOf(key) !== -1;
+      const isLineBreak = ["backspace", "]", "enter", "/"].indexOf(key) !== -1;
 
       keyElement.setAttribute('type', 'button'); // - нужно ли вообще?
       keyElement.classList.add('keyboard__key');
@@ -138,17 +171,28 @@ const Keyboard = {
           });
 
           break;
+        case 'EN-RU':
+          keyElement.classList.add('keyboard__key--wide');
+          keyElement.innerHTML = this.props.lang.getBtnText();
+
+          keyElement.addEventListener('click',()=>{
+            this._toggleLang();
+            keyElement.innerHTML = this.props.lang.getBtnText();
+          });
+
+          break;
 
         default:
           keyElement.textContent = key.toLocaleLowerCase();
+          keyElement.setAttribute('data-btn-type', 'keyButton');
+          keyElement.setAttribute('data-arr-index', idx);
 
-          keyElement.addEventListener('click',()=>{
+          keyElement.addEventListener('click',(e)=>{
             if ((this.props.capsLock && this.props.shift) || (!this.props.capsLock && !this.props.shift)) {
-              this.props.value +=  key.toLowerCase();
+              this.props.value +=  keyElement.textContent.toLowerCase();
             } else {
-              this.props.value += key.toUpperCase();
+              this.props.value += keyElement.textContent.toUpperCase();
             }
-            //this.props.value += this.props.capsLock ? key.toUpperCase() : key.toLowerCase();
             this._triggerEvent('oninput');
           });
 
@@ -184,15 +228,41 @@ const Keyboard = {
     }
   },
 
+  _updateBtnText(){
+    for (const key of this.elements.keys) {
+      if (key.dataset.btnType === "keyButton" ) {
+        let v = '';
+        let idx = +key.dataset.arrIndex;
+        if (this.props.lang.RU ){
+          if (this.props.shift) {
+            v = this.keyLayoutRUShift[idx];
+          } else {
+            v = this.keyLayoutRU[idx];
+          }
+        } else {
+          if (this.props.shift) {
+            v = this.keyLayoutENGShift[idx];
+          } else {
+            v = this.keyLayoutENG[idx];
+          }
+        }
+        //console.log(key.textContent, idx, v);
+        key.textContent = this.props.capsLock ? v.toUpperCase() : v.toLowerCase();
+      }
+    }
+  },
+
   _toggleShift(){
     this.props.shift = ! this.props.shift;
 
-    // for (const key of this.elements.keys) {
-    //   if (key.childElementCount === 0 ) {
-    //     key.textContent = this.props.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
-    //   }
+    this._updateBtnText();
+  },
 
-    // }
+  _toggleLang(){
+    this.props.lang.ENG = ! this.props.lang.ENG;
+    this.props.lang.RU = ! this.props.lang.RU;
+
+    this._updateBtnText();
   },
 
   open(initialValue, oninput, onclose){
