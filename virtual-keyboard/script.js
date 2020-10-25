@@ -4,32 +4,32 @@ const Keyboard = {
     "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
     "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]",
     "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
-    "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", 'volume_up',
-    "done","space", "EN-RU"
+    "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/",
+    "done","space", "EN-RU", 'volume_up'
   ],
 
   keyLayoutENGShift: [
     "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "backspace",
     "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "{", "}",
     "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ":", '"', "enter",
-    "shift", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?", 'volume_up',
-    "done","space", "EN-RU"
+    "shift", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?",
+    "done","space", "EN-RU",  'volume_up'
   ],
 
   keyLayoutRU: [
     "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
     "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ",
     "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
-    "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", 'volume_up',
-    "done","space", "EN-RU"
+    "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".",
+    "done","space", "EN-RU", 'volume_up'
   ],
 
   keyLayoutRUShift: [
     "!", '"', "№", ";", "%", ":", "?", "*", "(", ")", "backspace",
     "й", "ц", "у", "к", "у", "н", "г", "ш", "щ", "з", "х", "ъ",
     "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
-    "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",", 'volume_up',
-    "done","space", "EN-RU"
+    "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",",
+    "done","space", "EN-RU", 'volume_up'
   ],
 
 
@@ -48,7 +48,7 @@ const Keyboard = {
     value: '',
     capsLock: false,
     shift: false,
-    sounds: false,
+    sounds: true,
     lang: {
       ENG: true,
       RU: false,
@@ -78,7 +78,7 @@ const Keyboard = {
       el.addEventListener('focus', ()=>{
         this.open(
           el.value,
-          (curV)=>{ el.value = curV; }
+          (curV)=>{ el.value = curV; el.focus()}
         );
       })
 
@@ -250,8 +250,9 @@ const Keyboard = {
 
         case 'volume_up':
           keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable');
-          keyElement.setAttribute('data-key', 'volume_up');
+          //keyElement.setAttribute('data-key', 'volume_up');
           keyElement.innerHTML = createIconHTML('volume_up');
+          keyElement.classList.toggle('keyboard__key--active', this.props.sounds);
 
           keyElement.addEventListener('click',()=>{
             this.props.sounds=!this.props.sounds;
