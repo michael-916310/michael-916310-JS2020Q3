@@ -161,7 +161,8 @@ const Keyboard = {
   _playSound(fileName){
     if (this.props.sounds){
       let audio = new Audio();
-      audio.src = `./sounds/${fileName}`;
+      //audio.src = `./sounds/${fileName}`;
+      audio.src = `./${fileName}`;
       audio.autoplay = true;
     }
   },
