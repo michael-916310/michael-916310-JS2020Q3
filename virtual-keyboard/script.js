@@ -189,8 +189,16 @@ const Keyboard = {
           keyElement.innerHTML = createIconHTML('backspace');
 
           keyElement.addEventListener('click',()=>{
-            this.props.value = this.props.value.substring(0, this.props.value.length - 1);
-            this._triggerEvent('oninput');
+            let cursorPos = this.elementWithText.selectionStart();
+            const left = this.props.value.slice(0, cursorPos);
+            const right = this.props.value.slice(cursorPos);
+
+            if (left.length && cursorPos) {
+              this.props.value = `${left.substring(0, left.length - 1)}${right}`;
+              this._triggerEvent('oninput', cursorPos-1);
+            } else {
+              this.elementWithText.setSelectionRange(0);
+            }
             this._playSound('_backspace.mp3');
           });
 
@@ -202,8 +210,11 @@ const Keyboard = {
           keyElement.innerHTML = createIconHTML('keyboard_capslock');
 
           keyElement.addEventListener('click',()=>{
+            let cursorPos = this.elementWithText.selectionStart();
+
             this._toggleCapsLock();
             keyElement.classList.toggle('keyboard__key--active', this.props.capsLock);
+            this.elementWithText.setSelectionRange(cursorPos);
             this._playSound('_caps.wav');
           });
 
@@ -215,8 +226,12 @@ const Keyboard = {
           keyElement.innerHTML = createIconHTML('arrow_upward');
 
           keyElement.addEventListener('click',()=>{
+            let cursorPos = this.elementWithText.selectionStart();
+
             this._toggleShift();
             keyElement.classList.toggle('keyboard__key--active', this.props.shift);
+            this.elementWithText.setSelectionRange(cursorPos);
+
             this._playSound('_shift.mp3');
           });
 
@@ -228,8 +243,13 @@ const Keyboard = {
           keyElement.innerHTML = createIconHTML('keyboard_return');
 
           keyElement.addEventListener('click',()=>{
-            this.props.value += '\n';
-            this._triggerEvent('oninput');
+            let cursorPos = this.elementWithText.selectionStart();
+            const left = this.props.value.slice(0, cursorPos);
+            const right = this.props.value.slice(cursorPos);
+
+            //this.props.value += '\n';
+            this.props.value = `${left}\n${right}`;
+            this._triggerEvent('oninput', cursorPos+1);
             this._playSound('_enter.mp3');
           });
 
@@ -245,7 +265,6 @@ const Keyboard = {
             const left = this.props.value.slice(0, cursorPos);
             const right = this.props.value.slice(cursorPos);
 
-            //this.props.value += ' ';
             this.props.value = `${left} ${right}`;
 
             this._triggerEvent('oninput', cursorPos+1);
@@ -270,7 +289,11 @@ const Keyboard = {
           keyElement.innerHTML = this.props.lang.getBtnText();
 
           keyElement.addEventListener('click',()=>{
+            let cursorPos = this.elementWithText.selectionStart();
+
             this._toggleLang();
+            this.elementWithText.setSelectionRange(cursorPos);
+
             keyElement.innerHTML = this.props.lang.getBtnText();
           });
 
@@ -282,8 +305,12 @@ const Keyboard = {
           keyElement.classList.toggle('keyboard__key--active', this.props.sounds);
 
           keyElement.addEventListener('click',()=>{
+            let cursorPos = this.elementWithText.selectionStart();
+
             this.props.sounds=!this.props.sounds;
             keyElement.classList.toggle('keyboard__key--active', this.props.sounds);
+            this.elementWithText.setSelectionRange(cursorPos);
+
             this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
           });
 
@@ -358,7 +385,7 @@ const Keyboard = {
 
   },
 
-  _triggerEvent(handleName, cursorPos=0){
+  _triggerEvent(handleName, cursorPos){
     if (typeof this.eventsHandlers[handleName] == 'function') {
       this.eventsHandlers[handleName](this.props.value, cursorPos);
     }
