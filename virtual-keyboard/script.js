@@ -123,32 +123,32 @@ const Keyboard = {
 
         switch (keyP) {
           case 'backspace':
-            this._playSound('_backspace.mp3');
+            this._playSound('backspace.mp3');
             break;
           case 'capslock':
             this._toggleCapsLock();
             key.classList.toggle('keyboard__key--active', this.props.capsLock);
-            this._playSound('_caps.wav');
+            this._playSound('caps.wav');
             break;
           case 'shift':
             this._toggleShift();
             key.classList.toggle('keyboard__key--active', this.props.shift);
-            this._playSound('_shift.mp3');
+            this._playSound('shift.mp3');
             break;
           case 'enter':
-            this._playSound('_enter.mp3');
+            this._playSound('enter.mp3');
             break;
           case ' ':
-            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+            this._playSound(this.props.lang.ENG ?'keyENG.mp3':'keyRU.mp3');
             break;
           case 'arrowleft':
-            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+            this._playSound(this.props.lang.ENG ?'keyENG.mp3':'keyRU.mp3');
             break;
           case 'arrowright':
-            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+            this._playSound(this.props.lang.ENG ?'keyENG.mp3':'keyRU.mp3');
             break;
           default:
-            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+            this._playSound(this.props.lang.ENG ?'keyENG.mp3':'keyRU.mp3');
             break;
         }
 
@@ -200,7 +200,7 @@ const Keyboard = {
             } else {
               this.elementWithText.setSelectionRange(0);
             }
-            this._playSound('_backspace.mp3');
+            this._playSound('backspace.mp3');
           });
 
           break;
@@ -216,7 +216,7 @@ const Keyboard = {
             this._toggleCapsLock();
             keyElement.classList.toggle('keyboard__key--active', this.props.capsLock);
             this.elementWithText.setSelectionRange(cursorPos);
-            this._playSound('_caps.wav');
+            this._playSound('caps.wav');
           });
 
           break;
@@ -233,7 +233,7 @@ const Keyboard = {
             keyElement.classList.toggle('keyboard__key--active', this.props.shift);
             this.elementWithText.setSelectionRange(cursorPos);
 
-            this._playSound('_shift.mp3');
+            this._playSound('shift.mp3');
           });
 
           break;
@@ -251,7 +251,7 @@ const Keyboard = {
             //this.props.value += '\n';
             this.props.value = `${left}\n${right}`;
             this._triggerEvent('oninput', cursorPos+1);
-            this._playSound('_enter.mp3');
+            this._playSound('enter.mp3');
           });
 
           break;
@@ -269,7 +269,7 @@ const Keyboard = {
             this.props.value = `${left} ${right}`;
 
             this._triggerEvent('oninput', cursorPos+1);
-            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+            this._playSound(this.props.lang.ENG ?'keyENG.mp3':'keyRU.mp3');
           });
 
           break;
@@ -312,7 +312,7 @@ const Keyboard = {
             keyElement.classList.toggle('keyboard__key--active', this.props.sounds);
             this.elementWithText.setSelectionRange(cursorPos);
 
-            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+            this._playSound(this.props.lang.ENG ?'keyENG.mp3':'keyRU.mp3');
           });
 
           break;
@@ -326,7 +326,7 @@ const Keyboard = {
               let cursorPos = this.elementWithText.selectionStart();
               cursorPos = cursorPos - 1 >= 0 ? cursorPos - 1 : 0;
               this.elementWithText.setSelectionRange(cursorPos);
-              this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+              this._playSound(this.props.lang.ENG ?'keyENG.mp3':'keyRU.mp3');
             }
           });
 
@@ -341,7 +341,7 @@ const Keyboard = {
               let cursorPos = this.elementWithText.selectionStart();
               cursorPos += 1;
               this.elementWithText.setSelectionRange(cursorPos);
-              this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+              this._playSound(this.props.lang.ENG ?'keyENG.mp3':'keyRU.mp3');
             }
           });
           break;
@@ -368,7 +368,7 @@ const Keyboard = {
             cursorPos += 1;
             this._triggerEvent('oninput', cursorPos);
 
-            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+            this._playSound(this.props.lang.ENG ?'keyENG.mp3':'keyRU.mp3');
           });
 
           break;
