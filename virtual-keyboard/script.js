@@ -5,7 +5,7 @@ const Keyboard = {
     "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]",
     "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
     "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/",
-    "done","space", "EN-RU", 'volume_up'
+    "done", "EN-RU", "space", "keyboard_arrow_left", "keyboard_arrow_right", 'volume_up'
   ],
 
   keyLayoutENGShift: [
@@ -13,7 +13,7 @@ const Keyboard = {
     "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "{", "}",
     "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ":", '"', "enter",
     "shift", "z", "x", "c", "v", "b", "n", "m", "<", ">", "?",
-    "done","space", "EN-RU",  'volume_up'
+    "done", "EN-RU", "space", "keyboard_arrow_left", "keyboard_arrow_right", 'volume_up'
   ],
 
   keyLayoutRU: [
@@ -21,7 +21,7 @@ const Keyboard = {
     "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ",
     "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
     "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".",
-    "done","space", "EN-RU", 'volume_up'
+    "done", "EN-RU", "space", "keyboard_arrow_left", "keyboard_arrow_right", 'volume_up'
   ],
 
   keyLayoutRUShift: [
@@ -29,7 +29,7 @@ const Keyboard = {
     "й", "ц", "у", "к", "у", "н", "г", "ш", "щ", "з", "х", "ъ",
     "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
     "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ",",
-    "done","space", "EN-RU", 'volume_up'
+    "done", "EN-RU", "space", "keyboard_arrow_left", "keyboard_arrow_right", 'volume_up'
   ],
 
 
@@ -56,7 +56,12 @@ const Keyboard = {
       getBtnText(){
         return `<span>${this.ENG ? 'ENG ru': 'RU eng'}</span>`;
       },
-    }
+    },
+  },
+
+  elementWithText: {
+    selectionStart: null,
+    setSelectionRange: null,
   },
 
   init(){
@@ -78,7 +83,17 @@ const Keyboard = {
       el.addEventListener('focus', ()=>{
         this.open(
           el.value,
-          (curV)=>{ el.value = curV; el.focus()}
+          (curV, cursorPosition=0)=>{
+            el.value = curV;
+            el.setSelectionRange(cursorPosition, cursorPosition);
+            el.focus();
+          },
+          null,
+          ()=>{return el.selectionStart},
+          (cursorPosition)=>{
+            el.setSelectionRange(cursorPosition, cursorPosition);
+            el.focus();
+          },
         );
       })
 
@@ -124,6 +139,12 @@ const Keyboard = {
             this._playSound('_enter.mp3');
             break;
           case ' ':
+            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+            break;
+          case 'arrowleft':
+            this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+            break;
+          case 'arrowright':
             this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
             break;
           default:
@@ -220,8 +241,14 @@ const Keyboard = {
           keyElement.innerHTML = createIconHTML('space_bar');
 
           keyElement.addEventListener('click',()=>{
-            this.props.value += ' ';
-            this._triggerEvent('oninput');
+            let cursorPos = this.elementWithText.selectionStart();
+            const left = this.props.value.slice(0, cursorPos);
+            const right = this.props.value.slice(cursorPos);
+
+            //this.props.value += ' ';
+            this.props.value = `${left} ${right}`;
+
+            this._triggerEvent('oninput', cursorPos+1);
             this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
           });
 
@@ -237,6 +264,7 @@ const Keyboard = {
           });
 
           break;
+
         case 'EN-RU':
           keyElement.classList.add('keyboard__key--wide');
           keyElement.innerHTML = this.props.lang.getBtnText();
@@ -250,7 +278,6 @@ const Keyboard = {
 
         case 'volume_up':
           keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable');
-          //keyElement.setAttribute('data-key', 'volume_up');
           keyElement.innerHTML = createIconHTML('volume_up');
           keyElement.classList.toggle('keyboard__key--active', this.props.sounds);
 
@@ -261,6 +288,36 @@ const Keyboard = {
           });
 
           break;
+
+        case 'keyboard_arrow_left':
+          keyElement.setAttribute('data-key', 'arrowleft');
+          keyElement.innerHTML = createIconHTML('keyboard_arrow_left');
+
+          keyElement.addEventListener('click',()=>{
+            if (this.elementWithText.selectionStart && this.elementWithText.setSelectionRange) {
+              let cursorPos = this.elementWithText.selectionStart();
+              cursorPos = cursorPos - 1 >= 0 ? cursorPos - 1 : 0;
+              this.elementWithText.setSelectionRange(cursorPos);
+              this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+            }
+          });
+
+          break;
+
+        case 'keyboard_arrow_right':
+          keyElement.setAttribute('data-key', 'arrowright');
+          keyElement.innerHTML = createIconHTML('keyboard_arrow_right');
+
+          keyElement.addEventListener('click',()=>{
+            if (this.elementWithText.selectionStart && this.elementWithText.setSelectionRange) {
+              let cursorPos = this.elementWithText.selectionStart();
+              cursorPos += 1;
+              this.elementWithText.setSelectionRange(cursorPos);
+              this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
+            }
+          });
+          break;
+
         default:
           keyElement.textContent = key.toLocaleLowerCase();
           keyElement.setAttribute('data-btn-type', 'keyButton');
@@ -268,12 +325,20 @@ const Keyboard = {
           keyElement.setAttribute('data-key', keyElement.textContent);
 
           keyElement.addEventListener('click',(e)=>{
+            let cursorPos = this.elementWithText.selectionStart();
+            const left = this.props.value.slice(0, cursorPos);
+            const right = this.props.value.slice(cursorPos);
+
+            let symbol = '';
             if ((this.props.capsLock && this.props.shift) || (!this.props.capsLock && !this.props.shift)) {
-              this.props.value +=  keyElement.textContent.toLowerCase();
+              symbol =  keyElement.textContent.toLowerCase();
             } else {
-              this.props.value += keyElement.textContent.toUpperCase();
+              symbol = keyElement.textContent.toUpperCase();
             }
-            this._triggerEvent('oninput');
+            this.props.value = `${left}${symbol}${right}`;
+
+            cursorPos += 1;
+            this._triggerEvent('oninput', cursorPos);
 
             this._playSound(this.props.lang.ENG ?'_keyENG.mp3':'_keyRU.mp3');
           });
@@ -293,9 +358,9 @@ const Keyboard = {
 
   },
 
-  _triggerEvent(handleName){
+  _triggerEvent(handleName, cursorPos=0){
     if (typeof this.eventsHandlers[handleName] == 'function') {
-      this.eventsHandlers[handleName](this.props.value);
+      this.eventsHandlers[handleName](this.props.value, cursorPos);
     }
   },
 
@@ -348,10 +413,13 @@ const Keyboard = {
     this._updateBtnText();
   },
 
-  open(initialValue, oninput, onclose){
+  open(initialValue,  oninput, onclose, selectionStart, setSelectionRange){
     this.props.value = initialValue || '';
     this.eventsHandlers.oninput = oninput;
     this.eventsHandlers.onclose = onclose;
+
+    this.elementWithText.selectionStart = selectionStart;
+    this.elementWithText.setSelectionRange = setSelectionRange;
 
     this.elements.main.classList.remove('keyboard--hidden');
   },
