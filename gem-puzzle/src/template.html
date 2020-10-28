@@ -10,29 +10,13 @@
 
   <body>
     <main id="root">
+      <header class="header">
+        <h1>Пятнашки</h1>
+        <h2>задание на RS-school</h2>
+      </header>
       <article class="config-container">
+
         <fieldset class="config-fieldset">
-          <legend>Настройки:</legend>
-
-          <label>Размер поля:
-            <select class="config__area-size">
-              <option value="3">3*3</option>
-              <option value="4">4*4</option>
-              <option value="5">5*5</option>
-              <option value="6">6*6</option>
-              <option value="7">7*7</option>
-              <option value="8" selected>8*8</option>
-            </select>
-          </label>
-
-          <div class="config_sounds-container">
-            <label class="config__sounds" for="config__sounds_chkbox">Звук при движении костяшек</label>
-            <input type="checkbox" class="config__sounds_chkbox" id="config__sounds_chkbox">
-          </div>
-
-        </fieldset>
-
-        <fieldset class="config-fieldset best-result-fieldset">
           <legend>Лучшие результаты:</legend>
             <div class="best-result-row">
               <span class="result-row__steps">
@@ -116,6 +100,27 @@
             </div>
         </fieldset>
 
+        <fieldset class="config-fieldset ">
+          <legend>Настройки:</legend>
+
+          <label>Размер поля:
+            <select class="config__area-size">
+              <option value="3">3*3</option>
+              <option value="4">4*4</option>
+              <option value="5">5*5</option>
+              <option value="6">6*6</option>
+              <option value="7">7*7</option>
+              <option value="8" selected>8*8</option>
+            </select>
+          </label>
+
+          <div class="config_sounds-container">
+            <label class="config__sounds" for="config__sounds_chkbox">Звук при движении костяшек</label>
+            <input type="checkbox" class="config__sounds_chkbox" id="config__sounds_chkbox">
+          </div>
+
+        </fieldset>
+
       </article>
 
       <article class="game-container">
@@ -125,8 +130,84 @@
           <button class="game-controls-btn game-controls-load-btn">загрузить ранее сохраненную</button>
         </div>
 
-        <div class="game-area">
+        <fieldset class="config-fieldset">
+          <legend>Текущий результат</legend>
+            <span>ходов:</span> <strong>2</strong>
+            <span>длительность:</span> <strong>220 сек</strong>
+        </fieldset>
 
+        <div class="game-area">
+          <div class="domino">1</div>
+          <div class="domino">2</div>
+          <div class="domino">3</div>
+          <div class="domino">4</div>
+          <div class="domino">5</div>
+          <div class="domino">6</div>
+          <div class="domino">7</div>
+          <div class="domino">8</div>
+
+          <div class="domino">9</div>
+          <div class="domino">10</div>
+          <div class="domino">11</div>
+          <div class="domino">12</div>
+          <div class="domino">13</div>
+          <div class="domino">14</div>
+          <div class="domino">15</div>
+          <div class="domino">16</div>
+
+          <div class="domino">17</div>
+          <div class="domino">18</div>
+          <div class="domino">19</div>
+          <div class="domino">20</div>
+          <div class="domino">21</div>
+          <div class="domino">22</div>
+          <div class="domino">23</div>
+          <div class="domino">24</div>
+
+          <div class="domino">25</div>
+          <div class="domino">26</div>
+          <div class="domino">27</div>
+          <div class="domino">28</div>
+          <div class="domino">29</div>
+          <div class="domino">30</div>
+          <div class="domino">31</div>
+          <div class="domino">32</div>
+
+          <div class="domino">33</div>
+          <div class="domino">34</div>
+          <div class="domino">35</div>
+          <div class="domino">36</div>
+          <div class="domino">37</div>
+          <div class="domino">38</div>
+          <div class="domino">39</div>
+          <div class="domino">40</div>
+
+          <div class="domino">41</div>
+          <div class="domino">42</div>
+          <div class="domino">43</div>
+          <div class="domino">44</div>
+          <div class="domino">45</div>
+          <div class="domino">46</div>
+          <div class="domino">47</div>
+          <div class="domino">48</div>
+
+          <div class="domino">49</div>
+          <div class="domino">50</div>
+          <div class="domino">51</div>
+          <div class="domino">52</div>
+          <div class="domino">53</div>
+          <div class="domino">54</div>
+          <div class="domino">55</div>
+          <div class="domino">56</div>
+
+          <div class="domino">57</div>
+          <div class="domino">58</div>
+          <div class="domino">59</div>
+          <div class="domino">60</div>
+          <div class="domino">61</div>
+          <div class="domino">62</div>
+          <div class="domino">63</div>
+          <div class="domino">64</div>
         </div>
       </article>
     </main>
