@@ -1,0 +1,35 @@
+
+.game-container{
+  margin:0 auto;
+  padding: 5px;
+  width: 320px;
+  min-height: 400px;
+  background: $color-light-l;
+}
+
+.game-controls-btn {
+  width: 100%;
+  margin-bottom: 10px;
+
+  height: 35px;
+
+  border-radius: 5px;
+  border: none;
+
+  background-color: $color-primary;
+
+  &:hover{
+
+    background-color: $color-primary-light;
+  }
+}
+
+.game-area{
+  margin: 5px auto;
+
+  width: calc(8*35px + 20px);
+  height: calc(8*35px + 20px);
+
+  background-color: lightblue;
+  background: $color-dark-m;
+}

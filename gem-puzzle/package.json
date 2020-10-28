@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Игра в пятнашки",
   "main": "index.js",
-
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js"
@@ -32,5 +31,7 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
 }

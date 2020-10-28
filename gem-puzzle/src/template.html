@@ -9,6 +9,126 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <main id="root">
+      <article class="config-container">
+        <fieldset class="config-fieldset">
+          <legend>Настройки:</legend>
+
+          <label>Размер поля:
+            <select class="config__area-size">
+              <option value="3">3*3</option>
+              <option value="4">4*4</option>
+              <option value="5">5*5</option>
+              <option value="6">6*6</option>
+              <option value="7">7*7</option>
+              <option value="8" selected>8*8</option>
+            </select>
+          </label>
+
+          <div class="config_sounds-container">
+            <label class="config__sounds" for="config__sounds_chkbox">Звук при движении костяшек</label>
+            <input type="checkbox" class="config__sounds_chkbox" id="config__sounds_chkbox">
+          </div>
+
+        </fieldset>
+
+        <fieldset class="config-fieldset best-result-fieldset">
+          <legend>Лучшие результаты:</legend>
+            <div class="best-result-row">
+              <span class="result-row__steps">
+                шагов: 100
+              </span>
+              <span class="result-row__time">
+                длительность: 600сек
+              </span>
+            </div>
+            <div class="best-result-row">
+              <span class="result-row__steps">
+                шагов: 120
+              </span>
+              <span class="result-row__time">
+                длительность: 400сек
+              </span>
+            </div>
+            <div class="result-row">
+              <span class="result-row__steps">
+                шагов: 140
+              </span>
+              <span class="result-row__time">
+                длительность: 670сек
+              </span>
+            </div>
+            <div class="result-row">
+              <span class="result-row__steps">
+                шагов: 120
+              </span>
+              <span class="result-row__time">
+                длительность: 400сек
+              </span>
+            </div>
+            <div class="result-row">
+              <span class="result-row__steps">
+                шагов: 120
+              </span>
+              <span class="result-row__time">
+                длительность: 400сек
+              </span>
+            </div>
+            <div class="result-row">
+              <span class="result-row__steps">
+                шагов: 120
+              </span>
+              <span class="result-row__time">
+                длительность: 400сек
+              </span>
+            </div>
+            <div class="result-row">
+              <span class="result-row__steps">
+                шагов: 120
+              </span>
+              <span class="result-row__time">
+                длительность: 400сек
+              </span>
+            </div>
+            <div class="result-row">
+              <span class="result-row__steps">
+                шагов: 120
+              </span>
+              <span class="result-row__time">
+                длительность: 400сек
+              </span>
+            </div>
+            <div class="result-row">
+              <span class="result-row__steps">
+                шагов: 120
+              </span>
+              <span class="result-row__time">
+                длительность: 400сек
+              </span>
+            </div>
+            <div class="result-row">
+              <span class="result-row__steps">
+                шагов: 120
+              </span>
+              <span class="result-row__time">
+                длительность: 400сек
+              </span>
+            </div>
+        </fieldset>
+
+      </article>
+
+      <article class="game-container">
+        <div class="game-controls-container">
+          <button class="game-controls-btn game-controls-new-btn">новая игра</button>
+          <button class="game-controls-btn game-controls-save-btn">сохранить текущую</button>
+          <button class="game-controls-btn game-controls-load-btn">загрузить ранее сохраненную</button>
+        </div>
+
+        <div class="game-area">
+
+        </div>
+      </article>
+    </main>
   </body>
 </html>
