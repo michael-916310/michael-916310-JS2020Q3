@@ -1,13 +1,18 @@
-// @font-face {
-//   font-family: 'Inter';
-//   src: url('../fonts/Inter.ttf');
-// }
 
 @import 'variables';
 
+@import 'header';
+@import 'bestResult';
 @import 'config';
 @import 'gameArea';
 
 * {
   box-sizing: border-box;
+}
+
+.fieldset{
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  border-radius: 7px;
 }

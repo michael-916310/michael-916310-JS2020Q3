@@ -1,20 +1,10 @@
 
-.header{
-  margin:0 auto;
-  padding: 10px;
-
-  text-align: center;
-  width: 320px;
-  background: $color-light-l;
-}
-
 .config-container{
   margin:0 auto;
 
   padding: 5px;
   width: 320px;
 
-  min-height: 300px;
 }
 
 .config__area-size-container{
@@ -39,15 +29,7 @@
 }
 
 
-
 .config__sounds_chkbox{
   height: 20px;
   width: 20px;
-}
-
-.config-fieldset{
-  margin-top: 5px;
-  margin-bottom: 5px;
-
-  border-radius: 7px;
 }
