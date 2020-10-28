@@ -16,18 +16,29 @@
 
   min-height: 300px;
 }
-.config__area-size{
-  height: 30px;
-  width: 80px;
-}
 
-.config_sounds-container{
-  padding: 10px 0 0;
+.config__area-size-container{
+  padding: 5px 0;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+.config__area-size{
+  height: 30px;
+  width: 150px;
+}
+
+.config_sounds-container{
+  padding: 5px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
 
 .config__sounds_chkbox{
   height: 20px;

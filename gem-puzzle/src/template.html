@@ -103,20 +103,21 @@
         <fieldset class="config-fieldset ">
           <legend>Настройки:</legend>
 
-          <label>Размер поля:
-            <select class="config__area-size">
-              <option value="3">3*3</option>
-              <option value="4">4*4</option>
-              <option value="5">5*5</option>
-              <option value="6">6*6</option>
-              <option value="7">7*7</option>
-              <option value="8" selected>8*8</option>
-            </select>
-          </label>
+          <div class="config__area-size-container">
+            <label for="config__area-size_id">Размер поля: </label>
+              <select class="config__area-size" id="config__area-size_id">
+                <option value="3">3*3</option>
+                <option value="4">4*4</option>
+                <option value="5">5*5</option>
+                <option value="6">6*6</option>
+                <option value="7">7*7</option>
+                <option value="8" selected>8*8</option>
+              </select>
+          </div>
 
           <div class="config_sounds-container">
-            <label class="config__sounds" for="config__sounds_chkbox">Звук при движении костяшек</label>
-            <input type="checkbox" class="config__sounds_chkbox" id="config__sounds_chkbox">
+            <label class="config__sounds" for="config__sounds_chkbox_id">Звук при движении костяшек</label>
+            <input type="checkbox" class="config__sounds_chkbox" id="config__sounds_chkbox_id">
           </div>
 
         </fieldset>
@@ -149,7 +150,7 @@
           <div class="domino">9</div>
           <div class="domino">10</div>
           <div class="domino">11</div>
-          <div class="domino">12</div>
+          <div class="domino-empty">12</div>
           <div class="domino">13</div>
           <div class="domino">14</div>
           <div class="domino">15</div>

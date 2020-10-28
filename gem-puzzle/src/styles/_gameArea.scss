@@ -26,20 +26,15 @@
 
 .game-area{
   display: grid;
-  grid-template-columns: 35px 35px 35px 35px 35px 35px 35px 35px;
+  //grid-template-columns: 35px 35px 35px 35px 35px 35px 35px 35px;
   grid-template-columns: auto auto auto auto auto auto auto auto;
   grid-gap: 2px 2px;
   align-content: start;
 
-  margin: 10px auto 0;
-
-  // width: calc(8*35px + 20px);
-  // height: calc(8*35px + 20px);
-
-  //width: calc(8*35px+8px);
-  //height: calc(8*35px+10px);
+  margin: 10px auto 50px;
 
   border: 1px solid $color-dark-m;
+  border-radius: 5px;
 }
 
 .domino{
@@ -49,5 +44,21 @@
 
   width: 35px;
   height: 35px;
-  background-color: lightgray;
+  background-color: $color-primary;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+  &:hover{
+    background-color: $color-primary-light;
+  }
+}
+
+.domino-empty{
+  width: 35px;
+  height: 35px;
+  background-color: $color-light-l;
+  color:$color-light-l;
+
+  border-radius: 5px;
 }
