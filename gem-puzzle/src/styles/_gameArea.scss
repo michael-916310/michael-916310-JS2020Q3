@@ -7,23 +7,6 @@
   background: $color-light-l;
 }
 
-.game-controls-btn {
-  width: 100%;
-  margin-bottom: 10px;
-
-  height: 40px;
-
-  border-radius: 5px;
-  border: none;
-
-  background-color: $color-primary;
-
-  &:hover{
-
-    background-color: $color-primary-light;
-  }
-}
-
 .game-area{
   display: grid;
   //grid-template-columns: 35px 35px 35px 35px 35px 35px 35px 35px;
@@ -44,13 +27,13 @@
 
   width: 35px;
   height: 35px;
-  background-color: $color-primary;
+  background-color: rgb(211, 211, 211);
 
   border-radius: 5px;
 
   cursor: pointer;
   &:hover{
-    background-color: $color-primary-light;
+    background-color: rgb(235, 235, 235);
   }
 }
 
