@@ -24,16 +24,31 @@ export const gameObj = {
     this.DOMElm.gameArea = document.querySelector('.game-area');
   },
 
-  init(){
-    for (let i=0; i<this.config.areaSize; i++){
-      for (let j=0; j<this.config.areaSize; j++){
-        this.dominoArr.push({
-          num: this.config.areaSize*i+j,
-          isEmpty: (i+j===0)?true:false,
-        });
+  _getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+
+
+  generateDominoArr(){
+    let dominoNum = Math.pow(this.config.areaSize,2);
+    this.dominoArr = [];
+
+    while (this.dominoArr.length<dominoNum){
+      let rnd = this._getRandomInt(0, dominoNum-1);
+      if (
+        this.dominoArr.filter((item)=>{
+          return (item.num === rnd)
+        }).length == 0
+      ) {
+        this.dominoArr.push({num:rnd, isEmpty: (rnd==0)?true:false});
       }
     }
 
+    //console.log(this.dominoArr[0].num, this.dominoArr[1].num, this.dominoArr[2].num);
+  },
+
+  init(){
+    this.generateDominoArr();
   },
 
 };

@@ -1,7 +1,7 @@
 import {gameObj} from './game';
 
 function addHeader(){
-  gameObj.DOMElm.rootElm.insertAdjacentHTML('afterbegin', `
+  gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
   <header class="header">
     <h1>Пятнашки</h1>
     <h2>задание на RS-school</h2>
@@ -10,7 +10,7 @@ function addHeader(){
 }
 
 function addBestResult(){
-  gameObj.DOMElm.rootElm.insertAdjacentHTML('afterbegin', `
+  gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
     <article class="best-result-container">
 
       <fieldset class="fieldset">
@@ -23,7 +23,7 @@ function addBestResult(){
 }
 
 function addConfig(){
-  gameObj.DOMElm.rootElm.insertAdjacentHTML('afterbegin', `
+  gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
   <article class="config-container">
 
     <fieldset class="fieldset">
@@ -53,7 +53,7 @@ function addConfig(){
 }
 
 function addControlsBtn(){
-  gameObj.DOMElm.rootElm.insertAdjacentHTML('afterbegin', `
+  gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
   <div class="game-controls-container">
     <button class="game-controls-btn game-controls-new-btn">новая игра</button>
     <button class="game-controls-btn game-controls-save-btn">сохранить текущую</button>
@@ -63,7 +63,7 @@ function addControlsBtn(){
 }
 
 function addGameArea(){
-  gameObj.DOMElm.rootElm.insertAdjacentHTML('afterbegin', `
+  gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
   <article class="game-container">
 
     <fieldset class="fieldset">
@@ -72,9 +72,7 @@ function addGameArea(){
         <span>длительность:</span> <strong>220 сек</strong>
     </fieldset>
 
-    <div class="game-area">
-
-    </div>
+    <div class="game-area"></div>
 
   </article>
   `);
@@ -99,15 +97,21 @@ function loadBestResultList(){
   }
 }
 
-function loadGameData(){
+function reloadGameData(){
   if (gameObj.DOMElm.gameArea) {
     let arr = [...gameObj.dominoArr];
 
+    while (gameObj.DOMElm.gameArea.childNodes.length){
+      //console.log(`remove:${gameObj.DOMElm.gameArea.firstChild}`);
+      gameObj.DOMElm.gameArea.firstChild.remove();
+    }
+
     if (arr.length) {
       let fr = document.createDocumentFragment();
-      arr.forEach((item,idx)=>{
+      arr.forEach((item)=>{
         let div = document.createElement('div');
-        div.innerHTML =`<div class="${item.isEmpty?'domino-empty':'domino'}">${item.num}</div>`;
+        div.innerText =item.num;
+        div.classList.add(item.isEmpty?'domino-empty':'domino');
         fr.appendChild(div);
       });
       gameObj.DOMElm.gameArea.appendChild(fr);
@@ -119,17 +123,23 @@ function loadGameData(){
 function generateLayout() {
 
   // Начальное создание разделов
-  addGameArea();
-  addControlsBtn();
-  addConfig();
-  addBestResult();
   addHeader();
+  addBestResult();
+  addConfig();
+  addControlsBtn();
+  addGameArea();
+
   gameObj.updateDOMElmList(); // сохраним созданные разделы в головном объекте
 
   // Подгрузка данных в ранее созданные разделы
   loadBestResultList();
-  loadGameData();
-  console.log(gameObj.DOMElm);
+  reloadGameData();
+
+  document.querySelector('.game-controls-new-btn').addEventListener('click',(el)=>{
+    gameObj.generateDominoArr();
+    reloadGameData();
+  });
+
 }
 
 export { generateLayout, loadBestResultList};
