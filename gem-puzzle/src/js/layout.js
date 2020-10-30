@@ -136,6 +136,10 @@ function refresh(){
 
 function generateLayout() {
 
+  // начальная инициализация
+  gameObj.generateDominoArr();
+  gameObj.restartDuration();
+
   // Начальное создание разделов
   addHeader();
   addBestResult();
@@ -152,7 +156,7 @@ function generateLayout() {
   document.querySelector('.game-controls-new-btn').addEventListener('click',(el)=>{
     gameObj.generateDominoArr();
     //gameObj.restartDuration(reloadCurrentResult);
-    //gameObj.restartDuration();
+    gameObj.restartDuration();
     refresh();
   });
 

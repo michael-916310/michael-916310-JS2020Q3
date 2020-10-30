@@ -37,16 +37,19 @@ export const gameObj = {
 
   restartDuration(fn){
 
-    // if (this.config.durationIntervalId) {
-    //   clearInterval(this.config.durationIntervalId);
-    //   this.config.durationIntervalId = null;
-    // }
-    // this.config.durationIntervalId = setInterval(()=>{
-    //   this.gameDuration++;
-    //   if (fn){
-    //     fn();
-    //   }
-    // }, 1000)
+    if (this.config.durationIntervalId) {
+      clearInterval(this.config.durationIntervalId);
+      this.config.durationIntervalId = null;
+      this.gameDuration =0;
+    }
+    this.config.durationIntervalId = setInterval(()=>{
+      this.gameDuration++;
+      console.log(`this.gameDuration:${this.gameDuration}`);
+      if (fn){
+        fn();
+      }
+    }, 1000)
+
   },
 
   generateDominoArr(){
@@ -63,6 +66,7 @@ export const gameObj = {
         this.dominoArr.push({num:rnd, isEmpty: (rnd==0)?true:false});
       }
     }
+    //console.log(`generateDominoArr complete`);
   },
 
   moveDomino(idx){
@@ -102,15 +106,11 @@ export const gameObj = {
         this.dominoArr[idx].num = 0;
 
         this.stepsCount++;
+
+        //console.log(`this.stepsCount: ${this.stepsCount}`);
       }
 
     }
   },
 
-  init(){
-    this.generateDominoArr();
-  },
-
 };
-
-gameObj.init();
