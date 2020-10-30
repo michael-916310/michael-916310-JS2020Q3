@@ -114,6 +114,7 @@ export const gameObj = {
         this.stepsCount++;
 
         //console.log(`this.stepsCount: ${this.stepsCount}`);
+        return true;
       }
 
     }

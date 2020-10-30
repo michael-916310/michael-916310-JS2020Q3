@@ -68,8 +68,8 @@ function addGameArea(){
 
     <fieldset class="fieldset">
       <legend>Текущий результат</legend>
-        <span>ходов:</span> <strong class="game-steps">2</strong>
-        <span>длительность:</span> <strong class="game-duration">220 сек</strong>
+        <span>ходов:</span> <strong class="game-steps">0</strong>
+        <span>длительность:</span> <strong class="game-duration">00:00</strong>
     </fieldset>
 
     <div class="game-area"></div>
@@ -117,7 +117,7 @@ function reloadGameData(){
       });
       gameObj.DOMElm.gameArea.appendChild(fr);
     }
-
+    console.log(`reloadGameData finished`);
   }
 }
 
@@ -126,7 +126,10 @@ function reloadCurrentResult(){
     gameObj.DOMElm.gameSteps.innerText = gameObj.stepsCount;
   }
   if (gameObj.DOMElm.gameDuration)  {
-    gameObj.DOMElm.gameDuration.innerText = gameObj.gameDuration;
+    let h = Math.floor(gameObj.gameDuration / 60), hh = (`${h}`.length==1?`0${h}`:`${h}`);
+    let s = gameObj.gameDuration - h * 60, ss = (`${s}`.length==1?`0${s}`:`${s}`);
+
+    gameObj.DOMElm.gameDuration.innerText = `${hh}:${ss}`;
   }
   //console.log(`gameObj.gameDuration:${gameObj.gameDuration} gameObj.stepsCount:${gameObj.stepsCount}`);
 }
@@ -156,8 +159,10 @@ function generateLayout() {
 
   if (gameObj.DOMElm.gameArea) {
     gameObj.DOMElm.gameArea.addEventListener('click',(e)=>{
-      gameObj.moveDomino(+e.target.dataset.idx);
-      reloadGameData();
+      if (gameObj.moveDomino(+e.target.dataset.idx)) {
+        reloadGameData();
+        reloadCurrentResult();
+      }
     })
   }
 
