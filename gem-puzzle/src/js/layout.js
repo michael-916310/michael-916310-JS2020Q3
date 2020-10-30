@@ -68,8 +68,8 @@ function addGameArea(){
 
     <fieldset class="fieldset">
       <legend>Текущий результат</legend>
-        <span>ходов:</span> <strong>2</strong>
-        <span>длительность:</span> <strong>220 сек</strong>
+        <span>ходов:</span> <strong class="game-steps">2</strong>
+        <span>длительность:</span> <strong class="game-duration">220 сек</strong>
     </fieldset>
 
     <div class="game-area"></div>
@@ -101,16 +101,17 @@ function reloadGameData(){
   if (gameObj.DOMElm.gameArea) {
     let arr = [...gameObj.dominoArr];
 
+    // чистим то что есть
     while (gameObj.DOMElm.gameArea.childNodes.length){
-      //console.log(`remove:${gameObj.DOMElm.gameArea.firstChild}`);
       gameObj.DOMElm.gameArea.firstChild.remove();
     }
 
     if (arr.length) {
       let fr = document.createDocumentFragment();
-      arr.forEach((item)=>{
+      arr.forEach((item, idx)=>{
         let div = document.createElement('div');
-        div.innerText =item.num;
+        div.innerText = item.num;
+        div.setAttribute('data-idx', idx);
         div.classList.add(item.isEmpty?'domino-empty':'domino');
         fr.appendChild(div);
       });
@@ -118,6 +119,19 @@ function reloadGameData(){
     }
 
   }
+}
+
+function reloadCurrentResult(){
+  // if (gameObj.DOMElm.gameSteps) {
+  //   gameObj.DOMElm.gameSteps.innerText = gameObj.stepsCount;
+  // }
+  // if (gameObj.DOMElm.gameDuration)  {
+  //   gameObj.DOMElm.gameDuration.innerText = gameObj.gameDuration;
+  // }
+}
+
+function refresh(){
+  reloadGameData();
 }
 
 function generateLayout() {
@@ -137,9 +151,20 @@ function generateLayout() {
 
   document.querySelector('.game-controls-new-btn').addEventListener('click',(el)=>{
     gameObj.generateDominoArr();
-    reloadGameData();
+    //gameObj.restartDuration(reloadCurrentResult);
+    //gameObj.restartDuration();
+    refresh();
   });
+
+  if (gameObj.DOMElm.gameArea) {
+    gameObj.DOMElm.gameArea.addEventListener('click',(e)=>{
+      gameObj.moveDomino(+e.target.dataset.idx);
+      reloadGameData();
+    })
+  }
+
+  console.log(gameObj.DOMElm);
 
 }
 
-export { generateLayout, loadBestResultList};
+export {generateLayout};

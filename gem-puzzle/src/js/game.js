@@ -2,12 +2,17 @@ export const gameObj = {
 
   config: {
     areaSize: 8,
+    durationIntervalId: null,
   },
 
   dominoArr:[],
+  stepsCount:0,
+  gameDuration:0,
 
   DOMElm:{
     rootElm: document.querySelector('#root'),
+    gameSteps: null,
+    gameDuration: null,
     bestResultContainer: null,
     gameArea: null,
   },
@@ -22,12 +27,27 @@ export const gameObj = {
   updateDOMElmList(){
     this.DOMElm.bestResultContainer = document.querySelector('.best-result-container');
     this.DOMElm.gameArea = document.querySelector('.game-area');
+    this.DOMElm.gameSteps = document.querySelector('.game-steps');
+    this.DOMElm.gameDuration = document.querySelector('.game-duration');
   },
 
   _getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
 
+  restartDuration(fn){
+
+    // if (this.config.durationIntervalId) {
+    //   clearInterval(this.config.durationIntervalId);
+    //   this.config.durationIntervalId = null;
+    // }
+    // this.config.durationIntervalId = setInterval(()=>{
+    //   this.gameDuration++;
+    //   if (fn){
+    //     fn();
+    //   }
+    // }, 1000)
+  },
 
   generateDominoArr(){
     let dominoNum = Math.pow(this.config.areaSize,2);
@@ -43,8 +63,48 @@ export const gameObj = {
         this.dominoArr.push({num:rnd, isEmpty: (rnd==0)?true:false});
       }
     }
+  },
 
-    //console.log(this.dominoArr[0].num, this.dominoArr[1].num, this.dominoArr[2].num);
+  moveDomino(idx){
+    if (idx<this.dominoArr.length){
+
+      // ячейка вниз
+      let next = -1;
+
+      if ((idx + this.config.areaSize) < this.dominoArr.length){
+        if (this.dominoArr[idx + this.config.areaSize].isEmpty) {
+          next = idx + this.config.areaSize;
+        }
+      }
+      // ячейка вверх
+      if ((idx - this.config.areaSize) >=0 ){
+        if (this.dominoArr[idx - this.config.areaSize].isEmpty) {
+          next = idx - this.config.areaSize;
+        }
+      }
+      // ячейка назад
+      if ((idx - 1) >=0 ){
+        if (this.dominoArr[idx - 1].isEmpty) {
+          next = idx - 1;
+        }
+      }
+      // ячейка вперед
+      if ((idx + 1)  < this.dominoArr.length){
+        if (this.dominoArr[idx + 1].isEmpty) {
+          next = idx + 1;
+        }
+      }
+      if (next>=0){
+        this.dominoArr[next].num = this.dominoArr[idx].num;
+        this.dominoArr[next].isEmpty = false;
+
+        this.dominoArr[idx].isEmpty = true;
+        this.dominoArr[idx].num = 0;
+
+        this.stepsCount++;
+      }
+
+    }
   },
 
   init(){
