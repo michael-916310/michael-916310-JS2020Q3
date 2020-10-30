@@ -79,9 +79,12 @@ export const gameObj = {
   moveDomino(idx){
     if (idx<this.dominoArr.length){
 
-      // ячейка вниз
+
       let next = -1;
 
+      //console.log(idx, this.config.areaSize, this.dominoArr.length);
+
+      // ячейка вниз
       if ((idx + this.config.areaSize) < this.dominoArr.length){
         if (this.dominoArr[idx + this.config.areaSize].isEmpty) {
           next = idx + this.config.areaSize;
@@ -115,7 +118,7 @@ export const gameObj = {
         this.stepsCount++;
 
         //console.log(`this.stepsCount: ${this.stepsCount}`);
-        console.log(this.dominoArr);
+        //console.log(this.dominoArr);
         return true;
       }
 

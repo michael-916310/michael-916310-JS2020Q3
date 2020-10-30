@@ -32,12 +32,12 @@ function addConfig(){
       <div class="config__area-size-container">
         <label for="config__area-size_id">Размер поля: </label>
           <select class="config__area-size" id="config__area-size_id">
-            <option value="3">3*3</option>
+            <option value="3" selected>3*3</option>
             <option value="4">4*4</option>
             <option value="5">5*5</option>
             <option value="6">6*6</option>
             <option value="7">7*7</option>
-            <option value="8" selected>8*8</option>
+            <option value="8">8*8</option>
           </select>
       </div>
 
@@ -112,7 +112,11 @@ function reloadGameData(){
         let div = document.createElement('div');
         div.innerText = item.num;
         div.setAttribute('data-idx', idx);
-        div.classList.add(item.isEmpty?'domino-empty':'domino');
+        div.classList.add('domino');
+        if (item.isEmpty) {
+          div.classList.add('domino-empty');
+        }
+
         fr.appendChild(div);
       });
       gameObj.DOMElm.gameArea.appendChild(fr);
@@ -151,16 +155,9 @@ function generateLayout() {
   addControlsBtn();
   addGameArea();
 
-  // сохраним ссылки на созданные разделы в головном объекте
-  gameObj.updateDOMElmList();
-
-  // Подгрузка данных в ранее созданные разделы
-  loadBestResultList();
-  refresh();
-
   document.querySelector('#config__area-size_id').addEventListener('change',function(e){
     console.dir(this.value);
-    gameObj.config.areaSize = this.value;
+    gameObj.config.areaSize = +this.value;
 
   })
 
@@ -169,6 +166,9 @@ function generateLayout() {
     refresh();
   });
 
+  // сохраним ссылки на созданные разделы в головном объекте
+  gameObj.updateDOMElmList();
+
   if (gameObj.DOMElm.gameArea) {
     gameObj.DOMElm.gameArea.addEventListener('click',(e)=>{
       if (gameObj.moveDomino(+e.target.dataset.idx)) {
@@ -176,6 +176,10 @@ function generateLayout() {
       }
     })
   }
+
+  // Подгрузка данных в ранее созданные разделы
+  loadBestResultList();
+  refresh();
 
   //console.log(gameObj.DOMElm);
 }

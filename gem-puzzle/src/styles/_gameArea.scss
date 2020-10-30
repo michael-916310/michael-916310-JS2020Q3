@@ -9,7 +9,6 @@
 
 .game-area{
   display: grid;
-  //grid-template-columns: 35px 35px 35px 35px 35px 35px 35px 35px;
   grid-template-columns: auto auto auto auto auto auto auto auto;
   grid-gap: 2px 2px;
   align-content: start;
@@ -38,10 +37,17 @@
 }
 
 .domino-empty{
-  width: 35px;
-  height: 35px;
   background-color: $color-light-l;
   color:$color-light-l;
 
-  border-radius: 5px;
+  &:hover{
+    background-color: $color-light-l;
+  }
 }
+
+.domino-3{
+  width: 35px;
+  height: 35px;
+}
+
+
