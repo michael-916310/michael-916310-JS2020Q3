@@ -35,7 +35,13 @@ export const gameObj = {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
 
-  restartDuration(fn){
+  restartGame(fnRenderGameResult){
+    this.stepsCount=0;
+    this.generateDominoArr();
+    this.restartDuration(fnRenderGameResult);
+  },
+
+  restartDuration(fnRenderGameResult){
 
     if (this.config.durationIntervalId) {
       clearInterval(this.config.durationIntervalId);
@@ -44,9 +50,9 @@ export const gameObj = {
     }
     this.config.durationIntervalId = setInterval(()=>{
       this.gameDuration++;
-      console.log(`this.gameDuration:${this.gameDuration}`);
-      if (fn){
-        fn();
+      //console.log(`this.gameDuration:${this.gameDuration} this.stepsCount:${this.stepsCount}`);
+      if (fnRenderGameResult){
+        fnRenderGameResult();
       }
     }, 1000)
 

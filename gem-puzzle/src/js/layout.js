@@ -122,23 +122,19 @@ function reloadGameData(){
 }
 
 function reloadCurrentResult(){
-  // if (gameObj.DOMElm.gameSteps) {
-  //   gameObj.DOMElm.gameSteps.innerText = gameObj.stepsCount;
-  // }
-  // if (gameObj.DOMElm.gameDuration)  {
-  //   gameObj.DOMElm.gameDuration.innerText = gameObj.gameDuration;
-  // }
-}
-
-function refresh(){
-  reloadGameData();
+  if (gameObj.DOMElm.gameSteps) {
+    gameObj.DOMElm.gameSteps.innerText = gameObj.stepsCount;
+  }
+  if (gameObj.DOMElm.gameDuration)  {
+    gameObj.DOMElm.gameDuration.innerText = gameObj.gameDuration;
+  }
+  //console.log(`gameObj.gameDuration:${gameObj.gameDuration} gameObj.stepsCount:${gameObj.stepsCount}`);
 }
 
 function generateLayout() {
 
-  // начальная инициализация
-  gameObj.generateDominoArr();
-  gameObj.restartDuration();
+  // начальная инициализация данных
+  gameObj.restartGame(reloadCurrentResult);
 
   // Начальное создание разделов
   addHeader();
@@ -154,10 +150,8 @@ function generateLayout() {
   reloadGameData();
 
   document.querySelector('.game-controls-new-btn').addEventListener('click',(el)=>{
-    gameObj.generateDominoArr();
-    //gameObj.restartDuration(reloadCurrentResult);
-    gameObj.restartDuration();
-    refresh();
+    gameObj.restartGame(reloadCurrentResult);
+    reloadGameData()
   });
 
   if (gameObj.DOMElm.gameArea) {
