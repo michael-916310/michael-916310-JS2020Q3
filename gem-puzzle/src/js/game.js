@@ -1,7 +1,8 @@
+
 export const gameObj = {
 
   config: {
-    areaSize: 8,
+    areaSize: 3,
     durationIntervalId: null,
   },
 
@@ -114,6 +115,7 @@ export const gameObj = {
         this.stepsCount++;
 
         //console.log(`this.stepsCount: ${this.stepsCount}`);
+        console.log(this.dominoArr);
         return true;
       }
 

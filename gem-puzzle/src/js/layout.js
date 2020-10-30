@@ -117,7 +117,7 @@ function reloadGameData(){
       });
       gameObj.DOMElm.gameArea.appendChild(fr);
     }
-    console.log(`reloadGameData finished`);
+    //console.log(`reloadGameData finished`);
   }
 }
 
@@ -134,40 +134,50 @@ function reloadCurrentResult(){
   //console.log(`gameObj.gameDuration:${gameObj.gameDuration} gameObj.stepsCount:${gameObj.stepsCount}`);
 }
 
+function refresh(){
+  reloadGameData();
+  reloadCurrentResult();
+}
+
 function generateLayout() {
 
   // начальная инициализация данных
   gameObj.restartGame(reloadCurrentResult);
 
-  // Начальное создание разделов
+  // Начальное создание разделов страницы
   addHeader();
   addBestResult();
   addConfig();
   addControlsBtn();
   addGameArea();
 
-  gameObj.updateDOMElmList(); // сохраним созданные разделы в головном объекте
+  // сохраним ссылки на созданные разделы в головном объекте
+  gameObj.updateDOMElmList();
 
   // Подгрузка данных в ранее созданные разделы
   loadBestResultList();
-  reloadGameData();
+  refresh();
+
+  document.querySelector('#config__area-size_id').addEventListener('change',function(e){
+    console.dir(this.value);
+    gameObj.config.areaSize = this.value;
+
+  })
 
   document.querySelector('.game-controls-new-btn').addEventListener('click',(el)=>{
     gameObj.restartGame(reloadCurrentResult);
-    reloadGameData()
+    refresh();
   });
 
   if (gameObj.DOMElm.gameArea) {
     gameObj.DOMElm.gameArea.addEventListener('click',(e)=>{
       if (gameObj.moveDomino(+e.target.dataset.idx)) {
-        reloadGameData();
-        reloadCurrentResult();
+        refresh();
       }
     })
   }
 
-  console.log(gameObj.DOMElm);
-
+  //console.log(gameObj.DOMElm);
 }
 
 export {generateLayout};
