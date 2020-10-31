@@ -72,7 +72,7 @@ function addGameArea(){
         <span>длительность:</span> <strong class="game-duration">00:00</strong>
     </fieldset>
 
-    <div class="game-area"></div>
+    <div class="game-area game-area-3"></div>
 
   </article>
   `);
@@ -113,6 +113,7 @@ function reloadGameData(){
         div.innerText = item.num;
         div.setAttribute('data-idx', idx);
         div.classList.add('domino');
+        div.classList.add(`domino-${gameObj.config.areaSize}`);
         if (item.isEmpty) {
           div.classList.add('domino-empty');
         }
@@ -139,8 +140,26 @@ function reloadCurrentResult(){
 }
 
 function refresh(){
+  setGameAreaColumnsCount();
   reloadGameData();
   reloadCurrentResult();
+}
+
+function setGameAreaColumnsCount() {
+  if (gameObj.config.areaSize) {
+
+    let cl = gameObj.DOMElm.gameArea.classList;
+
+    // уберем предыдущее значение
+    for(let i=0; i<cl.length; i++){
+      let clName = cl[i].replace('game-area','');
+      if (clName.length){
+        cl.remove(cl[i]);
+      }
+    }
+
+    cl.add(`game-area-${gameObj.config.areaSize}`);
+  }
 }
 
 function generateLayout() {
@@ -156,9 +175,13 @@ function generateLayout() {
   addGameArea();
 
   document.querySelector('#config__area-size_id').addEventListener('change',function(e){
-    console.dir(this.value);
-    gameObj.config.areaSize = +this.value;
-
+    if (confirm('При смене размера поля игра начнется заново, подвтердите')) {
+      gameObj.config.areaSize = +this.value;
+      gameObj.restartGame(reloadCurrentResult);
+      refresh();
+    } else {
+      this.value = gameObj.config.areaSize;
+    }
   })
 
   document.querySelector('.game-controls-new-btn').addEventListener('click',(el)=>{
