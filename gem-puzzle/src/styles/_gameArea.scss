@@ -53,13 +53,46 @@
 
   // width: 35px;
   // height: 35px;
+
   background-color: rgb(211, 211, 211);
 
   border-radius: 5px;
 
-  cursor: pointer;
-  &:hover{
+  &-active:hover{
+    cursor: pointer;
+  }
+  &-active:hover{
     background-color: rgb(235, 235, 235);
+  }
+
+  &-3{
+    width: calc(8/3 * 35px);
+    height: calc(8/3 * 35px);
+  }
+
+  &-4{
+    width: calc(8/4 * 35px);
+    height: calc(8/4 * 35px);
+  }
+
+  &-5{
+    width: calc(8/5 * 35px);
+    height: calc(8/5 * 35px);
+  }
+
+  &-6{
+    width: calc(8/6 * 35px);
+    height: calc(8/6 * 35px);
+  }
+
+  &-7{
+    width: calc(8/7 * 35px);
+    height: calc(8/7 * 35px);
+  }
+
+  &-8{
+    width: 35px;
+    height: 35px;
   }
 }
 
@@ -70,38 +103,5 @@
   &:hover{
     background-color: $color-light-l;
   }
-
-
 }
-
-.domino-3{
-  width: calc(8/3 * 35px);
-  height: calc(8/3 * 35px);
-}
-
-.domino-4{
-  width: calc(8/4 * 35px);
-  height: calc(8/4 * 35px);
-}
-
-.domino-5{
-  width: calc(8/5 * 35px);
-  height: calc(8/5 * 35px);
-}
-
-.domino-6{
-  width: calc(8/6 * 35px);
-  height: calc(8/6 * 35px);
-}
-
-.domino-7{
-  width: calc(8/7 * 35px);
-  height: calc(8/7 * 35px);
-}
-
-.domino-8{
-  width: 35px;
-  height: 35px;
-}
-
 

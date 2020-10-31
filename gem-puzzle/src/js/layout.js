@@ -106,6 +106,8 @@ function reloadGameData(){
       gameObj.DOMElm.gameArea.firstChild.remove();
     }
 
+    gameObj.DOMElm.dominoElmArr = [];
+
     if (arr.length) {
       let fr = document.createDocumentFragment();
       arr.forEach((item, idx)=>{
@@ -118,6 +120,7 @@ function reloadGameData(){
           div.classList.add('domino-empty');
         }
 
+        gameObj.DOMElm.dominoElmArr.push(div);
         fr.appendChild(div);
       });
       gameObj.DOMElm.gameArea.appendChild(fr);
@@ -139,10 +142,92 @@ function reloadCurrentResult(){
   //console.log(`gameObj.gameDuration:${gameObj.gameDuration} gameObj.stepsCount:${gameObj.stepsCount}`);
 }
 
+function prepareDragAndDrop(){
+  let topIdx = -1, bottomIdx = -1, leftIdx = -1, rightIdx = -1, emptyIdx = -1;
+  for (let i=0; i<gameObj.dominoArr.length; i++){
+
+    // От пустой ячейки найдем те что можно сдвинуть
+    if (gameObj.dominoArr[i].isEmpty) {
+      emptyIdx = i;
+      // подготовим к drug&drop соседние ячейки
+      topIdx = i - gameObj.config.areaSize;
+      bottomIdx = (i + gameObj.config.areaSize)<gameObj.dominoArr.length ? (i + gameObj.config.areaSize) : -1;
+
+      if ( (i % gameObj.config.areaSize) > 0 ){
+        // левая ячейка не первая в строке
+        leftIdx = i - 1;
+      }
+
+      if ( (i + 1) < gameObj.dominoArr.length ) {
+        // правая ячейка не последний элемент в строке
+        if ((i+1)%gameObj.config.areaSize>0){
+          rightIdx = i+1;
+        }
+      }
+    }
+  }
+
+  if (emptyIdx>=0) {
+    let elm = gameObj.DOMElm.dominoElmArr[emptyIdx];
+    elm.addEventListener('dragover', (e)=>{
+      e.preventDefault();
+    })
+    elm.addEventListener('drop', (e)=>{
+      e.preventDefault();
+      let idx = e.dataTransfer.getData("text");
+
+      if (gameObj.moveDomino(+idx)) {
+        refresh();
+      }
+
+    })
+  }
+
+  function cellToDrop(idx){
+    let elm = gameObj.DOMElm.dominoElmArr[idx];
+
+    elm.classList.add('domino-active');
+    elm.setAttribute('draggable', true);
+    elm.addEventListener('dragstart', (e)=>{
+      e.dataTransfer.setData("text", e.target.dataset.idx);
+    })
+  }
+
+  if (topIdx>=0){
+    cellToDrop(topIdx);
+    // let elm = gameObj.DOMElm.dominoElmArr[topIdx];
+
+    // elm.classList.add('domino-active');
+    // elm.setAttribute('draggable', true);
+    // elm.addEventListener('dragstart', (e)=>{
+    //   e.dataTransfer.setData("text", e.target.dataset.idx);
+    // })
+  }
+  if (bottomIdx>=0){
+    cellToDrop(bottomIdx);
+    // let elm = gameObj.DOMElm.dominoElmArr[bottomIdx];
+
+    // elm.classList.add('domino-active');
+    // elm.setAttribute('draggable', true);
+    // elm.addEventListener('dragstart', (e)=>{
+    //   e.dataTransfer.setData("text", e.target.dataset.idx);
+    // })
+  }
+  if (leftIdx>=0){
+    cellToDrop(leftIdx);
+  }
+  if (rightIdx>=0){
+    cellToDrop(rightIdx);
+  }
+
+  //console.log(`topIdx:${topIdx} bottomIdx:${bottomIdx} leftIdx:${leftIdx} rightIdx:${rightIdx}`);
+}
+
 function refresh(){
   setGameAreaColumnsCount();
   reloadGameData();
   reloadCurrentResult();
+  prepareDragAndDrop();
 }
 
 function setGameAreaColumnsCount() {

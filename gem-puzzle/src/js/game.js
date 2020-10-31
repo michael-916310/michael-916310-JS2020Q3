@@ -16,6 +16,7 @@ export const gameObj = {
     gameDuration: null,
     bestResultContainer: null,
     gameArea: null,
+    dominoElmArr: null,
   },
 
   bestResultArr:[
@@ -79,7 +80,6 @@ export const gameObj = {
   moveDomino(idx){
     if (idx<this.dominoArr.length){
 
-
       let next = -1;
 
       //console.log(idx, this.config.areaSize, this.dominoArr.length);
@@ -99,13 +99,19 @@ export const gameObj = {
       // ячейка назад
       if ((idx - 1) >=0 ){
         if (this.dominoArr[idx - 1].isEmpty) {
-          next = idx - 1;
+          // только в рамках текущего ряда
+          if ((idx % this.config.areaSize) > 0){
+            next = idx - 1;
+          }
         }
       }
       // ячейка вперед
       if ((idx + 1)  < this.dominoArr.length){
         if (this.dominoArr[idx + 1].isEmpty) {
-          next = idx + 1;
+          // только в рамках текущего ряда
+          if (((idx+1) % this.config.areaSize) > 0){
+            next = idx + 1;
+          }
         }
       }
       if (next>=0){
