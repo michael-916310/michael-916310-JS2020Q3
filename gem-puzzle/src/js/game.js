@@ -4,6 +4,7 @@ export const gameObj = {
   config: {
     areaSize: 3,
     durationIntervalId: null,
+    isSound: false,
   },
 
   dominoArr:[],
@@ -17,6 +18,7 @@ export const gameObj = {
     bestResultContainer: null,
     gameArea: null,
     dominoElmArr: null,
+    soundElm: false,
   },
 
   bestResultArr:[
@@ -31,6 +33,7 @@ export const gameObj = {
     this.DOMElm.gameArea = document.querySelector('.game-area');
     this.DOMElm.gameSteps = document.querySelector('.game-steps');
     this.DOMElm.gameDuration = document.querySelector('.game-duration');
+    this.DOMElm.soundElm = document.querySelector('#config__sounds_chkbox_id');
   },
 
   _getRandomInt(min, max) {

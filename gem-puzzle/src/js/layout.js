@@ -1,4 +1,5 @@
 import {gameObj} from './game';
+//import mp3 from './sound.mp3';
 
 function addHeader(){
   gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
@@ -177,6 +178,7 @@ function prepareDragAndDrop(){
       let idx = e.dataTransfer.getData("text");
 
       if (gameObj.moveDomino(+idx)) {
+        playSound();
         refresh();
       }
 
@@ -195,23 +197,9 @@ function prepareDragAndDrop(){
 
   if (topIdx>=0){
     cellToDrop(topIdx);
-    // let elm = gameObj.DOMElm.dominoElmArr[topIdx];
-
-    // elm.classList.add('domino-active');
-    // elm.setAttribute('draggable', true);
-    // elm.addEventListener('dragstart', (e)=>{
-    //   e.dataTransfer.setData("text", e.target.dataset.idx);
-    // })
   }
   if (bottomIdx>=0){
     cellToDrop(bottomIdx);
-    // let elm = gameObj.DOMElm.dominoElmArr[bottomIdx];
-
-    // elm.classList.add('domino-active');
-    // elm.setAttribute('draggable', true);
-    // elm.addEventListener('dragstart', (e)=>{
-    //   e.dataTransfer.setData("text", e.target.dataset.idx);
-    // })
   }
   if (leftIdx>=0){
     cellToDrop(leftIdx);
@@ -280,8 +268,16 @@ function generateLayout() {
   if (gameObj.DOMElm.gameArea) {
     gameObj.DOMElm.gameArea.addEventListener('click',(e)=>{
       if (gameObj.moveDomino(+e.target.dataset.idx)) {
+        playSound();
         refresh();
       }
+    })
+  }
+
+  if (gameObj.DOMElm.soundElm) {
+    gameObj.DOMElm.soundElm.addEventListener('change', function(e){
+      gameObj.config.isSound = this.checked;
+      //console.log(this.checked)
     })
   }
 
@@ -290,6 +286,15 @@ function generateLayout() {
   refresh();
 
   //console.log(gameObj.DOMElm);
+}
+
+function playSound(){
+  if (gameObj.config.isSound) {
+    let audio = new Audio();
+    audio.src = `./assets/sound.mp3`;
+    //audio.src = mp3;
+    audio.autoplay = true;
+  }
 }
 
 export {generateLayout};
