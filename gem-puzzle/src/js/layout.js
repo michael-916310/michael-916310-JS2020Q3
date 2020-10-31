@@ -15,7 +15,6 @@ function addBestResult(){
     <article class="best-result-container">
 
       <fieldset class="fieldset">
-        <legend>Лучшие результаты:</legend>
 
       </fieldset>
 
@@ -81,15 +80,27 @@ function addGameArea(){
 
 function loadBestResultList(){
   if (gameObj.DOMElm.bestResultContainer) {
-    let arr = gameObj.bestResultArr.sort((a,b)=>{
-      return a.steps-b.steps;
-    });
+    let arr = [...gameObj.bestResultArr];
+
+    // чистим то что есть
+    while (gameObj.DOMElm.bestResultContainer.firstElementChild.childNodes.length){
+      gameObj.DOMElm.bestResultContainer.firstElementChild.firstChild.remove();
+    }
 
     if (arr.length) {
       let fr = document.createDocumentFragment();
+
+      let lg = document.createElement('legend');
+      lg.innerText = 'Лучшие результаты (по ходам)';
+      gameObj.DOMElm.bestResultContainer.firstElementChild.appendChild(lg);
+
       arr.forEach((item,idx)=>{
         let div = document.createElement('div');
-        div.innerHTML =`шагов: ${item.steps} длительность: ${item.duration} сек`;
+
+        let h = Math.floor(item.duration / 60), hh = (`${h}`.length==1?`0${h}`:`${h}`);
+        let s = item.duration - h * 60, ss = (`${s}`.length==1?`0${s}`:`${s}`);
+
+        div.innerHTML =`поле:${item.areaSize}*${item.areaSize} ходов:${item.stepsCount} время: ${hh}:${ss}`;
         fr.appendChild(div);
       });
       gameObj.DOMElm.bestResultContainer.firstElementChild.appendChild(fr);
@@ -130,17 +141,23 @@ function reloadGameData(){
   }
 }
 
+function formatDuration(){
+  if (gameObj.gameDuration)  {
+    let h = Math.floor(gameObj.gameDuration / 60), hh = (`${h}`.length==1?`0${h}`:`${h}`);
+    let s = gameObj.gameDuration - h * 60, ss = (`${s}`.length==1?`0${s}`:`${s}`);
+
+    return `${hh}:${ss}`;
+  }
+  return '00:00'
+}
+
 function reloadCurrentResult(){
   if (gameObj.DOMElm.gameSteps) {
     gameObj.DOMElm.gameSteps.innerText = gameObj.stepsCount;
   }
   if (gameObj.DOMElm.gameDuration)  {
-    let h = Math.floor(gameObj.gameDuration / 60), hh = (`${h}`.length==1?`0${h}`:`${h}`);
-    let s = gameObj.gameDuration - h * 60, ss = (`${s}`.length==1?`0${s}`:`${s}`);
-
-    gameObj.DOMElm.gameDuration.innerText = `${hh}:${ss}`;
+    gameObj.DOMElm.gameDuration.innerText = formatDuration();
   }
-  //console.log(`gameObj.gameDuration:${gameObj.gameDuration} gameObj.stepsCount:${gameObj.stepsCount}`);
 }
 
 function prepareDragAndDrop(){
@@ -213,6 +230,12 @@ function refresh(){
   reloadGameData();
   reloadCurrentResult();
   prepareDragAndDrop();
+  if (gameObj.isGameFinished()) {
+    alert(`Ура! Вы решили головоломку за ${formatDuration()} и ${gameObj.stepsCount} ходов`);
+    gameObj.addResultToList();
+    gameObj.loadResults();
+    loadBestResultList();
+  }
 }
 
 function setGameAreaColumnsCount() {

@@ -21,12 +21,7 @@ export const gameObj = {
     soundElm: false,
   },
 
-  bestResultArr:[
-    {steps: 120, duration: 120},
-    {steps: 45, duration: 220},
-    {steps: 150, duration: 420},
-    {steps: 10, duration: 20},
-  ],
+  bestResultArr:[],
 
   updateDOMElmList(){
     this.DOMElm.bestResultContainer = document.querySelector('.best-result-container');
@@ -42,8 +37,18 @@ export const gameObj = {
 
   restartGame(fnRenderGameResult){
     this.stepsCount=0;
+    this.loadResults();
     this.generateDominoArr();
     this.restartDuration(fnRenderGameResult);
+  },
+
+  stopGame(){
+    this.stepsCount=0;
+    this.gameDuration =0;
+
+    if (this.config.durationIntervalId) {
+      clearInterval(this.config.durationIntervalId);
+    }
   },
 
   restartDuration(fnRenderGameResult){
@@ -55,7 +60,6 @@ export const gameObj = {
     }
     this.config.durationIntervalId = setInterval(()=>{
       this.gameDuration++;
-      //console.log(`this.gameDuration:${this.gameDuration} this.stepsCount:${this.stepsCount}`);
       if (fnRenderGameResult){
         fnRenderGameResult();
       }
@@ -153,6 +157,64 @@ export const gameObj = {
       audio.src = `./assets/sound.mp3`;
       audio.autoplay = true;
     }
-  }
+  },
+
+  isGameFinished(){
+    return this.dominoArr.every((item, idx, arr)=>{
+
+      if (idx==0) {
+        if (item.num==1) {
+          return true;
+        }
+        return false;
+      }
+      if (idx == (arr.length-1) ) {
+        if (item.num==0) {
+        return true;
+        }
+        return false;
+      }
+      if (item.num == (arr[idx-1].num+1)) {
+        return true;
+      }
+      return false;
+    });
+  },
+
+  addResultToList(){
+    if (this.isGameFinished()) {
+      let lst = JSON.parse(localStorage.gameList) || [];
+      lst.push({
+        areaSize: this.config.areaSize,
+        duration: this.gameDuration,
+        stepsCount: this.stepsCount,
+      })
+      localStorage.gameList = JSON.stringify(lst);
+    }
+  },
+
+  loadResults(){
+    let lst = JSON.parse(localStorage.gameList || JSON.stringify('[]'));
+
+    lst.sort((a,b)=>{
+      return (a.stepsCount - b.stepsCount);
+    });
+
+    this.bestResultArr = [];
+    lst.forEach((el)=>{
+      if (this.bestResultArr.length<10) {
+        this.bestResultArr.push(el);
+      }
+
+    })
+  },
+
+  saveCurrentGame(){
+
+  },
+
+  loadCurrentGame(){
+
+  },
 
 };
