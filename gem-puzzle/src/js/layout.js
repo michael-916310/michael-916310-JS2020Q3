@@ -177,10 +177,7 @@ function prepareDragAndDrop(){
       e.preventDefault();
       let idx = e.dataTransfer.getData("text");
 
-      if (gameObj.moveDomino(+idx)) {
-        playSound();
-        refresh();
-      }
+      gameObj.moveDomino(+idx, refresh);
 
     })
   }
@@ -267,10 +264,7 @@ function generateLayout() {
 
   if (gameObj.DOMElm.gameArea) {
     gameObj.DOMElm.gameArea.addEventListener('click',(e)=>{
-      if (gameObj.moveDomino(+e.target.dataset.idx)) {
-        playSound();
-        refresh();
-      }
+      gameObj.moveDomino(+e.target.dataset.idx, refresh)
     })
   }
 
@@ -286,15 +280,6 @@ function generateLayout() {
   refresh();
 
   //console.log(gameObj.DOMElm);
-}
-
-function playSound(){
-  if (gameObj.config.isSound) {
-    let audio = new Audio();
-    audio.src = `./assets/sound.mp3`;
-    //audio.src = mp3;
-    audio.autoplay = true;
-  }
 }
 
 export {generateLayout};

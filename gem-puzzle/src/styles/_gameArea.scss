@@ -58,6 +58,9 @@
 
   border-radius: 5px;
 
+  transition-property: transform;
+  transition-duration: 0.2s;
+
   &-active:hover{
     cursor: pointer;
   }

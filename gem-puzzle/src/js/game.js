@@ -80,23 +80,23 @@ export const gameObj = {
     //console.log(`generateDominoArr complete`);
   },
 
-  moveDomino(idx){
+  moveDomino(idx, fnRefreshLayout){
     if (idx<this.dominoArr.length){
 
-      let next = -1;
-
-      //console.log(idx, this.config.areaSize, this.dominoArr.length);
+      let next = -1, translate='';
 
       // ячейка вниз
       if ((idx + this.config.areaSize) < this.dominoArr.length){
         if (this.dominoArr[idx + this.config.areaSize].isEmpty) {
           next = idx + this.config.areaSize;
+          translate = 'transform: translateY(100%)'
         }
       }
       // ячейка вверх
       if ((idx - this.config.areaSize) >=0 ){
         if (this.dominoArr[idx - this.config.areaSize].isEmpty) {
           next = idx - this.config.areaSize;
+          translate = 'transform: translateY(-100%)'
         }
       }
       // ячейка назад
@@ -105,6 +105,7 @@ export const gameObj = {
           // только в рамках текущего ряда
           if ((idx % this.config.areaSize) > 0){
             next = idx - 1;
+            translate = 'transform: translateX(-100%)'
           }
         }
       }
@@ -114,24 +115,44 @@ export const gameObj = {
           // только в рамках текущего ряда
           if (((idx+1) % this.config.areaSize) > 0){
             next = idx + 1;
+            translate = 'transform: translateX(100%)'
           }
         }
       }
       if (next>=0){
-        this.dominoArr[next].num = this.dominoArr[idx].num;
-        this.dominoArr[next].isEmpty = false;
 
-        this.dominoArr[idx].isEmpty = true;
-        this.dominoArr[idx].num = 0;
+        this.DOMElm.dominoElmArr[idx].addEventListener('transitionend', ()=>{
 
+          //console.log('transitionend');
+
+          this.dominoArr[next].num = this.dominoArr[idx].num;
+          this.dominoArr[next].isEmpty = false;
+
+          this.dominoArr[idx].isEmpty = true;
+          this.dominoArr[idx].num = 0;
+
+
+          fnRefreshLayout()
+        })
+
+        this.playSound();
         this.stepsCount++;
 
-        //console.log(`this.stepsCount: ${this.stepsCount}`);
-        //console.log(this.dominoArr);
+
+        this.DOMElm.dominoElmArr[idx].style=translate;
+
         return true;
       }
 
     }
   },
+
+  playSound(){
+    if (this.config.isSound) {
+      let audio = new Audio();
+      audio.src = `./assets/sound.mp3`;
+      audio.autoplay = true;
+    }
+  }
 
 };
