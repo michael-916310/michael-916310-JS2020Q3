@@ -1,0 +1,22 @@
+
+.header{
+  margin:0 auto;
+  padding: 5px;
+
+  text-align: center;
+  width: 320px;
+  background: $color-light-l;
+
+  & h1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  & h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  @media (min-width:700px) {
+    width: 100%;
+  }
+}
