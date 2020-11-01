@@ -185,7 +185,10 @@ export const gameObj = {
 
   addResultToList(){
     if (this.isGameFinished()) {
-      let lst = JSON.parse(localStorage.gameList) || [];
+      let lst = [];
+      if (localStorage.gameList){
+        lst = JSON.parse(localStorage.gameList);
+      }
       lst.push({
         areaSize: this.config.areaSize,
         duration: this.gameDuration,
@@ -196,7 +199,10 @@ export const gameObj = {
   },
 
   loadResults(){
-    let lst = JSON.parse(localStorage.gameList || JSON.stringify('[]'));
+    let lst = [];
+    if (localStorage.gameList){
+      lst = JSON.parse(localStorage.gameList);
+    }
 
     lst.sort((a,b)=>{
       return (a.stepsCount - b.stepsCount);
@@ -228,11 +234,14 @@ export const gameObj = {
   loadCurrentGame(){
     let g = JSON.parse(localStorage.savedGame || JSON.stringify('{}'));
 
-    this.config.areaSize = g.config.areaSize;
-    this.config.isSound = g.config.isSound;
-    this.gameDuration = g.gameDuration;
-    this.stepsCount = g.stepsCount;
-    this.dominoArr = g.dominoArr;
+    if (Object.keys(g).length==4) {
+      this.config.areaSize = g.config.areaSize;
+      this.config.isSound = g.config.isSound;
+      this.gameDuration = g.gameDuration;
+      this.stepsCount = g.stepsCount;
+      this.dominoArr = g.dominoArr;
+    }
+
   },
 
 };

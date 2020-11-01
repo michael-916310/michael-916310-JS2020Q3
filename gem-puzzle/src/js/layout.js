@@ -75,6 +75,46 @@ function addGameArea(){
   `);
 }
 
+function addDescription(){
+  gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
+  <article class="desc-container">
+    <h3>Что сделано</h3>
+    <ul>
+      <li>Basic scope +30
+        <ul>
+          <li> вёрстка, дизайн, UI: +10</li>
+          <li> состояние игрового поля генерируется случайным образом: +10</li>
+          <li> при клике по фишке, стоящей рядом с пустой клеткой, фишка перемещается на место пустой клетки: +10</li>
+        </ul>
+      <li>Advanced scope +60
+        <ul>
+          <li> игру можно начать заново без перезагрузки страницы: +10</li>
+          <li> отображается время игры и количество ходов: +10</li>
+          <li> фишки можно перетягивать мышкой: +10</li>
+          <li> реализовано сохранение состояния игры и сохранение 10 лучших результатов с использованием LocalStorage: +10</li>
+          <li> реализован выбор размера поля: +10</li>
+          <li> звуковое сопровождение передвижения фишек: +10</li>
+        </ul>
+      </li>
+      <li>Hacker scope +20
+        <ul>
+          <li>анимация перемещения пятнашек на поле: +10</li>
+          <li>когда игра закончилась, выводится сообщение «Ура! Вы решили головоломку за ##:## и N ходов»: +10</li>
+        </ul>
+      </li>
+      <li>Технические (проверяются ментором):
+        <ul>
+          <li> подключен и используется eslint, : +10</li>
+          <li> подключен и используется webpack, : +10</li>
+          <li> приложение разбито на отдельные модули, используются фишки es6 и выше (на усмотрение ментора): +20</li>
+        </ul>
+      </li>
+      </li>
+    </ul>
+  </article>
+  `);
+}
+
 function loadBestResultList(){
   if (gameObj.DOMElm.bestResultContainer) {
     let arr = [...gameObj.bestResultArr];
@@ -84,24 +124,22 @@ function loadBestResultList(){
       gameObj.DOMElm.bestResultContainer.firstElementChild.firstChild.remove();
     }
 
-    if (arr.length) {
-      let fr = document.createDocumentFragment();
+    let fr = document.createDocumentFragment();
 
-      let lg = document.createElement('legend');
-      lg.innerText = 'Лучшие результаты (по ходам)';
-      gameObj.DOMElm.bestResultContainer.firstElementChild.appendChild(lg);
+    let lg = document.createElement('legend');
+    lg.innerText = 'Лучшие результаты (по ходам)';
+    gameObj.DOMElm.bestResultContainer.firstElementChild.appendChild(lg);
 
-      arr.forEach((item,idx)=>{
-        let div = document.createElement('div');
+    arr.forEach((item,idx)=>{
+      let div = document.createElement('div');
 
-        let h = Math.floor(item.duration / 60), hh = (`${h}`.length==1?`0${h}`:`${h}`);
-        let s = item.duration - h * 60, ss = (`${s}`.length==1?`0${s}`:`${s}`);
+      let h = Math.floor(item.duration / 60), hh = (`${h}`.length==1?`0${h}`:`${h}`);
+      let s = item.duration - h * 60, ss = (`${s}`.length==1?`0${s}`:`${s}`);
 
-        div.innerHTML =`поле:${item.areaSize}*${item.areaSize} ходов:${item.stepsCount} время: ${hh}:${ss}`;
-        fr.appendChild(div);
-      });
-      gameObj.DOMElm.bestResultContainer.firstElementChild.appendChild(fr);
-    }
+      div.innerHTML =`поле:${item.areaSize}*${item.areaSize} ходов:${item.stepsCount} время: ${hh}:${ss}`;
+      fr.appendChild(div);
+    });
+    gameObj.DOMElm.bestResultContainer.firstElementChild.appendChild(fr);
 
   }
 }
@@ -223,16 +261,18 @@ function prepareDragAndDrop(){
 }
 
 function refresh(){
-  setGameAreaColumnsCount();
-  reloadGameData();
-  reloadCurrentResult();
-  prepareDragAndDrop();
   if (gameObj.isGameFinished()) {
     alert(`Ура! Вы решили головоломку за ${formatDuration()} и ${gameObj.stepsCount} ходов`);
     gameObj.addResultToList();
     gameObj.loadResults();
     loadBestResultList();
+    gameObj.restartGame(reloadCurrentResult);
   }
+
+  setGameAreaColumnsCount();
+  reloadGameData();
+  reloadCurrentResult();
+  prepareDragAndDrop();
 }
 
 function setGameAreaColumnsCount() {
@@ -262,6 +302,7 @@ function generateLayout() {
   addResultAndConfig();
   addControlsBtn();
   addGameArea();
+  addDescription();
 
   // сохраним ссылки на созданные разделы в головном объекте
   gameObj.updateDOMElmList();
