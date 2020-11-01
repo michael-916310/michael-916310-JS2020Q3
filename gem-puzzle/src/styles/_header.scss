@@ -15,4 +15,8 @@
     margin-top: 5px;
     margin-bottom: 5px;
   }
+
+  @media (min-width:700px) {
+    width: 100%;
+  }
 }

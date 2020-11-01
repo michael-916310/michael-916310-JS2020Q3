@@ -1,16 +1,29 @@
 
+
+.game-container-bg{
+  margin:0 auto;
+  background: $color-light-l;
+  width: 320px;
+
+  @media (min-width:700px) {
+    width: 100%;
+  }
+}
+
 .game-container{
   margin:0 auto;
   padding: 5px;
   width: 320px;
   min-height: 350px;
-  background: $color-light-l;
 }
 
 .game-area{
   display: grid;
 
-  grid-gap: 2px 2px;
+  //grid-gap: 2px 2px;
+  grid-gap: 4px 2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 
   align-content: start;
   justify-content: space-evenly;

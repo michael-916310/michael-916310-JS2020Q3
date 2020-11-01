@@ -10,45 +10,53 @@ function addHeader(){
   `);
 }
 
-function addBestResult(){
+// function addBestResult(){
+//   gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
+//     <article class="best-result-container">
+
+//       <fieldset class="fieldset">
+
+//       </fieldset>
+
+//     </article>
+//   `);
+// }
+
+function addResultAndConfig(){
   gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
-    <article class="best-result-container">
+    <article class = "result_config-container">
 
-      <fieldset class="fieldset">
+      <article class="best-result-container">
+        <fieldset class="fieldset"></fieldset>
+      </article>
 
-      </fieldset>
+      <article class="config-container">
+
+        <fieldset class="fieldset">
+          <legend>Настройки:</legend>
+
+          <div class="config__area-size-container">
+            <label for="config__area-size_id">Размер поля: </label>
+              <select class="config__area-size" id="config__area-size_id">
+                <option value="3" selected>3*3</option>
+                <option value="4">4*4</option>
+                <option value="5">5*5</option>
+                <option value="6">6*6</option>
+                <option value="7">7*7</option>
+                <option value="8">8*8</option>
+              </select>
+          </div>
+
+          <div class="config_sounds-container">
+            <label class="config__sounds" for="config__sounds_chkbox_id">Звук при движении костяшек</label>
+            <input type="checkbox" class="config__sounds_chkbox" id="config__sounds_chkbox_id">
+          </div>
+
+        </fieldset>
+
+      </article>
 
     </article>
-  `);
-}
-
-function addConfig(){
-  gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
-  <article class="config-container">
-
-    <fieldset class="fieldset">
-      <legend>Настройки:</legend>
-
-      <div class="config__area-size-container">
-        <label for="config__area-size_id">Размер поля: </label>
-          <select class="config__area-size" id="config__area-size_id">
-            <option value="3" selected>3*3</option>
-            <option value="4">4*4</option>
-            <option value="5">5*5</option>
-            <option value="6">6*6</option>
-            <option value="7">7*7</option>
-            <option value="8">8*8</option>
-          </select>
-      </div>
-
-      <div class="config_sounds-container">
-        <label class="config__sounds" for="config__sounds_chkbox_id">Звук при движении костяшек</label>
-        <input type="checkbox" class="config__sounds_chkbox" id="config__sounds_chkbox_id">
-      </div>
-
-    </fieldset>
-
-  </article>
   `);
 }
 
@@ -64,17 +72,19 @@ function addControlsBtn(){
 
 function addGameArea(){
   gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
-  <article class="game-container">
+    <article class="game-container-bg">
+      <article class="game-container">
 
-    <fieldset class="fieldset">
-      <legend>Текущий результат</legend>
-        <span>ходов:</span> <strong class="game-steps">0</strong>
-        <span>длительность:</span> <strong class="game-duration">00:00</strong>
-    </fieldset>
+        <fieldset class="fieldset">
+          <legend>Текущий результат</legend>
+            <span>ходов:</span> <strong class="game-steps">0</strong>
+            <span>длительность:</span> <strong class="game-duration">00:00</strong>
+        </fieldset>
 
-    <div class="game-area game-area-3"></div>
+        <div class="game-area game-area-3"></div>
 
-  </article>
+      </article>
+    </article>
   `);
 }
 
@@ -262,8 +272,9 @@ function generateLayout() {
 
   // Начальное создание разделов страницы
   addHeader();
-  addBestResult();
-  addConfig();
+  // addBestResult();
+  // addConfig();
+  addResultAndConfig();
   addControlsBtn();
   addGameArea();
 

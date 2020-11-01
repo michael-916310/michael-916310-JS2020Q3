@@ -1,8 +1,17 @@
 
 .game-controls-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   margin:0 auto;
   padding: 5px;
   width: 320px;
+
+  @media (min-width:700px) {
+    width: 100%;
+    flex-direction: row;
+  }
 }
 
 
@@ -20,6 +29,11 @@
 
   &:hover{
     background-color: rgb(235, 235, 235);
+  }
+
+  @media (min-width:700px) {
+    width: 200px;
+    margin: 10px;
   }
 }
 
