@@ -1,5 +1,4 @@
 import {gameObj} from './game';
-//import mp3 from './sound.mp3';
 
 function addHeader(){
   gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
@@ -9,18 +8,6 @@ function addHeader(){
   </header>
   `);
 }
-
-// function addBestResult(){
-//   gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
-//     <article class="best-result-container">
-
-//       <fieldset class="fieldset">
-
-//       </fieldset>
-
-//     </article>
-//   `);
-// }
 
 function addResultAndConfig(){
   gameObj.DOMElm.rootElm.insertAdjacentHTML('beforebegin', `
@@ -38,8 +25,8 @@ function addResultAndConfig(){
           <div class="config__area-size-container">
             <label for="config__area-size_id">Размер поля: </label>
               <select class="config__area-size" id="config__area-size_id">
-                <option value="3" selected>3*3</option>
-                <option value="4">4*4</option>
+                <option value="3">3*3</option>
+                <option value="4" selected>4*4</option>
                 <option value="5">5*5</option>
                 <option value="6">6*6</option>
                 <option value="7">7*7</option>
@@ -272,29 +259,54 @@ function generateLayout() {
 
   // Начальное создание разделов страницы
   addHeader();
-  // addBestResult();
-  // addConfig();
   addResultAndConfig();
   addControlsBtn();
   addGameArea();
 
-  document.querySelector('#config__area-size_id').addEventListener('change',function(e){
-    if (confirm('При смене размера поля игра начнется заново, подвтердите')) {
-      gameObj.config.areaSize = +this.value;
-      gameObj.restartGame(reloadCurrentResult);
-      refresh();
-    } else {
-      this.value = gameObj.config.areaSize;
-    }
-  })
-
-  document.querySelector('.game-controls-new-btn').addEventListener('click',(el)=>{
-    gameObj.restartGame(reloadCurrentResult);
-    refresh();
-  });
-
   // сохраним ссылки на созданные разделы в головном объекте
   gameObj.updateDOMElmList();
+
+  document.querySelector('.game-controls-new-btn').addEventListener('click',(el)=>{
+    if (confirm('Будет создана новая игра.\nТекущая игра будет потеряна.\nПодтвердите.')) {
+      gameObj.restartGame(reloadCurrentResult);
+      refresh();
+    }
+  });
+
+  document.querySelector('.game-controls-save-btn').addEventListener('click',(el)=>{
+    if (confirm('Текущая игра будет сохранена.\nВы сможете загрузить её по кнопке "загрузить ранее сохраненную игру".\n\nПодтвердите.')) {
+      gameObj.saveCurrentGame();
+    }
+  });
+
+  document.querySelector('.game-controls-load-btn').addEventListener('click',(el)=>{
+    if (confirm('Текущая игра будет перезаписана ранее сохраненной игрой.\nВы не сможете вернуться к текущй игре".\n\nПодтвердите.')) {
+
+      gameObj.loadCurrentGame();
+
+      if (gameObj.DOMElm.areaSizeElm) {
+        gameObj.DOMElm.areaSizeElm.value = gameObj.config.areaSize;
+      }
+
+      if (gameObj.DOMElm.soundElm) {
+        gameObj.DOMElm.soundElm.checked = gameObj.config.isSound;
+      }
+
+      refresh();
+    }
+  });
+
+  if (gameObj.DOMElm.areaSizeElm) {
+    gameObj.DOMElm.areaSizeElm.addEventListener('change',function(e){
+      if (confirm('При смене размера поля игра начнется заново, подвтердите')) {
+        gameObj.config.areaSize = +this.value;
+        gameObj.restartGame(reloadCurrentResult);
+        refresh();
+      } else {
+        this.value = gameObj.config.areaSize;
+      }
+    })
+  }
 
   if (gameObj.DOMElm.gameArea) {
     gameObj.DOMElm.gameArea.addEventListener('click',(e)=>{
@@ -305,7 +317,6 @@ function generateLayout() {
   if (gameObj.DOMElm.soundElm) {
     gameObj.DOMElm.soundElm.addEventListener('change', function(e){
       gameObj.config.isSound = this.checked;
-      //console.log(this.checked)
     })
   }
 
@@ -313,7 +324,6 @@ function generateLayout() {
   loadBestResultList();
   refresh();
 
-  //console.log(gameObj.DOMElm);
 }
 
 export {generateLayout};

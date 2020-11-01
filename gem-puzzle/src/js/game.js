@@ -2,7 +2,7 @@
 export const gameObj = {
 
   config: {
-    areaSize: 3,
+    areaSize: 4,
     durationIntervalId: null,
     isSound: false,
   },
@@ -19,6 +19,7 @@ export const gameObj = {
     gameArea: null,
     dominoElmArr: null,
     soundElm: false,
+    areaSizeElm: null,
   },
 
   bestResultArr:[],
@@ -29,6 +30,7 @@ export const gameObj = {
     this.DOMElm.gameSteps = document.querySelector('.game-steps');
     this.DOMElm.gameDuration = document.querySelector('.game-duration');
     this.DOMElm.soundElm = document.querySelector('#config__sounds_chkbox_id');
+    this.DOMElm.areaSizeElm = document.querySelector('#config__area-size_id');
   },
 
   _getRandomInt(min, max) {
@@ -210,11 +212,27 @@ export const gameObj = {
   },
 
   saveCurrentGame(){
-    
+    let g = {
+      config: {
+        areaSize: this.config.areaSize,
+        isSound: this.config.isSound,
+      },
+      gameDuration: this.gameDuration,
+      stepsCount: this.stepsCount,
+      dominoArr: this.dominoArr,
+    }
+
+    localStorage.savedGame = JSON.stringify(g);
   },
 
   loadCurrentGame(){
+    let g = JSON.parse(localStorage.savedGame || JSON.stringify('{}'));
 
+    this.config.areaSize = g.config.areaSize;
+    this.config.isSound = g.config.isSound;
+    this.gameDuration = g.gameDuration;
+    this.stepsCount = g.stepsCount;
+    this.dominoArr = g.dominoArr;
   },
 
 };
