@@ -69,20 +69,51 @@ export const gameObj = {
 
   },
 
-  generateDominoArr(){
-    let dominoNum = Math.pow(this.config.areaSize,2);
-    this.dominoArr = [];
+  _isSovleable(){
+    let total = 0, emptyLine = 0;
 
-    while (this.dominoArr.length<dominoNum){
-      let rnd = this._getRandomInt(0, dominoNum-1);
-      if (
-        this.dominoArr.filter((item)=>{
-          return (item.num === rnd)
-        }).length == 0
-      ) {
-        this.dominoArr.push({num:rnd, isEmpty: (rnd==0)?true:false});
+    for(let pos=0; pos<this.dominoArr.length;pos++){
+      let el =this.dominoArr[pos];
+      if (el.isEmpty) {
+        emptyLine = Math.ceil((pos+1) / this.config.areaSize);
+      } else {
+        for (let i=pos+1; i<this.dominoArr.length; i++){
+          if (el.num>this.dominoArr[i].num){
+            total++;
+          }
+        }
       }
     }
+
+    console.log(`total:${total} emptyLine:${emptyLine}`);
+
+    if (((total+emptyLine)%2) == 0) {
+      return false;
+    } else {
+      return true;
+    }
+
+    return true;
+  },
+
+  generateDominoArr(){
+
+    do {
+      let dominoNum = Math.pow(this.config.areaSize,2);
+      this.dominoArr = [];
+
+      while (this.dominoArr.length<dominoNum){
+        let rnd = this._getRandomInt(0, dominoNum-1);
+        if (
+          this.dominoArr.filter((item)=>{
+            return (item.num === rnd)
+          }).length == 0
+        ) {
+          this.dominoArr.push({num:rnd, isEmpty: (rnd==0)?true:false});
+        }
+      }
+
+    } while (!this._isSovleable())
     //console.log(`generateDominoArr complete`);
   },
 
