@@ -145,6 +145,8 @@ const config = {
       filename: './index.html'
     }),
     new CopyWebpackPlugin([
+      {from: './src/audio', to: './audio/'},
+      {from: './src/img', to: './img/'},
       // {from: './src/static', to: './'},
       // {from: './src/img', to: './img/'},
     ]),
