@@ -1,19 +1,164 @@
-@import 'sketchy-bootstrap.css';
-@import 'main-page.scss';
+//@import 'sketchy-bootstrap.css';
 
+@import 'main-page.scss';
 @import 'menu.scss';
 
 
-body {
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #868e96;
+  --gray-dark: #333;
+  --primary: #333;
+  --secondary: #555;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #fff;
+  --dark: #555;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: Neucha, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* -----------------
+  СТИЛИ ЗАГОЛОВКА
+-----------------  */
+
+.all-page-header {
   text-align: center;
 }
 
-.hello {
-  font-size: 2rem;
-}
-
-.all-page__header{
+.all-page-header__info{
   display:flex;
   justify-content: space-evenly;
 }
 
+
+/* -----------------
+  СТИЛИ ПЕРКЛЮЧАТЕЛЯ
+-----------------  */
+
+$height: 30 / 16 * 1em;
+//$width: 72 / 16 * 1em;
+$width: 72 / 16 * 1em * 1.2;
+
+$color-white: #fefefe;
+$color-clouds: #ecf0f1;
+$color-silver: #bdc3c7;
+$color-peter-river: #3498db;
+$color-carrot: #e67e22;
+
+$transition-default: 0.25s ease-out 0.1s;
+
+// -- selectors
+
+.button-switch {
+  font-size: 1.5em;
+  height: $height;
+  margin-bottom: 10 / 16 * 1em;
+  position: relative;
+  width: $width;
+
+  .lbl-off,
+  .lbl-on {
+    cursor: pointer;
+    display: block;
+    font-size: 0.9em;
+    font-weight: bold;
+    line-height: 1em;
+    position: absolute;
+    //top: 8 / 16 * 1em;
+    top: 8 / 16 * 1em * 0.8;
+    transition: opacity $transition-default;
+    text-transform: uppercase;
+  }
+
+  .lbl-off {
+    //right: 7 / 16 * 1em;
+    right: 7 / 16 * 1em * 2;
+  }
+
+  .lbl-on {
+    color: $color-white;
+    opacity: 0;
+    left: 7 / 16 * 1em;
+  }
+
+  .switch {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    // --
+    height: 0;
+    font-size: 1em;
+    left: 0;
+    line-height: 0;
+    outline: none;
+    position: absolute;
+    top: 0;
+    width: 0;
+
+    &:before,
+    &:after {
+      content: "";
+      font-size: 1em;
+      position: absolute;
+    }
+
+    &:before {
+      border-radius: 20 / 16 * 1em;
+      background: $color-silver;
+      height: $height;
+      left: 4 / 16 * -1em;
+      top: 3 / 16 * -1em;
+      transition: background-color $transition-default;
+      width: $width;
+    }
+
+    &:after {
+      box-shadow: 0 0.0625em 0.375em 0 #666;
+      border-radius: 50%;
+      background: $color-white;
+      height: 24 / 16 * 1em;
+      transform: translate(0, 0);
+      transition: transform $transition-default;
+      width: 24 / 16 * 1em;
+    }
+
+    &:checked {
+      &:after {
+        //transform: translate(40 / 16 * 1em, 0);
+        transform: translate(40 / 16 * 1em * 1.4, 0);
+      }
+
+      & ~ .lbl-off {
+        opacity: 0;
+      }
+
+      & ~ .lbl-on {
+        opacity: 1;
+      }
+    }
+
+    &#switch-blue {
+      &:checked:before {
+        background: $color-peter-river;
+      }
+    }
+  }
+}
