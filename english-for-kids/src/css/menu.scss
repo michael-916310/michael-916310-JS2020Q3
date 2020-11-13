@@ -1,3 +1,5 @@
+@import './colors.scss';
+
 .mobile-menu {
   position: fixed;
   display: flex;
@@ -17,16 +19,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 35px;
+  //width: 35px;
+  width: 40px;
   height: 30px;
   cursor: pointer;
   transition: .4s;
+
+  z-index: 9999999;
 }
 .mobile-menu__icon {
   display: block;
   position: relative;
 
-  background-color: var(--gray);
+  background-color: $color-gray;
 
   width: 90%;
   height: 4px;
@@ -37,7 +42,7 @@
   display: block;
   position: absolute;
 
-  background-color: var(--gray);
+  background-color: $color-gray;
 
   width: 100%;
 
@@ -45,10 +50,12 @@
   transition: .4s;
 }
 .mobile-menu__icon::after {
-  top: 8px;
+  //top: 8px;
+  top: 12px;
 }
 .mobile-menu__icon::before {
-  top: -8px;
+  //top: -8px;
+  top: -12px;
 }
 .mobile-menu__container {
   position: fixed;
@@ -56,7 +63,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 50px;
+  //top: 50px;
+  top: 0px;
   left: 0;
   right: 0;
   z-index: 999;
@@ -65,11 +73,14 @@
   transition: .5s;
   overflow: hidden;
 
-  background-color: var(--secondary);
+  background-color: $color-secondary;
+  opacity: 0.8;
+  border-radius: 0 0 120px 0;
 
+  /*
   border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
   border-radius: 25px 25px 55px 5px/5px 55px 25px 25px;
-
+  */
 
   width: 215px;
 }
