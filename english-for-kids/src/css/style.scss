@@ -12,11 +12,36 @@
 
 .all-page-header {
   text-align: center;
+  @media (max-width:450px) {
+    font-size: smaller;
+    text-align: right;
+  }
+}
+
+.all-page-header_h1{
+  margin-left: 70px;
+  margin-right: 50px;
 }
 
 .all-page-header__info{
   display:flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+
 }
+
+.all-page-header__info-label {
+  margin:0 20px;
+  font-size: 2rem;
+
+  @media (max-width:450px) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width:330px) {
+    display: none;
+  }
+}
+
 
 
