@@ -1,5 +1,5 @@
 
- let categoryList = [
+ const categoryList = [
   {id: 1, itemName: 'Action (set A)', image: 'img/draw.jpg'},
   {id: 2, itemName: 'Action (set B)', image: 'img/play.jpg'},
   {id: 3, itemName: 'Animal (set A)', image: 'img/dog.jpg'},
@@ -10,7 +10,7 @@
   {id: 8, itemName: 'Something', image: 'img/draw.jpg'}
 ]
 
-let categoryData = new Map()
+const categoryData = new Map()
 
 categoryData.set(1,
   [
@@ -328,4 +328,34 @@ categoryData.set(6,
   ]
   );
 
-export {categoryList, categoryData};
+
+const gameState = {
+  currentPageId: -1,
+
+  renderMainPage: null,
+
+  selectCategory(id){
+    this.currentPageId = +id;
+    this.renderMe();
+  },
+
+  renderMe(){
+    switch (this.currentPageId) {
+      case -1 :
+        this.renderMainPage((id)=>{
+          //console.log('clicked categoryId:'+id);
+          this.selectCategory(id);
+        });
+        break;
+      default:
+        break;
+    }
+
+  },
+
+  start(){
+    this.renderMe();
+  }
+}
+
+export {categoryList, categoryData, gameState};

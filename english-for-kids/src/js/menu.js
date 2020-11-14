@@ -7,13 +7,6 @@ const LIST_CLASS_NAME = 'mobile-menu__list';
 function addToDOM(){
   let elCnt = document.querySelector(`.${LIST_CLASS_NAME}`);
 
-  // почистим то что есть
-  /*
-  while (elCnt.childNodes.length) {
-    elCnt.firstChild.remove();
-  }
-  */
-
   const fr = document.createDocumentFragment();
 
   categoryList.forEach((el)=>{
