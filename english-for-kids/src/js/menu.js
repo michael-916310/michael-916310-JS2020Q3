@@ -1,30 +1,22 @@
+import {categoryList} from './gameData.js';
+
 const CHECKBOX_CLASS_NAME = 'mobile-menu__checkbox';
 const CONTAINER_CLASS_NAME = 'mobile-menu__container';
 const LIST_CLASS_NAME = 'mobile-menu__list';
-
-let menuData = [
-  {id: 0, itemName: 'Main page'},
-  {id: 1, itemName: 'Action (set A)'},
-  {id: 2, itemName: 'Action (set B)'},
-  {id: 3, itemName: 'Animal (set A)'},
-  {id: 4, itemName: 'Animal (set B)'},
-  {id: 5, itemName: 'Clothes'},
-  {id: 6, itemName: 'Emotions'},
-  {id: 7, itemName: 'Something'},
-  {id: 8, itemName: 'Something'}
-]
 
 function addToDOM(){
   let elCnt = document.querySelector(`.${LIST_CLASS_NAME}`);
 
   // почистим то что есть
+  /*
   while (elCnt.childNodes.length) {
     elCnt.firstChild.remove();
   }
+  */
 
   const fr = document.createDocumentFragment();
 
-  menuData.forEach((el)=>{
+  categoryList.forEach((el)=>{
     let li = document.createElement('li');
     li.classList.add('mobile-menu__item');
 

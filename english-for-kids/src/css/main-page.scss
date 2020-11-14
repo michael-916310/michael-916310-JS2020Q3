@@ -1,4 +1,39 @@
 
 .main-page__container{
-  background-color: lightblue;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px;
+
+  font-size: 1.5rem;
+}
+
+.main-page-card{
+  margin: 20px;
+  width: 250px;
+  height: 320px;
+  background-color: $color-clouds;
+
+  text-align: center;
+
+  border-radius: 50px;
+}
+
+.main-page-card__h2{
+  margin: 25px 0 5px;
+}
+
+.main-page-card__img{
+  border-radius: 50%;
+  width: 230px;
+  height: 230px;
+
+  object-fit: cover;
+}
+
+.main-page-card__ref{
+  text-decoration: none;
 }

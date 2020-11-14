@@ -1,5 +1,18 @@
-const cards = [ 
-  ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions'],
+
+ let categoryList = [
+  {id: 1, itemName: 'Action (set A)', image: 'img/draw.jpg'},
+  {id: 2, itemName: 'Action (set B)', image: 'img/play.jpg'},
+  {id: 3, itemName: 'Animal (set A)', image: 'img/dog.jpg'},
+  {id: 4, itemName: 'Animal (set B)', image: 'img/lion.jpg'},
+  {id: 5, itemName: 'Clothes', image: 'img/coat.jpg'},
+  {id: 6, itemName: 'Emotions', image: 'img/surprised.jpg'},
+  {id: 7, itemName: 'Something', image: 'img/draw.jpg'},
+  {id: 8, itemName: 'Something', image: 'img/draw.jpg'}
+]
+
+let categoryData = new Map()
+
+categoryData.set(1,
   [
     {
       word: 'cry',
@@ -49,7 +62,9 @@ const cards = [
       image: 'img/jump.jpg',
       audioSrc: 'audio/jump.mp3'
     }
-  ],
+  ]);
+
+categoryData.set(2,
   [
     {
       word: 'open',
@@ -99,7 +114,9 @@ const cards = [
       image: 'img/swim.jpg',
       audioSrc: 'audio/swim.mp3'
     }
-  ],
+  ]);
+
+categoryData.set(3,
   [
     {
       word: 'cat',
@@ -149,7 +166,10 @@ const cards = [
       image: 'img/sheep.jpg',
       audioSrc: 'audio/sheep.mp3'
     }
-  ],
+  ]
+  );
+
+categoryData.set(4,
   [
     {
       word: 'bird',
@@ -199,7 +219,10 @@ const cards = [
       image: 'img/dolphin.jpg',
       audioSrc: 'audio/dolphin.mp3'
     }
-  ],
+  ]
+  );
+
+categoryData.set(5,
   [
     {
       word: 'skirt',
@@ -249,7 +272,10 @@ const cards = [
       image: 'img/shoe.jpg',
       audioSrc: 'audio/shoe.mp3'
     }
-  ],
+  ]
+  );
+
+categoryData.set(6,
   [
     {
       word: 'sad',
@@ -300,10 +326,6 @@ const cards = [
       audioSrc: 'audio/laugh.mp3'
     }
   ]
-]
+  );
 
-
-
-
-
-export default cards;
+export {categoryList, categoryData};
