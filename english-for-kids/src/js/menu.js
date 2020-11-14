@@ -1,3 +1,6 @@
+const CHECKBOX_CLASS_NAME = 'mobile-menu__checkbox';
+const CONTAINER_CLASS_NAME = 'mobile-menu__container';
+const LIST_CLASS_NAME = 'mobile-menu__list';
 
 let menuData = [
   {id: 0, itemName: 'Main page'},
@@ -11,8 +14,8 @@ let menuData = [
   {id: 8, itemName: 'Something'}
 ]
 
-function addToDOM(containerName){
-  let elCnt = document.querySelector(`.${containerName}`);
+function addToDOM(){
+  let elCnt = document.querySelector(`.${LIST_CLASS_NAME}`);
 
   // почистим то что есть
   while (elCnt.childNodes.length) {
@@ -43,16 +46,40 @@ function addToDOM(containerName){
 
 function addEvents(fnClick){
   const elms = document.querySelectorAll('.mobile-menu__link');
+  const checkEl = document.querySelector(`.${CHECKBOX_CLASS_NAME}`);
+  const menuContainerEl = document.querySelector(`.mobile-menu__container`);
+
   elms.forEach((el)=>{
     el.addEventListener('click', ()=>{
+      // Вызовем колл-бэк
       fnClick(el.dataset.categoryId);
+      // Закроем меню
+      checkEl.checked = false;
     });
   })
+
+
+  // Обработаем клик не на меню
+  document.addEventListener('click', (e)=>{
+    if (checkEl.checked){
+      if (!menuContainerEl.contains(e.target)) {
+        let cl = e.target.classList;
+        if (!cl.contains('mobile-menu__btn')
+            && !cl.contains('mobile-menu__checkbox')
+            && !cl.contains('mobile-menu__icon')
+            ) {
+          // Закроем меню
+          checkEl.checked = false;
+        }
+      }
+    }
+
+  });
 }
 
-function renderMenu(containerName,fnClick) {
-  addToDOM(containerName);
-  addEvents(fnClick);
+function initMenu(fnMenuItemClick) {
+  addToDOM();
+  addEvents(fnMenuItemClick);
 }
 
-export default renderMenu;
+export default initMenu;
