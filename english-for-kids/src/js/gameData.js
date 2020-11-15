@@ -352,7 +352,7 @@ categoryData.set(7,
       word: 'ship',
       translation: 'корабль',
       image: 'img/ship.jpg',
-      audioSrc: 'audio/aircraft.mp3'
+      audioSrc: 'audio/ship.mp3'
     },
     {
       word: 'bus',

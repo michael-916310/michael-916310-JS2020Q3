@@ -1,8 +1,9 @@
 import {categoryData} from './gameData';
+import gameCore from './gameCore';
 
 const CATEGORY_PAGE_ELM = document.querySelector('.category-page');
 
-function renderCategoryPage(id){
+function addToDOM(id){
 
   // почистим то что есть
   while (CATEGORY_PAGE_ELM.firstChild){
@@ -14,6 +15,7 @@ function renderCategoryPage(id){
     const section = document.createElement("section");
     section.classList.add('category-page__card');
     section.style.backgroundImage = `url("${v.image}")`;
+    section.dataset.cardIndex=key;
 
     section.insertAdjacentHTML('beforeend',`
       <footer class="category-page__card-footer">
@@ -28,5 +30,31 @@ function renderCategoryPage(id){
   CATEGORY_PAGE_ELM.append(fr);
 }
 
+function addEvents(){
+  const cardList = document.querySelectorAll('.category-page__card');
+
+  cardList.forEach((el)=>{
+    el.addEventListener('click',(e)=>{
+      const index = el.dataset.cardIndex;
+
+      if (gameCore.state.isPlayMode) {
+        console.log('play mode');
+      } else {
+        if (e.target.classList.contains('category-page__card-rotate')) {
+          console.log('rotate');
+        } else {
+          let audio = new Audio();
+          audio.src = categoryData.get(gameCore.state.currentCategoryId)[index].audioSrc;
+          audio.autoplay = true;
+      }
+    }
+  });
+})
+}
+
+function renderCategoryPage(id){
+  addToDOM(id);
+  addEvents();
+}
 
 export default renderCategoryPage;
