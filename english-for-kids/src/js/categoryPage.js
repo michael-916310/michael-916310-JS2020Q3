@@ -13,7 +13,7 @@ function renderCategoryPage(id){
   categoryData.get(id).forEach((v,key)=>{
     const section = document.createElement("section");
     section.classList.add('category-page__card');
-    section.style.backgroundImage = `url(".././${v.image}")`;
+    section.style.backgroundImage = `url("${v.image}")`;
 
     section.insertAdjacentHTML('beforeend',`
       <footer class="category-page__card-footer">

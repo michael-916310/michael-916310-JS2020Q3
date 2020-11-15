@@ -2,72 +2,12 @@
 
 @import 'colors.scss';
 @import 'menu.scss';
+@import 'header.scss';
 @import 'switcher.scss';
 @import 'main-page.scss';
 @import 'category-page.scss';
+@import 'footer.scss';
 
-*{
+* {
   font-family: "Cabin Sketch", cursive;
 }
-
-/* -----------------
-  СТИЛИ ЗАГОЛОВКА
------------------  */
-
-.all-page-header {
-  text-align: center;
-  @media (max-width:450px) {
-    font-size: smaller;
-    text-align: right;
-  }
-}
-
-.all-page-header_h1{
-  margin-left: 70px;
-  margin-right: 50px;
-}
-
-.all-page-header__info{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.all-page-header__info-label {
-  margin:0 20px;
-  font-size: 2rem;
-
-  @media (max-width:450px) {
-    font-size: 1.5rem;
-  }
-
-  @media (max-width:380px) {
-    display: none;
-  }
-}
-
-/* -----------------
-  СТИЛИ подвала
------------------  */
-
-.all-page-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-
-  height: 50px;
-  //background-color: lightgray;
-}
-
-.all-page-footer__logo{
-  margin: 10px;
-  height: 100%;
-}
-
-.all-page-footer__info{
-  text-align: center;
-  margin: 10px;
-}
-

@@ -1,5 +1,6 @@
 import {categoryList} from './gameData.js';
 
+
 const CHECKBOX_CLASS_NAME = 'mobile-menu__checkbox';
 const CONTAINER_CLASS_NAME = 'mobile-menu__container';
 const LIST_CLASS_NAME = 'mobile-menu__list';
