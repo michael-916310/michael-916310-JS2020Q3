@@ -8,15 +8,16 @@
   align-items: center;
   flex-wrap: wrap;
 
-  height: 50px;
+  //height: 50px;
 }
 
 .all-page-footer__logo{
   margin: 10px;
-  height: 100%;
+  height: 60px
 }
 
 .all-page-footer__info{
+  font-size: 0.8rem;
   text-align: center;
   margin: 10px;
 }

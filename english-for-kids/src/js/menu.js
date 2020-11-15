@@ -10,6 +10,8 @@ function addToDOM(){
 
   const fr = document.createDocumentFragment();
 
+
+
   categoryList.forEach((el)=>{
     let li = document.createElement('li');
     li.classList.add('mobile-menu__item');
@@ -35,8 +37,13 @@ function addEvents(fnClick){
   const checkEl = document.querySelector(`.${CHECKBOX_CLASS_NAME}`);
   const menuContainerEl = document.querySelector(`.mobile-menu__container`);
 
-  elms.forEach((el)=>{
+  elms.forEach((el, idx, menuList)=>{
     el.addEventListener('click', ()=>{
+      // Выделем текущий элемент
+      menuList.forEach((menuItem)=>{
+        menuItem.classList.remove('mobile-menu__link-current');
+      });
+      el.classList.add('mobile-menu__link-current');
       // Вызовем колл-бэк
       fnClick(el.dataset.categoryId);
       // Закроем меню
