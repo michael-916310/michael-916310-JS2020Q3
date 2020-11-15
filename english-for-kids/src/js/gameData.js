@@ -329,33 +329,4 @@ categoryData.set(6,
   );
 
 
-const gameState = {
-  currentPageId: -1,
-
-  renderMainPage: null,
-
-  selectCategory(id){
-    this.currentPageId = +id;
-    this.renderMe();
-  },
-
-  renderMe(){
-    switch (this.currentPageId) {
-      case -1 :
-        this.renderMainPage((id)=>{
-          //console.log('clicked categoryId:'+id);
-          this.selectCategory(id);
-        });
-        break;
-      default:
-        break;
-    }
-
-  },
-
-  start(){
-    this.renderMe();
-  }
-}
-
-export {categoryList, categoryData, gameState};
+export {categoryList, categoryData};

@@ -3,19 +3,13 @@ import '../css/style.scss';
 
 import initMenu from './menu.js';
 import initMainPage from './mainPage.js';
-import {gameState} from './gameData';
-
-initMenu((id)=>{
-  console.log('clicked categoryId:'+id);
-});
-
-gameState.renderMainPage = initMainPage;
-gameState.start();
+import renderCategoryPage from './categoryPage';
+import gameCore from './gameCore';
 
 
+gameCore.renders.renderMenu = initMenu;
+gameCore.renders.renderMainPage = initMainPage;
+gameCore.renders.renderCategoryPage = renderCategoryPage;
+gameCore.start();
 
-/*
-initMainPage((id)=>{
-  console.log('clicked categoryId:'+id);
-});
-*/
+

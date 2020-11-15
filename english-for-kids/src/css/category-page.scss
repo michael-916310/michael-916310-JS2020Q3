@@ -1,0 +1,70 @@
+
+.category-page{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px;
+
+  font-size: 2rem;
+
+}
+
+.category-page__hide{
+  display:none;
+}
+
+.category-page__card{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  margin: 20px;
+  width: 250px;
+  min-height: 320px;
+  //background-color: $color-clouds;
+  text-align: center;
+
+  border-radius: 255px 15px 225px 2px/5px 225px 10px 255px;
+
+  transition-property: border-radius;
+  transition-duration: 0.5s;
+
+  background: url(".././img/blouse.jpg") no-repeat center center;
+}
+
+.category-page__card:hover{
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.category-page__card-footer{
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 50px;
+
+  background-color: lightgray;
+  border-radius: 0 0 5px 5px;
+  border-radius: 255px 0px 225px 30px/20px 225px 30px 255px;
+}
+
+
+.category-page__card-rotate{
+  position: absolute;
+  right: 10px;
+
+  align-self: flex-end;
+  height: 100%;
+
+  transition: transform 0.5s;
+}
+
+.category-page__card-rotate:hover{
+  transform: scale(1.2);
+}
