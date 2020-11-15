@@ -1,11 +1,11 @@
-
-import {setHeaderLabel} from './header.js';
+import {setHeaderLabel, setSwitcher} from './header.js';
 import {categoryList} from './gameData';
 
 const gameCore = {
 
   state: {
-    currentPageId: -1,
+    currentCategoryId: -1,
+    isPlayMode: false,
   },
 
   renders: {
@@ -21,7 +21,7 @@ const gameCore = {
 
 
   handleCategoryChange(id){
-    this.state.currentPageId = +id;
+    this.state.currentCategoryId = +id;
     this.renderMe();
   },
 
@@ -31,12 +31,13 @@ const gameCore = {
     this.DOMElements.categoryPage.classList.add('category-page__hide');
 
     let lblArr = categoryList.filter((el)=>{
-      if (el.id===this.state.currentPageId) {
+      if (el.id===this.state.currentCategoryId) {
         return true;
       }
       return false;
     })
-    switch (this.state.currentPageId) {
+
+    switch (this.state.currentCategoryId) {
       case -1 :
         setHeaderLabel('select category to');
         this.DOMElements.mainPage.classList.remove('main-page__hide');
@@ -54,11 +55,10 @@ const gameCore = {
       case 7 :
       case 8 :
         if (lblArr) {
-          console.log(lblArr);
           setHeaderLabel(lblArr[0].itemName);
         }
         this.DOMElements.categoryPage.classList.remove('category-page__hide');
-        this.renders.renderCategoryPage(this.state.currentPageId);
+        this.renders.renderCategoryPage(this.state.currentCategoryId);
         break;
       default:
         break;
@@ -67,6 +67,8 @@ const gameCore = {
   },
 
   start(){
+
+    setSwitcher(this.state.isPlayMode);
 
     this.renders.renderMenu((id)=>{
       this.handleCategoryChange(id);

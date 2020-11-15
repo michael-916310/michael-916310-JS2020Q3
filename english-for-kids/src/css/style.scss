@@ -9,6 +9,7 @@
 *{
   font-family: "Cabin Sketch", cursive;
 }
+
 /* -----------------
   СТИЛИ ЗАГОЛОВКА
 -----------------  */
@@ -46,5 +47,27 @@
   }
 }
 
+/* -----------------
+  СТИЛИ подвала
+-----------------  */
 
+.all-page-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  height: 50px;
+  //background-color: lightgray;
+}
+
+.all-page-footer__logo{
+  margin: 10px;
+  height: 100%;
+}
+
+.all-page-footer__info{
+  text-align: center;
+  margin: 10px;
+}
 
