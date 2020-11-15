@@ -29,15 +29,18 @@
 
   border-radius: 255px 15px 225px 2px/5px 225px 10px 255px;
 
-  transition-property: border-radius;
+  transition-property: border-radius transform;
   transition-duration: 0.5s;
 
-  background: url(".././img/blouse.jpg") no-repeat center center;
+  background: url(".././img/blouse.jpg") no-repeat center top;
 }
 
 .category-page__card:hover{
   border-radius: 20px;
   cursor: pointer;
+  //transform: scale(1.05);
+
+  box-shadow: 0px 0px 1px 1px;
 }
 
 .category-page__card-footer{
