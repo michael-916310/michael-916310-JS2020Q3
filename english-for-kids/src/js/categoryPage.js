@@ -15,8 +15,6 @@ function renderCategoryPage(id){
     section.classList.add('category-page__card');
     section.style.backgroundImage = `url(".././${v.image}")`;
 
-    //url(".././img/blouse.jpg")
-
     section.insertAdjacentHTML('beforeend',`
       <footer class="category-page__card-footer">
         <span>${v.word}</span>

@@ -1,4 +1,7 @@
 
+import {setHeaderLabel} from './header.js';
+import {categoryList} from './gameData';
+
 const gameCore = {
 
   state: {
@@ -27,8 +30,15 @@ const gameCore = {
     this.DOMElements.mainPage.classList.add('main-page__hide');
     this.DOMElements.categoryPage.classList.add('category-page__hide');
 
+    let lblArr = categoryList.filter((el)=>{
+      if (el.id===this.state.currentPageId) {
+        return true;
+      }
+      return false;
+    })
     switch (this.state.currentPageId) {
       case -1 :
+        setHeaderLabel('select category to');
         this.DOMElements.mainPage.classList.remove('main-page__hide');
         // передадим колбэк на клик по карточке категории
         this.renders.renderMainPage((id)=>{
@@ -43,6 +53,10 @@ const gameCore = {
       case 6 :
       case 7 :
       case 8 :
+        if (lblArr) {
+          console.log(lblArr);
+          setHeaderLabel(lblArr[0].itemName);
+        }
         this.DOMElements.categoryPage.classList.remove('category-page__hide');
         this.renders.renderCategoryPage(this.state.currentPageId);
         break;
