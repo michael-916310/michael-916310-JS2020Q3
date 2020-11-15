@@ -17,12 +17,17 @@ function addToDOM(id){
     section.style.backgroundImage = `url("${v.image}")`;
     section.dataset.cardIndex=key;
 
-    section.insertAdjacentHTML('beforeend',`
-      <footer class="category-page__card-footer">
-        <span>${v.word}</span>
-        <img class="category-page__card-rotate" src="./img/rotate.svg">
-      </footer>
-    `);
+    if (gameCore.state.isPlayMode){
+      section.classList.add('category-page__card-play-mode');
+    } else {
+        section.insertAdjacentHTML('beforeend',`
+          <footer class="category-page__card-footer">
+            <span>${v.word}</span>
+            <img class="category-page__card-rotate" src="./img/rotate.svg">
+          </footer>
+      `);
+
+    }
 
     fr.append(section);
   });

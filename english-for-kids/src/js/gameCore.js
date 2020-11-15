@@ -1,4 +1,4 @@
-import {setHeaderLabel, setSwitcher} from './header.js';
+import {setHeaderLabel, setSwitcher, initSwitcher} from './header.js';
 import {categoryList} from './gameData';
 
 const gameCore = {
@@ -69,6 +69,10 @@ const gameCore = {
   start(){
 
     setSwitcher(this.state.isPlayMode);
+    initSwitcher((v)=>{
+      this.state.isPlayMode = v;
+      this.renderMe();
+    });
 
     this.renders.renderMenu((id)=>{
       this.handleCategoryChange(id);

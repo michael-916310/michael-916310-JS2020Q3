@@ -13,4 +13,10 @@ function setSwitcher(v){
   SWITCHER_ELM.checked = v;
 }
 
-export {setHeaderLabel, getSwitcher, setSwitcher}
+function initSwitcher(fnCallback){
+  SWITCHER_ELM.addEventListener('change', ()=>{
+    fnCallback(getSwitcher())
+  })
+}
+
+export {setHeaderLabel, getSwitcher, setSwitcher, initSwitcher}
