@@ -6,8 +6,8 @@
   {id: 4, itemName: 'Animal (set B)', image: 'img/lion.jpg'},
   {id: 5, itemName: 'Clothes', image: 'img/coat.jpg'},
   {id: 6, itemName: 'Emotions', image: 'img/surprised.jpg'},
-  {id: 7, itemName: 'Something', image: 'img/draw.jpg'},
-  {id: 8, itemName: 'Something', image: 'img/draw.jpg'}
+  {id: 7, itemName: 'Vehicle', image: 'img/car.jpg'},
+  {id: 8, itemName: 'Vegetables', image: 'img/cabbage.jpg'}
 ]
 
 const categoryData = new Map()
@@ -62,7 +62,7 @@ categoryData.set(1,
       image: 'img/jump.jpg',
       audioSrc: 'audio/jump.mp3'
     }
-  ]);
+]);
 
 categoryData.set(2,
   [
@@ -114,7 +114,7 @@ categoryData.set(2,
       image: 'img/swim.jpg',
       audioSrc: 'audio/swim.mp3'
     }
-  ]);
+]);
 
 categoryData.set(3,
   [
@@ -167,7 +167,7 @@ categoryData.set(3,
       audioSrc: 'audio/sheep.mp3'
     }
   ]
-  );
+);
 
 categoryData.set(4,
   [
@@ -220,7 +220,7 @@ categoryData.set(4,
       audioSrc: 'audio/dolphin.mp3'
     }
   ]
-  );
+);
 
 categoryData.set(5,
   [
@@ -273,7 +273,7 @@ categoryData.set(5,
       audioSrc: 'audio/shoe.mp3'
     }
   ]
-  );
+);
 
 categoryData.set(6,
   [
@@ -326,7 +326,113 @@ categoryData.set(6,
       audioSrc: 'audio/laugh.mp3'
     }
   ]
-  );
+);
 
+categoryData.set(7,
+  [
+    {
+      word: 'car',
+      translation: 'автомобиль',
+      image: 'img/car.jpg',
+      audioSrc: 'audio/car.mp3'
+    },
+    {
+      word: 'train',
+      translation: 'поезд',
+      image: 'img/train.jpg',
+      audioSrc: 'audio/train.mp3'
+    },
+    {
+      word: 'aircraft',
+      translation: 'самолет',
+      image: 'img/aircraft.jpg',
+      audioSrc: 'audio/aircraft.mp3'
+    },
+    {
+      word: 'ship',
+      translation: 'корабль',
+      image: 'img/ship.jpg',
+      audioSrc: 'audio/aircraft.mp3'
+    },
+    {
+      word: 'bus',
+      translation: 'автобус',
+      image: 'img/bus.jpg',
+      audioSrc: 'audio/bus.mp3'
+    },
+    {
+      word: 'tram',
+      translation: 'трамвай',
+      image: 'img/tram.jpg',
+      audioSrc: 'audio/tram.mp3'
+    },
+    {
+      word: 'trolleybus',
+      translation: 'троллейбус',
+      image: 'img/trolleybus.jpg',
+      audioSrc: 'audio/trolleybus.mp3'
+    },
+    {
+      word: 'subway',
+      translation: 'метро',
+      image: 'img/subway.jpg',
+      audioSrc: 'audio/subway.mp3'
+    },
+
+  ]
+);
+
+categoryData.set(8,
+  [
+    {
+      word: 'potato',
+      translation: 'картошка',
+      image: 'img/potato.jpg',
+      audioSrc: 'audio/potato.mp3'
+    },
+    {
+      word: 'cabbage',
+      translation: 'капуста',
+      image: 'img/cabbage.jpg',
+      audioSrc: 'audio/cabbage.mp3'
+    },
+    {
+      word: 'carrot',
+      translation: 'морковь',
+      image: 'img/carrot.jpg',
+      audioSrc: 'audio/carrot.mp3'
+    },
+    {
+      word: 'onion',
+      translation: 'лук',
+      image: 'img/onion.jpg',
+      audioSrc: 'audio/onion.mp3'
+    },
+    {
+      word: 'beet',
+      translation: 'beet',
+      image: 'img/beet.jpg',
+      audioSrc: 'audio/beet.mp3'
+    },
+    {
+      word: 'tomato',
+      translation: 'помидор',
+      image: 'img/tomatoes.jpg',
+      audioSrc: 'audio/tomato.mp3'
+    },
+    {
+      word: 'cucumber',
+      translation: 'огурец',
+      image: 'img/cucumber.jpg',
+      audioSrc: 'audio/cucumber.mp3'
+    },
+    {
+      word: 'paprika',
+      translation: 'перец',
+      image: 'img/paprika.jpg',
+      audioSrc: 'audio/paprika.mp3'
+    },
+  ]
+);
 
 export {categoryList, categoryData};

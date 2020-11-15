@@ -1,5 +1,5 @@
 import {categoryList} from './gameData.js';
-
+import gameCore from './gameCore';
 
 const CHECKBOX_CLASS_NAME = 'mobile-menu__checkbox';
 const CONTAINER_CLASS_NAME = 'mobile-menu__container';
@@ -9,8 +9,6 @@ function addToDOM(){
   let elCnt = document.querySelector(`.${LIST_CLASS_NAME}`);
 
   const fr = document.createDocumentFragment();
-
-
 
   categoryList.forEach((el)=>{
     let li = document.createElement('li');
@@ -39,17 +37,24 @@ function addEvents(fnClick){
 
   elms.forEach((el, idx, menuList)=>{
     el.addEventListener('click', ()=>{
-      // Выделем текущий элемент
-      menuList.forEach((menuItem)=>{
-        menuItem.classList.remove('mobile-menu__link-current');
-      });
-      el.classList.add('mobile-menu__link-current');
       // Вызовем колл-бэк
       fnClick(el.dataset.categoryId);
       // Закроем меню
       checkEl.checked = false;
     });
   })
+
+  checkEl.addEventListener('click',()=>{
+    if (checkEl.checked){
+      // Выделем текущий элемент
+      elms.forEach((menuItem)=>{
+        menuItem.classList.remove('mobile-menu__link-current');
+        if (menuItem.dataset.categoryId == gameCore.state.currentCategoryId) {
+          menuItem.classList.add('mobile-menu__link-current');
+        }
+      });
+    }
+  });
 
 
   // Обработаем клик не на меню
