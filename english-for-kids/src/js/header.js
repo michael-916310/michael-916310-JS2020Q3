@@ -59,4 +59,9 @@ function initStartButton(fnCallback){
   })
 }
 
-export {setHeaderLabel, getSwitcher, setSwitcher, initSwitcher, initStartButton}
+function renderHeader(){
+  renderStartGame();
+  renderRepeatGame();
+}
+
+export {setHeaderLabel, getSwitcher, setSwitcher, initSwitcher, initStartButton, renderHeader}

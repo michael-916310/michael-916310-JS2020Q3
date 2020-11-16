@@ -1,4 +1,4 @@
-import {setHeaderLabel, setSwitcher, initSwitcher, initStartButton} from './header.js';
+import {setHeaderLabel, setSwitcher, initSwitcher, initStartButton, renderHeader} from './header.js';
 import {categoryList} from './gameData';
 
 const gameCore = {
@@ -65,6 +65,17 @@ const gameCore = {
         break;
     }
 
+    this.stopGame();
+    renderHeader();
+
+  },
+
+  stopGame(){
+    this.state.isGameRunning = false;
+  },
+
+  startGame(){
+    this.state.isGameRunning = true;
   },
 
   start(){
@@ -73,14 +84,13 @@ const gameCore = {
     initSwitcher((v)=>{
       this.state.isPlayMode = v;
       if (!this.state.isPlayMode ) {
-        this.state.isGameRunning = false;
+        this.stopGame()
       }
       this.renderMe();
     });
 
     initStartButton(()=>{
-      this.state.isGameRunning = true;
-      console.log(`this.state.isGameRunning: ${this.state.isGameRunning}`)
+      this.startGame()
     });
 
     this.renders.renderMenu((id)=>{
