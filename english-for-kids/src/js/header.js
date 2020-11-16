@@ -46,16 +46,12 @@ START_ELM.addEventListener('transitionend',(e)=>{
 function initSwitcher(fnCallback){
   SWITCHER_ELM.addEventListener('change', ()=>{
     fnCallback(getSwitcher());
-    renderStartGame();
-    renderRepeatGame();
   })
 }
 
 function initStartButton(fnCallback){
   START_ELM.addEventListener('click', ()=>{
     fnCallback();
-    renderStartGame();
-    renderRepeatGame();
   })
 }
 

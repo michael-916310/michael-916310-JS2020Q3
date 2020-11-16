@@ -1,5 +1,6 @@
 import {setHeaderLabel, setSwitcher, initSwitcher, initStartButton, renderHeader} from './header.js';
 import {categoryList} from './gameData';
+import {getRandomItems} from './lib.js';
 
 const gameCore = {
 
@@ -7,6 +8,12 @@ const gameCore = {
     currentCategoryId: -1,
     isPlayMode: false,
     isGameRunning: false,
+
+    currentGame:{
+      itemsOrderToCheck:[],
+      currentItemIndex:0,
+      answers:[],
+    },
   },
 
   renders: {
@@ -66,16 +73,23 @@ const gameCore = {
     }
 
     this.stopGame();
-    renderHeader();
 
   },
 
   stopGame(){
     this.state.isGameRunning = false;
+    renderHeader();
   },
 
   startGame(){
     this.state.isGameRunning = true;
+    renderHeader();
+
+    this.state.currentGame.itemsOrderToCheck = getRandomItems(this.state.currentCategoryId);
+    this.state.currentGame.currentItemIndex = 0;
+    this.state.currentGame.answers=[];
+    console.log(`this.state.currentGame.itemsOrderToCheck:${this.state.currentGame.itemsOrderToCheck}`);
+
   },
 
   start(){
