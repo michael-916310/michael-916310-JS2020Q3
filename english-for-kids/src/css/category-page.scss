@@ -35,10 +35,12 @@
 }
 
 .category-page__card-play-mode{
-  //background: url(".././img/blouse.jpg") no-repeat center center;
   background-size: cover;
 }
 
+.category-page__card-rotated {
+  transform: rotateY(180deg);
+}
 
 .category-page__card:hover{
   border-radius: 20px;
@@ -58,8 +60,15 @@
   background-color: lightgray;
   border-radius: 0 0 5px 5px;
   border-radius: 255px 0px 225px 30px/20px 225px 30px 255px;
+
+  transition-property: transform;
+  transition-delay: 0.5S;
+  transition-duration: 0.5s;
 }
 
+.category-page__card-footer-rotated{
+  transform: rotateY(180deg);
+}
 
 .category-page__card-rotate{
   position: absolute;
@@ -73,4 +82,8 @@
 
 .category-page__card-rotate:hover{
   transform: scale(1.2);
+}
+
+.category-page__card-rotate_hide{
+  display: none;
 }

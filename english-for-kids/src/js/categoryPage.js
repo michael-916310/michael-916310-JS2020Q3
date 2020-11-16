@@ -44,15 +44,18 @@ function addEvents(){
 
       if (gameCore.state.isPlayMode) {
         console.log('play mode');
+      } else if (e.target.classList.contains('category-page__card-rotate')) {
+
+          el.classList.add('category-page__card-rotated');
+          el.querySelector('.category-page__card-footer').classList.add('category-page__card-footer-rotated');
+          el.querySelector('.category-page__card-rotate').classList.add('category-page__card-rotate_hide');
+          el.querySelector('span').innerText = categoryData.get(gameCore.state.currentCategoryId)[index].translation;
+
       } else {
-        if (e.target.classList.contains('category-page__card-rotate')) {
-          console.log('rotate');
-        } else {
-          let audio = new Audio();
-          audio.src = categoryData.get(gameCore.state.currentCategoryId)[index].audioSrc;
-          audio.autoplay = true;
+        const audio = new Audio();
+        audio.src = categoryData.get(gameCore.state.currentCategoryId)[index].audioSrc;
+        audio.autoplay = true;
       }
-    }
   });
 })
 }

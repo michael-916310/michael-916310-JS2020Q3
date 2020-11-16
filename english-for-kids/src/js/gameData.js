@@ -104,7 +104,7 @@ categoryData.set(2,
     },
     {
       word: 'skip',
-      translation: 'пропускать, прыгать',
+      translation: 'прыгать',
       image: 'img/skip.jpg',
       audioSrc: 'audio/skip.mp3'
     },
