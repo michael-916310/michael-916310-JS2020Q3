@@ -17,13 +17,14 @@
 
 .all-page-header__info{
   display:flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 
 }
 
 .all-page-header__info-label {
-  margin:0 20px;
+  margin:5px 20px;
   font-size: 2rem;
 
   @media (max-width:450px) {
@@ -33,4 +34,32 @@
   @media (max-width:380px) {
     display: none;
   }
+}
+
+.all-page-header_btn{
+  font-size: 1.7rem;
+
+  display: none;
+
+  margin: 0 20px;
+  height: 45px;
+  width: 215px;
+
+  outline: none;
+
+  border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
+
+  transition-property: background-color color opacity;
+  transition-duration: 0.5s;
+
+  @media (max-width:650px) {
+    margin-top: 15px;
+  }
+}
+
+.all-page-header_btn:hover{
+  background-color: $color-silver;
+  cursor: pointer;
+  border: none;
+  border-radius:20px;
 }

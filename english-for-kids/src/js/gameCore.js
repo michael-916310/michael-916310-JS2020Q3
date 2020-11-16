@@ -1,4 +1,4 @@
-import {setHeaderLabel, setSwitcher, initSwitcher} from './header.js';
+import {setHeaderLabel, setSwitcher, initSwitcher, initStartButton} from './header.js';
 import {categoryList} from './gameData';
 
 const gameCore = {
@@ -6,6 +6,7 @@ const gameCore = {
   state: {
     currentCategoryId: -1,
     isPlayMode: false,
+    isGameRunning: false,
   },
 
   renders: {
@@ -71,7 +72,15 @@ const gameCore = {
     setSwitcher(this.state.isPlayMode);
     initSwitcher((v)=>{
       this.state.isPlayMode = v;
+      if (!this.state.isPlayMode ) {
+        this.state.isGameRunning = false;
+      }
       this.renderMe();
+    });
+
+    initStartButton(()=>{
+      this.state.isGameRunning = true;
+      console.log(`this.state.isGameRunning: ${this.state.isGameRunning}`)
     });
 
     this.renders.renderMenu((id)=>{
