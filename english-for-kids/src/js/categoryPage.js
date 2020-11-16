@@ -39,6 +39,8 @@ function addEvents(){
   const cardList = document.querySelectorAll('.category-page__card');
 
   cardList.forEach((el)=>{
+
+    // Обработка клика по карточке
     el.addEventListener('click',(e)=>{
       const index = el.dataset.cardIndex;
 
@@ -56,7 +58,20 @@ function addEvents(){
         audio.src = categoryData.get(gameCore.state.currentCategoryId)[index].audioSrc;
         audio.autoplay = true;
       }
-  });
+    });
+
+    // снимем стили поворото при потере фокуса
+
+    el.addEventListener('mouseleave',(e)=>{
+      if (!gameCore.state.isPlayMode) {
+        el.classList.remove('category-page__card-rotated');
+        el.querySelector('.category-page__card-footer').classList.remove('category-page__card-footer-rotated');
+        el.querySelector('.category-page__card-rotate').classList.remove('category-page__card-rotate_hide');
+        el.querySelector('span').innerText = categoryData.get(gameCore.state.currentCategoryId)[el.dataset.cardIndex].word;
+      }
+
+    });
+
 })
 }
 
