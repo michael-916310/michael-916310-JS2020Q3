@@ -78,7 +78,6 @@ const gameCore = {
 
   stopGame(){
     this.state.isGameRunning = false;
-    this.state.isGameRunning = false;
     renderHeader();
   },
 
@@ -86,7 +85,7 @@ const gameCore = {
     if (isOk) {
       if (this.state.currentGame.currentItemIndex<(this.state.currentGame.itemsOrderToCheck.length-1)){
         this.state.currentGame.currentItemIndex++;
-        this.playSound();
+        this.playSound(1000);
       } else {
         console.log("FINISH");
         this.stopGame();
@@ -95,7 +94,7 @@ const gameCore = {
     this.state.currentGame.answers.push({isOk, itemIndex});
   },
 
-  playSound(){
+  playSound(delay=0){
     let idx = this.state.currentGame.itemsOrderToCheck[this.state.currentGame.currentItemIndex];
 
     function cb(){
@@ -105,10 +104,9 @@ const gameCore = {
       a.src = arr[idx].audioSrc;
       a.autoplay = true;
 
-      console.log(`cb`);
     }
     // задержка нужна чтобы не смешивались звуки "успеха\ошибки" и следующего слова
-    setTimeout(cb, 1000);
+    setTimeout(cb, delay);
   },
 
   startGame(){
