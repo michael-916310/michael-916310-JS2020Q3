@@ -1,5 +1,5 @@
-import {setHeaderLabel, setSwitcher, initSwitcher, initStartButton, renderHeader} from './header.js';
-import {categoryList} from './gameData';
+import {setHeaderLabel, setSwitcher, initSwitcher, initStartButton, initRepeatButton, renderHeader} from './header.js';
+import {categoryList, categoryData} from './gameData';
 import {getRandomItems} from './lib.js';
 
 const gameCore = {
@@ -78,7 +78,37 @@ const gameCore = {
 
   stopGame(){
     this.state.isGameRunning = false;
+    this.state.isGameRunning = false;
     renderHeader();
+  },
+
+  addAnswer(isOk, itemIndex){
+    if (isOk) {
+      if (this.state.currentGame.currentItemIndex<(this.state.currentGame.itemsOrderToCheck.length-1)){
+        this.state.currentGame.currentItemIndex++;
+        this.playSound();
+      } else {
+        console.log("FINISH");
+        this.stopGame();
+      }
+    }
+    this.state.currentGame.answers.push({isOk, itemIndex});
+  },
+
+  playSound(){
+    let idx = this.state.currentGame.itemsOrderToCheck[this.state.currentGame.currentItemIndex];
+
+    function cb(){
+      const a = new Audio();
+      const arr = categoryData.get(gameCore.state.currentCategoryId);
+
+      a.src = arr[idx].audioSrc;
+      a.autoplay = true;
+
+      console.log(`cb`);
+    }
+    // задержка нужна чтобы не смешивались звуки "успеха\ошибки" и следующего слова
+    setTimeout(cb, 1000);
   },
 
   startGame(){
@@ -88,8 +118,8 @@ const gameCore = {
     this.state.currentGame.itemsOrderToCheck = getRandomItems(this.state.currentCategoryId);
     this.state.currentGame.currentItemIndex = 0;
     this.state.currentGame.answers=[];
-    console.log(`this.state.currentGame.itemsOrderToCheck:${this.state.currentGame.itemsOrderToCheck}`);
 
+    this.playSound();
   },
 
   start(){
@@ -106,6 +136,8 @@ const gameCore = {
     initStartButton(()=>{
       this.startGame()
     });
+
+    initRepeatButton(()=>{ this.playSound() })
 
     this.renders.renderMenu((id)=>{
       this.handleCategoryChange(id);

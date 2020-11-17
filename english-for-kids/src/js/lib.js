@@ -5,7 +5,7 @@ function getRandomInt(min, max) {
 }
 
 export function getRandomItems(currentCategoryId){
-  let rt=[];
+  const rt=[];
   const source = categoryData.get(currentCategoryId)
   if (source){
     let rest = [];

@@ -10,8 +10,21 @@ function addToDOM(id){
     CATEGORY_PAGE_ELM.firstChild.remove();
   }
 
+  // let items = [];
+
+  // if (gameCore.state.isGameRunning) {
+  //   items = gameCore.state.currentGame.itemsOrderToCheck
+  // } else {
+  //   for (let i=0; i< categoryData.get(id).length; i++){
+  //     items[i]=i;
+  //   }
+  // }
+
+  // console.log(`items: ${items}`);
+
   const fr = document.createDocumentFragment();
   categoryData.get(id).forEach((v,key)=>{
+
     const section = document.createElement("section");
     section.classList.add('category-page__card');
     section.style.backgroundImage = `url("${v.image}")`;
@@ -30,6 +43,7 @@ function addToDOM(id){
     }
 
     fr.append(section);
+
   });
 
   CATEGORY_PAGE_ELM.append(fr);
@@ -45,7 +59,22 @@ function addEvents(){
       const index = el.dataset.cardIndex;
 
       if (gameCore.state.isPlayMode) {
-        console.log('play mode');
+        if (gameCore.state.isGameRunning) {
+          const idx = gameCore.state.currentGame.itemsOrderToCheck[gameCore.state.currentGame.currentItemIndex];
+          const cur = +el.dataset.cardIndex;
+
+
+          const audio = new Audio();
+          if (idx === cur) {
+            audio.src = 'audio/correct.mp3';
+          } else {
+            audio.src = 'audio/error.mp3';
+          }
+          audio.autoplay = true;
+
+          gameCore.addAnswer(idx === cur, idx);
+
+        }
       } else if (e.target.classList.contains('category-page__card-rotate')) {
 
           el.classList.add('category-page__card-rotated');

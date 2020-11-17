@@ -55,9 +55,15 @@ function initStartButton(fnCallback){
   })
 }
 
+function initRepeatButton(fnCallback){
+  REPEAT_ELM.addEventListener('click', ()=>{
+    fnCallback();
+  })
+}
+
 function renderHeader(){
   renderStartGame();
   renderRepeatGame();
 }
 
-export {setHeaderLabel, getSwitcher, setSwitcher, initSwitcher, initStartButton, renderHeader}
+export {setHeaderLabel, getSwitcher, setSwitcher, initSwitcher, initStartButton, initRepeatButton, renderHeader}
