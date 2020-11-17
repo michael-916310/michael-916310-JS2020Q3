@@ -92,14 +92,18 @@ const gameCore = {
     renderHeader();
   },
 
+  gameFinished(){
+    console.log("FINISH");
+  },
+
   addAnswer(isOk, itemIndex){
     if (isOk) {
       if (this.state.currentGame.currentItemIndex<(this.state.currentGame.itemsOrderToCheck.length-1)){
         this.state.currentGame.currentItemIndex++;
         this.playSound(1000);
       } else {
-        console.log("FINISH");
         this.stopGame();
+        this.gameFinished();
       }
     }
     this.state.currentGame.answers.push({isOk, itemIndex});
