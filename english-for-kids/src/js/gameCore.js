@@ -2,6 +2,7 @@ import {setHeaderLabel, setSwitcher, initSwitcher, initStartButton, initRepeatBu
 import {categoryList, categoryData} from './gameData';
 import {getRandomItems} from './lib.js';
 
+
 const gameCore = {
 
   state: {
@@ -20,16 +21,19 @@ const gameCore = {
     renderMainPage: null,
     renderMenu: null,
     renderCategoryPage: null,
+    renderGameProcess: null,
   },
 
   DOMElements: {
     mainPage: document.querySelector('.main-page__container'),
     categoryPage: document.querySelector('.category-page'),
+    gameProcess: document.querySelector('.game-process-container'),
   },
 
 
   handleCategoryChange(id){
     this.state.currentCategoryId = +id;
+    this.stopGame();
     this.renderMe();
   },
 
@@ -37,6 +41,7 @@ const gameCore = {
     // спрячем все
     this.DOMElements.mainPage.classList.add('main-page__hide');
     this.DOMElements.categoryPage.classList.add('category-page__hide');
+    this.DOMElements.gameProcess.classList.add('game-process-container__hide');
 
     let lblArr = categoryList.filter((el)=>{
       if (el.id===this.state.currentCategoryId) {
@@ -65,19 +70,25 @@ const gameCore = {
         if (lblArr) {
           setHeaderLabel(lblArr[0].itemName);
         }
+
         this.DOMElements.categoryPage.classList.remove('category-page__hide');
+        this.DOMElements.gameProcess.classList.remove('game-process-container__hide');
+
         this.renders.renderCategoryPage(this.state.currentCategoryId);
+        this.renders.renderGameProcess();
+
         break;
       default:
         break;
     }
 
-    this.stopGame();
 
   },
 
   stopGame(){
     this.state.isGameRunning = false;
+    this.state.currentGame.currentItemIndex = 0;
+    this.state.currentGame.answers=[];
     renderHeader();
   },
 
@@ -92,6 +103,7 @@ const gameCore = {
       }
     }
     this.state.currentGame.answers.push({isOk, itemIndex});
+    this.renders.renderGameProcess();
   },
 
   playSound(delay=0){
@@ -129,6 +141,7 @@ const gameCore = {
         this.stopGame()
       }
       this.renderMe();
+      renderHeader();
     });
 
     initStartButton(()=>{

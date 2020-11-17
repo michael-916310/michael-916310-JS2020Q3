@@ -10,19 +10,8 @@ function addToDOM(id){
     CATEGORY_PAGE_ELM.firstChild.remove();
   }
 
-  // let items = [];
-
-  // if (gameCore.state.isGameRunning) {
-  //   items = gameCore.state.currentGame.itemsOrderToCheck
-  // } else {
-  //   for (let i=0; i< categoryData.get(id).length; i++){
-  //     items[i]=i;
-  //   }
-  // }
-
-  // console.log(`items: ${items}`);
-
   const fr = document.createDocumentFragment();
+
   categoryData.get(id).forEach((v,key)=>{
 
     const section = document.createElement("section");
@@ -60,20 +49,22 @@ function addEvents(){
 
       if (gameCore.state.isPlayMode) {
         if (gameCore.state.isGameRunning) {
-          const idx = gameCore.state.currentGame.itemsOrderToCheck[gameCore.state.currentGame.currentItemIndex];
-          const cur = +el.dataset.cardIndex;
+          if (!el.classList.contains('category-page__card-play-mode_processed')) {
+            const idx = gameCore.state.currentGame.itemsOrderToCheck[gameCore.state.currentGame.currentItemIndex];
+            const cur = +el.dataset.cardIndex;
 
+            const audio = new Audio();
+            if (idx === cur) {
+              audio.src = 'audio/correct.mp3';
+              el.classList.add('category-page__card-play-mode_processed');
+            } else {
+              audio.src = 'audio/error.mp3';
+            }
+            audio.autoplay = true;
 
-          const audio = new Audio();
-          if (idx === cur) {
-            audio.src = 'audio/correct.mp3';
-          } else {
-            audio.src = 'audio/error.mp3';
+            gameCore.addAnswer(idx === cur, idx);
+
           }
-          audio.autoplay = true;
-
-          gameCore.addAnswer(idx === cur, idx);
-
         }
       } else if (e.target.classList.contains('category-page__card-rotate')) {
 
@@ -108,5 +99,6 @@ function renderCategoryPage(id){
   addToDOM(id);
   addEvents();
 }
+
 
 export default renderCategoryPage;
