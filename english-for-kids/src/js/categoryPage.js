@@ -67,11 +67,11 @@ function addEvents(){
           }
         }
       } else if (e.target.classList.contains('category-page__card-rotate')) {
-
-          el.classList.add('category-page__card-rotated');
-          el.querySelector('.category-page__card-footer').classList.add('category-page__card-footer-rotated');
-          el.querySelector('.category-page__card-rotate').classList.add('category-page__card-rotate_hide');
-          el.querySelector('span').innerText = categoryData.get(gameCore.state.currentCategoryId)[index].translation;
+        el.classList.add('category-page__card-rotated');
+        el.querySelector('.category-page__card-footer').classList.add('category-page__card-footer-rotated');
+        el.querySelector('.category-page__card-rotate').classList.add('category-page__card-rotate_hide');
+        const spanElm = el.querySelector('span');
+        spanElm.innerText = categoryData.get(gameCore.state.currentCategoryId)[index].translation
 
       } else {
         const audio = new Audio();
@@ -87,7 +87,8 @@ function addEvents(){
         el.classList.remove('category-page__card-rotated');
         el.querySelector('.category-page__card-footer').classList.remove('category-page__card-footer-rotated');
         el.querySelector('.category-page__card-rotate').classList.remove('category-page__card-rotate_hide');
-        el.querySelector('span').innerText = categoryData.get(gameCore.state.currentCategoryId)[el.dataset.cardIndex].word;
+        const spanElm = el.querySelector('span');
+        spanElm.innerText = categoryData.get(gameCore.state.currentCategoryId)[el.dataset.cardIndex].word;
       }
 
     });

@@ -2,7 +2,7 @@ import {categoryList} from './gameData';
 
 const elCnt = document.querySelector('.main-page__container') ;
 
-function remderMe(){
+function renderMe(){
   while (elCnt.firstChild) {
     elCnt.firstChild.remove();
   }
@@ -33,7 +33,7 @@ function addEvents(fnClick){
 }
 
 function initMainPage(fnClick){
-  remderMe();
+  renderMe();
   addEvents(fnClick)
 }
 

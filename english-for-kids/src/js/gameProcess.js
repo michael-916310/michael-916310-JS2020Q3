@@ -1,4 +1,4 @@
-import gameCore from './gameCore.js';
+import gameCore from './gameCore';
 
 const GAME_PROCESS_ELM = document.querySelector('.game-process-container');
 
@@ -9,7 +9,7 @@ function renderGameProcess(){
 
   if (gameCore.state.isGameRunning) {
     const fr = document.createDocumentFragment();
-    let arr = [...gameCore.state.currentGame.answers];
+    const arr = [...gameCore.state.currentGame.answers];
 
       for (let i=arr.length-1; i>=0; i--){
         if ((arr.length - i) <= 10){

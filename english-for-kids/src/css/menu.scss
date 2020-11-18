@@ -19,7 +19,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  //width: 35px;
   width: 40px;
   height: 30px;
   cursor: pointer;
@@ -50,11 +49,9 @@
   transition: .4s;
 }
 .mobile-menu__icon::after {
-  //top: 8px;
   top: 12px;
 }
 .mobile-menu__icon::before {
-  //top: -8px;
   top: -12px;
 }
 .mobile-menu__container {
@@ -63,7 +60,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  //top: 50px;
   top: 0px;
   left: 0;
   right: 0;

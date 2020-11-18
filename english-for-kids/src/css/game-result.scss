@@ -1,0 +1,23 @@
+.game-result{
+  margin:30px;
+  text-align: center;
+
+  font-size: 2rem;
+
+  @media (max-width:600px) {
+    margin-left:10px;
+    margin-right:10px;
+  }
+}
+
+
+.game-result__img{
+  margin: 30px 0 ;
+  @media (max-width:600px) {
+    width: 300px;
+  }
+  @media (max-width:400px) {
+    width: 200px;
+  }
+}
+

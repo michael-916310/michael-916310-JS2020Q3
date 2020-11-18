@@ -1,6 +1,7 @@
-import {setHeaderLabel, setSwitcher, initSwitcher, initStartButton, initRepeatButton, renderHeader} from './header.js';
+import {setHeaderLabel, setSwitcher, initSwitcher, initStartButton, initRepeatButton, renderHeader} from './header';
 import {categoryList, categoryData} from './gameData';
-import {getRandomItems} from './lib.js';
+import {getRandomItems} from './lib';
+import gameResult from './gameResult';
 
 
 const gameCore = {
@@ -14,6 +15,7 @@ const gameCore = {
       itemsOrderToCheck:[],
       currentItemIndex:0,
       answers:[],
+      wrongAnswers:0,
     },
   },
 
@@ -22,6 +24,7 @@ const gameCore = {
     renderMenu: null,
     renderCategoryPage: null,
     renderGameProcess: null,
+    renderGameResult: null,
   },
 
   DOMElements: {
@@ -37,63 +40,64 @@ const gameCore = {
     this.renderMe();
   },
 
-  renderMe(){
-    // спрячем все
+  hideAll(){
     this.DOMElements.mainPage.classList.add('main-page__hide');
     this.DOMElements.categoryPage.classList.add('category-page__hide');
     this.DOMElements.gameProcess.classList.add('game-process-container__hide');
+  },
 
-    let lblArr = categoryList.filter((el)=>{
-      if (el.id===this.state.currentCategoryId) {
-        return true;
-      }
-      return false;
-    })
+  renderMe(){
+    // спрячем все
+    this.hideAll();
 
-    switch (this.state.currentCategoryId) {
-      case -1 :
-        setHeaderLabel('select category to');
-        this.DOMElements.mainPage.classList.remove('main-page__hide');
-        // передадим колбэк на клик по карточке категории
-        this.renders.renderMainPage((id)=>{
-          this.handleCategoryChange(id);
-        });
-        break;
-      case 1 :
-      case 2 :
-      case 3 :
-      case 4 :
-      case 5 :
-      case 6 :
-      case 7 :
-      case 8 :
-        if (lblArr) {
-          setHeaderLabel(lblArr[0].itemName);
+    // отрисуем в зависимости от активной категории
+    if (this.state.currentCategoryId === -1){
+
+      // главная страница
+      setHeaderLabel('select category to');
+      this.DOMElements.mainPage.classList.remove('main-page__hide');
+      // передадим колбэк на клик по карточке категории
+      this.renders.renderMainPage((id)=>{
+        this.handleCategoryChange(id);
+      });
+
+    } else if ((this.state.currentCategoryId >=1) && ((this.state.currentCategoryId <=8))) {
+      // конкретная категория
+
+      const lblArr = categoryList.filter((el)=>{
+        if (el.id===this.state.currentCategoryId) {
+          return true;
         }
+        return false;
+      })
 
-        this.DOMElements.categoryPage.classList.remove('category-page__hide');
-        this.DOMElements.gameProcess.classList.remove('game-process-container__hide');
+      if (lblArr) {
+        setHeaderLabel(lblArr[0].itemName);
+      }
 
-        this.renders.renderCategoryPage(this.state.currentCategoryId);
-        this.renders.renderGameProcess();
+      this.DOMElements.categoryPage.classList.remove('category-page__hide');
+      this.DOMElements.gameProcess.classList.remove('game-process-container__hide');
 
-        break;
-      default:
-        break;
+      this.renders.renderCategoryPage(this.state.currentCategoryId);
+      this.renders.renderGameProcess();
     }
-
 
   },
 
   stopGame(){
     this.state.isGameRunning = false;
     this.state.currentGame.currentItemIndex = 0;
+    this.state.currentGame.wrongAnswers = this.state.currentGame.answers.filter((el)=>{return !el.isOk}).length;
     this.state.currentGame.answers=[];
+
+
+
     renderHeader();
   },
 
   gameFinished(){
     console.log("FINISH");
+    gameCore.renders.renderGameResult();
   },
 
   addAnswer(isOk, itemIndex){
@@ -111,7 +115,7 @@ const gameCore = {
   },
 
   playSound(delay=0){
-    let idx = this.state.currentGame.itemsOrderToCheck[this.state.currentGame.currentItemIndex];
+    const idx = this.state.currentGame.itemsOrderToCheck[this.state.currentGame.currentItemIndex];
 
     function cb(){
       const a = new Audio();
@@ -131,6 +135,7 @@ const gameCore = {
 
     this.state.currentGame.itemsOrderToCheck = getRandomItems(this.state.currentCategoryId);
     this.state.currentGame.currentItemIndex = 0;
+    this.state.currentGame.wrongAnswers = 0;
     this.state.currentGame.answers=[];
 
     this.playSound();

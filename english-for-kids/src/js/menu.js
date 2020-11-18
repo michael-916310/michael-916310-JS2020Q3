@@ -1,20 +1,19 @@
-import {categoryList} from './gameData.js';
+import {categoryList} from './gameData';
 import gameCore from './gameCore';
 
 const CHECKBOX_CLASS_NAME = 'mobile-menu__checkbox';
-const CONTAINER_CLASS_NAME = 'mobile-menu__container';
 const LIST_CLASS_NAME = 'mobile-menu__list';
 
 function addToDOM(){
-  let elCnt = document.querySelector(`.${LIST_CLASS_NAME}`);
+  const elCnt = document.querySelector(`.${LIST_CLASS_NAME}`);
 
   const fr = document.createDocumentFragment();
 
   categoryList.forEach((el)=>{
-    let li = document.createElement('li');
+    const li = document.createElement('li');
     li.classList.add('mobile-menu__item');
 
-    let a = document.createElement('a');
+    const a = document.createElement('a');
     a.classList.add('mobile-menu__link');
     a.href='#';
     a.innerText = el.itemName;
@@ -35,7 +34,7 @@ function addEvents(fnClick){
   const checkEl = document.querySelector(`.${CHECKBOX_CLASS_NAME}`);
   const menuContainerEl = document.querySelector(`.mobile-menu__container`);
 
-  elms.forEach((el, idx, menuList)=>{
+  elms.forEach((el)=>{
     el.addEventListener('click', ()=>{
       // Вызовем колл-бэк
       fnClick(el.dataset.categoryId);
@@ -49,7 +48,7 @@ function addEvents(fnClick){
       // Выделем текущий элемент
       elms.forEach((menuItem)=>{
         menuItem.classList.remove('mobile-menu__link-current');
-        if (menuItem.dataset.categoryId == gameCore.state.currentCategoryId) {
+        if (+menuItem.dataset.categoryId === gameCore.state.currentCategoryId) {
           menuItem.classList.add('mobile-menu__link-current');
         }
       });
@@ -61,7 +60,7 @@ function addEvents(fnClick){
   document.addEventListener('click', (e)=>{
     if (checkEl.checked){
       if (!menuContainerEl.contains(e.target)) {
-        let cl = e.target.classList;
+        const cl = e.target.classList;
         if (!cl.contains('mobile-menu__btn')
             && !cl.contains('mobile-menu__checkbox')
             && !cl.contains('mobile-menu__icon')

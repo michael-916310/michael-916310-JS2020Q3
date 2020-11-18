@@ -13,8 +13,7 @@ $switch-transition-default: 0.25s ease-out 0.1s;
   font-size: 1.5em;
   height: $switch-height;
   margin-top: 10px;
-  //margin-right: 20px;
-  margin-left: 5px;
+    margin-left: 5px;
   position: relative;
   width: $switch-width;
 
@@ -26,14 +25,12 @@ $switch-transition-default: 0.25s ease-out 0.1s;
     font-weight: bold;
     line-height: 1em;
     position: absolute;
-    //top: 8 / 16 * 1em;
     top: 8 / 16 * 1em * 0.8;
     transition: opacity $switch-transition-default;
     text-transform: uppercase;
   }
 
   .all-page-header__lbl-off {
-    //right: 7 / 16 * 1em;
     right: 7 / 16 * 1em * 2;
   }
 
@@ -47,7 +44,6 @@ $switch-transition-default: 0.25s ease-out 0.1s;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    // --
     height: 0;
     font-size: 1em;
     left: 0;
@@ -65,7 +61,6 @@ $switch-transition-default: 0.25s ease-out 0.1s;
     }
 
     &:before {
-      //border-radius: 20 / 16 * 1em;
       border-radius: 255px 25px 225px 25px/0px 225px 25px 255px;
 
       background: $color-silver;
@@ -93,7 +88,6 @@ $switch-transition-default: 0.25s ease-out 0.1s;
 
     &:checked {
       &:after {
-        //transform: translate(40 / 16 * 1em, 0);
         transform: translate(40 / 16 * 1em * 1.55, 0);
       }
 
