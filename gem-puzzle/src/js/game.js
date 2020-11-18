@@ -85,7 +85,7 @@ export const gameObj = {
       }
     }
 
-    if (((total+emptyLine)%2) == 0) {
+    if (((total+emptyLine)%2) === 0) {
       return false;
     } else {
       return true;
@@ -105,9 +105,9 @@ export const gameObj = {
         if (
           this.dominoArr.filter((item)=>{
             return (item.num === rnd)
-          }).length == 0
+          }).length === 0
         ) {
-          this.dominoArr.push({num:rnd, isEmpty: (rnd==0)?true:false});
+          this.dominoArr.push({num:rnd, isEmpty: (rnd===0)?true:false});
         }
       }
 
@@ -192,19 +192,19 @@ export const gameObj = {
   isGameFinished(){
     return this.dominoArr.every((item, idx, arr)=>{
 
-      if (idx==0) {
-        if (item.num==1) {
+      if (idx===0) {
+        if (item.num===1) {
           return true;
         }
         return false;
       }
-      if (idx==(arr.length-1) ) {
-        if (item.num==0) {
+      if (idx===(arr.length-1) ) {
+        if (item.num===0) {
         return true;
         }
         return false;
       }
-      if (item.num==(arr[idx-1].num+1)) {
+      if (item.num===(arr[idx-1].num+1)) {
         return true;
       }
       return false;
@@ -262,7 +262,7 @@ export const gameObj = {
   loadCurrentGame(){
     let g = JSON.parse(localStorage.savedGame || JSON.stringify('{}'));
 
-    if (Object.keys(g).length==4) {
+    if (Object.keys(g).length===4) {
       this.config.areaSize = g.config.areaSize;
       this.config.isSound = g.config.isSound;
       this.gameDuration = g.gameDuration;
