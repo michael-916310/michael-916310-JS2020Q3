@@ -172,7 +172,6 @@ function reloadGameData(){
       });
       gameObj.DOMElm.gameArea.appendChild(fr);
     }
-    //console.log(`reloadGameData finished`);
   }
 }
 
@@ -206,12 +205,12 @@ function prepareDragAndDrop(){
       topIdx = i - gameObj.config.areaSize;
       bottomIdx = (i + gameObj.config.areaSize)<gameObj.dominoArr.length ? (i + gameObj.config.areaSize) : -1;
 
-      if ( (i % gameObj.config.areaSize) > 0 ){
+      if ((i % gameObj.config.areaSize)>0){
         // левая ячейка не первая в строке
         leftIdx = i - 1;
       }
 
-      if ( (i + 1) < gameObj.dominoArr.length ) {
+      if ((i + 1)<gameObj.dominoArr.length) {
         // правая ячейка не последний элемент в строке
         if ((i+1)%gameObj.config.areaSize>0){
           rightIdx = i+1;
@@ -257,7 +256,6 @@ function prepareDragAndDrop(){
     cellToDrop(rightIdx);
   }
 
-  //console.log(`topIdx:${topIdx} bottomIdx:${bottomIdx} leftIdx:${leftIdx} rightIdx:${rightIdx}`);
 }
 
 function refresh(){

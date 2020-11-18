@@ -69,7 +69,7 @@ export const gameObj = {
 
   },
 
-  _isSovleable(){
+  _isSovlable(){
     let total = 0, emptyLine = 0;
 
     for(let pos=0; pos<this.dominoArr.length;pos++){
@@ -84,8 +84,6 @@ export const gameObj = {
         }
       }
     }
-
-    console.log(`total:${total} emptyLine:${emptyLine}`);
 
     if (((total+emptyLine)%2) == 0) {
       return false;
@@ -113,31 +111,32 @@ export const gameObj = {
         }
       }
 
-    } while (!this._isSovleable())
-    //console.log(`generateDominoArr complete`);
+    } while (!this._isSovlable())
   },
 
   moveDomino(idx, fnRefreshLayout){
-    if (idx<this.dominoArr.length){
+    const dominoLength = this.dominoArr.length;
+
+    if (idx<dominoLength){
 
       let next = -1, translate='';
 
       // ячейка вниз
-      if ((idx + this.config.areaSize) < this.dominoArr.length){
+      if ((idx + this.config.areaSize)<dominoLength){
         if (this.dominoArr[idx + this.config.areaSize].isEmpty) {
           next = idx + this.config.areaSize;
           translate = 'transform: translateY(100%)'
         }
       }
       // ячейка вверх
-      if ((idx - this.config.areaSize) >=0 ){
+      if ((idx - this.config.areaSize)>=0){
         if (this.dominoArr[idx - this.config.areaSize].isEmpty) {
           next = idx - this.config.areaSize;
           translate = 'transform: translateY(-100%)'
         }
       }
       // ячейка назад
-      if ((idx - 1) >=0 ){
+      if ((idx - 1)>=0){
         if (this.dominoArr[idx - 1].isEmpty) {
           // только в рамках текущего ряда
           if ((idx % this.config.areaSize) > 0){
@@ -147,7 +146,7 @@ export const gameObj = {
         }
       }
       // ячейка вперед
-      if ((idx + 1)  < this.dominoArr.length){
+      if ((idx + 1)<dominoLength){
         if (this.dominoArr[idx + 1].isEmpty) {
           // только в рамках текущего ряда
           if (((idx+1) % this.config.areaSize) > 0){
@@ -159,8 +158,6 @@ export const gameObj = {
       if (next>=0){
 
         this.DOMElm.dominoElmArr[idx].addEventListener('transitionend', ()=>{
-
-          //console.log('transitionend');
 
           this.dominoArr[next].num = this.dominoArr[idx].num;
           this.dominoArr[next].isEmpty = false;
@@ -201,13 +198,13 @@ export const gameObj = {
         }
         return false;
       }
-      if (idx == (arr.length-1) ) {
+      if (idx==(arr.length-1) ) {
         if (item.num==0) {
         return true;
         }
         return false;
       }
-      if (item.num == (arr[idx-1].num+1)) {
+      if (item.num==(arr[idx-1].num+1)) {
         return true;
       }
       return false;
@@ -216,31 +213,31 @@ export const gameObj = {
 
   addResultToList(){
     if (this.isGameFinished()) {
-      let lst = [];
+      let list = [];
       if (localStorage.gameList){
-        lst = JSON.parse(localStorage.gameList);
+        list = JSON.parse(localStorage.gameList);
       }
-      lst.push({
+      list.push({
         areaSize: this.config.areaSize,
         duration: this.gameDuration,
         stepsCount: this.stepsCount,
       })
-      localStorage.gameList = JSON.stringify(lst);
+      localStorage.gameList = JSON.stringify(list);
     }
   },
 
   loadResults(){
-    let lst = [];
+    let list = [];
     if (localStorage.gameList){
-      lst = JSON.parse(localStorage.gameList);
+      list = JSON.parse(localStorage.gameList);
     }
 
-    lst.sort((a,b)=>{
+    list.sort((a,b)=>{
       return (a.stepsCount - b.stepsCount);
     });
 
     this.bestResultArr = [];
-    lst.forEach((el)=>{
+    list.forEach((el)=>{
       if (this.bestResultArr.length<10) {
         this.bestResultArr.push(el);
       }
