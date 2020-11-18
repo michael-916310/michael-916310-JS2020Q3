@@ -80,9 +80,9 @@ function addEvents(){
       }
     });
 
-    // снимем стили поворото при потере фокуса
+    // снимем стили поворотов при потере фокуса
 
-    el.addEventListener('mouseleave',(e)=>{
+    el.addEventListener('mouseleave',()=>{
       if (!gameCore.state.isPlayMode) {
         el.classList.remove('category-page__card-rotated');
         el.querySelector('.category-page__card-footer').classList.remove('category-page__card-footer-rotated');
