@@ -90,14 +90,20 @@ const gameCore = {
     this.state.currentGame.wrongAnswers = this.state.currentGame.answers.filter((el)=>{return !el.isOk}).length;
     this.state.currentGame.answers=[];
 
-
-
     renderHeader();
   },
 
   gameFinished(){
     console.log("FINISH");
     gameCore.renders.renderGameResult();
+
+    setHeaderLabel('game over');
+    renderHeader();
+
+    setTimeout(()=>{
+      this.state.currentCategoryId = -1;
+      this.renderMe();
+    },3000);
   },
 
   addAnswer(isOk, itemIndex){
@@ -157,7 +163,9 @@ const gameCore = {
       this.startGame()
     });
 
-    initRepeatButton(()=>{ this.playSound() })
+    initRepeatButton(()=>{
+      this.playSound()
+    })
 
     this.renders.renderMenu((id)=>{
       this.handleCategoryChange(id);

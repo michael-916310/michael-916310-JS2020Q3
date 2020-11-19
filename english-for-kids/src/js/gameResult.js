@@ -22,11 +22,15 @@ export default function renderGameResult(){
   fr.append(document.createElement('br'));
 
   const img = document.createElement('img');
+  const a = new Audio;
   if (wrongCount) {
     img.src = 'img/failure.jpg';
+    a.src='/audio/failure.mp3';
   } else {
     img.src = 'img/success.jpg';
+    a.src='/audio/success.mp3';
   }
+  a.autoplay = true;
 
   img.classList.add('game-result__img');
   fr.append(img);

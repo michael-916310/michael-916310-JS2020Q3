@@ -35,7 +35,6 @@ function setSwitcher(v){
   renderStartGame();
 }
 
-
 START_ELM.addEventListener('transitionend',(e)=>{
   if (e.propertyName ==='opacity'){
     if (START_ELM.style.opacity === '0'){

@@ -27,13 +27,10 @@
   margin:5px 20px;
   font-size: 2rem;
 
-  @media (max-width:450px) {
-    font-size: 1.5rem;
-  }
-
-  @media (max-width:380px) {
+  @media (max-width:600px) {
     display: none;
   }
+
 }
 
 .all-page-header_btn{
@@ -51,10 +48,6 @@
 
   transition-property: background-color color opacity;
   transition-duration: 0.5s;
-
-  @media (max-width:650px) {
-    margin-top: 15px;
-  }
 }
 
 .all-page-header_btn:hover{
@@ -62,4 +55,12 @@
   cursor: pointer;
   border: none;
   border-radius:20px;
+}
+
+.all-page-header_btn-repeat{
+  width: 115px;
+  background: no-repeat center center  url(./../img/repeat.svg), linear-gradient(40deg, $color-clouds, $color-peter-river);
+
+  margin-top:0px;
+
 }
