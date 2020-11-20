@@ -11,6 +11,8 @@ export default function renderGameResult(){
 
   // прячем все страницы
   gameCore.hideAll();
+  // отображаем страницу результатов
+  gameCore.DOMElements.gameResult.classList.remove('game-result__hide');
 
   // рисуем результат
   const fr = document.createDocumentFragment();

@@ -106,4 +106,9 @@ $switch-transition-default: 0.25s ease-out 0.1s;
       }
     }
   }
+
+  &__hide{
+    display: none;
+  }
 }
+

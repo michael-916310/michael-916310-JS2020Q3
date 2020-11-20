@@ -27,6 +27,12 @@ function addToDOM(){
   });
 
   elCnt.appendChild(fr);
+  elCnt.insertAdjacentHTML(`beforeend`,`
+    <li class="mobile-menu__item">
+        <a class="mobile-menu__link mobile-menu__link-current" href="#" data-category-id="-10">Statistics</a>
+    </li>
+  `);
+
 }
 
 function addEvents(fnClick){

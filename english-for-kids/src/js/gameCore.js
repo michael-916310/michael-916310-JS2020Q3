@@ -1,7 +1,6 @@
 import {setHeaderLabel, setSwitcher, initSwitcher, initStartButton, initRepeatButton, renderHeader} from './header';
 import {categoryList, categoryData} from './gameData';
 import {getRandomItems} from './lib';
-import gameResult from './gameResult';
 
 
 const gameCore = {
@@ -25,12 +24,15 @@ const gameCore = {
     renderCategoryPage: null,
     renderGameProcess: null,
     renderGameResult: null,
+    renderGameStatistic: null,
   },
 
   DOMElements: {
     mainPage: document.querySelector('.main-page__container'),
     categoryPage: document.querySelector('.category-page'),
     gameProcess: document.querySelector('.game-process-container'),
+    gameResult: document.querySelector('.game-result'),
+    gameStatistic: document.querySelector('.statistic-container'),
   },
 
 
@@ -44,6 +46,8 @@ const gameCore = {
     this.DOMElements.mainPage.classList.add('main-page__hide');
     this.DOMElements.categoryPage.classList.add('category-page__hide');
     this.DOMElements.gameProcess.classList.add('game-process-container__hide');
+    this.DOMElements.gameResult.classList.add('game-result__hide');
+    this.DOMElements.gameStatistic.classList.add('statistic-container__hide');
   },
 
   renderMe(){
@@ -60,6 +64,12 @@ const gameCore = {
       this.renders.renderMainPage((id)=>{
         this.handleCategoryChange(id);
       });
+
+    } else if (this.state.currentCategoryId === -10) {
+
+      setHeaderLabel('game statistic');
+      this.DOMElements.gameStatistic.classList.remove('statistic-container__hide');
+      this.renders.renderGameStatistic();
 
     } else if ((this.state.currentCategoryId >=1) && ((this.state.currentCategoryId <=8))) {
       // конкретная категория
