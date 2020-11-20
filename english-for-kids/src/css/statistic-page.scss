@@ -9,8 +9,8 @@
 .statistic-table{
   margin: 0 auto;
   border-collapse: collapse;
+  border: 1px solid $color-gray-dark;
 }
-
 
 .statistic-table__header{
   border: 1px solid $color-gray-dark;
@@ -19,14 +19,7 @@
 
 .statistic-table__category-column{
   width: 200px;
-}
-
-.statistic-table__word-column{
-  width: 200px;
-}
-
-.statistic-table__translation-column{
-  width: 200px;
+  border: 1px solid $color-gray-dark;
 }
 
 .statistic-table__training-attempts-column,
@@ -37,6 +30,14 @@
   border: 1px dotted $color-gray;
 }
 
+.statistic-table__column_vertical{
+  @media (max-width: 600px)  {
+    writing-mode: vertical-rl;
+    margin-block-start: 0.1em;
+    //margin-block-end: 0.1em;
+  }
+}
+
 .statistic-table__cell_center{
   text-align:center;
 }
@@ -45,3 +46,19 @@
   border: 1px dotted $color-gray;
 }
 
+.statistic-table__row-name-line-1{
+  border-left: 1px solid $color-gray;
+  border-right: 1px solid $color-gray;
+  border-top: 1px solid $color-gray;
+}
+
+.statistic-table__row-name-line-2{
+  border-left: 1px solid $color-gray;
+  border-right: 1px solid $color-gray;
+}
+
+.statistic-table__row-name-line-3{
+  border-left: 1px solid $color-gray;
+  border-right: 1px solid $color-gray;
+  border-bottom: 1px solid $color-gray;
+}
