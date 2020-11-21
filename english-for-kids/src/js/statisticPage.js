@@ -22,7 +22,7 @@ function addToDOM(){
       return (el.id === catKey);
     })[0].itemName;
     catData.forEach((item, itemKey)=>{
-      let statLine = statData[catKey][itemKey];
+      const statLine = statData[catKey][itemKey];
       let rate = Math.round(statLine.successAttempts/(statLine.successAttempts + statLine.failureAttempts)*100);
       rate = (!rate)?0:rate;
 
