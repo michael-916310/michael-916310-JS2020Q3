@@ -1,7 +1,7 @@
 import {setHeaderLabel, setSwitcher, initSwitcher, initStartButton, initRepeatButton, renderHeader} from './header';
 import {categoryList, categoryData} from './gameData';
 import {getRandomItems} from './lib';
-
+import {LOCAL_STORAGE_STATISTIC_KEY} from './const';
 
 const gameCore = {
 
@@ -104,7 +104,6 @@ const gameCore = {
   },
 
   gameFinished(){
-    console.log("FINISH");
     gameCore.renders.renderGameResult();
 
     setHeaderLabel('game over');
@@ -114,6 +113,25 @@ const gameCore = {
       this.state.currentCategoryId = -1;
       this.renderMe();
     },3000);
+  },
+
+  updateStatistic(keyName='trainingCount', catId, dataId){
+    let data = localStorage.getItem(LOCAL_STORAGE_STATISTIC_KEY);
+    if (!data) {
+      // создадим пустую "матрицу"
+      data=[];
+      for (let i=1; i<=categoryList.length; i++){
+        data[i]=[];
+        const dt = categoryData.get(i);
+        for (let j=0; j<dt.length; j++){
+          data[i][j]={trainingCount:0, successAttempts:0, failureAttempts:0};
+        }
+      }
+    } else {
+      data = JSON.parse(data);
+    }
+    data[catId][dataId][keyName]++;
+    localStorage.setItem(LOCAL_STORAGE_STATISTIC_KEY, JSON.stringify(data));
   },
 
   addAnswer(isOk, itemIndex){
@@ -126,6 +144,8 @@ const gameCore = {
         this.gameFinished();
       }
     }
+    this.updateStatistic(isOk?'successAttempts':'failureAttempts', this.state.currentCategoryId, this.state.currentGame.currentItemIndex);
+
     this.state.currentGame.answers.push({isOk, itemIndex});
     this.renders.renderGameProcess();
   },

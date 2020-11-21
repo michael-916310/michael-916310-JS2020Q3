@@ -77,11 +77,12 @@ function addEvents(){
         const audio = new Audio();
         audio.src = categoryData.get(gameCore.state.currentCategoryId)[index].audioSrc;
         audio.autoplay = true;
+
+        gameCore.updateStatistic('trainingCount', gameCore.state.currentCategoryId, index);
       }
     });
 
     // снимем стили поворотов при потере фокуса
-
     el.addEventListener('mouseleave',()=>{
       if (!gameCore.state.isPlayMode) {
         el.classList.remove('category-page__card-rotated');

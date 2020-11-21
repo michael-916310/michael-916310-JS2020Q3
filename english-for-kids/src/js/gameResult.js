@@ -27,10 +27,10 @@ export default function renderGameResult(){
   const a = new Audio;
   if (wrongCount) {
     img.src = 'img/failure.jpg';
-    a.src='/audio/failure.mp3';
+    a.src='audio/failure.mp3';
   } else {
     img.src = 'img/success.jpg';
-    a.src='/audio/success.mp3';
+    a.src='audio/success.mp3';
   }
   a.autoplay = true;
 
