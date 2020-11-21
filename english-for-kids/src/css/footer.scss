@@ -1,0 +1,21 @@
+/* -----------------
+  СТИЛИ подвала
+-----------------  */
+
+.all-page-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.all-page-footer__logo{
+  margin: 10px;
+  height: 60px
+}
+
+.all-page-footer__info{
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 10px;
+}

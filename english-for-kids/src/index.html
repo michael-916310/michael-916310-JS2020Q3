@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="description" content="english-for-kids" />
+        <title>english-for-kids</title>
+
+        <link rel="shortcut icon" href="img/favicon.ico">
+
+    </head>
+
+    <body>
+
+        <!-- меню -->
+        <nav class="mobile-menu">
+            <input type="checkbox" id="mobile-menu__checkbox" class="mobile-menu__checkbox">
+            <label for="mobile-menu__checkbox" class="mobile-menu__btn">
+                <div class="mobile-menu__icon"></div>
+            </label>
+            <aside class="mobile-menu__container">
+                <ul class="mobile-menu__list">
+                    <li class="mobile-menu__item">
+                        <a class="mobile-menu__link mobile-menu__link-current" href="#" data-category-id="-1">Main page</a>
+                    </li>
+                </ul>
+            </aside>
+        </nav>
+
+        <header class="all-page-header">
+            <h1 class="all-page-header_h1">ENGLISH FOR KIDS</h1>
+
+            <article class="all-page-header__info">
+                <span class="all-page-header__info-label">
+                    select category to
+                </span>
+                <div class="all-page-header__switcher-container">
+                    <input type="checkbox" id="switch-blue" class="all-page-header__switcher" />
+                    <label for="switch-blue" class="all-page-header__lbl-off">train</label>
+                    <label for="switch-blue" class="all-page-header__lbl-on">play</label>
+                </div>
+                <button class="all-page-header_btn all-page-header_btn-start">
+                    Start game
+                </button>
+
+                <button class="all-page-header_btn all-page-header_btn-repeat">
+                </button>
+
+            </article>
+        </header>
+
+        <!-- главная страница -->
+        <main class="main-page__container">
+
+        </main>
+
+        <!-- тут отображаем "звездочки" -->
+        <section class="game-process-container">
+
+        </section>
+
+        <!-- Страница категорий -->
+        <main class="category-page">
+
+        </main>
+
+        <!-- Страница результата игры -->
+        <main class="game-result">
+
+        </main>
+
+        <!-- Страница статистики -->
+        <main class="statistic-container">
+            <table class="statistic-table">
+                <tr class="statistic-table__header">
+                    <th class="statistic-table__category-column">category</br>word</br>translation</th>
+                    <th class="statistic-table__training-attempts-column">
+                        <p class="statistic-table__column_vertical">number of training attempts</p>
+                    </th>
+                    <th class="statistic-table__success-attempts-column">
+                        <p class="statistic-table__column_vertical">game success attempts</p>
+                    </th>
+                    <th class="statistic-table__failure-attempts-column">
+                        <p class="statistic-table__column_vertical">game failure attempts</p>
+                    </th>
+                    <th class="statistic-table__percent-success-column">
+                        <p class="statistic-table__column_vertical">game success %</p>
+                    </th>
+                </tr>
+            </table>
+        </main>
+
+        <footer class="all-page-footer">
+            <img class="all-page-footer__logo" src="img/rs_school_js.svg"/>
+
+            <div class="all-page-footer__info">
+                Author:
+                <a href="https://github.com/michael-916310" target="_blank">Michael Buranov</a>
+                <br>
+                <a href="https://rs.school/js/" target="_blank">RS SCHOOL course</a>
+                <br>
+                2020
+            </div>
+        </footer>
+    </body>
+
+</html>

@@ -1,0 +1,66 @@
+/* -----------------
+  СТИЛИ ЗАГОЛОВКА
+-----------------  */
+
+.all-page-header {
+  text-align: center;
+  @media (max-width:450px) {
+    font-size: smaller;
+    text-align: right;
+  }
+}
+
+.all-page-header_h1{
+  margin-left: 70px;
+  margin-right: 50px;
+}
+
+.all-page-header__info{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.all-page-header__info-label {
+  margin:5px 20px;
+  font-size: 2rem;
+
+  @media (max-width:600px) {
+    display: none;
+  }
+
+}
+
+.all-page-header_btn{
+  font-size: 1.7rem;
+
+  display: none;
+
+  margin: 0 20px;
+  height: 45px;
+  width: 215px;
+
+  outline: none;
+
+  border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
+
+  transition-property: background-color color opacity;
+  transition-duration: 0.5s;
+}
+
+.all-page-header_btn:hover{
+  background-color: $color-silver;
+  cursor: pointer;
+  border: none;
+  border-radius:20px;
+}
+
+.all-page-header_btn-repeat{
+  width: 115px;
+  background: no-repeat center center  url(./../img/repeat.svg), linear-gradient(40deg, $color-clouds, $color-peter-river);
+
+  margin-top:0px;
+
+}
