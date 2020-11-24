@@ -29,7 +29,7 @@
 				<!-- INTRO -->
 				<section>
 					<h1>Introduction</h1>
-					<p class="fragment">
+					<p>
 						CSS Grid Layout is the most powerful layout system available in CSS.
 						It is a 2-dimensional system, meaning it can handle both columns and rows,
 						unlike flexbox which is largely a 1-dimensional system.
@@ -37,6 +37,7 @@
 				</section>
 
 				<!-- Terminology -->
+				<!--
 				<section>
 
 					<section>
@@ -83,12 +84,12 @@
 					</section>
 
 				</section>
+				-->
 
 				<!-- Properties for the Parent -->
 				<section>
 					<h1>
-						Properties for the Parent <br>
-						(Grid Container)
+						Properties for the Grid Container
 					</h1>
 				</section>
 
@@ -115,6 +116,7 @@
 						<img src="img/container-fr.png">
 					</section>
 
+					<!--
 					<section>
 						<h4>container: <br>
 							grid-template-columns<br>
@@ -157,6 +159,7 @@
 							</code>
 						</pre>
 					</section>
+					-->
 
 				</section>
 
@@ -193,7 +196,13 @@
 					<section>
 						<h4>container: <br>
 							justify-items</h4>
-						<img src="img/container-justify-items.png"/>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									justify-items: start | end | center | stretch;
+								}
+							</code>
+						</pre>
 					</section>
 
 					<section>
@@ -228,7 +237,13 @@
 					<section>
 						<h4>container: <br>
 							align-items</h4>
-						<img src="img/container-align-items.png"/>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-items: start | end | center | stretch;
+								}
+							</code>
+						</pre>
 					</section>
 
 					<section>
