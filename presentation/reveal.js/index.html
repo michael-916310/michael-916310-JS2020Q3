@@ -17,6 +17,7 @@
 		<div class="reveal">
 			<div class="slides">
 
+				<!-- HI -->
 				<section>
 					<h1>CSS Grid</h1>
 					<p>
@@ -25,6 +26,7 @@
 					<p>RS SCHOOL</p>
 				</section>
 
+				<!-- INTRO -->
 				<section>
 					<h1>Introduction</h1>
 					<p class="fragment">
@@ -34,6 +36,7 @@
 					</p>
 				</section>
 
+				<!-- Terminology -->
 				<section>
 
 					<section>
@@ -81,6 +84,7 @@
 
 				</section>
 
+				<!-- Properties for the Parent -->
 				<section>
 					<h1>
 						Properties for the Parent <br>
@@ -88,11 +92,13 @@
 					</h1>
 				</section>
 
+				<!-- Properties for the Parent : display -->
 				<section>
 					<h2>display</h2>
 					<img src="img/container-display.png">
 				</section>
 
+				<!-- Properties for the Parent : grid-template -->
 				<section>
 
 					<section>
@@ -109,8 +115,52 @@
 						<img src="img/container-fr.png">
 					</section>
 
+					<section>
+						<h4>container: <br>
+							grid-template-columns<br>
+							grid-template-rows</h4>
+
+						<p>
+								When sizing rows and columns, you can use all the lengths you are used to, like px, rem, %, etc, but you also have keywords like min-content, max-content, auto, and perhaps the most useful, fractional units.
+						</p>
+						<pre>
+							<code data-trim data-noescape>
+								grid-template-columns: 200px 1fr 2fr min-content;
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							grid-template-columns<br>
+							grid-template-rows</h4>
+						<p>
+							You also have access to a function which can help set boundaries for otherwise flexible units. For example to set a column to be 1fr, but shrink no further than 200px:
+						</p>
+						<pre>
+							<code data-trim data-noescape>
+								grid-template-columns: 1fr minmax(200px, 1fr);
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							grid-template-columns<br>
+							grid-template-rows</h4>
+						<p>
+							There is repeat() function, which saves some typing, like making 10 columns
+						</p>
+						<pre>
+							<code data-trim data-noescape>
+								grid-template-columns: repeat(10, 1fr);
+							</code>
+						</pre>
+					</section>
+
 				</section>
 
+				<!-- Properties for the Parent : grid-template-areas -->
 				<section>
 
 					<section>
@@ -128,6 +178,7 @@
 
 				</section>
 
+				<!-- Properties for the Parent : column-gap, row-gap, gap -->
 				<section>
 					<h4>container: <br>
 						column-gap, row-gap, gap</h4>
@@ -136,6 +187,7 @@
 					<img src="img/container-column-gap-3.png"/>
 				</section>
 
+				<!-- Properties for the Parent : justify-items -->
 				<section>
 
 					<section>
@@ -170,6 +222,7 @@
 
 				</section>
 
+				<!-- Properties for the Parent : align-items -->
 				<section>
 
 					<section>
@@ -194,6 +247,7 @@
 
 				</section>
 
+				<!-- Properties for the Parent : justify-content -->
 				<section>
 
 					<section>
@@ -301,7 +355,7 @@
 
 				</section>
 
-				<!-- align-content -->
+				<!-- Properties for the Parent : align-content -->
 				<section>
 
 					<section>
@@ -344,23 +398,75 @@
 
 					<section>
 						<h4>container: <br>
-							align-content: end</h4>
+							align-content: center</h4>
 						<pre>
 							<code data-trim data-noescape>
 								.container {
-									align-content: end;
+									align-content: center;
 								}
 							</code>
 						</pre>
-						<img src="img/container-align-content-end.png"/>
+						<img src="img/container-align-content-center.png"/>
 					</section>
 
-				</section>
+					<section>
+						<h4>container: <br>
+							align-content: stretch</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-content: stretch;
+								}
+							</code>
+						</pre>
+						<img src="img/container-align-content-stretch.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							align-content: space-around</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-content: space-around;
+								}
+							</code>
+						</pre>
+						<img src="img/container-align-content-space-around.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							align-content: space-between</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-content: space-between;
+								}
+							</code>
+						</pre>
+						<img src="img/container-align-content-space-between.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							align-content: space-evenly</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-content: space-evenly;
+								}
+							</code>
+						</pre>
+						<img src="img/container-align-content-space-evenly.png"/>
+					</section>
 
 				</section>
 
 			</div>
 		</div>
+
+
 
 		<script src="dist/reveal.js"></script>
 		<script src="plugin/notes/notes.js"></script>
