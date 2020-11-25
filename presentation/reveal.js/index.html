@@ -1,0 +1,609 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<!-- HI -->
+				<section>
+					<h1>CSS Grid</h1>
+					<p>
+						task PRESENTATION
+					</p>
+					<p>RS SCHOOL</p>
+				</section>
+
+				<!-- INTRO -->
+				<section>
+					<h1>Introduction</h1>
+					<p>
+						CSS Grid Layout is the most powerful layout system available in CSS.
+						It is a 2-dimensional system, meaning it can handle both columns and rows,
+						unlike flexbox which is largely a 1-dimensional system.
+					</p>
+				</section>
+
+				<!-- Terminology -->
+				<!--
+				<section>
+
+					<section>
+						<h1>Important Terminology</h1>
+					</section>
+
+					<section>
+						<h2>Grid Container</h2>
+						<p class="fragment">
+							The element on which display: grid is applied.
+						</p>
+						<pre class="fragment">
+							<code data-trim data-noescape>
+								display: grid
+							</code>
+						</pre>
+						<img class="fragment" src="img/grid-container.png"/>
+					</section>
+
+
+					<section>
+						<h2>Grid Item</h2>
+						<img class="fragment" src="img/grid-item.png"/>
+					</section>
+
+					<section>
+						<h2>Grid Line</h2>
+						<img class="fragment" src="img/grid-line.png"/>
+					</section>
+
+					<section>
+						<h2>Grid Cell</h2>
+						<img class="fragment" src="img/grid-cell.png"/>
+					</section>
+
+					<section>
+						<h2>Grid Track</h2>
+						<img class="fragment" src="img/grid-track.png"/>
+					</section>
+
+					<section>
+						<h2>Grid Area</h2>
+						<img class="fragment" src="img/grid-area.png"/>
+					</section>
+
+				</section>
+				-->
+
+				<!-- Properties for the Parent -->
+				<section>
+					<h1>
+						Properties for the Grid Container
+					</h1>
+				</section>
+
+				<!-- Properties for the Parent : display -->
+				<section>
+					<h2>display</h2>
+					<img src="img/container-display.png">
+				</section>
+
+				<!-- Properties for the Parent : grid-template -->
+				<section>
+
+					<section>
+						<h4>container: <br>
+							grid-template-columns<br>
+							grid-template-rows</h4>
+						<img src="img/container-template-columns.png">
+					</section>
+
+					<section>
+						<h4>container: <br>
+							grid-template-columns<br>
+							grid-template-rows</h4>
+						<img src="img/container-fr.png">
+					</section>
+
+					<!--
+					<section>
+						<h4>container: <br>
+							grid-template-columns<br>
+							grid-template-rows</h4>
+
+						<p>
+								When sizing rows and columns, you can use all the lengths you are used to, like px, rem, %, etc, but you also have keywords like min-content, max-content, auto, and perhaps the most useful, fractional units.
+						</p>
+						<pre>
+							<code data-trim data-noescape>
+								grid-template-columns: 200px 1fr 2fr min-content;
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							grid-template-columns<br>
+							grid-template-rows</h4>
+						<p>
+							You also have access to a function which can help set boundaries for otherwise flexible units. For example to set a column to be 1fr, but shrink no further than 200px:
+						</p>
+						<pre>
+							<code data-trim data-noescape>
+								grid-template-columns: 1fr minmax(200px, 1fr);
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							grid-template-columns<br>
+							grid-template-rows</h4>
+						<p>
+							There is repeat() function, which saves some typing, like making 10 columns
+						</p>
+						<pre>
+							<code data-trim data-noescape>
+								grid-template-columns: repeat(10, 1fr);
+							</code>
+						</pre>
+					</section>
+					-->
+
+				</section>
+
+				<!-- Properties for the Parent : grid-template-areas -->
+				<section>
+
+					<section>
+						<h4>container: <br>
+							grid-template-areas</h4>
+						<img src="img/container-grid-areas.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							grid-template-areas</h4>
+						<img src="img/container-grid-areas-2.png"/>
+						<img src="img/container-grid-areas-3.png"/>
+					</section>
+
+				</section>
+
+				<!-- Properties for the Parent : column-gap, row-gap, gap -->
+				<section>
+					<h4>container: <br>
+						column-gap, row-gap, gap</h4>
+					<img src="img/container-column-gap.png"/>
+					<img src="img/container-column-gap-2.png"/>
+					<img src="img/container-column-gap-3.png"/>
+				</section>
+
+				<!-- Properties for the Parent : justify-items -->
+				<section>
+
+					<section>
+						<h4>container: <br>
+							justify-items</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									justify-items: start | end | center | stretch;
+								}
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							justify-items: start</h4>
+						<img src="img/container-justify-items-start.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							justify-items: end</h4>
+						<img src="img/container-justify-items-end.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							justify-items: center</h4>
+						<img src="img/container-justify-items-center.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							justify-items: stretch</h4>
+						<img src="img/container-justify-items-stretch.png"/>
+					</section>
+
+				</section>
+
+				<!-- Properties for the Parent : align-items -->
+				<section>
+
+					<section>
+						<h4>container: <br>
+							align-items</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-items: start | end | center | stretch;
+								}
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							align-items: start, end</h4>
+						<img src="img/container-align-items-start.png"/>
+						<img src="img/container-align-items-end.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							align-items: center, stretch</h4>
+						<img src="img/container-align-items-center.png"/>
+						<img src="img/container-align-items-stretch.png"/>
+					</section>
+
+				</section>
+
+				<!-- Properties for the Parent : justify-content -->
+				<section>
+
+					<section>
+						<h4>container: <br>
+							justify-content</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									justify-content: start | end | center | stretch | space-around | space-between | space-evenly;
+								}
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							justify-content: start</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									justify-content: start;
+								}
+							</code>
+						</pre>
+						<img src="img/container-justify-content-start.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							justify-content: end</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									justify-content: end;
+								}
+							</code>
+						</pre>
+						<img src="img/container-justify-content-end.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							justify-content: center</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									justify-content: center;
+								}
+							</code>
+						</pre>
+						<img src="img/container-justify-content-center.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							justify-content: stretch</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									justify-content: stretch;
+								}
+							</code>
+						</pre>
+						<img src="img/container-justify-content-stretch.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							justify-content: space-around</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									justify-content: space-around;
+								}
+							</code>
+						</pre>
+						<img src="img/container-justify-content-space-around.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							justify-content: space-between</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									justify-content: space-between;
+								}
+							</code>
+						</pre>
+						<img src="img/container-justify-content-space-between.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							justify-content: space-evenly</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									justify-content: space-evenly;
+								}
+							</code>
+						</pre>
+						<img src="img/container-justify-content-space-evenly.png"/>
+					</section>
+
+				</section>
+
+				<!-- Properties for the Parent : align-content -->
+				<section>
+
+					<section>
+						<h4>container: <br>
+							align-content</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-content: start | end | center | stretch | space-around | space-between | space-evenly;
+								}
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							align-content: start</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-content: start;
+								}
+							</code>
+						</pre>
+						<img src="img/container-align-content-start.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							align-content: end</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-content: end;
+								}
+							</code>
+						</pre>
+						<img src="img/container-align-content-end.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							align-content: center</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-content: center;
+								}
+							</code>
+						</pre>
+						<img src="img/container-align-content-center.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							align-content: stretch</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-content: stretch;
+								}
+							</code>
+						</pre>
+						<img src="img/container-align-content-stretch.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							align-content: space-around</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-content: space-around;
+								}
+							</code>
+						</pre>
+						<img src="img/container-align-content-space-around.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							align-content: space-between</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-content: space-between;
+								}
+							</code>
+						</pre>
+						<img src="img/container-align-content-space-between.png"/>
+					</section>
+
+					<section>
+						<h4>container: <br>
+							align-content: space-evenly</h4>
+						<pre>
+							<code data-trim data-noescape>
+								.container {
+									align-content: space-evenly;
+								}
+							</code>
+						</pre>
+						<img src="img/container-align-content-space-evenly.png"/>
+					</section>
+
+				</section>
+
+				<!-- Properties for the Grid Items -->
+				<section>
+					<h1>
+						Properties for the Grid Items
+					</h1>
+				</section>
+
+				<section>
+					<h4>grid-column-start, grid-column-end, grid-row-start, grid-row-end</h4>
+					<pre>
+						<code data-trim data-noescape>
+							.item-a {
+								grid-column-start: 2;
+								grid-column-end: five;
+								grid-row-start: row1-start;
+								grid-row-end: 3;
+							}
+						</code>
+					</pre>
+					<img src="img/items-row-column-start-end.png"/>
+				</section>
+
+				<section>
+					<h4>justify-self</h4>
+					<pre>
+						<code data-trim data-noescape>
+							.item {
+								justify-self: start | end | center | stretch;
+							}
+						</code>
+					</pre>
+					<img src="img/items-justify-self-start.png"/>
+					<img src="img/items-justify-self-end.png"/>
+					<img src="img/items-justify-self-center.png"/>
+					<img src="img/items-justify-self-stretch.png"/>
+				</section>
+
+				<section>
+					<h4>align-self</h4>
+					<pre>
+						<code data-trim data-noescape>
+							.item {
+								align-self: start | end | center | stretch;
+							}
+						</code>
+					</pre>
+					<img src="img/items-align-self-start.png"/>
+					<img src="img/items-align-self-end.png"/>
+					<img src="img/items-align-self-center.png"/>
+					<img src="img/items-align-self-stretch.png"/>
+				</section>
+
+				<!-- Find all answers here -->
+				<section>
+					<h1>Find all answers here</h1>
+					<pre>
+						<code data-trim data-noescape>
+							https://css-tricks.com/snippets/css/complete-guide-grid/
+						</code>
+					</pre>
+				</section>
+
+				<!-- FLEX & CSS Grid -->
+				<section>
+					<h1>
+						FLEX & CSS Grid
+					</h1>
+				</section>
+
+				<section>
+					<h3>multiple rows and columns</h3>
+					<ul>
+						<li>
+							Grid can span across multiple rows and columns. Flex by default cannot.
+						</li>
+						<li>
+							Grid has templates, gaps and lines. Flex has lines and non-default wrap.
+						</li>
+						<li>
+							At the same time, flex can create grid-like layouts with explicit item width and wrap.
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>mix</h3>
+					<ul>
+						<li>
+							With grid you can avoid media queries for creating responsive layouts if you learn how to use fr units together with min-max function
+						</li>
+						<li>
+							You can use grid with flex items. Or you can still use flex-only layouts — items can also be flex containers
+						</li>
+						<li>
+							My be reasonable to use grid for mapping out responsive layout for largest layout areas.
+						</li>
+					</ul>
+
+				</section>
+
+				<!-- thanks -->
+				<section>
+					<h1>
+						thanks
+					</h1>
+				</section>
+
+			</div>
+		</div>
+
+
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
