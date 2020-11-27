@@ -1,3 +1,5 @@
+@import 'colors.scss';
+@import 'switchers.scss';
 @import 'header.scss';
 @import 'main.scss';
 @import 'table.scss';
@@ -5,3 +7,6 @@
 @import 'chart.scss';
 @import 'footer.scss';
 
+* {
+  font-family: "Cabin Sketch", cursive;
+}

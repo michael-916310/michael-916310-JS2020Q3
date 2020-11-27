@@ -1,4 +1,23 @@
-.header-container{
-  height: 100px;
-  background-color: gray;
+
+.header-h1{
+  text-align: center;
+  margin: 10px;
+}
+
+.header-controls-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.header-update-date{
+  height: 1.75rem;
+  line-height: 1.75rem;
+  border-radius: 8rem;
+  background-color: $color-secondary;
+
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 10px;
+  color: $color-light;
 }

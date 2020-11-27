@@ -1,5 +1,7 @@
 .table-container{
   grid-row-start: 1;
   grid-row-end: span 2;
+
+  min-height: 300px;
   background-color: linen;
 }
