@@ -1,7 +1,7 @@
-body {
-  text-align: center;
-}
+@import 'header.scss';
+@import 'main.scss';
+@import 'table.scss';
+@import 'map.scss';
+@import 'chart.scss';
+@import 'footer.scss';
 
-.hello {
-  font-size: 2rem;
-}
