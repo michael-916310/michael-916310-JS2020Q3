@@ -32,22 +32,22 @@
     <main class="main-container">
       <section class="table-container">
         <!-- таблица с данными по всему миру или по выбранной стране -->
-        <table class="table">
+        <table class="total-data__table">
           <tr>
-            <th class="table-header__cell"></th>
-            <th class="table-header__cell">весь мир</th>
+            <th class="total-data__header-cell"></th>
+            <th class="total-data__header-cell">весь мир</th>
           </tr>
-          <tr class="table-row">
-            <td class="table-row__indicator">Заболевших</td>
-            <td class="table-cell__diseased">10</td>
+          <tr">
+            <td class="total-data__row-indicator">Заболевших</td>
+            <td class="total-data__cell-diseased">10</td>
           </tr>
-          <tr class="table-row">
-            <td class="table-row__indicator">Умерших</td>
-            <td class="table-cell__dead">20</td>
+          <tr>
+            <td class="total-data__row-indicator">Умерших</td>
+            <td class="total-data__cell-dead">20</td>
           </tr>
-          <tr class="table-row">
-            <td class="table-row__indicator">Выздоровело</td>
-            <td class="table-row__recovered">30</td>
+          <tr">
+            <td class="total-data__row-indicator">Выздоровело</td>
+            <td class="total-data__cell-recovered">30</td>
           </tr>
         </table>
         <div class="country-container">
@@ -65,11 +65,71 @@
             </select>
           </label>
           <p class="switcher country-list__is-ascending"></p>
+          <div class="country-list__container">
+            <table class="country-list__table">
+            <tr>
+              <td class="country-list__row__cell">флаг</td>
+              <td class="country-list__row__cell country-list__row-cell-country">афганистан</td>
+              <td class="country-list__row__cell">234567</td>
+            </tr>
+            <tr>
+              <td class="country-list__row__cell">флаг</td>
+              <td class="country-list__row__cell country-list__row-cell-country">объединенные арабские эмираты</td>
+              <td class="country-list__row__cell">111222</td>
+            </tr>
+            <tr>
+              <td class="country-list__row__cell">флаг</td>
+              <td class="country-list__row__cell country-list__row-cell-country">испания</td>
+              <td class="country-list__row__cell">123222</td>
+            </tr>
+            <tr>
+              <td class="country-list__row__cell">флаг</td>
+              <td class="country-list__row__cell country-list__row-cell-country">франция</td>
+              <td class="country-list__row__cell">13321321</td>
+            </tr>
+            <tr>
+              <td class="country-list__row__cell">флаг</td>
+              <td class="country-list__row__cell country-list__row-cell-country">швеция</td>
+              <td class="country-list__row__cell">21321</td>
+            </tr>
+            <tr>
+              <td class="country-list__row__cell">флаг</td>
+              <td class="country-list__row__cell country-list__row-cell-country">Болгария</td>
+              <td class="country-list__row__cell">3321321</td>
+            </tr>
+            <tr>
+              <td class="country-list__row__cell">флаг</td>
+              <td class="country-list__row__cell country-list__row-cell-country">Польша</td>
+              <td class="country-list__row__cell">3321321</td>
+            </tr>
+            <tr>
+              <td class="country-list__row__cell">флаг</td>
+              <td class="country-list__row__cell country-list__row-cell-country">Германия</td>
+              <td class="country-list__row__cell">21321</td>
+            </tr>
+            <tr>
+              <td class="country-list__row__cell">флаг</td>
+              <td class="country-list__row__cell country-list__row-cell-country">Австрия</td>
+              <td class="country-list__row__cell">21321</td>
+            </tr>
+            </table>
+          </div>
         </div>
       </section>
       <section class="map-container">map-container</section>
       <section class="chart-container">chart-container</section>
     </main>
-    <footer class="footer-container">footer</footer>
+    <footer class="footer-container">
+        <img class="footer__logo" src="img/rs_school_js.svg"/>
+
+        <div class="footer__info">
+            Author:
+            <a href="https://github.com/michael-916310" target="_blank">Michael Buranov</a>
+            <br>
+            <a href="https://rs.school/js/" target="_blank">RS SCHOOL course</a>
+            <br>
+            2020
+        </div>
+    </footer>
   </body>
 </html>
