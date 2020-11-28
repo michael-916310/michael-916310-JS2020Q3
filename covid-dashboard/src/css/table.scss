@@ -1,7 +1,57 @@
-.table-container{
-  grid-row-start: 1;
-  grid-row-end: span 2;
-
+.table-container {
   min-height: 300px;
-  background-color: linen;
+  padding: 5px;
+}
+
+.table {
+  margin: 0 auto;
+  width: 80%;
+
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.table-header__cell {
+  font-weight: normal;
+  color: $color-gray-dark;
+  border-bottom: 2px solid $color-primary;
+  padding: 10px 8px;
+}
+
+.table-row__indicator {
+  text-align: left;
+}
+
+td {
+  border-bottom: 1px solid $color-secondary;
+  color: $color-gray;
+  padding: 9px 8px;
+}
+
+.country-container {
+  margin-top: 10px;
+  padding: 5px;
+}
+.country-search__input {
+  width: 100%;
+  height: 1.8rem;
+
+  border-radius: 5px;
+  border: 1px $color-secondary dotted;
+}
+
+.country-list__indicator-container {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: $color-gray;
+}
+
+.country-list__indicator {
+  flex-basis: 70%;
+  border-radius: 5px;
+  border: 1px $color-secondary dotted;
+  color: black;
 }

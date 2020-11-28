@@ -1,11 +1,15 @@
-@import 'colors.scss';
-@import 'switchers.scss';
-@import 'header.scss';
-@import 'main.scss';
-@import 'table.scss';
-@import 'map.scss';
-@import 'chart.scss';
-@import 'footer.scss';
+@import "colors.scss";
+@import "switchers.scss";
+@import "header.scss";
+@import "main.scss";
+@import "table.scss";
+@import "map.scss";
+@import "chart.scss";
+@import "footer.scss";
+
+* {
+  box-sizing: border-box;
+}
 
 * {
   font-family: "Cabin Sketch", cursive;

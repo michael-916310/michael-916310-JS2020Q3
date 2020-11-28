@@ -1,43 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
     <title>Covid dashboard</title>
     <link rel="stylesheet" href="style.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header-container">
-        <h1 class="header-h1">
-            Задание RS School:
-            <a href="https://github.com/rolling-scopes-school/tasks/blob/master/tasks/covid-dashboard.md" target="blank">
-                COVID-19 Dashboard
-            </a>
-        </h1>
-        <section class="header-controls-container">
-            <p class="header-update-date">
-                Данные обновлены: {12.11.2010 11:11:11}
-            </p>
-            <p class="switcher header-controls__switcher-is-absolute"></p>
-            <p class="switcher header-controls__switcher-is-all-period"></p>
-        </section>
+      <h1 class="header-h1">
+        Задание RS School:
+        <a
+          href="https://github.com/rolling-scopes-school/tasks/blob/master/tasks/covid-dashboard.md"
+          target="blank"
+        >
+          COVID-19 Dashboard
+        </a>
+      </h1>
+      <section class="header-controls-container">
+        <p class="header-update-date">
+          Данные обновлены: {12.11.2010 11:11:11}
+        </p>
+        <p class="switcher header-controls__switcher-is-absolute"></p>
+        <p class="switcher header-controls__switcher-is-all-period"></p>
+      </section>
     </header>
     <main class="main-container">
-        <section class="table-container">
-            table-container
-        </section>
-        <section class="map-container">
-            map-container
-        </section>
-        <section class="chart-container">
-            chart-container
-        </section>
+      <section class="table-container">
+        <!-- таблица с данными по всему миру или по выбранной стране -->
+        <table class="table">
+          <tr>
+            <th class="table-header__cell"></th>
+            <th class="table-header__cell">весь мир</th>
+          </tr>
+          <tr class="table-row">
+            <td class="table-row__indicator">Заболевших</td>
+            <td class="table-cell__diseased">10</td>
+          </tr>
+          <tr class="table-row">
+            <td class="table-row__indicator">Умерших</td>
+            <td class="table-cell__dead">20</td>
+          </tr>
+          <tr class="table-row">
+            <td class="table-row__indicator">Выздоровело</td>
+            <td class="table-row__recovered">30</td>
+          </tr>
+        </table>
+        <div class="country-container">
+          <input
+            type="text"
+            class="country-search__input"
+            placeholder="первые буквы страны"
+          />
+          <label class="country-list__indicator-container">
+            Показатель
+            <select class="country-list__indicator">
+              <option value="diseased">заболевших</option>
+              <option value="dead">умерших</option>
+              <option value="recovered">выздоровело</option>
+            </select>
+          </label>
+          <p class="switcher country-list__is-ascending"></p>
+        </div>
+      </section>
+      <section class="map-container">map-container</section>
+      <section class="chart-container">chart-container</section>
     </main>
-    <footer class="footer-container">
-        footer
-    </footer>
-</body>
-
+    <footer class="footer-container">footer</footer>
+  </body>
 </html>

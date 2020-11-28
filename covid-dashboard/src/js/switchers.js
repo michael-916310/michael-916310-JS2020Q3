@@ -24,3 +24,5 @@ function initSwitcher(switcherClassName, trueLabel, falseLabel){
 
 initSwitcher('header-controls__switcher-is-absolute', 'в абсолютных числах', 'в пересчете на 100 тысяч');
 initSwitcher('header-controls__switcher-is-all-period', 'за весь период', 'за последний день');
+initSwitcher('country-list__is-ascending', 'по возрастанию', 'по убыванию');
+
