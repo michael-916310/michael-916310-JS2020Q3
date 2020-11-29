@@ -1,10 +1,16 @@
-import {SUMMARY_LOADED, IS_ABSOLUTE_CHANGED, IS_ALL_PERIOD_CHANGED, IS_ASCENDING_CHANGED} from './consts';
+import {
+  SUMMARY_LOADED,
+  IS_ABSOLUTE_CHANGED,
+  IS_ALL_PERIOD_CHANGED,
+  IS_ASCENDING_CHANGED,
+  POPULATION_LOADED
+} from './consts';
 
 // все функции имеют постфикс AC - от action creator
 export function summaryLoadedAC(payload){
   return {
     type: SUMMARY_LOADED,
-    payload:payload,
+    payload: payload,
   }
 }
 
@@ -23,3 +29,9 @@ export function switcherChangedAC(switcher,payload){
   }
 }
 
+export function populationLoadedAC(payload){
+  return {
+    type: POPULATION_LOADED,
+    payload,
+  }
+}

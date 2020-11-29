@@ -8,8 +8,5 @@ import {renderTotalTable} from './tables';
 
 import store from './store.js';
 
-// store.subscribe((state)=>{
-//   console.log(state);
-// })
 store.subscribe(renderTotalTable, store.getTotalTableData);
 store.subscribe(renderUpdateDate, store.getUpdateDate);

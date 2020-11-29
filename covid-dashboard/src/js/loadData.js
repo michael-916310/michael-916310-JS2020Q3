@@ -1,7 +1,7 @@
 import store from './store';
-import {summaryLoadedAC} from './actions'
+import {summaryLoadedAC, populationLoadedAC} from './actions'
 
-async function loadData(url) {
+async function loadURL(url) {
   let data;
   try {
     const resp = await fetch(url);
@@ -20,10 +20,21 @@ async function loadData(url) {
 }
 
 async function loadByCountries(){
-  const data = await loadData('https://api.covid19api.com/summary');
+  const data = await loadURL('https://api.covid19api.com/summary');
   store.dispatch(summaryLoadedAC(data));
 }
 
+async function loadPopulation(){
+  const data = await loadURL('https://restcountries.eu/rest/v2/all?fields=name;population;flag');
+  store.dispatch(populationLoadedAC(data));
+
+}
+
+async function onLoadHandler(){
+  await loadByCountries();
+  await loadPopulation();
+}
+
 window.addEventListener('load', ()=>{
-  loadByCountries();
+  onLoadHandler();
 })
