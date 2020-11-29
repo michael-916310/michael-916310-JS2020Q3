@@ -55,11 +55,16 @@
           </tr>
         </table>
         <div class="country-container">
-          <input
-            type="text"
-            class="country-search__input"
-            placeholder="первые буквы страны"
-          />
+          <label class="country-list__input-container">
+            Страна
+            <input
+              type="text"
+              class="country-search__input"
+              placeholder="первые буквы страны"
+              list="countries-datalist"
+            />
+            <datalist id="countries-datalist"></datalist>
+          </label>
           <label class="country-list__indicator-container">
             Показатель
             <select class="country-list__indicator">

@@ -49,24 +49,31 @@
 }
 
 .country-search__input {
-  width: 100%;
+  width: 60%;
+  min-width: 250px;
+  max-width: 450px;
   height: 1.8rem;
 
   border-radius: 5px;
   border: 1px $color-secondary dotted;
 }
 
-.country-list__indicator-container {
+.country-list__indicator-container,
+.country-list__input-container {
   margin-top: 5px;
+  margin-left: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  color: $color-gray;
+  color: black;
 }
 
 .country-list__indicator {
-  flex-basis: 70%;
+  flex-basis: 60%;
+
+  min-width: 250px;
+  max-width: 450px;
+
   border-radius: 5px;
   border: 1px $color-secondary dotted;
   color: black;

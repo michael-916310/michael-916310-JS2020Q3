@@ -116,6 +116,12 @@ const store = {
     return {
       updateDate: this.state.updateDate,
     }
+  },
+
+  getCountriesList(){
+    return {
+      countries: [...this.state.countries]
+      }
   }
 
 }
