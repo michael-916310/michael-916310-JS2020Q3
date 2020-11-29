@@ -147,13 +147,14 @@ const config = {
     new CopyWebpackPlugin([
       // {from: './src/static', to: './'},
       // {from: './src/img', to: './img/'},
+      {from: './src/img', to: './img/'},
     ]),
   ],
 
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 3000,
+    port: 3002,
     overlay: true,
     stats: 'errors-only',
     clientLogLevel: 'none'

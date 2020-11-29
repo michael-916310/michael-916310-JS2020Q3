@@ -1,0 +1,1 @@
+export const SUMMARY_LOADED = 'SUMMARY_LOADED';
