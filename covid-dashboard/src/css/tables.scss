@@ -77,4 +77,8 @@
   border-radius: 5px;
   border: 1px $color-secondary dotted;
   color: black;
+
+  &:focus {
+    border: 2px $color-secondary solid;
+  }
 }

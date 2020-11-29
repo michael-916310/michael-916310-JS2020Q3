@@ -120,7 +120,13 @@ const store = {
 
   getCountriesList(){
     return {
-      countries: [...this.state.countries]
+      //countries: [...this.state.countries]
+      countries: this.state.countries.map((el)=>{
+        return {
+          Country: el.Country,
+          CountryCode: el.CountryCode,
+        }
+      })
       }
   }
 
