@@ -1,10 +1,14 @@
-import {SUMMARY_LOADED} from './consts'
+import {SUMMARY_LOADED, IS_ABSOLUTE_CHANGED, IS_ALL_PERIOD_CHANGED, IS_ASCENDING_CHANGED} from './consts';
 
 const store = {
 
   state: {
+    updateDate: new Date(0),
     global:{},
     countries:[],
+    isAbsolute: true,
+    isAllPeriod: true,
+    isAscending: true,
   },
 
   config: {
@@ -22,8 +26,12 @@ const store = {
 
   getState() {
     return {
+      updateDate: this.state.updateDate,
       global: {...this.state.global},
       countries: [...this.state.countries],
+      isAbsolute: this.state.isAbsolute,
+      isAllPeriod: this.state.isAllPeriod,
+      isAscending: this.state.isAscending,
     };
   },
 
@@ -33,6 +41,12 @@ const store = {
     if (action.type===SUMMARY_LOADED) {
       newState.global = {...action.payload.Global};
       newState.countries = [...action.payload.Countries]
+    } else if (action.type===IS_ABSOLUTE_CHANGED) {
+      newState.isAbsolute = action.payload;
+    } else if (action.type===IS_ALL_PERIOD_CHANGED) {
+      newState.isAllPeriod = action.payload;
+    } else if (action.type===IS_ASCENDING_CHANGED) {
+      newState.isAscending = action.payload;
     }
     return newState;
   },
@@ -47,11 +61,34 @@ const store = {
   },
 
   getTotalTableData(){
+    let diseased;
+    let dead;
+    let recovered;
+    if (this.state.isAllPeriod) {
+      diseased = this.state.global.TotalConfirmed;
+      dead = this.state.global.TotalDeaths;
+      recovered = this.state.global.TotalRecovered;
+    } else {
+      diseased = this.state.global.NewConfirmed;
+      dead = this.state.global.NewDeaths;
+      recovered = this.state.global.NewRecovered;
+    }
+    if (!this.state.isAbsolute){
+      diseased = diseased/100000;
+      dead = dead/100000;
+      recovered = recovered /100000;
+    }
     return {
-      diseased: this.state.global.TotalConfirmed,
-      dead: this.state.global.TotalDeaths,
-      recovered: this.state.global.TotalRecovered,
+      diseased,
+      dead,
+      recovered,
     };
+  },
+
+  getUpdateDate() {
+    return {
+      updateDate: this.state.updateDate,
+    }
   }
 
 }

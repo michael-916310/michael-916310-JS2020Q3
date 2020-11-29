@@ -3,7 +3,7 @@ import '../css/style.scss';
 
 import './switchers.js';
 import './loadData.js';
-import './header.js';
+import {renderUpdateDate} from './header.js';
 import {renderTotalTable} from './tables';
 
 import store from './store.js';
@@ -12,3 +12,4 @@ import store from './store.js';
 //   console.log(state);
 // })
 store.subscribe(renderTotalTable, store.getTotalTableData);
+store.subscribe(renderUpdateDate, store.getUpdateDate);
