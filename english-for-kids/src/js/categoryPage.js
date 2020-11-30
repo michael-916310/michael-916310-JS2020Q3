@@ -23,10 +23,10 @@ function addToDOM(id){
       section.classList.add('category-page__card-play-mode');
     } else {
         section.insertAdjacentHTML('beforeend',`
-          <footer class="category-page__card-footer">
+          <figure class="category-page__card-figure">
             <span>${v.word}</span>
-            <img class="category-page__card-rotate" src="./img/rotate.svg">
-          </footer>
+            <img class="category-page__card-rotate" src="./img/rotate.svg" alt="photo">
+          </figure>
       `);
 
     }
@@ -68,7 +68,7 @@ function addEvents(){
         }
       } else if (e.target.classList.contains('category-page__card-rotate')) {
         el.classList.add('category-page__card-rotated');
-        el.querySelector('.category-page__card-footer').classList.add('category-page__card-footer-rotated');
+        el.querySelector('.category-page__card-figure').classList.add('category-page__card-figure-rotated');
         el.querySelector('.category-page__card-rotate').classList.add('category-page__card-rotate_hide');
         const spanElm = el.querySelector('span');
         spanElm.innerText = categoryData.get(gameCore.state.currentCategoryId)[index].translation
@@ -86,7 +86,7 @@ function addEvents(){
     el.addEventListener('mouseleave',()=>{
       if (!gameCore.state.isPlayMode) {
         el.classList.remove('category-page__card-rotated');
-        el.querySelector('.category-page__card-footer').classList.remove('category-page__card-footer-rotated');
+        el.querySelector('.category-page__card-figure').classList.remove('category-page__card-figure-rotated');
         el.querySelector('.category-page__card-rotate').classList.remove('category-page__card-rotate_hide');
         const spanElm = el.querySelector('span');
         spanElm.innerText = categoryData.get(gameCore.state.currentCategoryId)[el.dataset.cardIndex].word;

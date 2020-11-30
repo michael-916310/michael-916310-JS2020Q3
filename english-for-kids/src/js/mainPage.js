@@ -15,7 +15,7 @@ function renderMe(){
     section.insertAdjacentHTML('beforeend',`
       <a class="main-page-card__ref" href='#' data-category-id=${el.id}>
         <h2 class="main-page-card__h2">${el.itemName}</h2>
-        <img class="main-page-card__img" src="${el.image}">
+        <img class="main-page-card__img" src="${el.image}" alt="photo">
       </a>
     `);
     fr.append(section);

@@ -4,36 +4,34 @@
 
 .all-page-header {
   text-align: center;
-  @media (max-width:450px) {
+  @media (max-width: 450px) {
     font-size: smaller;
     text-align: right;
   }
 }
 
-.all-page-header_h1{
+.all-page-header_h1 {
   margin-left: 70px;
   margin-right: 50px;
 }
 
-.all-page-header__info{
-  display:flex;
+.all-page-header__info {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
 }
 
 .all-page-header__info-label {
-  margin:5px 20px;
+  margin: 5px 20px;
   font-size: 2rem;
 
-  @media (max-width:600px) {
+  @media (max-width: 600px) {
     display: none;
   }
-
 }
 
-.all-page-header_btn{
+.all-page-header_btn {
   font-size: 1.7rem;
 
   display: none;
@@ -50,17 +48,17 @@
   transition-duration: 0.5s;
 }
 
-.all-page-header_btn:hover{
+.all-page-header_btn:hover {
   background-color: $color-silver;
   cursor: pointer;
   border: none;
-  border-radius:20px;
+  border-radius: 20px;
 }
 
-.all-page-header_btn-repeat{
+.all-page-header_btn-repeat {
   width: 115px;
-  background: no-repeat center center  url(./../img/repeat.svg), linear-gradient(40deg, $color-clouds, $color-peter-river);
+  background: no-repeat center center url(./../img/repeat.svg),
+    linear-gradient(40deg, $color-clouds, $color-peter-river);
 
-  margin-top:0px;
-
+  margin-top: 0;
 }

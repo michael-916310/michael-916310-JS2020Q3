@@ -1,5 +1,4 @@
-
-.category-page{
+.category-page {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -9,14 +8,13 @@
   padding: 10px;
 
   font-size: 2rem;
-
 }
 
-.category-page__hide{
-  display:none;
+.category-page__hide {
+  display: none;
 }
 
-.category-page__card{
+.category-page__card {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -31,14 +29,14 @@
   transition-property: border-radius transform;
   transition-duration: 0.5s;
 
-  background: url(".././img/blouse.jpg") no-repeat center top;
+  background: url('.././img/blouse.jpg') no-repeat center top;
 }
 
-.category-page__card-play-mode{
+.category-page__card-play-mode {
   background-size: cover;
 }
 
-.category-page__card-play-mode_processed{
+.category-page__card-play-mode_processed {
   opacity: 0.5;
   border-radius: 20px;
   box-shadow: 0px 0px 1px 1px;
@@ -48,13 +46,13 @@
   transform: rotateY(180deg);
 }
 
-.category-page__card:hover{
+.category-page__card:hover {
   border-radius: 20px;
   cursor: pointer;
   box-shadow: 0px 0px 1px 1px;
 }
 
-.category-page__card-footer{
+.category-page__card-figure {
   position: relative;
 
   display: flex;
@@ -62,21 +60,22 @@
   justify-content: center;
 
   height: 50px;
+  margin: 0;
 
   background-color: lightgray;
   border-radius: 0 0 5px 5px;
   border-radius: 255px 0px 225px 30px/20px 225px 30px 255px;
 
   transition-property: transform;
-  transition-delay: 0.5S;
+  transition-delay: 0.5s;
   transition-duration: 0.5s;
 }
 
-.category-page__card-footer-rotated{
+.category-page__card-figure-rotated {
   transform: rotateY(180deg);
 }
 
-.category-page__card-rotate{
+.category-page__card-rotate {
   position: absolute;
   right: 2px;
 
@@ -86,10 +85,10 @@
   transition: transform 0.5s;
 }
 
-.category-page__card-rotate:hover{
+.category-page__card-rotate:hover {
   transform: scale(1.2);
 }
 
-.category-page__card-rotate_hide{
+.category-page__card-rotate_hide {
   display: none;
 }
