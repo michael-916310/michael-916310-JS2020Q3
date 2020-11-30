@@ -71,6 +71,25 @@
 
         <!-- Страница статистики -->
         <main class="statistic-container">
+            <label class="statistic__sort-by-container">
+                sort by
+                <select class="statistic__sort-by">
+                    <option value="category">category</option>
+                    <option value="word">word</option>
+                    <option value="translation">translation</option>
+                    <option value="trainingCount">number of training attempts</option>
+                    <option value="successAttempts">game success attempts</option>
+                    <option value="failureAttempts">game failure attempts</option>
+                    <option value="rate">game success %</option>
+                </select>
+            </label>
+            <label class="statistic__sort-order-container">
+                sort order
+                <select class="statistic__sort-order">
+                    <option value=ascending>ascending</option>
+                    <option value=descending>descending</option>
+                </select>
+            </label>
             <table class="statistic-table">
                 <tr class="statistic-table__header">
                     <th class="statistic-table__category-column">category</br>word</br>translation</th>

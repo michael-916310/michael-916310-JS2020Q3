@@ -410,7 +410,7 @@ categoryData.set(8,
     },
     {
       word: 'beet',
-      translation: 'beet',
+      translation: 'свекла',
       image: 'img/beet.jpg',
       audioSrc: 'audio/beet.mp3'
     },
