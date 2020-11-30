@@ -14,12 +14,12 @@ function resortData(arr){
       if (typeof(a[by])==='string'){
         return (a[by].localeCompare(b[by]));
       }
-      return (a[by]-b[by]);
+      return (b[by]-a[by]);
     }
     if (typeof(a[by])==='string') {
       return (b[by].localeCompare(a[by]));
     }
-    return (b[by]-a[by]);
+    return (a[by]-b[by]);
   });
 }
 
@@ -58,7 +58,7 @@ function prepareData(){
   resortData(result);
 }
 
-function addToDOM(){
+function renderData(){
 
   // чистим таблицу
   let tRow = document.querySelector('.statistic-table__line');
@@ -67,71 +67,56 @@ function addToDOM(){
     tRow = document.querySelector('.statistic-table__line');
   }
 
-  prepareData();
-
-  let statData = localStorage.getItem(LOCAL_STORAGE_STATISTIC_KEY);
-  if (!statData) {
-    return;
-  }
-  statData= JSON.parse(statData);
 
   const fr = document.createDocumentFragment();
-  categoryData.forEach((catData, catKey)=>{
-    const catName = categoryList.filter((el)=>{
-      return (el.id === catKey);
-    })[0].itemName;
-    catData.forEach((item, itemKey)=>{
-      const statLine = statData[catKey][itemKey];
-      let rate = Math.round(statLine.successAttempts/(statLine.successAttempts + statLine.failureAttempts)*100);
-      rate = (!rate)?0:rate;
 
-      const tr = document.createElement('tr');
-      tr.classList.add('statistic-table__line');
-      tr.insertAdjacentHTML(`beforeend`,`
-        <td class="statistic-table__row-name-line-1">${catName}</td>
-        <td rowspan="3" class="statistic-table__cell statistic-table__cell_center">${statLine.trainingCount}</td>
-        <td rowspan="3" class="statistic-table__cell statistic-table__cell_center">${statLine.successAttempts}</td>
-        <td rowspan="3" class="statistic-table__cell statistic-table__cell_center">${statLine.failureAttempts}</td>
-        <td rowspan="3" class="statistic-table__cell statistic-table__cell_center">${rate}%</td>
-      `);
-      fr.append(tr);
+  data.forEach((el)=>{
 
-      const tr2 = document.createElement('tr');
-      tr2.classList.add('statistic-table__line');
-      tr2.insertAdjacentHTML(`beforeend`,`
-        <td class="statistic-table__row-name-line-2">${item.word}</td>
-      `);
-      fr.append(tr2);
+    const tr = document.createElement('tr');
+    tr.classList.add('statistic-table__line');
+    tr.insertAdjacentHTML(`beforeend`,`
+      <td class="statistic-table__row-name-line-1">${el.category}</td>
+      <td rowspan="3" class="statistic-table__cell statistic-table__cell_center">${el.trainingCount}</td>
+      <td rowspan="3" class="statistic-table__cell statistic-table__cell_center">${el.successAttempts}</td>
+      <td rowspan="3" class="statistic-table__cell statistic-table__cell_center">${el.failureAttempts}</td>
+      <td rowspan="3" class="statistic-table__cell statistic-table__cell_center">${el.rate}%</td>
+    `);
+    fr.append(tr);
 
-      const tr3 = document.createElement('tr');
-      tr3.classList.add('statistic-table__line');
-      tr3.insertAdjacentHTML(`beforeend`,`
-        <td class="statistic-table__row-name-line-3">${item.translation}</td>
-      `);
-      fr.append(tr3);
+    const tr2 = document.createElement('tr');
+    tr2.classList.add('statistic-table__line');
+    tr2.insertAdjacentHTML(`beforeend`,`
+      <td class="statistic-table__row-name-line-2">${el.word}</td>
+    `);
+    fr.append(tr2);
 
-    })
-  })
+    const tr3 = document.createElement('tr');
+    tr3.classList.add('statistic-table__line');
+    tr3.insertAdjacentHTML(`beforeend`,`
+      <td class="statistic-table__row-name-line-3">${el.translation}</td>
+    `);
+    fr.append(tr3);
+
+  });
 
   document.querySelector('.statistic-table__header').after(fr);
-
 }
+
 
 function addEvents(){
   SORT_BY_EML.addEventListener('change', ()=>{
-    console.log(`SORT_BY_EML changed:${SORT_BY_EML.value}`);
     resortData(data);
-    console.log(data);
+    renderData();
   });
 
   SORT_ORDER_EML.addEventListener('change', (e)=>{
-    console.log(`SORT_ORDER_EML changed:${SORT_ORDER_EML.value}`);
     resortData(data);
-    console.log(data);
+    renderData();
   });
 }
 
 export default function renderGameStatistic() {
-  addToDOM();
+  prepareData();
+  renderData();
   addEvents()
 }
