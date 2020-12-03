@@ -53,7 +53,9 @@ export function renderCountryTable(state){
   state.countries.forEach((item) => {
     const tr = document.createElement('tr');
     tr.insertAdjacentHTML(`afterbegin`,`
-      <td class="country-list__row__cell">${item.CountryCode}</td>
+      <td class="country-list__row__cell">
+        <img src="https://www.countryflags.io/${item.CountryCode}/flat/16.png"/>
+      </td>
       <td class="country-list__row__cell country-list__row-cell-country">${item.Country}</td>
       <td class="country-list__row__cell">${item.data}</td>
     `);
