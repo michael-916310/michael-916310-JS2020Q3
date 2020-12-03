@@ -109,24 +109,43 @@ const store = {
     let diseased;
     let dead;
     let recovered;
+
     if (this.state.isAllPeriod) {
-      diseased = this.state.global.TotalConfirmed;
-      dead = this.state.global.TotalDeaths;
-      recovered = this.state.global.TotalRecovered;
+      diseased = 'TotalConfirmed';
+      dead = 'TotalDeaths';
+      recovered = 'TotalRecovered';
     } else {
-      diseased = this.state.global.NewConfirmed;
-      dead = this.state.global.NewDeaths;
-      recovered = this.state.global.NewRecovered;
+      diseased = 'NewConfirmed';
+      dead = 'NewDeaths';
+      recovered = 'NewRecovered';
     }
-    if (!this.state.isAbsolute){
-      diseased = Math.round(diseased*100000/this.state.global.Population*10000)/10000;
-      dead = Math.round(dead*100000/this.state.global.Population*10000)/10000;
-      recovered = Math.round(recovered*100000/this.state.global.Population*10000)/10000;
+
+    if (this.state.selectedCountry) {
+      let arr = this.state.countries.filter((item) => {
+          return (item.Country === this.state.selectedCountry);
+      });
+      if (arr.length === 1) {
+        return {
+          region: this.state.selectedCountry,
+          diseased: this.recalcFromAbsolute(arr[0][diseased], arr[0].Population),
+          dead: this.recalcFromAbsolute(arr[0][dead], arr[0].Population),
+          recovered: this.recalcFromAbsolute(arr[0][recovered], arr[0].Population),
+        };
+      }
+    } else {
+
+      return {
+        region: 'весь мир',
+        diseased: this.recalcFromAbsolute(this.state.global[diseased], this.state.global.Population),
+        dead: this.recalcFromAbsolute(this.state.global[dead], this.state.global.Population),
+        recovered: this.recalcFromAbsolute(this.state.global[recovered], this.state.global.Population),
+      }
     }
+    // что-то пошло не так
     return {
-      diseased,
-      dead,
-      recovered,
+      diseased: 0,
+      dead: 0,
+      recovered: 0,
     };
   },
 
@@ -176,7 +195,12 @@ const store = {
 
   getCountryTableDate(){
     const r = {
-      countries: this.state.countries.map((el)=>{
+      countries: this.state.countries.filter((item) => {
+        if (this.state.selectedCountry) {
+          return (item.Country === this.state.selectedCountry);
+        }
+        return true;
+      }).map((el)=>{
         return {
           Country: el.Country,
           CountryCode: el.CountryCode,

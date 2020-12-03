@@ -12,6 +12,7 @@ const COUNTRIES_DATALIST_ELM = document.querySelector('#countries-datalist');
 const COUNTRY_SEARCH_INPUT_ELM = document.querySelector('.country-search__input');
 const COUNTRY_LIST_INDICATOR_ELM = document.querySelector('.country-list__indicator');
 const COUNTRY_LIST_TABLE_ELM = document.querySelector('.country-list__table');
+const TOTAL_TABLE_REGION_ELM = document.querySelector('.total-data__cell-region');
 
 const optionsList=new Set();
 
@@ -21,6 +22,7 @@ const optionsList=new Set();
 // ------------------------------------------------------
 export function renderTotalTable(state) {
 
+  TOTAL_TABLE_REGION_ELM.innerHTML = state.region;
   TOTAL_TABLE_DISEASED_ELM.innerHTML = state.diseased;
   TOTAL_TABLE_DEAD_ELM.innerHTML = state.dead;
   TOTAL_TABLE_RECOVERED_ELM.innerHTML = state.recovered;
@@ -69,7 +71,6 @@ function addEvents(){
     if ( optionsList.has(COUNTRY_SEARCH_INPUT_ELM.value) || (COUNTRY_SEARCH_INPUT_ELM.value.trim()==='')) {
       inputOK=true;
       store.dispatch(countrySelectedAC(COUNTRY_SEARCH_INPUT_ELM.value.trim()));
-      console.log(store.state);
     }
   });
 
