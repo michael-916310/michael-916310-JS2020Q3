@@ -10,6 +10,7 @@ import
   renderCountryTable,
   renderSearchInput,
 } from './tables';
+import './chart';
 
 import store from './store.js';
 

@@ -1,4 +1,9 @@
 .chart-container {
-  background-color: $color-silver;
+  //background-color: $color-silver;
   min-height: 300px;
+}
+
+.chart-canvas {
+  width: 200px;
+  height: 200px;
 }
