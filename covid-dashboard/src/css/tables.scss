@@ -82,3 +82,7 @@
     border: 2px $color-secondary solid;
   }
 }
+
+.country-list-row:hover {
+  background-color: $color-clouds;
+}

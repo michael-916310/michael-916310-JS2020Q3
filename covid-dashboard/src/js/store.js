@@ -103,7 +103,7 @@ const store = {
   },
 
   // Далее идут селекторы
-  // в них странсформируем state для рендора
+  // в них трансформируем state для рендора
   // здесь же пересчитываем все цифры
   getTotalTableData(){
     let diseased;
@@ -216,6 +216,12 @@ const store = {
       return b.data - a.data;
     })
     return r;
+  },
+
+  getSearchInput(){
+    return {
+      selectedCountry: this.state.selectedCountry,
+    }
   }
 
 }

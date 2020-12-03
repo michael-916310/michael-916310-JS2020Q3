@@ -4,7 +4,12 @@ import '../css/style.scss';
 import './switchers.js';
 import './loadData.js';
 import {renderUpdateDate} from './header.js';
-import {renderTotalTable, renderCountryList, renderCountryTable} from './tables';
+import
+{ renderTotalTable,
+  renderCountryList,
+  renderCountryTable,
+  renderSearchInput,
+} from './tables';
 
 import store from './store.js';
 
@@ -15,3 +20,4 @@ store.subscribe(renderTotalTable, store.getTotalTableData);
 store.subscribe(renderUpdateDate, store.getUpdateDate);
 store.subscribe(renderCountryList, store.getCountriesList);
 store.subscribe(renderCountryTable, store.getCountryTableDate);
+store.subscribe(renderSearchInput, store.getSearchInput);

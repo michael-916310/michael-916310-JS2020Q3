@@ -14,6 +14,7 @@ const COUNTRY_LIST_INDICATOR_ELM = document.querySelector('.country-list__indica
 const COUNTRY_LIST_TABLE_ELM = document.querySelector('.country-list__table');
 const TOTAL_TABLE_REGION_ELM = document.querySelector('.total-data__cell-region');
 
+
 const optionsList=new Set();
 
 // ------------------------------------------------------
@@ -52,21 +53,31 @@ export function renderCountryTable(state){
   const fr = document.createDocumentFragment();
   state.countries.forEach((item) => {
     const tr = document.createElement('tr');
+    tr.classList.add('country-list-row');
     tr.insertAdjacentHTML(`afterbegin`,`
       <td class="country-list__row__cell">
         <img src="https://www.countryflags.io/${item.CountryCode}/flat/16.png"/>
       </td>
-      <td class="country-list__row__cell country-list__row-cell-country">${item.Country}</td>
+      <td class="country-list__row__cell country-list__row-cell-country" >${item.Country}</td>
       <td class="country-list__row__cell">${item.data}</td>
     `);
+    tr.addEventListener('click', ()=>{
+      store.dispatch(countrySelectedAC(item.Country));
+    })
     fr.append(tr);
   });
   COUNTRY_LIST_TABLE_ELM.append(fr);
 }
 
+export function renderSearchInput(state){
+  COUNTRY_SEARCH_INPUT_ELM.value = state.selectedCountry;
+}
+
+
 function addEvents(){
   let inputOK = false;
 
+  // Проверка на корректный ввод размазана на 2 события: change, blur
   COUNTRY_SEARCH_INPUT_ELM.addEventListener('change',()=>{
     inputOK=false;
 
