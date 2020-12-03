@@ -3,7 +3,9 @@ import {
   IS_ABSOLUTE_CHANGED,
   IS_ALL_PERIOD_CHANGED,
   IS_ASCENDING_CHANGED,
-  POPULATION_LOADED
+  POPULATION_LOADED,
+  COUNTRY_LIST_INDICATOR_CHANGED,
+  COUNTRY_SELECTED,
 } from './consts';
 
 // все функции имеют постфикс AC - от action creator
@@ -32,6 +34,20 @@ export function switcherChangedAC(switcher,payload){
 export function populationLoadedAC(payload){
   return {
     type: POPULATION_LOADED,
+    payload,
+  }
+}
+
+export function countryListIndicatorChangedAC(payload){
+  return {
+    type: COUNTRY_LIST_INDICATOR_CHANGED,
+    payload,
+  }
+}
+
+export function countrySelectedAC(payload) {
+  return {
+    type: COUNTRY_SELECTED,
     payload,
   }
 }

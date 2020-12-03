@@ -4,6 +4,8 @@ import {
   IS_ALL_PERIOD_CHANGED,
   IS_ASCENDING_CHANGED,
   POPULATION_LOADED,
+  COUNTRY_LIST_INDICATOR_CHANGED,
+  COUNTRY_SELECTED,
 } from './consts';
 
 const store = {
@@ -15,6 +17,9 @@ const store = {
     isAbsolute: true,
     isAllPeriod: true,
     isAscending: true,
+    countryListIndicator: 'diseased',
+    countryListSortOrder: 'ascending',
+    selectedCountry: '',
   },
 
   config: {
@@ -38,6 +43,9 @@ const store = {
       isAbsolute: this.state.isAbsolute,
       isAllPeriod: this.state.isAllPeriod,
       isAscending: this.state.isAscending,
+      countryListIndicator: this.state.countryListIndicator,
+      countryListSortOrder: this.state.countryListSortOrder,
+      selectedCountry: this.state.selectedCountry,
     };
   },
 
@@ -45,6 +53,7 @@ const store = {
     const newState=this.getState();
 
     if (action.type===SUMMARY_LOADED) {
+      // скачали основные данные
       newState.global = {...action.payload.Global};
       newState.countries = [...action.payload.Countries]
       newState.updateDate = new Date(action.payload.Date);
@@ -67,13 +76,19 @@ const store = {
         }
       });
       newState.global.Population = totalPopulation;
-      console.log(newState);
     } else if (action.type===IS_ABSOLUTE_CHANGED) {
+      // меняем флаги
       newState.isAbsolute = action.payload;
     } else if (action.type===IS_ALL_PERIOD_CHANGED) {
+      // меняем флаги
       newState.isAllPeriod = action.payload;
     } else if (action.type===IS_ASCENDING_CHANGED) {
+      // меняем флаги
       newState.isAscending = action.payload;
+    } else if (action.type === COUNTRY_LIST_INDICATOR_CHANGED) {
+      newState.countryListIndicator = action.payload;
+    } else if (action.type === COUNTRY_SELECTED) {
+      newState.selectedCountry = action.payload;
     }
     return newState;
   },
@@ -87,6 +102,9 @@ const store = {
     });
   },
 
+  // Далее идут селекторы
+  // в них странсформируем state для рендора
+  // здесь же пересчитываем все цифры
   getTotalTableData(){
     let diseased;
     let dead;
@@ -120,14 +138,60 @@ const store = {
 
   getCountriesList(){
     return {
-      //countries: [...this.state.countries]
       countries: this.state.countries.map((el)=>{
         return {
           Country: el.Country,
           CountryCode: el.CountryCode,
         }
       })
+    }
+  },
+
+  getRequestFieldNameForTable(){
+    if (this.state.countryListIndicator === 'diseased') {
+      if (this.state.isAllPeriod) {
+        return 'TotalConfirmed';
       }
+      return 'NewConfirmed';
+    } if (this.state.countryListIndicator === 'dead') {
+      if (this.state.isAllPeriod) {
+        return 'TotalDeaths';
+      }
+      return 'NewDeaths';
+    } if (this.state.countryListIndicator === 'recovered') {
+      if (this.state.isAllPeriod) {
+        return 'TotalRecovered';
+      }
+      return 'NewRecovered';
+    }
+    return '';
+  },
+
+  recalcFromAbsolute(data, population){
+    if (this.state.isAbsolute){
+      return data;
+    }
+    return Math.round(data*100000/population*10000)/10000;
+  },
+
+  getCountryTableDate(){
+    const r = {
+      countries: this.state.countries.map((el)=>{
+        return {
+          Country: el.Country,
+          CountryCode: el.CountryCode,
+          data: this.recalcFromAbsolute(el[this.getRequestFieldNameForTable()], el.Population),
+        }
+      })
+    }
+
+    r.countries.sort((a, b) => {
+      if (this.state.isAscending) {
+        return a.data - b.data;
+      }
+      return b.data - a.data;
+    })
+    return r;
   }
 
 }
