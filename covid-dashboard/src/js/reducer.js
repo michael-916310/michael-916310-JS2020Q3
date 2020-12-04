@@ -88,12 +88,9 @@ export default function reducer(action){
   } else if (action.type === CHART_DATA_FOR_WORLD_LOADED) {
 
     // раскидаем по датам данные по миру
-    //console.log('before',newState);
     worldDataReducer(newState, action.payload)
-    //console.log('after',newState);
 
   }
-  console.log(action, newState)
   return newState;
 }
 
@@ -105,7 +102,6 @@ function worldDataReducer(newState, payload){
     current.setDate(current.getDate()-1);
     return {...item, ...{date: new Date(current)}};
   }).reverse();
-  //console.log('payload', payload);
 
   newState.chart.worldData = [...r];
 }

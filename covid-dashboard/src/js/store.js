@@ -13,7 +13,7 @@ const store = {
     countryListSortOrder: 'ascending',
     selectedCountry: '',
     chart:{
-      from: new Date('04/15/2020'),
+      from: new Date('09/01/2020'),
       till: new Date(),
       worldData: [],
     }

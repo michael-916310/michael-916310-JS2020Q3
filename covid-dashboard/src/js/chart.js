@@ -1,10 +1,13 @@
 import Chart from 'chart.js';
-import {dateToYYYYMMDD} from './lib.js';
+import {
+  dateToYYYYMMDD,
+  dateToMMDDYYYY,
+} from './lib.js';
 import store from './store.js';
 import {
   chartDateFromChangedAC,
-  chartDateTillChangedAC}
-from './actions';
+  chartDateTillChangedAC
+} from './actions';
 import {loadChartData} from './loadData.js';
 
 const CHART_REGION_ELM = document.querySelector('.chart-region-label');
@@ -21,13 +24,6 @@ const config = {
       display: true,
       text: 'График',
     },
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true,
-        }
-      }]
-    }
   },
   data: {
     labels:['вчера', 'сегодня','завтра'],
@@ -51,7 +47,6 @@ const config = {
   }
 }
 const chart = new Chart(ctx, config);
-chart.update();
 
 export function renderChartHeader(state){
   CHART_REGION_ELM.innerHTML = state.region;
@@ -60,8 +55,25 @@ export function renderChartHeader(state){
   CHART_TILL_ELM.value = dateToYYYYMMDD(state.till);
 }
 
-export function f(){
+export function renderChart(state){
+  const labelsArr = state.map((item) => {
+    return `${dateToMMDDYYYY(item.date)}`
+  });
+  const diseasedArr = state.map((item)=>{
+    return item.diseased;
+  });
+  const deadArr = state.map((item)=>{
+    return item.dead;
+  });
+  const recoveredArr = state.map((item)=>{
+    return item.recovered;
+  });
 
+  config.data.labels = labelsArr;
+  config.data.datasets[0].data = diseasedArr;
+  config.data.datasets[1].data = deadArr;
+  config.data.datasets[2].data = recoveredArr;
+  chart.update();
 }
 
 function addEvents(){
@@ -73,7 +85,6 @@ function addEvents(){
   CHART_TILL_ELM.addEventListener('change', ()=>{
     store.dispatch(chartDateTillChangedAC(new Date(CHART_TILL_ELM.value)));
     loadChartData();
-    console.log(store.getState().chart);
   })
 }
 

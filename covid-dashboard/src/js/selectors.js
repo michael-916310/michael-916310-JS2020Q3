@@ -129,6 +129,31 @@ function getChartHeader(){
   }
 }
 
+function getChartData(){
+  let diseased;
+  let dead;
+  let recovered;
+
+  if (store.getState().isAllPeriod) {
+     diseased = 'TotalConfirmed';
+     dead = 'TotalDeaths';
+     recovered = 'TotalRecovered';
+  } else {
+    diseased = 'NewConfirmed';
+    dead = 'NewDeaths';
+    recovered = 'NewRecovered';
+  }
+
+  return store.getState().chart.worldData.map((item) => {
+    return {
+      date: item.date,
+      diseased: item[diseased],
+      dead: item[dead],
+      recovered: item[recovered],
+    };
+  })
+}
+
 export default {
   getSearchInput,
   getCountryTableDate,
@@ -136,4 +161,5 @@ export default {
   getUpdateDate,
   getTotalTableData,
   getChartHeader,
+  getChartData,
 }
