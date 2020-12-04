@@ -1,5 +1,6 @@
 import Chart from 'chart.js';
-const CHART_REGION = document.querySelector('.chart-region');
+const CHART_REGION_ELM = document.querySelector('.chart-region-label');
+const CHART_ABSOLUTE_ELM = document.querySelector('.chart-absolute-label');
 
 const ctx = document.querySelector('.chart-canvas');
 
@@ -43,7 +44,8 @@ const chart = new Chart(ctx, config);
 chart.update();
 
 
-// export function renderChartHeader(state){
-//   CHART_REGION.innerHTML=state.region;
-// }
+export function renderChartHeader(state){
+  CHART_REGION_ELM.innerHTML = state.region;
+  CHART_ABSOLUTE_ELM.innerHTML = state.region;
+}
 
