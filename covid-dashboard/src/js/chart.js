@@ -1,6 +1,12 @@
 import Chart from 'chart.js';
+import {dateToYYYYMMDD} from './lib.js';
+import store from './store.js';
+import {chartDateFromChangedAC} from './actions';
+
 const CHART_REGION_ELM = document.querySelector('.chart-region-label');
 const CHART_ABSOLUTE_ELM = document.querySelector('.chart-absolute-label');
+const CHART_FROM_ELM = document.querySelector('.chart-from-label');
+const CHART_TILL_ELM = document.querySelector('.chart-till-label');
 
 const ctx = document.querySelector('.chart-canvas');
 
@@ -9,7 +15,7 @@ const config = {
   options: {
     title: {
       display: true,
-      text: 'title',
+      text: 'График',
     },
     scales: {
       yAxes: [{
@@ -43,9 +49,21 @@ const config = {
 const chart = new Chart(ctx, config);
 chart.update();
 
-
 export function renderChartHeader(state){
   CHART_REGION_ELM.innerHTML = state.region;
-  CHART_ABSOLUTE_ELM.innerHTML = state.region;
+  CHART_ABSOLUTE_ELM.innerHTML = state.absoluteDescription;
+  CHART_FROM_ELM.value = dateToYYYYMMDD(state.from);
+  CHART_TILL_ELM.value = dateToYYYYMMDD(state.till);
 }
 
+export function f(){
+
+}
+
+function addEvents(){
+  CHART_FROM_ELM.addEventListener('change', ()=>{
+    store.dispatch(chartDateFromChangedAC(new Date(CHART_FROM_ELM.value)));
+  });
+}
+
+addEvents();

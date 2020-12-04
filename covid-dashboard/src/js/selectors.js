@@ -119,10 +119,21 @@ function getTotalTableData(){
   };
 }
 
+function getChartHeader(){
+  const st = store.getState();
+  return {
+    region: (st.selectedCountry) ? st.selectedCountry :'весь мир',
+    absoluteDescription: (st.isAbsolute) ? 'в абсолютных числах' : 'в пересчете на 100 тысяч',
+    from: st.chart.from,
+    till: st.chart.till,
+  }
+}
+
 export default {
   getSearchInput,
   getCountryTableDate,
   getCountriesList,
   getUpdateDate,
   getTotalTableData,
+  getChartHeader,
 }

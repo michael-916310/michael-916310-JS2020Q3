@@ -1,5 +1,6 @@
 import store from './store';
 import {summaryLoadedAC, populationLoadedAC} from './actions'
+import {dateToYYYYMMDD} from './lib';
 
 async function loadURL(url) {
   let data;
@@ -30,9 +31,22 @@ async function loadPopulation(){
 
 }
 
+async function loadChartDataForWorld(){
+  const {from} = store.getState().chart;
+  const {till} = store.getState().chart;
+
+  const url = new URL('https://api.covid19api.com/world');
+  url.searchParams.append('from', dateToYYYYMMDD(from));
+  url.searchParams.append('to', dateToYYYYMMDD(till));
+
+  const data = await loadURL(url);
+  console.log(data);
+}
+
 async function onLoadHandler(){
   await loadByCountries();
   await loadPopulation();
+  await loadChartDataForWorld();
 }
 
 window.addEventListener('load', ()=>{

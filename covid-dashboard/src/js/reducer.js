@@ -7,8 +7,27 @@ import {
   POPULATION_LOADED,
   COUNTRY_LIST_INDICATOR_CHANGED,
   COUNTRY_SELECTED,
+  CHART_FROM_CHANGED,
 } from './consts';
 
+function PopulationReducer(newState, payload){
+  let totalPopulation = 0;
+  newState.countries.forEach((el)=>{
+    const currentCountry = el.Country.toLowerCase();
+    const popData = payload.find((item)=>{
+      if (item.name.toLowerCase() === currentCountry) {
+        return true;
+      }
+      return false;
+    })
+    if (popData) {
+      // Добавим данные о населении
+      el.Population = popData.population;
+      totalPopulation += popData.population;
+    }
+  });
+  newState.global.Population = totalPopulation;
+}
 
 export default function reducer(action){
   const newState=store.getState();
@@ -24,22 +43,7 @@ export default function reducer(action){
 
     // Обогатим скачанные ранее данные по странам
     // полученным сейчас населением
-    let totalPopulation = 0;
-    newState.countries.forEach((el)=>{
-      const currentCountry = el.Country.toLowerCase();
-      const popData = action.payload.find((item)=>{
-        if (item.name.toLowerCase() === currentCountry) {
-          return true;
-        }
-        return false;
-      })
-      if (popData) {
-        // Добавим данные о населении
-        el.Population = popData.population;
-        totalPopulation += popData.population;
-      }
-    });
-    newState.global.Population = totalPopulation;
+    PopulationReducer(newState, action.payload);
 
   } else if (action.type===IS_ABSOLUTE_CHANGED) {
 
@@ -65,6 +69,11 @@ export default function reducer(action){
 
     // выбрана другая страна
     newState.selectedCountry = action.payload;
+  } else if (action.type === CHART_FROM_CHANGED) {
+
+    // смена периода в графике
+    newState.chart.from = action.payload;
+
   }
   return newState;
 }

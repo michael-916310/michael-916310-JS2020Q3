@@ -22,4 +22,4 @@ store.subscribe(renderUpdateDate, selectors.getUpdateDate);
 store.subscribe(renderCountryList, selectors.getCountriesList);
 store.subscribe(renderCountryTable, selectors.getCountryTableDate);
 store.subscribe(renderSearchInput, selectors.getSearchInput);
-store.subscribe(renderChartHeader, selectors.getTotalTableData);
+store.subscribe(renderChartHeader, selectors.getChartHeader);

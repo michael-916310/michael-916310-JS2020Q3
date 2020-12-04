@@ -6,6 +6,7 @@ import {
   POPULATION_LOADED,
   COUNTRY_LIST_INDICATOR_CHANGED,
   COUNTRY_SELECTED,
+  CHART_FROM_CHANGED,
 } from './consts';
 
 // все функции имеют постфикс AC - от action creator
@@ -48,6 +49,13 @@ export function countryListIndicatorChangedAC(payload){
 export function countrySelectedAC(payload) {
   return {
     type: COUNTRY_SELECTED,
+    payload,
+  }
+}
+
+export function chartDateFromChangedAC(payload){
+  return {
+    type: CHART_FROM_CHANGED,
     payload,
   }
 }
