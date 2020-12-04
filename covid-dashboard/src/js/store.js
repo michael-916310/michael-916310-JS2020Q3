@@ -20,6 +20,10 @@ const store = {
     countryListIndicator: 'diseased',
     countryListSortOrder: 'ascending',
     selectedCountry: '',
+    chart:{
+      from: new Date('01/01/2020'),
+      till: new Date(),
+    }
   },
 
   config: {
@@ -46,6 +50,7 @@ const store = {
       countryListIndicator: this.state.countryListIndicator,
       countryListSortOrder: this.state.countryListSortOrder,
       selectedCountry: this.state.selectedCountry,
+      chart: {...this.state.chart},
     };
   },
 
@@ -53,11 +58,14 @@ const store = {
     const newState=this.getState();
 
     if (action.type===SUMMARY_LOADED) {
+
       // скачали основные данные
       newState.global = {...action.payload.Global};
       newState.countries = [...action.payload.Countries]
       newState.updateDate = new Date(action.payload.Date);
+
     } else if (action.type===POPULATION_LOADED) {
+
       // Обогатим скачанные ранее данные по странам
       // полученным сейчас населением
       let totalPopulation = 0;
@@ -76,18 +84,30 @@ const store = {
         }
       });
       newState.global.Population = totalPopulation;
+
     } else if (action.type===IS_ABSOLUTE_CHANGED) {
+
       // меняем флаги
       newState.isAbsolute = action.payload;
+
     } else if (action.type===IS_ALL_PERIOD_CHANGED) {
+
       // меняем флаги
       newState.isAllPeriod = action.payload;
+
     } else if (action.type===IS_ASCENDING_CHANGED) {
+
       // меняем флаги
       newState.isAscending = action.payload;
+
     } else if (action.type === COUNTRY_LIST_INDICATOR_CHANGED) {
+
+      // изменился показатель для отображения в таблице
       newState.countryListIndicator = action.payload;
+
     } else if (action.type === COUNTRY_SELECTED) {
+
+      // выбрана другая страна
       newState.selectedCountry = action.payload;
     }
     return newState;
