@@ -15,6 +15,7 @@ const store = {
     chart:{
       from: new Date('04/15/2020'),
       till: new Date(),
+      worldData: [],
     }
   },
 

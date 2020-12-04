@@ -8,6 +8,8 @@ import {
   COUNTRY_LIST_INDICATOR_CHANGED,
   COUNTRY_SELECTED,
   CHART_FROM_CHANGED,
+  CHART_TILL_CHANGED,
+  CHART_DATA_FOR_WORLD_LOADED,
 } from './consts';
 
 function PopulationReducer(newState, payload){
@@ -29,6 +31,9 @@ function PopulationReducer(newState, payload){
   newState.global.Population = totalPopulation;
 }
 
+// ------------------------------------------------
+// Головной редюсер
+// ------------------------------------------------
 export default function reducer(action){
   const newState=store.getState();
 
@@ -69,11 +74,38 @@ export default function reducer(action){
 
     // выбрана другая страна
     newState.selectedCountry = action.payload;
+
   } else if (action.type === CHART_FROM_CHANGED) {
 
     // смена периода в графике
     newState.chart.from = action.payload;
 
+  } else if (action.type === CHART_TILL_CHANGED) {
+
+    // смена периода в графике
+    newState.chart.till = action.payload;
+
+  } else if (action.type === CHART_DATA_FOR_WORLD_LOADED) {
+
+    // раскидаем по датам данные по миру
+    //console.log('before',newState);
+    worldDataReducer(newState, action.payload)
+    //console.log('after',newState);
+
   }
+  console.log(action, newState)
   return newState;
+}
+
+
+function worldDataReducer(newState, payload){
+  const current = new Date(newState.chart.till);
+
+  const r = payload.reverse().map((item, index) => {
+    current.setDate(current.getDate()-1);
+    return {...item, ...{date: new Date(current)}};
+  }).reverse();
+  //console.log('payload', payload);
+
+  newState.chart.worldData = [...r];
 }

@@ -1,7 +1,11 @@
 import Chart from 'chart.js';
 import {dateToYYYYMMDD} from './lib.js';
 import store from './store.js';
-import {chartDateFromChangedAC} from './actions';
+import {
+  chartDateFromChangedAC,
+  chartDateTillChangedAC}
+from './actions';
+import {loadChartData} from './loadData.js';
 
 const CHART_REGION_ELM = document.querySelector('.chart-region-label');
 const CHART_ABSOLUTE_ELM = document.querySelector('.chart-absolute-label');
@@ -63,7 +67,14 @@ export function f(){
 function addEvents(){
   CHART_FROM_ELM.addEventListener('change', ()=>{
     store.dispatch(chartDateFromChangedAC(new Date(CHART_FROM_ELM.value)));
+    loadChartData();
   });
+
+  CHART_TILL_ELM.addEventListener('change', ()=>{
+    store.dispatch(chartDateTillChangedAC(new Date(CHART_TILL_ELM.value)));
+    loadChartData();
+    console.log(store.getState().chart);
+  })
 }
 
 addEvents();

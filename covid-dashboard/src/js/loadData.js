@@ -1,5 +1,9 @@
 import store from './store';
-import {summaryLoadedAC, populationLoadedAC} from './actions'
+import {
+  summaryLoadedAC,
+  populationLoadedAC,
+  chartDataForWorldLoadedAC,
+} from './actions'
 import {dateToYYYYMMDD} from './lib';
 
 async function loadURL(url) {
@@ -40,7 +44,7 @@ async function loadChartDataForWorld(){
   url.searchParams.append('to', dateToYYYYMMDD(till));
 
   const data = await loadURL(url);
-  console.log(data);
+  store.dispatch(chartDataForWorldLoadedAC(data));
 }
 
 async function onLoadHandler(){
@@ -52,3 +56,7 @@ async function onLoadHandler(){
 window.addEventListener('load', ()=>{
   onLoadHandler();
 })
+
+export function loadChartData(){
+  loadChartDataForWorld();
+}
