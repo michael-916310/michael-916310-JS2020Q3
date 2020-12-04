@@ -1,25 +1,25 @@
 import store from './store';
 
 function recalcFromAbsolute(data, population){
-  if (store.state.isAbsolute){
+  if (store.getState().isAbsolute){
     return data;
   }
   return Math.round(data*100000/population*10000)/10000;
 }
 
 function getRequestFieldNameForTable(){
-  if (store.state.countryListIndicator === 'diseased') {
-    if (store.state.isAllPeriod) {
+  if (store.getState().countryListIndicator === 'diseased') {
+    if (store.getState().isAllPeriod) {
       return 'TotalConfirmed';
     }
     return 'NewConfirmed';
-  } if (store.state.countryListIndicator === 'dead') {
-    if (store.state.isAllPeriod) {
+  } if (store.getState().countryListIndicator === 'dead') {
+    if (store.getState().isAllPeriod) {
       return 'TotalDeaths';
     }
     return 'NewDeaths';
-  } if (store.state.countryListIndicator === 'recovered') {
-    if (store.state.isAllPeriod) {
+  } if (store.getState().countryListIndicator === 'recovered') {
+    if (store.getState().isAllPeriod) {
       return 'TotalRecovered';
     }
     return 'NewRecovered';
@@ -29,15 +29,15 @@ function getRequestFieldNameForTable(){
 
 function getSearchInput(){
   return {
-    selectedCountry: store.state.selectedCountry,
+    selectedCountry: store.getState().selectedCountry,
   }
 }
 
 function getCountryTableDate(){
   const r = {
-    countries: store.state.countries.filter((item) => {
-      if (store.state.selectedCountry) {
-        return (item.Country === store.state.selectedCountry);
+    countries: store.getState().countries.filter((item) => {
+      if (store.getState().selectedCountry) {
+        return (item.Country === store.getState().selectedCountry);
       }
       return true;
     }).map((el)=>{
@@ -50,7 +50,7 @@ function getCountryTableDate(){
   }
 
   r.countries.sort((a, b) => {
-    if (store.state.isAscending) {
+    if (store.getState().isAscending) {
       return a.data - b.data;
     }
     return b.data - a.data;
@@ -60,7 +60,7 @@ function getCountryTableDate(){
 
 function getCountriesList(){
   return {
-    countries: store.state.countries.map((el)=>{
+    countries: store.getState().countries.map((el)=>{
       return {
         Country: el.Country,
         CountryCode: el.CountryCode,
@@ -71,7 +71,7 @@ function getCountriesList(){
 
 function getUpdateDate() {
   return {
-    updateDate: store.state.updateDate,
+    updateDate: store.getState().updateDate,
   }
 }
 
@@ -80,7 +80,7 @@ function getTotalTableData(){
   let dead;
   let recovered;
 
-  if (store.state.isAllPeriod) {
+  if (store.getState().isAllPeriod) {
     diseased = 'TotalConfirmed';
     dead = 'TotalDeaths';
     recovered = 'TotalRecovered';
@@ -90,13 +90,13 @@ function getTotalTableData(){
     recovered = 'NewRecovered';
   }
 
-  if (store.state.selectedCountry) {
-    let arr = store.state.countries.filter((item) => {
-        return (item.Country === store.state.selectedCountry);
+  if (store.getState().selectedCountry) {
+    let arr = store.getState().countries.filter((item) => {
+        return (item.Country === store.getState().selectedCountry);
     });
     if (arr.length === 1) {
       return {
-        region: store.state.selectedCountry,
+        region: store.getState().selectedCountry,
         diseased: recalcFromAbsolute(arr[0][diseased], arr[0].Population),
         dead: recalcFromAbsolute(arr[0][dead], arr[0].Population),
         recovered: recalcFromAbsolute(arr[0][recovered], arr[0].Population),
@@ -106,9 +106,9 @@ function getTotalTableData(){
 
     return {
       region: 'весь мир',
-      diseased: recalcFromAbsolute(store.state.global[diseased], store.state.global.Population),
-      dead: recalcFromAbsolute(store.state.global[dead], store.state.global.Population),
-      recovered: recalcFromAbsolute(store.state.global[recovered], store.state.global.Population),
+      diseased: recalcFromAbsolute(store.getState().global[diseased], store.getState().global.Population),
+      dead: recalcFromAbsolute(store.getState().global[dead], store.getState().global.Population),
+      recovered: recalcFromAbsolute(store.getState().global[recovered], store.getState().global.Population),
     }
   }
   // что-то пошло не так

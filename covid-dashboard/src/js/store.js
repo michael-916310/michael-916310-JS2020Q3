@@ -2,7 +2,7 @@ import reducer from './reducer';
 
 const store = {
 
-  state: {
+  _state: {
     updateDate: new Date(0),
     global:{},
     countries:[],
@@ -18,13 +18,13 @@ const store = {
     }
   },
 
-  config: {
+  _config: {
     callBackList:[],
   },
 
   subscribe(fnRender, fnSelector){
     if (typeof(fnRender)==='function' && typeof(fnRender)==='function'){
-      this.config.callBackList.push({
+      this._config.callBackList.push({
         fnRender,
         fnSelector,
       });
@@ -33,83 +33,24 @@ const store = {
 
   getState() {
     return {
-      updateDate: this.state.updateDate,
-      global: {...this.state.global},
-      countries: [...this.state.countries],
-      isAbsolute: this.state.isAbsolute,
-      isAllPeriod: this.state.isAllPeriod,
-      isAscending: this.state.isAscending,
-      countryListIndicator: this.state.countryListIndicator,
-      countryListSortOrder: this.state.countryListSortOrder,
-      selectedCountry: this.state.selectedCountry,
-      chart: {...this.state.chart},
+      updateDate: this._state.updateDate,
+      global: {...this._state.global},
+      countries: [...this._state.countries],
+      isAbsolute: this._state.isAbsolute,
+      isAllPeriod: this._state.isAllPeriod,
+      isAscending: this._state.isAscending,
+      countryListIndicator: this._state.countryListIndicator,
+      countryListSortOrder: this._state.countryListSortOrder,
+      selectedCountry: this._state.selectedCountry,
+      chart: {...this._state.chart},
     };
   },
 
-  // reducer(action){
-  //   const newState=this.getState();
-
-  //   if (action.type===SUMMARY_LOADED) {
-
-  //     // скачали основные данные
-  //     newState.global = {...action.payload.Global};
-  //     newState.countries = [...action.payload.Countries]
-  //     newState.updateDate = new Date(action.payload.Date);
-
-  //   } else if (action.type===POPULATION_LOADED) {
-
-  //     // Обогатим скачанные ранее данные по странам
-  //     // полученным сейчас населением
-  //     let totalPopulation = 0;
-  //     newState.countries.forEach((el)=>{
-  //       const currentCountry = el.Country.toLowerCase();
-  //       const popData = action.payload.find((item)=>{
-  //         if (item.name.toLowerCase() === currentCountry) {
-  //           return true;
-  //         }
-  //         return false;
-  //       })
-  //       if (popData) {
-  //         // Добавим данные о населении
-  //         el.Population = popData.population;
-  //         totalPopulation += popData.population;
-  //       }
-  //     });
-  //     newState.global.Population = totalPopulation;
-
-  //   } else if (action.type===IS_ABSOLUTE_CHANGED) {
-
-  //     // меняем флаги
-  //     newState.isAbsolute = action.payload;
-
-  //   } else if (action.type===IS_ALL_PERIOD_CHANGED) {
-
-  //     // меняем флаги
-  //     newState.isAllPeriod = action.payload;
-
-  //   } else if (action.type===IS_ASCENDING_CHANGED) {
-
-  //     // меняем флаги
-  //     newState.isAscending = action.payload;
-
-  //   } else if (action.type === COUNTRY_LIST_INDICATOR_CHANGED) {
-
-  //     // изменился показатель для отображения в таблице
-  //     newState.countryListIndicator = action.payload;
-
-  //   } else if (action.type === COUNTRY_SELECTED) {
-
-  //     // выбрана другая страна
-  //     newState.selectedCountry = action.payload;
-  //   }
-  //   return newState;
-  // },
-
   dispatch(action){
-    this.state = reducer(action);
+    this._state = reducer(action);
 
     // вызовем рендеры
-    this.config.callBackList.forEach((el)=>{
+    this._config.callBackList.forEach((el)=>{
       el.fnRender(el.fnSelector());
     });
   },
