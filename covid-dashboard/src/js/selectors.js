@@ -124,6 +124,7 @@ function getChartHeader(){
   return {
     region: (st.selectedCountry) ? st.selectedCountry :'весь мир',
     absoluteDescription: (st.isAbsolute) ? 'в абсолютных числах' : 'в пересчете на 100 тысяч',
+    accumulateDescription: (st.isAllPeriod) ? 'накопительно за весь период': 'данные за день',
     from: st.chart.from,
     till: st.chart.till,
   }
@@ -147,9 +148,9 @@ function getChartData(){
   return store.getState().chart.worldData.map((item) => {
     return {
       date: item.date,
-      diseased: item[diseased],
-      dead: item[dead],
-      recovered: item[recovered],
+      diseased: recalcFromAbsolute(item[diseased], store.getState().global.Population),
+      dead: recalcFromAbsolute(item[dead], store.getState().global.Population),
+      recovered: recalcFromAbsolute(item[recovered], store.getState().global.Population),
     };
   })
 }

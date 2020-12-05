@@ -12,8 +12,11 @@ import {loadChartData} from './loadData.js';
 
 const CHART_REGION_ELM = document.querySelector('.chart-region-label');
 const CHART_ABSOLUTE_ELM = document.querySelector('.chart-absolute-label');
+const CHART_ACCUMULATE_ELM = document.querySelector('.chart-accumulate-label');
 const CHART_FROM_ELM = document.querySelector('.chart-from-label');
 const CHART_TILL_ELM = document.querySelector('.chart-till-label');
+
+
 
 const ctx = document.querySelector('.chart-canvas');
 
@@ -51,6 +54,7 @@ const chart = new Chart(ctx, config);
 export function renderChartHeader(state){
   CHART_REGION_ELM.innerHTML = state.region;
   CHART_ABSOLUTE_ELM.innerHTML = state.absoluteDescription;
+  CHART_ACCUMULATE_ELM.innerHTML= state.accumulateDescription;
   CHART_FROM_ELM.value = dateToYYYYMMDD(state.from);
   CHART_TILL_ELM.value = dateToYYYYMMDD(state.till);
 }

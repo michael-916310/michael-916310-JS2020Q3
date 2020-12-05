@@ -43,63 +43,60 @@ export default function reducer(action){
     newState.global = {...action.payload.Global};
     newState.countries = [...action.payload.Countries]
     newState.updateDate = new Date(action.payload.Date);
-
   } else if (action.type===POPULATION_LOADED) {
 
     // Обогатим скачанные ранее данные по странам
     // полученным сейчас населением
     PopulationReducer(newState, action.payload);
-
   } else if (action.type===IS_ABSOLUTE_CHANGED) {
 
     // меняем флаги
     newState.isAbsolute = action.payload;
-
   } else if (action.type===IS_ALL_PERIOD_CHANGED) {
 
     // меняем флаги
     newState.isAllPeriod = action.payload;
-
   } else if (action.type===IS_ASCENDING_CHANGED) {
 
     // меняем флаги
     newState.isAscending = action.payload;
-
   } else if (action.type === COUNTRY_LIST_INDICATOR_CHANGED) {
 
     // изменился показатель для отображения в таблице
     newState.countryListIndicator = action.payload;
-
   } else if (action.type === COUNTRY_SELECTED) {
 
     // выбрана другая страна
     newState.selectedCountry = action.payload;
-
   } else if (action.type === CHART_FROM_CHANGED) {
 
     // смена периода в графике
     newState.chart.from = action.payload;
-
   } else if (action.type === CHART_TILL_CHANGED) {
 
     // смена периода в графике
     newState.chart.till = action.payload;
-
   } else if (action.type === CHART_DATA_FOR_WORLD_LOADED) {
 
     // раскидаем по датам данные по миру
     worldDataReducer(newState, action.payload)
-
   }
   return newState;
 }
 
 
 function worldDataReducer(newState, payload){
-  const current = new Date(newState.chart.till);
+  // сначала пересортируем по вызрастанию заболевших
+  let r = payload.sort((a, b) => {
+    return a.TotalConfirmed - b.TotalConfirmed;
+  })
 
-  const r = payload.reverse().map((item, index) => {
-    current.setDate(current.getDate()-1);
+  // обратным отсчетом поставим дату для данных
+  const current = new Date(newState.chart.till);
+  r = r.reverse().map((item, index) => {
+    if (index>0) {
+      current.setDate(current.getDate()-1);
+    }
     return {...item, ...{date: new Date(current)}};
   }).reverse();
 
