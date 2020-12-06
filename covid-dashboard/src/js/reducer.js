@@ -102,3 +102,4 @@ function worldDataReducer(newState, payload){
 
   newState.chart.worldData = [...r];
 }
+

@@ -20,12 +20,13 @@ const store = {
   },
 
   _config: {
-    callBackList:[],
+    renderCallBackList:[],
+    autoActivity:[],
   },
 
   subscribe(fnRender, fnSelector){
     if (typeof(fnRender)==='function' && typeof(fnRender)==='function'){
-      this._config.callBackList.push({
+      this._config.renderCallBackList.push({
         fnRender,
         fnSelector,
       });
@@ -47,11 +48,33 @@ const store = {
     };
   },
 
+  setAutoActivity(ActionsArr, fnArr){
+    if (Array.isArray(ActionsArr) && Array.isArray(fnArr)) {
+      // зарегистрируем автоматическое действие в ответ на
+      // конкретный экшин
+      this._config.autoActivity.push([ActionsArr, fnArr]);
+    }
+  },
+
   dispatch(action){
+    // получим новый стейт
     this._state = reducer(action);
 
-    // вызовем рендеры
-    this._config.callBackList.forEach((el)=>{
+    // выполним автоматические действия
+    // в ответ на начальный диспатч
+    this._config.autoActivity.forEach((item) => {
+      if (item[0].includes(action.type)) {
+        item[1].forEach((el)=>{
+          if (typeof(el) === 'function') {
+            el();
+          }
+        })
+      }
+    });
+
+    // вызовем рендеры, передав им данные из селекторов
+    // рендеры выполняются при любом изменении сторе
+    this._config.renderCallBackList.forEach((el)=>{
       el.fnRender(el.fnSelector());
     });
   },

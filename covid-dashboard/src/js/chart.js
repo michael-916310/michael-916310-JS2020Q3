@@ -83,12 +83,10 @@ export function renderChart(state){
 function addEvents(){
   CHART_FROM_ELM.addEventListener('change', ()=>{
     store.dispatch(chartDateFromChangedAC(new Date(CHART_FROM_ELM.value)));
-    loadChartData();
   });
 
   CHART_TILL_ELM.addEventListener('change', ()=>{
     store.dispatch(chartDateTillChangedAC(new Date(CHART_TILL_ELM.value)));
-    loadChartData();
   })
 }
 
