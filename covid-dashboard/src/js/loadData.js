@@ -3,6 +3,7 @@ import {
   summaryLoadedAC,
   populationLoadedAC,
   chartDataForWorldLoadedAC,
+  chartDataForCountryLoadedAC,
 } from './actions'
 import {dateToYYYYMMDD} from './lib';
 
@@ -47,10 +48,22 @@ async function loadChartDataForWorld(){
   store.dispatch(chartDataForWorldLoadedAC(data));
 }
 
+async function loadChartDataByQuery(query, fnAC){
+  const {from} = store.getState().chart;
+  const {till} = store.getState().chart;
+
+  const url = new URL(`https://api.covid19api.com/${query}`);
+  url.searchParams.append('from', dateToYYYYMMDD(from));
+  url.searchParams.append('to', dateToYYYYMMDD(till));
+
+  const data = await loadURL(url);
+  store.dispatch(fnAC(data));
+}
+
 async function onLoadHandler(){
   await loadByCountries();
   await loadPopulation();
-  await loadChartDataForWorld();
+  await loadChartDataByQuery('world', chartDataForWorldLoadedAC)
 }
 
 window.addEventListener('load', ()=>{
@@ -58,5 +71,12 @@ window.addEventListener('load', ()=>{
 })
 
 export function loadChartData(){
-  loadChartDataForWorld();
+  if (store.getState().selectedCountry) {
+    // https://api.covid19api.com/country/afghanistan
+    loadChartDataByQuery(`country/${store.getState().selectedCountry.toLocaleLowerCase()}`, chartDataForCountryLoadedAC)
+  } else {
+    loadChartDataForWorld();
+  }
 }
+
+export function f(){}

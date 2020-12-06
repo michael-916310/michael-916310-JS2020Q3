@@ -23,6 +23,7 @@ import selectors from './selectors';
 import {
   CHART_FROM_CHANGED,
   CHART_TILL_CHANGED,
+  COUNTRY_SELECTED,
 } from './consts';
 
 import {loadChartData} from './loadData.js';
@@ -45,6 +46,7 @@ store.setAutoActivity(
   [
     CHART_FROM_CHANGED,
     CHART_TILL_CHANGED,
+    COUNTRY_SELECTED,
   ],
   [
     loadChartData,

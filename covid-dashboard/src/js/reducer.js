@@ -10,6 +10,7 @@ import {
   CHART_FROM_CHANGED,
   CHART_TILL_CHANGED,
   CHART_DATA_FOR_WORLD_LOADED,
+  CHART_DATA_FOR_COUNTRY_LOADED,
 } from './consts';
 
 function PopulationReducer(newState, payload){
@@ -80,6 +81,8 @@ export default function reducer(action){
 
     // раскидаем по датам данные по миру
     worldDataReducer(newState, action.payload)
+  } else if (action.type === CHART_DATA_FOR_COUNTRY_LOADED) {
+    console.log(action.payload);
   }
   return newState;
 }

@@ -9,6 +9,7 @@ import {
   CHART_FROM_CHANGED,
   CHART_TILL_CHANGED,
   CHART_DATA_FOR_WORLD_LOADED,
+  CHART_DATA_FOR_COUNTRY_LOADED,
 } from './consts';
 
 // все функции имеют постфикс AC - от action creator
@@ -72,6 +73,13 @@ export function chartDateTillChangedAC(payload){
 export function chartDataForWorldLoadedAC(payload){
   return {
     type: CHART_DATA_FOR_WORLD_LOADED,
+    payload,
+  }
+}
+
+export function chartDataForCountryLoadedAC(payload){
+  return {
+    type: CHART_DATA_FOR_COUNTRY_LOADED,
     payload,
   }
 }
