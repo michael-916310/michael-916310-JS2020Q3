@@ -44,6 +44,7 @@ function getCountryTableDate(){
       return {
         Country: el.Country,
         CountryCode: el.CountryCode,
+        Slug: el.Slug,
         data: recalcFromAbsolute(el[getRequestFieldNameForTable()], el.Population),
       }
     })
@@ -64,6 +65,7 @@ function getCountriesList(){
       return {
         Country: el.Country,
         CountryCode: el.CountryCode,
+        Slug: el.Slug,
       }
     })
   }
@@ -131,11 +133,12 @@ function getChartHeader(){
 }
 
 function getChartData(){
+  const st = store.getState();
   let diseased;
   let dead;
   let recovered;
 
-  if (store.getState().isAllPeriod) {
+  if (st.isAllPeriod) {
      diseased = 'TotalConfirmed';
      dead = 'TotalDeaths';
      recovered = 'TotalRecovered';
@@ -145,12 +148,20 @@ function getChartData(){
     recovered = 'NewRecovered';
   }
 
-  return store.getState().chart.worldData.map((item) => {
+  let population = st.global.Population;
+  let dataArr = st.chart.worldData;
+  if (st.selectedCountry) {
+     population = st.chart.countryPopulation;
+     dataArr = st.chart.countryData;
+  }
+
+  console.log('dataArr:', dataArr);
+  return dataArr.map((item) => {
     return {
-      date: item.date,
-      diseased: recalcFromAbsolute(item[diseased], store.getState().global.Population),
-      dead: recalcFromAbsolute(item[dead], store.getState().global.Population),
-      recovered: recalcFromAbsolute(item[recovered], store.getState().global.Population),
+      date: new Date(item.date),
+      diseased: recalcFromAbsolute(item[diseased], population),
+      dead: recalcFromAbsolute(item[dead], population),
+      recovered: recalcFromAbsolute(item[recovered], population),
     };
   })
 }

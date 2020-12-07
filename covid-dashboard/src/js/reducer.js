@@ -30,6 +30,7 @@ function PopulationReducer(newState, payload){
     }
   });
   newState.global.Population = totalPopulation;
+  newState.populationList = payload;
 }
 
 // ------------------------------------------------
@@ -68,7 +69,11 @@ export default function reducer(action){
   } else if (action.type === COUNTRY_SELECTED) {
 
     // выбрана другая страна
-    newState.selectedCountry = action.payload;
+    newState.selectedCountry = action.payload.selectedCountry;
+    newState.selectedCountrySlug = action.payload.slug;
+    if (!action.payload.selectedCountry) {
+      newState.selectedCountrySlug='';
+    }
   } else if (action.type === CHART_FROM_CHANGED) {
 
     // смена периода в графике
@@ -82,7 +87,8 @@ export default function reducer(action){
     // раскидаем по датам данные по миру
     worldDataReducer(newState, action.payload)
   } else if (action.type === CHART_DATA_FOR_COUNTRY_LOADED) {
-    console.log(action.payload);
+
+    countryDataReducer(newState, action.payload)
   }
   return newState;
 }
@@ -104,5 +110,52 @@ function worldDataReducer(newState, payload){
   }).reverse();
 
   newState.chart.worldData = [...r];
+}
+
+function countryDataReducer(newState, payload) {
+  // у США данные приходят развернутыми до городов, у других стран нет
+  // оставим только сводные данные - с пустыми городами \ провинциями
+  const tmpArr = payload.filter((item) => {
+    if (item.Province.trim() || item.City.trim() || item.CityCode.trim()) {
+      return false;
+    }
+    return true;
+  }).map((item) => {
+    return {
+      date: item.Date,
+      TotalDeaths: item.Deaths,
+      TotalRecovered: item.Recovered,
+      TotalConfirmed: item.Confirmed,
+    }
+  });
+
+
+  // Высчитаем данные за день
+  // а так же добавим население
+  const currentCountry = newState.selectedCountry.toLowerCase();
+  let population = 0;
+  const popData = newState.populationList.find((item)=>{
+    if (item.name.toLowerCase() === currentCountry) {
+      return true;
+    }
+    return false;
+  })
+  if (popData) {
+    population = popData.population;
+  }
+
+  newState.chart.countryPopulation = population;
+  newState.chart.countryData = tmpArr.map((item, index, arr) => {
+    return {
+      date: item.date,
+      NewDeaths: (index===0) ? 0 : item.TotalDeaths - arr[index-1].TotalDeaths,
+      TotalDeaths: item.TotalDeaths,
+      NewRecovered: (index===0) ? 0 : item.TotalRecovered - arr[index-1].TotalRecovered,
+      TotalRecovered: item.TotalRecovered,
+      NewConfirmed: (index===0) ? 0 : item.TotalConfirmed - arr[index-1].TotalConfirmed,
+      TotalConfirmed: item.TotalConfirmed,
+    }
+  });
+
 }
 

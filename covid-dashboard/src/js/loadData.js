@@ -72,8 +72,7 @@ window.addEventListener('load', ()=>{
 
 export function loadChartData(){
   if (store.getState().selectedCountry) {
-    // https://api.covid19api.com/country/afghanistan
-    loadChartDataByQuery(`country/${store.getState().selectedCountry.toLocaleLowerCase()}`, chartDataForCountryLoadedAC)
+    loadChartDataByQuery(`country/${store.getState().selectedCountrySlug.toLocaleLowerCase()}`, chartDataForCountryLoadedAC)
   } else {
     loadChartDataForWorld();
   }

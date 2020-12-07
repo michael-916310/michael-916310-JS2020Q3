@@ -15,7 +15,7 @@ const COUNTRY_LIST_TABLE_ELM = document.querySelector('.country-list__table');
 const TOTAL_TABLE_REGION_ELM = document.querySelector('.total-data__cell-region');
 
 
-const optionsList=new Set();
+const optionsList=new Map();
 
 // ------------------------------------------------------
 // рендер-функции
@@ -39,7 +39,7 @@ export function renderCountryList(state){
     const op = document.createElement("option");
     op.value=el.Country;
     op.innerText = el.CountryCode;
-    optionsList.add(op.value);
+    optionsList.set(op.value, el.Slug);
     fr.append(op);
   });
   COUNTRIES_DATALIST_ELM.append(fr);
@@ -54,6 +54,7 @@ export function renderCountryTable(state){
   state.countries.forEach((item) => {
     const tr = document.createElement('tr');
     tr.classList.add('country-list-row');
+    //tr.dataset.slug = item.Slug;
     tr.insertAdjacentHTML(`afterbegin`,`
       <td class="country-list__row__cell">
         <img src="https://www.countryflags.io/${item.CountryCode}/flat/16.png"/>
@@ -62,7 +63,10 @@ export function renderCountryTable(state){
       <td class="country-list__row__cell">${item.data}</td>
     `);
     tr.addEventListener('click', ()=>{
-      store.dispatch(countrySelectedAC(item.Country));
+      store.dispatch(countrySelectedAC({
+          selectedCountry: item.Country,
+          slug: item.Slug,
+        }));
     })
     fr.append(tr);
   });
@@ -83,7 +87,10 @@ function addEvents(){
 
     if ( optionsList.has(COUNTRY_SEARCH_INPUT_ELM.value) || (COUNTRY_SEARCH_INPUT_ELM.value.trim()==='')) {
       inputOK=true;
-      store.dispatch(countrySelectedAC(COUNTRY_SEARCH_INPUT_ELM.value.trim()));
+      store.dispatch(countrySelectedAC({
+        selectedCountry: COUNTRY_SEARCH_INPUT_ELM.value.trim(),
+        slug: optionsList.get(COUNTRY_SEARCH_INPUT_ELM.value),
+      }));
     }
   });
 

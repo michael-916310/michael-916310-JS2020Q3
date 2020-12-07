@@ -60,6 +60,7 @@ export function renderChartHeader(state){
 }
 
 export function renderChart(state){
+
   const labelsArr = state.map((item) => {
     return `${dateToMMDDYYYY(item.date)}`
   });

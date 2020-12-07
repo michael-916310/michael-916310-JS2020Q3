@@ -5,5 +5,5 @@ export function renderUpdateDate(state){
   const mm = state.updateDate.getMonth()+1;
   const yyyy = state.updateDate.getFullYear();
 
-  UPDATE_DATE_ELM.innerHTML = `Данные актуальны на: ${dd}/${mm}/${yyyy}`;
+  UPDATE_DATE_ELM.innerHTML = `Данные актуальны на: ${mm}/${dd}/${yyyy}`;
 }
