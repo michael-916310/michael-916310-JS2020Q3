@@ -155,7 +155,6 @@ function getChartData(){
      dataArr = st.chart.countryData;
   }
 
-  console.log('dataArr:', dataArr);
   return dataArr.map((item) => {
     return {
       date: new Date(item.date),
