@@ -75,7 +75,7 @@ function getMapDate(){
   const features = newWorldData.features.map((item) => {
     const curCountry = item.properties.name.toLowerCase();
     const countryData = countries.filter((el) => {
-      return (el.Country.toLowerCase() === curCountry);
+      return (el.Country.toLowerCase() === curCountry || el.Slug.toLowerCase() === curCountry);
     })
     item.properties.data = 0;
     if (countryData.length) {

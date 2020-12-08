@@ -10,19 +10,15 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   zoomOffset: -1,
 }).addTo(map);
 
-let i = 0;
-mapWorldCounty.features.forEach((item) => {
-  item.properties.density=i++;
-});
 
 function getColor(d) {
-  return d > 1000 ? '#800026' :
-         d > 500  ? '#BD0026' :
-         d > 200  ? '#E31A1C' :
-         d > 100  ? '#FC4E2A' :
-         d > 50   ? '#FD8D3C' :
-         d > 20   ? '#FEB24C' :
-         d > 10   ? '#FED976' :
+  return d > 10000000 ? '#800026' :
+         d > 5000000 ? '#BD0026' :
+         d > 2500000  ? '#E31A1C' :
+         d > 1000000  ? '#FC4E2A' :
+         d > 500000   ? '#FD8D3C' :
+         d > 250000   ? '#FEB24C' :
+         d > 125000   ? '#FED976' :
                     '#FFEDA0';
 }
 
@@ -38,5 +34,6 @@ function style(feature) {
 }
 
 export default function renderMap(state){
+  console.log(state);
   L.geoJson(state, {style: style}).addTo(map);
 }
