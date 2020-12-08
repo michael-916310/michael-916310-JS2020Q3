@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -8,9 +9,14 @@
     />
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-
     <meta name="description" content="Covid dashboard" />
     <title>Covid dashboard</title>
+
+    <link rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""/>
+
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -80,7 +86,9 @@
           </div>
         </div>
       </section>
-      <section class="map-container">map-container</section>
+      <section id = "mapid" class="map-container">
+
+      </section>
       <section class="chart-container">
         <p class="chart-region-label">весь мир</p>
         <p class="chart-absolute-label">в абсолютных цифрах</p>
@@ -109,4 +117,5 @@
         </div>
     </footer>
   </body>
+
 </html>

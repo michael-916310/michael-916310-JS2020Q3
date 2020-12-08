@@ -27,6 +27,7 @@ import {
 } from './consts';
 
 import {loadChartData} from './loadData.js';
+import renderMap from './map.js';
 
 // Подпишем на обновление store рендер-функции
 // второй параметр - селектор для подготовки данных для рендера
@@ -38,6 +39,8 @@ store.subscribe(renderCountryTable, selectors.getCountryTableDate);
 store.subscribe(renderSearchInput, selectors.getSearchInput);
 store.subscribe(renderChartHeader, selectors.getChartHeader);
 store.subscribe(renderChart, selectors.getChartData);
+store.subscribe(renderMap, selectors.getMapDate);
+
 
 // сконфигурируем автоматические действия
 // в ответ на начальный диспатч

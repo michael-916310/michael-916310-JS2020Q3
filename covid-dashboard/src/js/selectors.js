@@ -1,4 +1,5 @@
 import store from './store';
+import mapWorldCounty from './mapCountries';
 
 function recalcFromAbsolute(data, population){
   if (store.getState().isAbsolute){
@@ -57,6 +58,37 @@ function getCountryTableDate(){
     return b.data - a.data;
   })
   return r;
+}
+
+
+function getMapDate(){
+  const countries = store.getState().countries.map((el)=>{
+    return {
+      Country: el.Country,
+      CountryCode: el.CountryCode,
+      Slug: el.Slug,
+      data: recalcFromAbsolute(el[getRequestFieldNameForTable()], el.Population),
+    }
+  })
+
+  const newWorldData = {...mapWorldCounty};
+  const features = newWorldData.features.map((item) => {
+    const curCountry = item.properties.name.toLowerCase();
+    const countryData = countries.filter((el) => {
+      return (el.Country.toLowerCase() === curCountry);
+    })
+    item.properties.data = 0;
+    if (countryData.length) {
+      item.properties.data = countryData[0].data;
+    }
+
+    const newItem = {...item};
+    return newItem;
+  });
+
+  newWorldData.features = features;
+  return newWorldData;
+
 }
 
 function getCountriesList(){
@@ -173,4 +205,5 @@ export default {
   getTotalTableData,
   getChartHeader,
   getChartData,
+  getMapDate,
 }
