@@ -1,0 +1,17 @@
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer__logo {
+  margin: 10px;
+  height: 40px;
+}
+
+.footer__info {
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 10px;
+}

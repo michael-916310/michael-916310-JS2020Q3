@@ -1,0 +1,16 @@
+@import "colors.scss";
+@import "switchers.scss";
+@import "header.scss";
+@import "main.scss";
+@import "tables.scss";
+@import "map.scss";
+@import "chart.scss";
+@import "footer.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+* {
+  font-family: "Cabin Sketch", cursive;
+}

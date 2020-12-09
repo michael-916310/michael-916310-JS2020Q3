@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Covid dashboard" />
+    <title>Covid dashboard</title>
+
+    <link rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""/>
+
+    <link rel="stylesheet" href="style.css" />
+  <link href="style.css" rel="stylesheet"></head>
+
+  <body>
+    <header class="header-container">
+      <h1 class="header-h1">
+        Задание RS School:
+        <a
+          href="https://github.com/rolling-scopes-school/tasks/blob/master/tasks/covid-dashboard.md"
+          target="blank"
+        >
+          COVID-19 Dashboard
+        </a>
+      </h1>
+      <section class="header-controls-container">
+        <p class="header-update-date">
+
+        </p>
+        <p class="switcher header-controls__switcher-is-absolute"></p>
+        <p class="switcher header-controls__switcher-is-all-period"></p>
+      </section>
+    </header>
+    <main class="main-container">
+      <section class="table-container">
+        <!-- таблица с данными по всему миру или по выбранной стране -->
+        <table class="total-data__table">
+          <tr>
+            <th class="total-data__header-cell"></th>
+            <th class="total-data__header-cell total-data__cell-region">весь мир</th>
+          </tr>
+          <tr">
+            <td class="total-data__row-indicator">Заболевших</td>
+            <td class="total-data__cell-diseased">-</td>
+          </tr>
+          <tr>
+            <td class="total-data__row-indicator">Умерших</td>
+            <td class="total-data__cell-dead">-</td>
+          </tr>
+          <tr">
+            <td class="total-data__row-indicator">Выздоровело</td>
+            <td class="total-data__cell-recovered">-</td>
+          </tr>
+        </table>
+        <div class="country-container">
+          <label class="country-list__input-container">
+            Страна
+            <input
+              type="text"
+              class="country-search__input"
+              placeholder="первые буквы страны"
+              list="countries-datalist"
+            />
+            <datalist id="countries-datalist"></datalist>
+          </label>
+          <label class="country-list__indicator-container">
+            Показатель
+            <select class="country-list__indicator">
+              <option value="diseased">заболевших</option>
+              <option value="dead">умерших</option>
+              <option value="recovered">выздоровело</option>
+            </select>
+          </label>
+          <p class="switcher country-list__is-ascending"></p>
+          <div class="country-list__container">
+            <table class="country-list__table">
+            </table>
+          </div>
+        </div>
+      </section>
+      <section id = "mapid" class="map-container">
+
+      </section>
+      <section class="chart-container">
+        <p class="chart-region-label">весь мир</p>
+        <p class="chart-absolute-label">в абсолютных цифрах</p>
+        <p class="chart-accumulate-label">накопительно за весь период</p>
+        <p>
+            с даты :
+            <input class="chart-from-label" type="date" placeholder="с"/>
+        </p>
+        <p>
+            по дату:
+            <input class="chart-till-label" type="date" placeholder="по"/>
+        </p>
+        <canvas class="chart-canvas"></canvas>
+      </section>
+    </main>
+    <footer class="footer-container">
+        <img class="footer__logo" src="img/rs_school_js.svg"/>
+
+        <div class="footer__info">
+            Author:
+            <a href="https://github.com/michael-916310" target="_blank">Michael Buranov</a>
+            <br>
+            <a href="https://rs.school/js/" target="_blank">RS SCHOOL course</a>
+            <br>
+            2020
+        </div>
+    </footer>
+  <script type="text/javascript" src="index.js"></script></body>
+
+</html>
