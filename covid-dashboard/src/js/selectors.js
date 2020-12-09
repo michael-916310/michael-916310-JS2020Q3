@@ -62,6 +62,7 @@ function getCountryTableDate(){
 
 
 function getMapDate(){
+  const st = store.getState();
   const countries = store.getState().countries.map((el)=>{
     return {
       Country: el.Country,
@@ -87,6 +88,19 @@ function getMapDate(){
   });
 
   newWorldData.features = features;
+  newWorldData.absoluteDescription = (st.isAbsolute) ? 'в абсолютных числах' : 'в пересчете на 100 тысяч';
+  newWorldData.accumulateDescription = (st.isAllPeriod) ? 'накопительно за весь период': 'данные за день';
+
+  let param;
+  if (st.countryListIndicator === 'diseased') {
+    param = 'заболевших';
+  } if (st.countryListIndicator === 'dead') {
+    param = 'уверших';
+  } if (st.countryListIndicator === 'recovered') {
+    param = 'выздоровевших';
+  }
+  newWorldData.param = param;
+
   return newWorldData;
 
 }
