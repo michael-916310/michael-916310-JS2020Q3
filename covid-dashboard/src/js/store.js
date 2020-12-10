@@ -15,7 +15,7 @@ const store = {
     selectedCountry: '',
     selectedCountrySlug: '',
     chart:{
-      from: new Date('11/15/2020'),
+      from: new Date('12/01/2020'),
       till: new Date(),
       worldData: [],
       countryData: [],

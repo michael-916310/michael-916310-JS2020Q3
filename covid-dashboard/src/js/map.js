@@ -8,7 +8,7 @@ let accumulateDescription;
 let paramDescription;
 
 let geojson;
-let info = L.control();
+const info = L.control();
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
   id: 'mapbox/light-v9',
